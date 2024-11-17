@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cx1ergchu2j1f"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(2, 1, 2)
+
+[node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)

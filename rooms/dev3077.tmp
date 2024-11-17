@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://wymqic7fdd0x"]
+
+[ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://gridd.png" id="1_vpqra"]
+[ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://player.tscn" id="2_y4g5o"]
+[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI.tscn" id="3_43w3d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7wsx"]
+albedo_color = Color(0.31802, 0.31802, 0.31802, 1)
+albedo_texture = ExtResource("1_vpqra")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wvlua"]
+material = SubResource("StandardMaterial3D_h7wsx")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rgcck"]
+size = Vector3(50, 50, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_y4g5o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, 0)
+script = null
+
+[node name="UI" parent="." instance=ExtResource("3_43w3d")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_wvlua")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 2.18557e-08)
+shape = SubResource("BoxShape3D_rgcck")

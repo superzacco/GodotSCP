@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbtynk58d5ikj"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_r3twu"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r3twu")
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 310.0
+offset_bottom = 220.0
+pivot_offset = Vector2(150, 50)
+text = "QUIT"
+
+[node name="PlayDev" type="Button" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 110.0
+pivot_offset = Vector2(150, 50)
+text = "PLAY (DEV SCENE)"
+
+[node name="Steam" type="Node" parent="."]
+
+[node name="Host" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 230.0
+offset_right = 155.0
+offset_bottom = 330.0
+pivot_offset = Vector2(150, 50)
+text = "HOST"
+
+[node name="Refresh" type="Button" parent="."]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 230.0
+offset_right = 310.0
+offset_bottom = 330.0
+pivot_offset = Vector2(150, 50)
+text = "REFRESH"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="LobbyContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -378.0
+offset_right = 305.0
+offset_bottom = -14.0
+grow_vertical = 0
+
+[node name="Lobbies" type="VBoxContainer" parent="LobbyContainer"]
+layout_mode = 2
+
+[node name="PlayMapGenTest" type="Button" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 10.0
+offset_right = 620.0
+offset_bottom = 110.0
+pivot_offset = Vector2(150, 50)
+text = "PLAY (MAP GEN TEST)"
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PlayDev" to="." method="_on_play_dev_pressed"]
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Host" to="Steam" method="_on_host_pressed"]
+[connection signal="pressed" from="Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="PlayMapGenTest" to="." method="_on_play_map_gen_test_pressed"]

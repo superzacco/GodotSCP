@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://xut0iq5tgu6k"]
+
+[ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_0xsum"]
+[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI.tscn" id="2_ojm86"]
+
+[sub_resource type="GDScript" id="GDScript_5tq0r"]
+script/source = "extends Node3D
+
+var lobby_id = 0
+var peer = MultiplayerPeer.new()
+
+func _ready() -> void:
+	get_node(\"UI/Console/Host\").connect(\"pressed\", host)
+
+func host():
+	peer.create_lobby(MultiplayerPeer.LOBBY_TYPE_PUBLIC)
+	
+	pass	
+"
+
+[node name="Test" type="Node3D"]
+script = SubResource("GDScript_5tq0r")
+
+[node name="Player" parent="." instance=ExtResource("1_0xsum")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -7)
+
+[node name="UI" parent="." instance=ExtResource("2_ojm86")]

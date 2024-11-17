@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlv8rax26wj3y"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_qccfk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3mim6"]
+radial_segments = 8
+rings = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s543j"]
+size = Vector3(1, 2, 1)
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+input_ray_pickable = false
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_qccfk")
+stuffToRotate = NodePath("StuffToRotate")
+collider = NodePath("CollisionShape3D")
+camera = NodePath("StuffToRotate/Camera3D")
+sensitivityDesired = 0.5
+moveSpeedDesired = 50.0
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_3mim6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_s543j")
+
+[node name="StuffToRotate" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="StuffToRotate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
