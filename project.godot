@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalVariables="*res://entities/global_variables.gd"
 Steamnetworking="*res://networking/steamnetworking.gd"
 ZFunc="*res://entities/ZFunc.gd"
+VersionController="*res://version_controller.gd"
 
 [debug]
 

@@ -1,0 +1,8 @@
+res://entities/player/player.tscn
+res://entities/items/item.gd
+res://entities/UI.tscn
+res://entities/version_info.gd
+res://scenes/menu.tscn
+res://versioninfo.txt
+res://version_controller.gd
+res://export_presets.cfg
