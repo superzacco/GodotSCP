@@ -3,6 +3,9 @@ extends Control
 var lobby_id =  0
 var peer = SteamMultiplayerPeer.new()
 
+@export var devScene: PackedScene
+@export var mapGenScene: PackedScene
+
 @onready var ms = $MultiplayerSpawner
 
 func _ready() -> void:
@@ -15,12 +18,12 @@ func _ready() -> void:
 
 #region # BUTTONS
 func _on_play_dev_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/dev.tscn")
+	get_tree().change_scene_to_packed(devScene)
 	pass 
 
 
 func _on_play_map_gen_test_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/mapgentest.tscn")
+	get_tree().change_scene_to_packed(mapGenScene)
 	pass
 
 

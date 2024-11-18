@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c51e2qcf67eci"]
+[gd_scene load_steps=2 format=3 uid="uid://c51e2qcf67eci"]
+
+[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_6thfj"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -11,12 +13,16 @@ size = Vector3(4, 1, 1)
 
 [node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+script = ExtResource("1_6thfj")
 
 [node name="point2" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_6thfj")
 
 [node name="point3" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+script = ExtResource("1_6thfj")
 
 [node name="point4" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("1_6thfj")

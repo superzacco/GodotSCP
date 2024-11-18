@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbtynk58d5ikj"]
+[gd_scene load_steps=4 format=3 uid="uid://cbtynk58d5ikj"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_r3twu"]
+[ext_resource type="PackedScene" uid="uid://wymqic7fdd0x" path="res://scenes/dev.tscn" id="2_3i1eg"]
+[ext_resource type="PackedScene" uid="uid://xut0iq5tgu6k" path="res://levelgen/mapgentest.tscn" id="3_slfrh"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -10,6 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r3twu")
+devScene = ExtResource("2_3i1eg")
+mapGenScene = ExtResource("3_slfrh")
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1

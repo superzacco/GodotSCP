@@ -53,6 +53,9 @@ func _input(event):
 		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * sensitivity * 0.1))
 		camera.rotate_x(deg_to_rad(-event.relative.y * sensitivity * 0.1))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+	
+	if Input.is_action_just_pressed("noclip"):
+		toggle_noclip()
 pass
 #endregion
 
