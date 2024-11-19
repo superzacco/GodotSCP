@@ -9,8 +9,7 @@
 radial_segments = 8
 rings = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s543j"]
-size = Vector3(1, 2, 1)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2ip7f"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_te1f4"]
 properties/0/path = NodePath(".:position")
@@ -42,7 +41,7 @@ mesh = SubResource("CapsuleMesh_3mim6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_s543j")
+shape = SubResource("CylinderShape3D_2ip7f")
 
 [node name="StuffToRotate" type="Node3D" parent="."]
 

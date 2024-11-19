@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="SCP"
-run/main_scene="res://rooms/4way.tscn"
+run/main_scene="res://levelgen/mapgentest.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalVariables="*res://entities/global_variables.gd"
-Steamnetworking="*res://networking/steamnetworking.gd"
 ZFunc="*res://entities/ZFunc.gd"
 VersionController="*res://version_controller.gd"
 

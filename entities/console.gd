@@ -44,7 +44,7 @@ func _input(event: InputEvent) -> void:
 	pass
 
 func help():
-	ZFunc.consolePrint("
+	print("
 		help - Displays this text.
 		noclip - Allows the player to fly without world collision.
 		quit - Exits the game immediately.

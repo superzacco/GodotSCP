@@ -1,53 +1,39 @@
 extends Node3D
 
-var isPosZ: bool
-var isNegZ: bool
-var isPosX: bool
-var isNegX: bool
-
-var extreme_points = {
-	"max_z": 0,
-	"min_z": INF,
-	"max_x": 0,
-	"min_x": INF
-}
+@export var orientation: int
 
 func _ready() -> void:
-	check_orientation()
 	pass
 
 
-func check_orientation():
-	var otherConnectionPoints = get_parent().get_children()
-	
-	for points in otherConnectionPoints:
-		if points.is_in_group("roomconnectionpoints") and points != self:
-			if points.position.z > extreme_points["max_z"]:
-				extreme_points["max_z"] = points.position.z
-			if points.position.z < extreme_points["min_z"]:
-				extreme_points["min_z"] = points.position.z
-			
-			if points.position.x > extreme_points["max_x"]:
-				extreme_points["max_x"] = points.position.x
-			if points.position.x < extreme_points["min_x"]:
-				extreme_points["min_x"] = points.position.x
-	
-	# After iterating, check if `self`'s position is an extreme position
-	isPosZ = self.position.z > extreme_points["max_z"]
-	isNegZ = self.position.z < extreme_points["min_z"]
-	isPosX = self.position.x > extreme_points["max_x"]
-	isNegX = self.position.x < extreme_points["min_x"]
-	
-	print_positions()
+func update_orientation(printPosition: bool = false):
+	if orientation == 0:
+		orientation = 1
+		
+	if orientation == 1:
+		orientation = 2
+		
+	if orientation == 2:
+		orientation = 3
+		
+	if orientation == 3:
+		orientation = 0
+		
+	if printPosition:
+		print_positions()
 	pass
+
+
+func return_orientation():
+	return orientation
 
 
 func print_positions():
-	if isPosZ:
+	if orientation == 0:
 		print(self.name + " is Positive Z")
-	if isPosX:
+	if orientation == 1:
 		print(self.name + " is Positive X")
-	if isNegZ:
+	if orientation == 2:
 		print(self.name + " is Negative Z")
-	if isNegX:
+	if orientation == 3:
 		print(self.name + " is Negative X")

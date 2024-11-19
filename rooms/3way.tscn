@@ -14,6 +14,7 @@ size = Vector3(2.5, 1, 1)
 [node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 script = ExtResource("1_it6sj")
+orientation = 1
 
 [node name="point2" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -22,3 +23,4 @@ script = ExtResource("1_it6sj")
 [node name="point4" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 script = ExtResource("1_it6sj")
+orientation = 3
