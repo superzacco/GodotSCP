@@ -1,6 +1,5 @@
 extends Node
 
-signal check_orientation_of_connection_point
 var openConnectionPoints: Array
 
 #region // ROOMS
@@ -24,6 +23,8 @@ func begin_generation():
 	
 	# Find open point(s)
 	for connectionPoint in find_connection_points_in_children(spawnRoom): 
+		
+		#Spawn Initial Hallway
 		spawn_room(threeWayIntersections[0], connectionPoint) # 3-way intersection is temporary
 	
 	pass
@@ -36,6 +37,14 @@ func spawn_room(room: PackedScene, connectionPoint):
 	add_child(spawnedRoom)
 	spawnedRoom.position = connectionPoint.position
 	
+	check_pos(spawnedRoom, connectionPoint)
+
+
+var amtOfCalls: int = 0
+	
+func check_pos(spawnedRoom, connectionPoint):
+	amtOfCalls += 1
+	
 	# Grab points in spawned room 
 	var conPointsInSpawnedRoom = find_connection_points_in_children(spawnedRoom)
 	
@@ -43,28 +52,16 @@ func spawn_room(room: PackedScene, connectionPoint):
 	for spawnedRoomConPoint in conPointsInSpawnedRoom:
 		if spawnedRoomConPoint.return_orientation() == return_opposite_facing_point(connectionPoint):
 			print("match!")
+			move_room_to_final_pos(spawnedRoom, spawnedRoomConPoint, connectionPoint)
 			break
 		else:
 			noMatchCount += 1
 			
 			if noMatchCount >= conPointsInSpawnedRoom.size():
-				rotate_room(spawnedRoom)
+				rotate_room(spawnedRoom, connectionPoint)
 				break
 			
 			print("no match")
-	
-	## Check if points are opposite
-	## if SELF.connecotion point == conPointDict.return_opposite_facing_point():
-	#if return_opposite_facing_point(conPointDict):
-		## move room into place
-		#pass
-	#else:
-		##rotate_room(spawnedRoom)
-		#pass
-	#
-	## if the we find an opposite point, move the room into correct place
-	## if not, rotate the room by 90 degrees, rotate orientations, and check again
-	#pass
 
 
 func find_connection_points_in_children(parent: Node3D): # can be used w/ or w/o a return
@@ -96,6 +93,27 @@ func return_opposite_facing_point(connectionPoint):
 	pass
 
 
-func rotate_room(room: Node3D):
+func rotate_room(spawnedRoom: Node3D, connectionPoint):
 	print("rotating room")
+	
+	spawnedRoom.rotate(Vector3.UP, deg_to_rad(-90))
+	var spawnedRoomChildren = spawnedRoom.get_children()
+	for child in spawnedRoomChildren:
+		if child.is_in_group("roomconnectionpoints"):
+			print("trying to update orientation")
+			
+			child.update_orientation()
+	
+	if amtOfCalls < 10:
+		check_pos(spawnedRoom, connectionPoint) # having to pass these back is BAD
+	else:
+		print("Too many calls to rotate_room() function!")
+	pass
+
+
+func move_room_to_final_pos(spawnedRoom, spawnedRoomConPoint, connectionPoint):
+	var spaceBetweenPoints = spawnedRoomConPoint.global_position - connectionPoint.global_position
+	print(spaceBetweenPoints)
+	
+	spawnedRoom.global_position -= spaceBetweenPoints
 	pass

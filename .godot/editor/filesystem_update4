@@ -1,10 +1,5 @@
-res://rooms/bend.tscn
-res://rooms/connection_point.gd
-res://rooms/4way.tscn
-res://levelgen/mapgentest.tscn
-res://levelgen/generatemap.gd
 res://rooms/3way.tscn
+res://rooms/connection_point.gd
+res://levelgen/generatemap.gd
+res://levelgen/mapgentest.tscn
 res://rooms/spawnroom.tscn
-res://entities/player/player.tscn
-res://entities/ZFunc.gd
-res://entities/console.gd
