@@ -1,4 +1,8 @@
+AnimationPlayer
 Node3D
+OmniLight3D
+FogVolume
+SpotLight3D
 StaticBody3D
 Label
 Control
@@ -8,7 +12,3 @@ Area3D
 HBoxContainer
 MarginContainer
 VBoxContainer
-TextureRect
-Container
-ItemList
-RigidBody3D

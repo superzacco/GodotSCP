@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 		visible = false
 	
 	if Input.is_action_just_pressed("enter"):
-		ZFunc.consolePrint("] " + inputField.text)
+		print("] " + inputField.text)
 		
 		match inputField.text:
 			"help":

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7rgmb2eiq6td"]
+
+[ext_resource type="Script" path="res://rooms/button.gd" id="1_melfm"]
+[ext_resource type="PackedScene" uid="uid://ckpahc334cthm" path="res://rooms/Models/button1.blend" id="2_82p41"]
+
+[node name="Button" type="Node3D"]
+script = ExtResource("1_melfm")
+
+[node name="button1" parent="." instance=ExtResource("2_82p41")]

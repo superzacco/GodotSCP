@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://denjqd6filqia"]
+
+[ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="1_k63ly"]
+
+[node name="LConHall001" type="Node3D"]
+
+[node name="LConHall001" parent="." instance=ExtResource("1_k63ly")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0)
+light_size = 0.009
+light_specular = 0.0
+omni_range = 10.0

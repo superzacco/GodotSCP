@@ -1,5 +1,13 @@
-res://rooms/3way.tscn
+res://scenes/dev.tscn
 res://rooms/connection_point.gd
-res://levelgen/generatemap.gd
 res://levelgen/mapgentest.tscn
+res://rooms/3way.tscn
 res://rooms/spawnroom.tscn
+res://entities/player/interaction.gd
+res://entities/player/player.tscn
+res://rooms/LConHall001.tscn
+res://rooms/door.tscn
+res://rooms/door.gd
+res://entities/console.gd
+res://entities/player/player.gd
+res://rooms/button.tscn

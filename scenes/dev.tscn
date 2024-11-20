@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wymqic7fdd0x"]
+[gd_scene load_steps=16 format=3 uid="uid://wymqic7fdd0x"]
 
 [ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="1_vpqra"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="2_y4g5o"]
@@ -6,6 +6,45 @@
 [ext_resource type="Script" path="res://entities/multiplayer_spawner.gd" id="4_ov017"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="5_oaqns"]
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="5_sselc"]
+[ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/LConHall001.tscn" id="7_8a8cv"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="9_3m8m1"]
+[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="9_u1fds"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hdjsg"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5umos"]
+sky_material = SubResource("ProceduralSkyMaterial_hdjsg")
+
+[sub_resource type="Environment" id="Environment_3d0jv"]
+background_mode = 2
+sky = SubResource("Sky_5umos")
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 2
+ssr_max_steps = 128
+ssr_fade_in = 0.000985423
+ssr_fade_out = 1.0
+ssr_depth_tolerance = 0.01
+ssao_radius = 11.09
+ssao_intensity = 16.0
+ssil_radius = 4.9
+ssil_intensity = 0.0
+ssil_sharpness = 0.0
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 5.0
+fog_depth_end = 30.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.15
+volumetric_fog_albedo = Color(0.0197695, 0.0186425, 0.0058158, 1)
+volumetric_fog_detail_spread = 0.5
+volumetric_fog_ambient_inject = 16.0
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7wsx"]
 albedo_color = Color(0.31802, 0.31802, 0.31802, 1)
@@ -21,12 +60,8 @@ size = Vector3(50, 50, 1)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("2_y4g5o")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.1, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3d0jv")
 
 [node name="UI" parent="." instance=ExtResource("3_43w3d")]
 
@@ -50,3 +85,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.873754, 3)
 
 [node name="keycard01" parent="." instance=ExtResource("5_sselc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.873754, 2)
+
+[node name="LConHall001" parent="." instance=ExtResource("7_8a8cv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 7)
+
+[node name="LConHall002" parent="LConHall001" instance=ExtResource("7_8a8cv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="Door" parent="." instance=ExtResource("9_3m8m1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.52, 14.5)
+
+[node name="Player" parent="." instance=ExtResource("2_y4g5o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 5.65164, 1)
+
+[node name="Button" parent="." instance=ExtResource("9_u1fds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0390729, 6.65626, 14.3)

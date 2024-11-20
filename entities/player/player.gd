@@ -13,6 +13,9 @@ var wishDir: Vector3
 var noclip_enabled: bool = false
 
 func _ready() -> void:
+	$AnimationPlayer.play("walking_Bob")
+	$AnimationPlayer.pause()
+	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	if !is_multiplayer_authority():
 		camera.queue_free()
@@ -42,6 +45,11 @@ func _physics_process(_delta: float) -> void:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x
 		if Input.is_action_pressed("blink"):
 			apply_force(stuffToRotate.transform.basis.y * moveSpeed)
+	
+	if moveDir != Vector3(0, 0, 0):
+		$AnimationPlayer.play()
+	else:
+		$AnimationPlayer.pause()
 	
 	apply_force(moveDir.normalized() * moveSpeed)
 	pass

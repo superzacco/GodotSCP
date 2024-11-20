@@ -10,8 +10,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_released("interact"):
-		pick_up_item()
+	#if Input.is_action_just_released("interact"):
+		#pick_up_item()
 	pass
 
 
