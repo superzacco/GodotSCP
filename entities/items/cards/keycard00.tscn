@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1vyvsa34747c"]
 
 [ext_resource type="PackedScene" uid="uid://7qke47ahhb3a" path="res://entities/items/cards/models/keycard0.blend" id="1_hnqs8"]
-[ext_resource type="PackedScene" uid="uid://dhvttrwdkk23" path="res://entities/items/cards/keycard.tscn" id="1_niyi7"]
+[ext_resource type="PackedScene" uid="uid://dhvttrwdkk23" path="res://entities/items/cards/keycardbase.tscn" id="1_niyi7"]
 
-[node name="keycard00" instance=ExtResource("1_niyi7")]
+[node name="item" groups=["interactables"] instance=ExtResource("1_niyi7")]
 
 [node name="keycard0" parent="keycard" index="0" instance=ExtResource("1_hnqs8")]

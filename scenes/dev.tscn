@@ -89,14 +89,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.873754, 2)
 [node name="LConHall001" parent="." instance=ExtResource("7_8a8cv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 7)
 
-[node name="LConHall002" parent="LConHall001" instance=ExtResource("7_8a8cv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
-
 [node name="Door" parent="." instance=ExtResource("9_3m8m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.52, 14.5)
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_y4g5o")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 5.65164, 1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 5.65164, 12)
 
 [node name="Button" parent="." instance=ExtResource("9_u1fds")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0390729, 6.65626, 14.3)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2, 6, 5)
+
+[node name="item" parent="." instance=ExtResource("5_oaqns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, 8)
+
+[node name="LConHall002" parent="." instance=ExtResource("7_8a8cv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 22)

@@ -5,13 +5,10 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
 radius = 1.0
 
-[node name="Item" type="RigidBody3D" groups=["interactables"]]
+[node name="Item" type="RigidBody3D" groups=["item"]]
 script = ExtResource("1_0nrx4")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_2htau")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
