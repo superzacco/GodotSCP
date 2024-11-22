@@ -3,6 +3,7 @@ extends Node3D
 @export var animationPlayer: AnimationPlayer
 
 var doorOpen: bool = false
+var opening: bool = false
 
 
 func _input(event: InputEvent) -> void:
@@ -11,10 +12,11 @@ func _input(event: InputEvent) -> void:
 
 
 func toggle_door():
-	if doorOpen:
-		close()
-	else: 
-		open()
+	if !animationPlayer.is_playing():
+		if doorOpen:
+			close()
+		else: 
+			open()
 
 
 func open():

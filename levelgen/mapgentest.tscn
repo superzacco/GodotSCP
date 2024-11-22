@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_5236q"]
 [ext_resource type="Script" path="res://levelgen/generatemap.gd" id="1_js5ej"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI.tscn" id="2_201hs"]
-[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/spawnroom.tscn" id="2_k8sr8"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/3way.tscn" id="3_nvnv3"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/4way.tscn" id="4_o5aq6"]
+[ext_resource type="Script" path="res://rooms/connection_point.gd" id="7_n2u0e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qo1je"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,7 +23,6 @@ glow_enabled = true
 [node name="mapgentest" type="Node3D"]
 top_level = true
 script = ExtResource("1_js5ej")
-SpawnRoom = ExtResource("2_k8sr8")
 threeWayIntersections = Array[PackedScene]([ExtResource("3_nvnv3")])
 fourWayIntersections = Array[PackedScene]([ExtResource("4_o5aq6")])
 
@@ -34,3 +33,11 @@ environment = SubResource("Environment_bq40d")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -7)
 
 [node name="UI" parent="." instance=ExtResource("2_201hs")]
+
+[node name="SpawnRoom" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SpawnRoom"]
+
+[node name="point1" type="Node3D" parent="SpawnRoom" groups=["roomconnectionpoints"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+script = ExtResource("7_n2u0e")

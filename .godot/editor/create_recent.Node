@@ -1,6 +1,8 @@
+Node3D
+CSGBox3D
+Sprite3D
 StaticBody3D
 CollisionShape3D
-Node3D
 RigidBody3D
 AnimationPlayer
 OmniLight3D
@@ -10,5 +12,3 @@ Label
 Control
 Node2D
 Area3D
-HBoxContainer
-MarginContainer
