@@ -1,6 +1,5 @@
 extends Node
 
-var openConnectionPointArray: Array = []
 var amtOfCheckIfOppCalls: int = 0
 
 @export var originalHall: Node3D
@@ -9,6 +8,9 @@ var amtOfCheckIfOppCalls: int = 0
 # INTERSECTIONS
 @export var threeWayIntersections: Array[PackedScene]
 @export var fourWayIntersections: Array[PackedScene]
+
+# HALLWAYS
+@export var hallways: Array[PackedScene]
 #endregion
 
 
@@ -19,14 +21,15 @@ func _ready() -> void:
 
 func define_and_start_generation():
 	# Spawn Initial Hallway
-	var loop1 = find_connection_points_in_group()
-	for connectionPoint in loop1:
+	for connectionPoint in find_connection_points_in_group():
 		spawn_room(threeWayIntersections[0], connectionPoint) # 3-way intersection is temporary
 	
-	for connectionPoint in find_connection_points_in_group():
-		pass
+	for _i in 4:
+		for connectionPoint in find_connection_points_in_group():
+			printerr("Spawning hallway")
+			spawn_room(hallways[0], connectionPoint)
 	
-	pass
+	
 
 
 func spawn_room(room: PackedScene, connectionPoint):
@@ -42,7 +45,7 @@ func spawn_room(room: PackedScene, connectionPoint):
 
 
 func find_connection_points_in_group(): 
-	openConnectionPointArray.clear()
+	var openConnectionPointArray: Array
 	openConnectionPointArray = get_tree().get_nodes_in_group("roomconnectionpoints")
 	
 	print("finding points! : " + str(openConnectionPointArray))
@@ -50,8 +53,7 @@ func find_connection_points_in_group():
 
 
 func find_connection_points_in_children(parent):
-	openConnectionPointArray.clear()
-	
+	var openConnectionPointArray: Array
 	var children = parent.get_children()
 	
 	for child in children:
@@ -76,12 +78,11 @@ func check_if_points_are_opposite(spawnedRoom, connectionPoint):
 			break
 		else:
 			noMatchCount += 1
+			print("no match")
 			
 			if noMatchCount >= conPointsInSpawnedRoom.size():
 				rotate_room(spawnedRoom, connectionPoint)
 				break
-			
-			print("no match")
 
 
 func rotate_room(spawnedRoom: Node3D, connectionPoint):
@@ -103,14 +104,13 @@ func rotate_room(spawnedRoom: Node3D, connectionPoint):
 
 func move_room_to_final_pos(spawnedRoom, spawnedRoomConPoint, connectionPoint):
 	var spaceBetweenPoints = spawnedRoomConPoint.global_position - connectionPoint.global_position
-	
 	spawnedRoom.global_position -= spaceBetweenPoints
 	
-	print("moved room, all done!")
+	print("moved room: " + str(spaceBetweenPoints) + ", all done!")
 	
-	spawnedRoomConPoint.queue_free()
-	connectionPoint.queue_free()
-	openConnectionPointArray.clear()
+	spawnedRoomConPoint.free()
+	connectionPoint.free()
+	#openConnectionPointArray.clear()
 	pass
 
 

@@ -5,3 +5,6 @@ res://rooms/LConHall001.tscn
 res://rooms/bend.tscn
 res://levelgen/mapgentest.tscn
 res://levelgen/generatemap.gd
+res://rooms/LConBend001.tscn
+res://rooms/LCon3Way001.tscn
+res://rooms/LCon4Way001.tscn

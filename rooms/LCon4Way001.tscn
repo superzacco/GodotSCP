@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_6thfj"]
 [ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="2_her8l"]
 
-[node name="Node3D" type="Node3D"]
+[node name="LCon4Way001" type="Node3D"]
 
 [node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)

@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cprgdtnc3bad7"]
 
-[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_fql5p"]
-[ext_resource type="PackedScene" uid="uid://b158b8qeksa6p" path="res://rooms/Models/LConBend001.blend" id="2_dwloq"]
+[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_15v2j"]
+[ext_resource type="PackedScene" uid="uid://b158b8qeksa6p" path="res://rooms/Models/LConBend001.blend" id="2_4w26r"]
 
-[node name="Bend" type="Node3D"]
+[node name="LConBend001" type="Node3D"]
 
 [node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.5)
-script = ExtResource("1_fql5p")
+script = ExtResource("1_15v2j")
 orientation = 2
 
 [node name="point2" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
-script = ExtResource("1_fql5p")
+script = ExtResource("1_15v2j")
 orientation = 1
 
-[node name="LConBend001" parent="." instance=ExtResource("2_dwloq")]
+[node name="LConBend001" parent="." instance=ExtResource("2_4w26r")]

@@ -15,7 +15,12 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cube"
+			"name":"Cube",
+			"translation":[
+				0,
+				0.21428561210632324,
+				0
+			]
 		}
 	],
 	"meshes":[

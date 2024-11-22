@@ -15,7 +15,12 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cube-col"
+			"name":"Cube-col",
+			"translation":[
+				0,
+				0.28666651248931885,
+				0
+			]
 		}
 	],
 	"meshes":[
