@@ -10,8 +10,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("console"):
-		GlobalVariables.consoleOpen = true
-		GlobalVariables.canMove = false
+		GlobalPlayerVariables.consoleOpen = true
+		GlobalPlayerVariables.canMove = false
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 		inputField.editable = false
 		inputField.grab_focus()
@@ -22,8 +22,8 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("quit"):
 		inputField.clear()
-		GlobalVariables.consoleOpen = false
-		GlobalVariables.canMove = true
+		GlobalPlayerVariables.consoleOpen = false
+		GlobalPlayerVariables.canMove = true
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 		visible = false
 	

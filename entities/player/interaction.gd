@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
-		print("in range of " + str(area.get_parent().name))
+		#print("in range of " + str(area.get_parent().name))
 		interactablesInRange.append(area.get_parent())
 		
 		find_nearest_interactable()
@@ -36,7 +36,7 @@ func _on_area_entered(area: Area3D) -> void:
 
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
-		print("exiting range of " + str(area.get_parent().name))
+		#print("exiting range of " + str(area.get_parent().name))
 		interactablesInRange.erase(area.get_parent())
 		
 		if interactablesInRange.size() == 0:
@@ -54,6 +54,7 @@ func pick_up_item(item):
 		item.reparent(inventoryNode)
 		item.global_position = inventoryNode.global_position
 		item.freeze = true
+		inventoryNode.store_item(item)
 	pass
 
 

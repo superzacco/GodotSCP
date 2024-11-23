@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq36u66dwnw6w"]
+
+[ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/Models/LConTeslaOffice.blend" id="1_bexi0"]
+
+[node name="LConTeslaOffice" type="Node3D"]
+
+[node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LConTeslaOffice"]
+omni_range = 10.47

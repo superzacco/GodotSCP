@@ -10,15 +10,11 @@ animationPlayer = NodePath("door/AnimationPlayer")
 
 [node name="door" parent="." instance=ExtResource("1_w23wf")]
 
-[node name="Skeleton3D" parent="door/Armature" index="0"]
-bones/0/position = Vector3(0, 1.35, 0)
-bones/2/position = Vector3(-1.01922e-07, -1.35, 0)
-
 [node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, 1.35, 0)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 
 [node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, -1.35, 0)
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="." node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_4wl2e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.2)

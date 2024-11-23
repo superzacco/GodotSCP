@@ -6,35 +6,43 @@ extends RigidBody3D
 
 @export var sensitivityDesired: float
 @export var moveSpeedDesired: float
+@export var sprintSpeedDesired: float
+
+@export var sprintDepletionRate: float
+@export var sprintReplenishRate: float
+
 var sensitivity: float
 var moveSpeed: float
 
 var wishDir: Vector3
 var noclip_enabled: bool = false
+var sprinting: bool = false
 
 func _ready() -> void:
+	if !is_multiplayer_authority():
+		camera.queue_free()
+	
+	moveSpeed = moveSpeedDesired
+	sensitivity = sensitivityDesired
+	
 	$AnimationPlayer.play("walking_Bob")
 	$AnimationPlayer.pause()
 	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	if !is_multiplayer_authority():
-		camera.queue_free()
-	
-	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	get_parent().get_node("UI/Console").connect("toggle_noclip", toggle_noclip)
+	get_node("UI/Console").connect("toggle_noclip", toggle_noclip)
 	pass
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority():
 		return
 	
-	linear_velocity *= 0.85
-	
-	moveSpeed = 0.0 if GlobalVariables.consoleOpen else moveSpeedDesired
-	sensitivity = 0.0 if GlobalVariables.consoleOpen else sensitivityDesired
+	if GlobalPlayerVariables.consoleOpen:
+		moveSpeed = 0.0
 	
 	#region MOVEMENT
+	linear_velocity *= 0.85
+	
 	var moveDir: Vector3 
 	wishDir.x = Input.get_axis("right", "left")
 	wishDir.z = Input.get_axis("back", "forward")
@@ -46,13 +54,33 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_pressed("blink"):
 			apply_force(stuffToRotate.transform.basis.y * moveSpeed)
 	
+	apply_force(moveDir.normalized() * moveSpeed)
+	#self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
+	#endregion
+	
+
+	#region SPRINTING
+	if GlobalPlayerVariables.sprintJuice > 0 and sprinting and moveDir != Vector3(0, 0, 0):
+		moveSpeed = sprintSpeedDesired
+		GlobalPlayerVariables.sprintJuice -= sprintDepletionRate * delta
+	else:
+		moveSpeed = moveSpeedDesired
+	
+	# recharge
+	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
+		recharge_sprint(delta)
+	
+	if sprinting:
+		$AnimationPlayer.speed_scale = 1.35
+	else:
+		$AnimationPlayer.speed_scale = 1 
+	pass
+	#endregion
+	
 	if moveDir != Vector3(0, 0, 0):
 		$AnimationPlayer.play()
 	else:
 		$AnimationPlayer.pause()
-	
-	apply_force(moveDir.normalized() * moveSpeed)
-	pass
 
 
 #region CAMERA MOVEMENT
@@ -64,7 +92,12 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("noclip"):
 		toggle_noclip()
-pass
+	
+	if Input.is_action_just_pressed("sprint"):
+		sprinting = true
+	
+	if Input.is_action_just_released("sprint"):
+		sprinting = false
 #endregion
 
 
@@ -80,3 +113,12 @@ func toggle_noclip():
 		noclip_enabled = true
 		print("noclip ON")
 	pass
+
+
+func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET 
+	await get_tree().create_timer(2).timeout
+	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
+		GlobalPlayerVariables.sprintJuice += sprintReplenishRate * delta
+	
+	if GlobalPlayerVariables.sprintJuice > 100:
+		GlobalPlayerVariables.sprintJuice = 100

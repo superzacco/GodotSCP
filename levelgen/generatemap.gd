@@ -5,6 +5,8 @@ var amtOfCheckIfOppCalls: int = 0
 @export var originalHall: Node3D
 
 #region // ROOMS
+@export var door: PackedScene
+
 # INTERSECTIONS
 @export var threeWayIntersections: Array[PackedScene]
 @export var fourWayIntersections: Array[PackedScene]
@@ -26,10 +28,7 @@ func define_and_start_generation():
 	
 	for _i in 4:
 		for connectionPoint in find_connection_points_in_group():
-			printerr("Spawning hallway")
 			spawn_room(hallways[0], connectionPoint)
-	
-	
 
 
 func spawn_room(room: PackedScene, connectionPoint):
@@ -106,11 +105,35 @@ func move_room_to_final_pos(spawnedRoom, spawnedRoomConPoint, connectionPoint):
 	var spaceBetweenPoints = spawnedRoomConPoint.global_position - connectionPoint.global_position
 	spawnedRoom.global_position -= spaceBetweenPoints
 	
+	var connectionPointOrientation: int
+	connectionPointOrientation = connectionPoint.return_orientation()
+	
+	if connectionPointOrientation == 0:
+		spawn_door(connectionPoint.global_position, false)
+	if connectionPointOrientation == 1:
+		spawn_door(connectionPoint.global_position, true)
+	if connectionPointOrientation == 2:
+		spawn_door(connectionPoint.global_position, false)
+	if connectionPointOrientation == 3:
+		spawn_door(connectionPoint.global_position, true)
+	
+	
 	print("moved room: " + str(spaceBetweenPoints) + ", all done!")
 	
 	spawnedRoomConPoint.free()
 	connectionPoint.free()
 	#openConnectionPointArray.clear()
+	pass
+
+
+func spawn_door(position, rotate: bool):
+	var spawnedDoor: Node3D = door.instantiate()
+	add_child(spawnedDoor)
+	spawnedDoor.global_position = position
+	spawnedDoor.global_position += Vector3(0, -0.3, 0)
+	
+	if rotate:
+		spawnedDoor.rotate(Vector3.UP, deg_to_rad(-90))
 	pass
 
 

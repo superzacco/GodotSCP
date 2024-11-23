@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=17 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
 [ext_resource type="Script" path="res://entities/player/inventory.gd" id="3_pw237"]
 [ext_resource type="Script" path="res://entities/player/interaction.gd" id="4_jnjp4"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="4_ma6qb"]
 [ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
+[ext_resource type="Script" path="res://entities/player/blinking.gd" id="5_lyn41"]
+[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="8_8n5i1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 0.0
@@ -102,6 +105,9 @@ collider = NodePath("CollisionShape3D")
 camera = NodePath("StuffToRotate/CameraBobPivot/Camera3D")
 sensitivityDesired = 0.5
 moveSpeedDesired = 25.0
+sprintSpeedDesired = 50.0
+sprintDepletionRate = 20.0
+sprintReplenishRate = 15.0
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -123,14 +129,24 @@ texture = ExtResource("2_u5ofe")
 [node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Sprite3D2" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+[node name="GrabbySprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 double_sided = false
 no_depth_test = true
 texture = ExtResource("5_7cger")
 
-[node name="SpriteEndPoint" type="Node3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+[node name="GrabbySpriteEndPoint" type="Node3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74228e-08, 0, -1)
+
+[node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 8.74228e-08, 0, -1)
+visible = false
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+no_depth_test = true
+texture = ExtResource("4_ma6qb")
+script = ExtResource("5_lyn41")
+eyeDrynessPerSecond = 7.5
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_te1f4")
@@ -138,14 +154,15 @@ replication_config = SubResource("SceneReplicationConfig_te1f4")
 [node name="Inventory" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 script = ExtResource("3_pw237")
+inventorySize = 8
 
 [node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("inventoryNode", "player", "interactionSprite", "spriteEndPoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("4_jnjp4")
 inventoryNode = NodePath("../Inventory")
 player = NodePath("..")
-interactionSprite = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/Sprite3D2")
-spriteEndPoint = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/SpriteEndPoint")
+interactionSprite = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySprite")
+spriteEndPoint = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySpriteEndPoint")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZone"]
 shape = SubResource("CylinderShape3D_smri4")
@@ -154,6 +171,8 @@ shape = SubResource("CylinderShape3D_smri4")
 libraries = {
 "": SubResource("AnimationLibrary_git2y")
 }
+
+[node name="UI" parent="." instance=ExtResource("8_8n5i1")]
 
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]

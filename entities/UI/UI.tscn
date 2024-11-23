@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=9 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="Script" path="res://entities/console.gd" id="1_al48r"]
+[ext_resource type="Script" path="res://entities/UI/inventory_screen.gd" id="2_jlqjd"]
 [ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="2_n3t6u"]
 [ext_resource type="Script" path="res://entities/version_info.gd" id="3_pg7nq"]
+[ext_resource type="Script" path="res://entities/UI/sprintandblinkmeters.gd" id="4_3l1o5"]
+[ext_resource type="Texture2D" uid="uid://gbg70hime1rk" path="res://entities/UI/Outline.png" id="4_dlixo"]
+[ext_resource type="Texture2D" uid="uid://cb6oq5ahsbk4w" path="res://entities/UI/BrightBars.png" id="5_5cfgd"]
+[ext_resource type="Texture2D" uid="uid://b4hpm86uruwn1" path="res://entities/UI/bars.png" id="5_ght5y"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -79,6 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_jlqjd")
 
 [node name="Slots" type="Control" parent="InventoryScreen"]
 layout_mode = 1
@@ -96,58 +102,52 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(20, 20)
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="InventoryScreen/Slots"]
+[node name="GridContainer" type="GridContainer" parent="InventoryScreen/Slots"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -165.5
-offset_top = -76.5
-offset_right = 165.5
-offset_bottom = 76.5
+offset_left = -150.5
+offset_top = -71.5
+offset_right = 150.5
+offset_bottom = 71.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 25
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 4
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="InventoryScreen/Slots/VBoxContainer1"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Slot1" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer1"]
+[node name="Slot1" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot2" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer1"]
+[node name="Slot2" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot3" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer1"]
+[node name="Slot3" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot4" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer1"]
+[node name="Slot4" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="InventoryScreen/Slots/VBoxContainer1"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="Slot5" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer2"]
+[node name="Slot5" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot6" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer2"]
+[node name="Slot6" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot7" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer2"]
+[node name="Slot7" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
-[node name="Slot8" type="TextureRect" parent="InventoryScreen/Slots/VBoxContainer1/HBoxContainer2"]
+[node name="Slot8" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
 layout_mode = 2
 texture = ExtResource("2_n3t6u")
 
@@ -171,5 +171,48 @@ anchor_right = 1.0
 offset_left = -227.0
 offset_bottom = 26.0
 grow_horizontal = 0
+
+[node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+scale = Vector2(0.85, 0.85)
+script = ExtResource("4_3l1o5")
+blinkMeter = NodePath("Blink Meter")
+sprintMeter = NodePath("Sprint Meter")
+
+[node name="Sprint Meter" type="TextureProgressBar" parent="Meters"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -55.0
+offset_right = 399.0
+offset_bottom = -15.0
+grow_vertical = 0
+pivot_offset = Vector2(192, 20)
+value = 100.0
+texture_under = ExtResource("4_dlixo")
+texture_progress = ExtResource("5_ght5y")
+
+[node name="Blink Meter" type="TextureProgressBar" parent="Meters"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -105.0
+offset_right = 399.0
+offset_bottom = -65.0
+grow_vertical = 0
+pivot_offset = Vector2(192, 20)
+value = 100.0
+texture_under = ExtResource("4_dlixo")
+texture_progress = ExtResource("5_5cfgd")
 
 [connection signal="toggle_noclip" from="Console" to="Console" method="_on_toggle_noclip"]

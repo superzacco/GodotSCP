@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://xut0iq5tgu6k"]
+[gd_scene load_steps=12 format=3 uid="uid://xut0iq5tgu6k"]
 
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_5236q"]
 [ext_resource type="Script" path="res://levelgen/generatemap.gd" id="1_js5ej"]
-[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI.tscn" id="2_201hs"]
+[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="2_201hs"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_basiu"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/LCon3Way001.tscn" id="3_nvnv3"]
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/LConHall001.tscn" id="4_fcgy8"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/LCon4Way001.tscn" id="4_o5aq6"]
@@ -24,6 +25,7 @@ glow_enabled = true
 [node name="mapgentest" type="Node3D"]
 top_level = true
 script = ExtResource("1_js5ej")
+door = ExtResource("2_basiu")
 threeWayIntersections = Array[PackedScene]([ExtResource("3_nvnv3")])
 fourWayIntersections = Array[PackedScene]([ExtResource("4_o5aq6")])
 hallways = Array[PackedScene]([ExtResource("4_fcgy8")])

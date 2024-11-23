@@ -1,0 +1,176 @@
+[gd_scene load_steps=16 format=3 uid="uid://dlv8rax26wj3y"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_qccfk"]
+[ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
+[ext_resource type="Script" path="res://entities/player/inventory.gd" id="3_pw237"]
+[ext_resource type="Script" path="res://entities/player/interaction.gd" id="4_jnjp4"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="4_ma6qb"]
+[ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
+[ext_resource type="Script" path="res://entities/player/blinking.gd" id="5_lyn41"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
+friction = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3mim6"]
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ckrbs"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_te1f4"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("StuffToRotate:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_smri4"]
+height = 3.0
+radius = 1.5
+
+[sub_resource type="Animation" id="Animation_4jd7t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StuffToRotate/CameraBobPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StuffToRotate/CameraBobPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_akv28"]
+resource_name = "walking_Bob"
+length = 1.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StuffToRotate/CameraBobPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1.2, 1, 1.2, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0349066), Vector3(0, 0, 0), Vector3(0, 0, -0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StuffToRotate/CameraBobPivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1.2, 0.8, 1.2, 0.8, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_git2y"]
+_data = {
+"RESET": SubResource("Animation_4jd7t"),
+"walking_Bob": SubResource("Animation_akv28")
+}
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+input_ray_pickable = false
+physics_material_override = SubResource("PhysicsMaterial_uuhg5")
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_qccfk")
+stuffToRotate = NodePath("StuffToRotate")
+collider = NodePath("CollisionShape3D")
+camera = NodePath("StuffToRotate/CameraBobPivot/Camera3D")
+sensitivityDesired = 0.5
+moveSpeedDesired = 25.0
+sprintSpeedDesired = 50.0
+sprintDepletionRate = 20.0
+sprintReplenishRate = 15.0
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_3mim6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ckrbs")
+
+[node name="StuffToRotate" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="StuffToRotate"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.37114e-08, 1, -0.5)
+double_sided = false
+texture = ExtResource("2_u5ofe")
+
+[node name="CameraBobPivot" type="Node3D" parent="StuffToRotate"]
+
+[node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="GrabbySprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+double_sided = false
+no_depth_test = true
+texture = ExtResource("5_7cger")
+
+[node name="GrabbySpriteEndPoint" type="Node3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74228e-08, 0, -1)
+
+[node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 8.74228e-08, 0, -1)
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+no_depth_test = true
+texture = ExtResource("4_ma6qb")
+script = ExtResource("5_lyn41")
+eyeDrynessPerSecond = 7.5
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_te1f4")
+
+[node name="Inventory" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+script = ExtResource("3_pw237")
+inventorySize = 8
+
+[node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("inventoryNode", "player", "interactionSprite", "spriteEndPoint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("4_jnjp4")
+inventoryNode = NodePath("../Inventory")
+player = NodePath("..")
+interactionSprite = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySprite")
+spriteEndPoint = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySpriteEndPoint")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZone"]
+shape = SubResource("CylinderShape3D_smri4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_git2y")
+}
+
+[connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
+[connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]
+[connection signal="body_entered" from="InteractionZone" to="InteractionZone" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionZone" to="InteractionZone" method="_on_body_exited"]
