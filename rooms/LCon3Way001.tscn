@@ -15,6 +15,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.5)
 script = ExtResource("1_it6sj")
 orientation = 2
 
+[node name="RayCast3D" type="RayCast3D" parent="point2"]
+process_mode = 4
+enabled = false
+target_position = Vector3(0, 0.9, 0)
+
+[node name="RayCast3D2" type="RayCast3D" parent="point2"]
+process_mode = 4
+enabled = false
+target_position = Vector3(0.7, 0, 0)
+
 [node name="point4" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 script = ExtResource("1_it6sj")

@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dhvttrwdkk23" path="res://entities/items/cards/keycardbase.tscn" id="1_8k4tb"]
 [ext_resource type="PackedScene" uid="uid://cwkcg3xhgrc20" path="res://entities/items/cards/models/keycard1.blend" id="2_qhhfs"]
 
-[node name="item" groups=["interactables"] instance=ExtResource("1_8k4tb")]
+[node name="keycard001" groups=["interactables"] instance=ExtResource("1_8k4tb")]
 
 [node name="keycard1" parent="keycard" index="0" instance=ExtResource("2_qhhfs")]

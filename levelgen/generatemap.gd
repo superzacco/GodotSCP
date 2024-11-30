@@ -24,14 +24,15 @@ func _ready() -> void:
 func define_and_start_generation():
 	# Spawn Initial Hallway
 	for connectionPoint in find_connection_points_in_group():
-		spawn_room(threeWayIntersections[0], connectionPoint) # 3-way intersection is temporary
+		var room = spawn_room(threeWayIntersections[0], connectionPoint, true) # 3-way intersection is temporary
+		
 	
 	for _i in 4:
 		for connectionPoint in find_connection_points_in_group():
-			spawn_room(hallways[0], connectionPoint)
+			spawn_room(hallways[1], connectionPoint)
 
 
-func spawn_room(room: PackedScene, connectionPoint):
+func spawn_room(room: PackedScene, connectionPoint, rtrn: bool = false):
 	
 	# Spawn room 
 	var spawnedRoom: Node3D = room.instantiate() 
@@ -41,6 +42,9 @@ func spawn_room(room: PackedScene, connectionPoint):
 	# Check if its oriented correctly
 	amtOfCheckIfOppCalls = 0
 	check_if_points_are_opposite(spawnedRoom, connectionPoint)
+	
+	if rtrn:
+		return spawnedRoom
 
 
 func find_connection_points_in_group(): 
@@ -99,6 +103,10 @@ func rotate_room(spawnedRoom: Node3D, connectionPoint):
 		check_if_points_are_opposite(spawnedRoom, connectionPoint) # having to pass these back is BAD
 	else:
 		printerr("Too many calls to rotate_room() function! Points may be set up incorrectly.")
+
+
+func flip_room(room: Node3D):
+	room.rotate(Vector3.UP, deg_to_rad(-180))
 
 
 func move_room_to_final_pos(spawnedRoom, spawnedRoomConPoint, connectionPoint):

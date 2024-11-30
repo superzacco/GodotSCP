@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wymqic7fdd0x"]
+[gd_scene load_steps=14 format=3 uid="uid://wymqic7fdd0x"]
 
 [ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="1_vpqra"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="2_y4g5o"]
@@ -21,6 +21,40 @@ size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgcck"]
 size = Vector3(50, 50, 1)
+
+[sub_resource type="Environment" id="Environment_mjit5"]
+background_mode = 2
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
+reflected_light_source = 1
+ssr_fade_in = 0.356762
+ssao_enabled = true
+ssao_radius = 4.0
+ssao_intensity = 10.0
+ssao_power = 1.0
+ssao_detail = 0.0
+ssil_radius = 10.0
+ssil_intensity = 16.1
+ssil_sharpness = 0.1
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_bounce_feedback = 1.0
+sdfgi_y_scale = 0
+sdfgi_energy = 0.5
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.0
+fog_density = 1.0
+fog_aerial_perspective = 0.049
+fog_depth_curve = 0.732054
+fog_depth_begin = 5.0
+fog_depth_end = 17.6
+volumetric_fog_density = 0.25
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 50.0
+volumetric_fog_detail_spread = 0.5
+adjustment_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -68,3 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, -1)
 
 [node name="LConTeslaOffice2" parent="." instance=ExtResource("10_c1cu1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 7.58068, 13)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mjit5")

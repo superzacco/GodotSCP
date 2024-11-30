@@ -15,7 +15,6 @@ var sensitivity: float
 var moveSpeed: float
 
 var wishDir: Vector3
-var noclip_enabled: bool = false
 var sprinting: bool = false
 
 func _ready() -> void:
@@ -47,15 +46,15 @@ func _physics_process(delta: float) -> void:
 	wishDir.x = Input.get_axis("right", "left")
 	wishDir.z = Input.get_axis("back", "forward")
 	
-	if !noclip_enabled:
+	if !GlobalPlayerVariables.noclipEnabled:
 		moveDir = stuffToRotate.basis.z * wishDir.z + stuffToRotate.basis.x * wishDir.x
 	else:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x
 		if Input.is_action_pressed("blink"):
 			apply_force(stuffToRotate.transform.basis.y * moveSpeed)
 	
-	apply_force(moveDir.normalized() * moveSpeed)
-	#self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
+	#apply_force(moveDir.normalized() * moveSpeed)
+	self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	#endregion
 	
 
@@ -85,6 +84,9 @@ func _physics_process(delta: float) -> void:
 
 #region CAMERA MOVEMENT
 func _input(event):
+	if GlobalPlayerVariables.consoleOpen:
+		return
+	
 	if event is InputEventMouseMotion:
 		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * sensitivity * 0.1))
 		camera.rotate_x(deg_to_rad(-event.relative.y * sensitivity * 0.1))
@@ -102,15 +104,16 @@ func _input(event):
 
 
 func toggle_noclip():
-	if noclip_enabled:
+	if GlobalPlayerVariables.noclipEnabled:
 		gravity_scale = 1
 		collider.disabled = false
-		noclip_enabled = false
+		GlobalPlayerVariables.noclipEnabled = false
 		print("noclip OFF")
-	elif !noclip_enabled:
+	
+	else:
 		gravity_scale = 0
 		collider.disabled = true
-		noclip_enabled = true
+		GlobalPlayerVariables.noclipEnabled = true
 		print("noclip ON")
 	pass
 

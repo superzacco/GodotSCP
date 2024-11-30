@@ -93,7 +93,7 @@ _data = {
 "walking_Bob": SubResource("Animation_akv28")
 }
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "teslashockable"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_uuhg5")

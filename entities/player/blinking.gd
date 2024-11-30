@@ -8,6 +8,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if !GlobalPlayerVariables.blinkingEnabled:
+		return
+	
 	GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
 	
 	if GlobalPlayerVariables.blinkJuice <= 0:
