@@ -48,13 +48,14 @@ func _physics_process(delta: float) -> void:
 	
 	if !GlobalPlayerVariables.noclipEnabled:
 		moveDir = stuffToRotate.basis.z * wishDir.z + stuffToRotate.basis.x * wishDir.x
+		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	else:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x
+		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.5
 		if Input.is_action_pressed("blink"):
-			apply_force(stuffToRotate.transform.basis.y * moveSpeed)
+			apply_force(stuffToRotate.transform.basis.y * moveSpeed * 5)
 	
 	#apply_force(moveDir.normalized() * moveSpeed)
-	self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	#endregion
 	
 
@@ -109,7 +110,6 @@ func toggle_noclip():
 		collider.disabled = false
 		GlobalPlayerVariables.noclipEnabled = false
 		print("noclip OFF")
-	
 	else:
 		gravity_scale = 0
 		collider.disabled = true

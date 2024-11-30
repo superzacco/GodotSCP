@@ -7,23 +7,53 @@ extends Node
 
 
 var spaceMultiplier: float = 15
-var rows: int = 15
-var columns: int = 25
+var dimX: int = 15
+var dimZ: int = 25
+
+var hallLength: int
+var hallOffset: int
 
 var mapGrid = []
 
 func _ready() -> void:
-	for i in rows:
+	for i in dimX:
 		mapGrid.append([])
-		for j in columns:
+		for j in dimZ:
 			mapGrid[i].append(null)
 	
-	for x in rows:
-		for z in columns:
-			var testRoom: Node3D = fourWayInteresctions[0].instantiate()
-			add_child(testRoom)
-			testRoom.position = Vector3(x, 0, z) * spaceMultiplier
-			
-			mapGrid[x][z] = testRoom
+	generate_map()
+
+
+func generate_map():
 	
-	print(mapGrid[1][13])
+	# Make Halls
+	generate_hall_length_and_offset()
+	for x in hallLength:
+		spawn_room(fourWayInteresctions[0], x + hallOffset, 0)
+	
+	generate_hall_length_and_offset()
+	for x in hallLength:
+		spawn_room(fourWayInteresctions[0], x + hallOffset, 3)
+
+	generate_hall_length_and_offset()
+	for x in hallLength:
+		spawn_room(fourWayInteresctions[0], x + hallOffset, 5)
+
+	generate_hall_length_and_offset()
+	for x in hallLength:
+		spawn_room(fourWayInteresctions[0], x + hallOffset, 8)
+
+	generate_hall_length_and_offset()
+	for x in hallLength:
+		spawn_room(fourWayInteresctions[0], x + hallOffset, 10)
+
+
+func generate_hall_length_and_offset():
+	hallLength = randi_range(dimX-4, dimX)
+	hallOffset = randi_range(0,2)
+
+
+func spawn_room(room, x, z):
+	var spawnedRoom: Node3D = room.instantiate()
+	add_child(spawnedRoom)
+	spawnedRoom.position = Vector3(x, 0, z) * spaceMultiplier

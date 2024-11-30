@@ -8,4 +8,4 @@ var blinkJuice: float = 100
 
 # CONSOLE VARIABLES
 var noclipEnabled: bool = false
-var blinkingEnabled: bool = true
+var blinkingEnabled: bool = false
