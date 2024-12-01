@@ -1,8 +1,5 @@
-res://entities/UI/UI.tscn
-res://rooms/connection_point.gd
-res://entities/player/player.gd
 res://entities/player/player.tscn
-res://entities/console.gd
-res://levelgen/mapgentest.tscn
+res://rooms/connection_point.gd
 res://levelgen/generate_level.gd
-res://entities/global_player_variables.gd
+res://levelgen/mapgentest.tscn
+res://entities/UI/UI.tscn
