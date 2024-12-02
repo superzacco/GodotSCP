@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq36u66dwnw6w"]
+[gd_scene load_steps=16 format=3 uid="uid://cq36u66dwnw6w"]
 
 [ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/Models/LConTeslaOffice.blend" id="1_bexi0"]
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_cyh60"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_ae24x"]
 [ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/Textures/tesla.png" id="3_eg4c6"]
 [ext_resource type="Script" path="res://rooms/teslagate.gd" id="4_l3165"]
@@ -78,6 +79,7 @@ size = Vector3(5, 5, 0.5)
 size = Vector3(5, 5, 5)
 
 [node name="LConTeslaOffice" type="Node3D"]
+script = ExtResource("1_cyh60")
 
 [node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]
 

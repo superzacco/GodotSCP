@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c51e2qcf67eci"]
+[gd_scene load_steps=4 format=3 uid="uid://c51e2qcf67eci"]
 
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_4k0vx"]
 [ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_6thfj"]
 [ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="2_her8l"]
 
 [node name="LCon4Way001" type="Node3D"]
+script = ExtResource("1_4k0vx")
 
 [node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)

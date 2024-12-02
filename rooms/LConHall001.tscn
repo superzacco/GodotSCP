@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://denjqd6filqia"]
+[gd_scene load_steps=4 format=3 uid="uid://denjqd6filqia"]
 
 [ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="1_k63ly"]
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_vk6a5"]
 [ext_resource type="Script" path="res://rooms/connection_point.gd" id="2_8gq18"]
 
 [node name="LConHall001" type="Node3D"]
+script = ExtResource("1_vk6a5")
 
 [node name="LConHall001" parent="." instance=ExtResource("1_k63ly")]
 

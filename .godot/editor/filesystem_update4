@@ -1,5 +1,2 @@
-res://entities/player/player.tscn
+res://rooms/LCon3Way001.tscn
 res://rooms/connection_point.gd
-res://levelgen/generate_level.gd
-res://levelgen/mapgentest.tscn
-res://entities/UI/UI.tscn
