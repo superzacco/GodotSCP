@@ -1,6 +1,9 @@
 extends Node
 
-#region
+#region // ROOMS
+
+@export var necessaryTwoWayRooms: Array[PackedScene]
+
 # SPAWN ROOM
 @export var spawnRoom: PackedScene
 
@@ -24,14 +27,9 @@ var hallOffset: int
 
 var mapGrid = []
 var temporaryRooms = []
+var replacementRooms = []
 
 var numOfSurroundingRooms: int
-var directions: Array = [
-	Vector2(-1, 0),  # left
-	Vector2(1, 0),   # right
-	Vector2(0, -1),  # back
-	Vector2(0, 1)    # forward
-]
 
 func _ready() -> void:
 	for i in mapWidth:
@@ -48,7 +46,8 @@ func _ready() -> void:
 
 
 func generate_map():
-	spawn_room(spawnRoom, mapWidth / 2, 0)
+	@warning_ignore("integer_division")
+	spawn_room(spawnRoom, (mapWidth / 2), 0, false)
 	
 	var zOffset = 1
 	for i in 5:
@@ -68,11 +67,9 @@ func generate_long_hall(zOffset):
 	for x in hallLength:
 		var spawnedRoom: Node3D = spawn_room(fourWayInteresctions[0], x + hallOffset, zOffset, true)
 		
-		#if FIRST
 		if x == 0:
 			hallMin = spawnedRoom.global_position
 		
-		#if LAST
 		if x == hallLength - 1:
 			hallMax = spawnedRoom.global_position
 	
@@ -108,9 +105,7 @@ func generate_connecting_halls(hallMin, hallMax):
 
 func spawn_room(room, x, z, temp: bool = false):
 	var spawnedRoom: Node3D = null
-	
-	if room != null:
-		spawnedRoom = room.instantiate()
+	spawnedRoom = room.instantiate()
 	
 	if temp:
 		temporaryRooms[x][z] = spawnedRoom
@@ -125,47 +120,39 @@ func check_rooms_and_replace():
 		for z in temporaryRooms[x].size():
 			if temporaryRooms[x][z] != null:
 				check_surrounding_rooms(temporaryRooms[x][z], x, z)
-	pass
 
 
 func check_surrounding_rooms(temporaryRoom, x, z):
 	numOfSurroundingRooms = 0
-
+	
 	var xSize = temporaryRooms.size() - 1
 	var zSize = temporaryRooms[0].size() - 1
 	
-	#for vec2Dir in directions:
-		#var nx = x + vec2Dir.x
-		#var nz = z + vec2Dir.y
-		#if nx >= 0 and nx < xSize and nz >= 0 and nz < zSize:
-			#if temporaryRooms[nx][nz] != null:
-				#numOfSurroundingRooms += 1
+	if (x+1 <= xSize):
+		if temporaryRooms[x+1][z] != null:
+			numOfSurroundingRooms += 1
 	
-	var nx = x - 1
-	var nz = z
-	if nx >= 0 and nx < xSize and temporaryRooms[nx][nz] != null:
-		numOfSurroundingRooms += 1
+	if (x-1 >= 0):
+		if temporaryRooms[x-1][z] != null:
+			numOfSurroundingRooms += 1
 	
-	nx = x + 1
-	nz = z
-	if nx >= 0 and nx < xSize and temporaryRooms[nx][nz] != null:
-		numOfSurroundingRooms += 1
+	if (z+1 <= zSize):
+		if temporaryRooms[x][z+1] != null:
+			numOfSurroundingRooms += 1
 	
-	nx = x
-	nz = z - 1
-	if nz >= 0 and nz < zSize and temporaryRooms[nx][nz] != null:
-		numOfSurroundingRooms += 1
+	if (z-1 >= 0):
+		if temporaryRooms[x][z-1] != null:
+			numOfSurroundingRooms += 1
 	
-	nx = x
-	nz = z + 1
-	if nz >= 0 and nz < zSize and temporaryRooms[nx][nz] != null:
-		numOfSurroundingRooms += 1
-	
-	replace_temporary_room(temporaryRoom, numOfSurroundingRooms, x, z)
-	pass
+	if numOfSurroundingRooms > 0:
+		replace_and_rotate_temporary_room(temporaryRoom, numOfSurroundingRooms, x, z)
+	else:
+		push_error(temporaryRoom.name + " has no surrounding rooms!")
 
 
-func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):
+var necessaryRoomIteration: int = 0
+
+func replace_and_rotate_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):
 	
 	var spawnedRoom = null
 	var timesToRotate: int = 0
@@ -179,32 +166,34 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 		1:
 			roomToSpawn = spawnRoom
 		2:
+			roomToSpawn = twoWayHallways[0]
+			
+			while necessaryRoomIteration < necessaryTwoWayRooms.size():
+				print(necessaryTwoWayRooms.size())
+				roomToSpawn = necessaryTwoWayRooms[necessaryRoomIteration]
+				necessaryRoomIteration += 1
+			
+			
+			# if up & down spawn that one, if side to side rotate, if not it's a bend
 			if (temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null):
-				roomToSpawn = twoWayHallways[0]
 				timesToRotate = 1
 			elif (temporaryRooms[x][z+1] != null and temporaryRooms[x][z-1] != null):
-				roomToSpawn = twoWayHallways[0]
+				pass
 			else:
 				roomToSpawn = twoWayBends[0]
 				
-				# Rotate the Bend
+				# rotate the bend
 				if temporaryRooms[x][z+1] != null:
 					if temporaryRooms[x+1][z]:
 						timesToRotate = 2
-						pass
-					
 					if temporaryRooms[x-1][z]:
 						timesToRotate = 3
-						pass
-						
+				
 				if temporaryRooms[x][z-1] != null:
 					if temporaryRooms[x+1][z]:
 						timesToRotate = 1
-						pass
-					
 					if temporaryRooms[x-1][z]:
 						timesToRotate = 0
-						pass
 		3:
 			roomToSpawn = threeWayIntersections[0]
 			
@@ -217,21 +206,6 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 	
 	if timesToRotate > 0:
 		rotate_room(spawnedRoom, timesToRotate)
-	
-	
-	# halls
-	#if surroundingRooms == 2 and temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null:
-		#rotate_room(temporaryRoom)
-	
-	# Bend rooms
-	#if surroundingRooms == 2 and temporaryRooms[x][z+1] != null
-		#if temporaryRooms[x+1][z]:
-			#
-		#
-		#if temporaryRooms[x-1][z]
-	
-	#if spawnedRoom.get_script() == null:
-		#push_error("Room has no script!")
 
 
 func rotate_room(room: Node3D, timesToRotate):
