@@ -1,7 +1,3 @@
-res://scenes/dev.tscn
+res://scenes/menu.tscn
 res://rooms/connection_point.gd
-res://entities/SCPs/scp_173.tscn
-res://entities/player/player.tscn
-res://entities/SCPs/173.gd
-res://entities/player/player.gd
-res://entities/player/blinking.gd
+res://scenes/dev.tscn
