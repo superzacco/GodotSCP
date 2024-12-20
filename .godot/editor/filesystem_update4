@@ -1,3 +1,7 @@
-res://levelgen/mapgentest.tscn
+res://scenes/dev.tscn
 res://rooms/connection_point.gd
-res://levelgen/generate_level.gd
+res://entities/SCPs/scp_173.tscn
+res://entities/player/player.tscn
+res://entities/SCPs/173.gd
+res://entities/player/player.gd
+res://entities/player/blinking.gd

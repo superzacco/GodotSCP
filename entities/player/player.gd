@@ -28,7 +28,6 @@ func _ready() -> void:
 	$AnimationPlayer.pause()
 	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	get_node("UI/Console").connect("toggle_noclip", toggle_noclip)
 	pass
 
 

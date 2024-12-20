@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwbgwlp2jepq"]
+
+[ext_resource type="Script" path="res://entities/SCPs/173.gd" id="1_clhkt"]
+[ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgxa8"]
+size = Vector3(0.75, 1.95166, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
+size = Vector3(1.25, 5, 0.75)
+
+[node name="Scp173" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_clhkt")
+speed = 60.0
+
+[node name="173" parent="." instance=ExtResource("2_tmptw")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
+aabb = AABB(-0.75, -1.427, -1, 0.75, 1.9, 0.29)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.186683, 0)
+shape = SubResource("BoxShape3D_pgxa8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+debug_enabled = true
+
+[node name="NeckSnapArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NeckSnapArea"]
+shape = SubResource("BoxShape3D_jahs6")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
