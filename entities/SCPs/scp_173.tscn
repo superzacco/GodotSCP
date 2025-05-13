@@ -1,19 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=6 format=3 uid="uid://bwbgwlp2jepq"]
 
-[ext_resource type="Script" path="res://entities/SCPs/173.gd" id="1_clhkt"]
+[ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgxa8"]
-size = Vector3(0.75, 1.95166, 0.35)
+size = Vector3(0.75, 1.8, 0.35)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2xb13"]
+radius = 0.175
+height = 0.75
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
 size = Vector3(1.25, 5, 0.75)
 
-[node name="Scp173" type="CharacterBody3D"]
+[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
-speed = 60.0
+speed = 50.0
+agent = NodePath("NavigationAgent3D")
 
 [node name="173" parent="." instance=ExtResource("2_tmptw")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
@@ -22,12 +27,16 @@ transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
 aabb = AABB(-0.75, -1.427, -1, 0.75, 1.9, 0.29)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.186683, 0)
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262513, 0)
 shape = SubResource("BoxShape3D_pgxa8")
 
+[node name="Feet" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.614829, 0)
+shape = SubResource("CapsuleShape3D_2xb13")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.1
+path_desired_distance = 0.5
 debug_enabled = true
 
 [node name="NeckSnapArea" type="Area3D" parent="."]

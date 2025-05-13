@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 func blink():
 		GlobalPlayerVariables.blinking = true
-		await get_tree().create_timer(0.15).timeout
+		await get_tree().create_timer(0.2).timeout
 		GlobalPlayerVariables.blinking = false
 		self.hide()
 		

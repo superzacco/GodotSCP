@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cut7dojaypgd5"]
 
-[ext_resource type="Script" path="res://rooms/door.gd" id="1_i3vr1"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_i3vr1"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="1_w23wf"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="3_4wl2e"]
 

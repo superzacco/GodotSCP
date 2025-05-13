@@ -8,12 +8,7 @@ var blinkJuice: float = 100
 
 # CONSOLE VARIABLES
 var noclipEnabled: bool = false
-var blinkingEnabled: bool = false
-var blinkSpriteEnabled: bool = false
+var blinkingEnabled: bool = true
+var blinkSpriteEnabled: bool = true
 
 var blinking: bool = false
-
-
-func _ready() -> void:
-	if OS.is_debug_build():
-		blinkSpriteEnabled = true

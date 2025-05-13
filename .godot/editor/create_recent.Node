@@ -1,4 +1,5 @@
 CollisionShape3D
+MeshInstance3D
 Area3D
 CharacterBody3D
 NavigationAgent3D
@@ -11,4 +12,3 @@ AudioStreamPlayer3D
 AnimationPlayer
 AnimationTree
 Sprite3D
-GPUParticles3D

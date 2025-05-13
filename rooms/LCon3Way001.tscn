@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2ubs0d7q4xbr"]
 
-[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_it6sj"]
-[ext_resource type="Script" path="res://rooms/room.gd" id="1_o4f0n"]
+[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_it6sj"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_o4f0n"]
 [ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_iqsl3"]
 
 [node name="LCon3Way001" type="Node3D"]

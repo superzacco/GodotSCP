@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cprgdtnc3bad7"]
 
-[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_15v2j"]
-[ext_resource type="Script" path="res://rooms/room.gd" id="1_gpops"]
+[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_15v2j"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_gpops"]
 [ext_resource type="PackedScene" uid="uid://b158b8qeksa6p" path="res://rooms/Models/LConBend001.blend" id="2_4w26r"]
 
 [node name="LConBend001" type="Node3D"]

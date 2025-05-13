@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx1ergchu2j1f"]
 
-[ext_resource type="Script" path="res://rooms/room.gd" id="1_njtbk"]
-[ext_resource type="Script" path="res://rooms/connection_point.gd" id="1_tvdc3"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_njtbk"]
+[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_tvdc3"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_njtbk")

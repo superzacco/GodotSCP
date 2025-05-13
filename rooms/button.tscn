@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7rgmb2eiq6td"]
 
-[ext_resource type="Script" path="res://rooms/button.gd" id="1_melfm"]
+[ext_resource type="Script" uid="uid://bim4xj0veqqml" path="res://rooms/button.gd" id="1_melfm"]
 [ext_resource type="PackedScene" uid="uid://ckpahc334cthm" path="res://rooms/Models/button.blend" id="2_82p41"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_msn48"]

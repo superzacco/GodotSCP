@@ -50,7 +50,8 @@ func _input(event: InputEvent) -> void:
 			"noblink":
 				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
 		
-		commandHistory.append(inputField.text)
+		if (inputField.text != ""):
+			commandHistory.append(inputField.text)
 		print(commandHistory)
 	
 	
