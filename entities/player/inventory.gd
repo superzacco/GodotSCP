@@ -12,12 +12,6 @@ func _ready() -> void:
 
 
 func store_item(item):
-	var i = -1
-	for items in itemsArray:
-		i += 1
-		if items == null:
-			itemsArray[i] = item
-			break
-	
+	pass
 	print(itemsArray)
 	

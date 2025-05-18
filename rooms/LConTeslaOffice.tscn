@@ -16,7 +16,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TeslaGate:frame")
+tracks/0/path = NodePath("Node3D/TeslaGate:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TeslaGate:visible")
+tracks/1/path = NodePath("Node3D/TeslaGate:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +44,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TeslaGate:frame")
+tracks/0/path = NodePath("Node3D/TeslaGate:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +56,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TeslaGate:visible")
+tracks/1/path = NodePath("Node3D/TeslaGate:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -81,53 +81,56 @@ size = Vector3(5, 5, 5)
 [node name="LConTeslaOffice" type="Node3D"]
 script = ExtResource("1_cyh60")
 
-[node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.25, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="LConTeslaOffice"]
+[node name="LConTeslaOffice" parent="Node3D" instance=ExtResource("1_bexi0")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D/LConTeslaOffice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
 light_energy = 0.25
 light_specular = 0.0
 omni_range = 6.0
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="LConTeslaOffice"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Node3D/LConTeslaOffice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
 light_energy = 0.25
 light_specular = 0.0
 omni_range = 6.0
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="LConTeslaOffice"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="Node3D/LConTeslaOffice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1, 3.8)
 light_energy = 0.25
 light_specular = 0.0
 omni_range = 6.5
 
-[node name="Door" parent="." instance=ExtResource("2_ae24x")]
+[node name="Door" parent="Node3D" instance=ExtResource("2_ae24x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, -0.6, 1.95)
 
-[node name="TeslaGate" type="Sprite3D" parent="."]
+[node name="TeslaGate" type="Sprite3D" parent="Node3D"]
 transform = Transform3D(-2.82813e-08, 0, 0.637, 0, 0.98, 0, -0.647, 0, -2.78442e-08, 0, 0.75, 0)
 texture = ExtResource("3_eg4c6")
 hframes = 2
 vframes = 2
 script = ExtResource("4_l3165")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TeslaGate"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/TeslaGate"]
+root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_36340")
+&"": SubResource("AnimationLibrary_36340")
 }
 
-[node name="TeslaKillBox" type="Area3D" parent="TeslaGate"]
+[node name="TeslaKillBox" type="Area3D" parent="Node3D/TeslaGate"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TeslaGate/TeslaKillBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/TeslaGate/TeslaKillBox"]
 shape = SubResource("BoxShape3D_ohbr2")
 
-[node name="TeslaTriggerBox" type="Area3D" parent="TeslaGate"]
+[node name="TeslaTriggerBox" type="Area3D" parent="Node3D/TeslaGate"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TeslaGate/TeslaTriggerBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/TeslaGate/TeslaTriggerBox"]
 shape = SubResource("BoxShape3D_k17ir")
 
-[node name="TeslaIdle" type="AudioStreamPlayer3D" parent="TeslaGate"]
+[node name="TeslaIdle" type="AudioStreamPlayer3D" parent="Node3D/TeslaGate"]
 stream = ExtResource("5_877pg")
 volume_db = -15.0
 max_distance = 12.0
@@ -136,33 +139,33 @@ emission_angle_enabled = true
 emission_angle_filter_attenuation_db = 0.0
 parameters/looping = true
 
-[node name="TeslaCharge" type="AudioStreamPlayer3D" parent="TeslaGate"]
+[node name="TeslaCharge" type="AudioStreamPlayer3D" parent="Node3D/TeslaGate"]
 stream = ExtResource("6_xkfh6")
 max_distance = 30.0
 bus = &"SFX"
 emission_angle_filter_attenuation_db = 0.0
 
-[node name="TeslaFire" type="AudioStreamPlayer3D" parent="TeslaGate"]
+[node name="TeslaFire" type="AudioStreamPlayer3D" parent="Node3D/TeslaGate"]
 stream = ExtResource("7_hnrdu")
 max_distance = 30.0
 bus = &"SFX"
 emission_angle_filter_attenuation_db = 0.0
 
-[node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
+[node name="point1" type="Node3D" parent="Node3D" groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.25, 0)
 script = ExtResource("8_2n5rl")
 orientation = 3
 
-[node name="point2" type="Node3D" parent="." groups=["roomconnectionpoints"]]
+[node name="point2" type="Node3D" parent="Node3D" groups=["roomconnectionpoints"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -0.25, 0)
 script = ExtResource("8_2n5rl")
 orientation = 1
 
-[node name="keycard" parent="." instance=ExtResource("9_hdn66")]
+[node name="keycard" parent="Node3D" instance=ExtResource("9_hdn66")]
 transform = Transform3D(0.59975, 0, 0.800187, 0, 1, 0, -0.800187, 0, 0.59975, 3, -1.25333, -2.3)
 chanceToSpawn = 50.0
 
-[connection signal="body_entered" from="TeslaGate/TeslaKillBox" to="TeslaGate" method="_on_tesla_kill_box_body_entered"]
-[connection signal="body_exited" from="TeslaGate/TeslaKillBox" to="TeslaGate" method="_on_tesla_kill_box_body_exited"]
-[connection signal="body_entered" from="TeslaGate/TeslaTriggerBox" to="TeslaGate" method="_on_tesla_trigger_box_body_entered"]
-[connection signal="body_exited" from="TeslaGate/TeslaTriggerBox" to="TeslaGate" method="_on_tesla_trigger_box_body_exited"]
+[connection signal="body_entered" from="Node3D/TeslaGate/TeslaKillBox" to="Node3D/TeslaGate" method="_on_tesla_kill_box_body_entered"]
+[connection signal="body_exited" from="Node3D/TeslaGate/TeslaKillBox" to="Node3D/TeslaGate" method="_on_tesla_kill_box_body_exited"]
+[connection signal="body_entered" from="Node3D/TeslaGate/TeslaTriggerBox" to="Node3D/TeslaGate" method="_on_tesla_trigger_box_body_entered"]
+[connection signal="body_exited" from="Node3D/TeslaGate/TeslaTriggerBox" to="Node3D/TeslaGate" method="_on_tesla_trigger_box_body_exited"]

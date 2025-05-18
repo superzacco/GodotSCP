@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://in88povndonb"]
+
+[ext_resource type="Script" uid="uid://ci4tjr8gfmvrd" path="res://entities/UI/inventory_screen.gd" id="1_molo7"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="2_0awil"]
+
+[node name="InventoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_molo7")
+
+[node name="Slots" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(20, 20)
+
+[node name="GridContainer" type="GridContainer" parent="Slots"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = -71.5
+offset_right = 150.5
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 4
+
+[node name="Slot1" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot2" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot3" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot4" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot5" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot6" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot7" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")
+
+[node name="Slot8" type="TextureRect" parent="Slots/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_0awil")

@@ -33,25 +33,6 @@ offset_bottom = 110.0
 pivot_offset = Vector2(150, 50)
 text = "PLAY (DEV SCENE)"
 
-[node name="Steam" type="Node" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("..")
-
-[node name="LobbyContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -378.0
-offset_right = 305.0
-offset_bottom = -14.0
-grow_vertical = 0
-
-[node name="Lobbies" type="VBoxContainer" parent="LobbyContainer"]
-layout_mode = 2
-
 [node name="PlayMapGenTest" type="Button" parent="."]
 layout_mode = 0
 offset_left = 320.0

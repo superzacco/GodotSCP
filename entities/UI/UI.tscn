@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=8 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/console.gd" id="1_al48r"]
-[ext_resource type="Script" uid="uid://ci4tjr8gfmvrd" path="res://entities/UI/inventory_screen.gd" id="2_jlqjd"]
-[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="2_n3t6u"]
+[ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/UI/inventory_screen.tscn" id="2_suasf"]
 [ext_resource type="Script" uid="uid://colmln52eakep" path="res://entities/version_info.gd" id="3_pg7nq"]
 [ext_resource type="Script" uid="uid://csco5m1d83kxb" path="res://entities/UI/sprintandblinkmeters.gd" id="4_3l1o5"]
 [ext_resource type="Texture2D" uid="uid://gbg70hime1rk" path="res://entities/UI/Outline.png" id="4_dlixo"]
@@ -18,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Console" type="Control" parent="." node_paths=PackedStringArray("inputField") groups=["console"]]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_al48r")
-inputField = NodePath("Panel/LineEdit")
+inputField = NodePath("Panel/VBoxContainer/Container/LineEdit")
 
 [node name="Panel" type="Panel" parent="Console"]
 layout_mode = 1
@@ -38,34 +36,44 @@ offset_left = -400.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Console/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Console/Panel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_right = 202.0
-offset_bottom = 677.0
-grow_horizontal = 2
-text = "test
-test
-test
-test"
-autowrap_mode = 0
-
-[node name="LineEdit" type="LineEdit" parent="Console/Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -195.0
-offset_top = -38.0
-offset_right = 195.0
-offset_bottom = -7.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Container2" type="MarginContainer" parent="Console/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Console/Panel/VBoxContainer/Container2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "] noclip
+] help
+"
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+vertical_alignment = 2
+
+[node name="Container" type="MarginContainer" parent="Console/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LineEdit" type="LineEdit" parent="Console/Panel/VBoxContainer/Container"]
+layout_mode = 2
 placeholder_text = "type <help> for a list of avalible commands"
 caret_blink = true
 caret_mid_grapheme = true
@@ -78,80 +86,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryScreen" type="Control" parent="."]
-visible = false
+[node name="InventoryScreen" parent="." instance=ExtResource("2_suasf")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_jlqjd")
-
-[node name="Slots" type="Control" parent="InventoryScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-pivot_offset = Vector2(20, 20)
-
-[node name="GridContainer" type="GridContainer" parent="InventoryScreen/Slots"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.5
-offset_top = -71.5
-offset_right = 150.5
-offset_bottom = 71.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 15
-theme_override_constants/v_separation = 15
-columns = 4
-
-[node name="Slot1" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot2" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot3" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot4" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot5" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot6" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot7" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
-
-[node name="Slot8" type="TextureRect" parent="InventoryScreen/Slots/GridContainer"]
-layout_mode = 2
-texture = ExtResource("2_n3t6u")
 
 [node name="VersionInfo" type="Control" parent="." node_paths=PackedStringArray("versionString")]
 layout_mode = 1

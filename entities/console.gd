@@ -5,8 +5,10 @@ var commandHistory: Array[String]
 @export var inputField: LineEdit
 @export var consoleLog: RichTextLabel
 
+
 func _ready() -> void:
 	visible = false
+
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("console"):
@@ -24,6 +26,7 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_released("console"):
 		inputField.editable = true
+		inputField.edit()
 	
 	
 	if Input.is_action_just_pressed("quit"):
@@ -36,13 +39,12 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if Input.is_action_just_pressed("enter"):
-		#print("] " + inputField.text)
-		
 		match inputField.text:
 			"help":
 				help()
 			"noclip":
 				GlobalPlayerVariables.noclipEnabled = !GlobalPlayerVariables.noclipEnabled
+				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
 			"quit":
 				quit()
 			"disconnect":
@@ -53,14 +55,18 @@ func _input(event: InputEvent) -> void:
 		if (inputField.text != ""):
 			commandHistory.append(inputField.text)
 		print(commandHistory)
+		
+		inputField.clear()
 	
 	
 	if Input.is_action_just_released("enter"):
-		inputField.clear()
+		inputField.edit()
 	
 	
 	if Input.is_action_just_pressed("lastcommand"):
 		pass
+
+
 
 func help():
 	print("
