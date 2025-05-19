@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("blink"):
 			apply_force(stuffToRotate.transform.basis.y * moveSpeed * 5)
 	
-	#apply_force(moveDir.normalized() * moveSpeed)
+	GlobalPlayerVariables.playerPosition = self.global_position
 	#endregion
 	
 
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	pass
 	#endregion
 	
-	if moveDir != Vector3(0, 0, 0):
+	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
 		$AnimationPlayer.play()
 	else:
 		$AnimationPlayer.pause()
@@ -87,7 +87,7 @@ func _input(event):
 	if GlobalPlayerVariables.consoleOpen:
 		return
 	
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and GlobalPlayerVariables.lookingEnabled:
 		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * sensitivity * 0.1))
 		camera.rotate_x(deg_to_rad(-event.relative.y * sensitivity * 0.1))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))

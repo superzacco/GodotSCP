@@ -5,4 +5,5 @@ extends Node3D
 # Add type of button here later
 
 func on_pressed():
-	doorToControl.toggle_door()
+	if doorToControl != null:
+		doorToControl.toggle_door()

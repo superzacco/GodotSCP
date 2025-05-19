@@ -2,6 +2,8 @@ extends RigidBody3D
 class_name Item
 
 @export var inventorySprite: Texture
+@export var inventoryName: String
+
 @export var chanceToSpawn: float = 100
 
 func _ready() -> void: 

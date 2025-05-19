@@ -163,8 +163,6 @@ func replace_and_rotate_temporary_room(temporaryRoom, surroundingRooms: int, x: 
 	var spawnedRoom = null
 	var timesToRotate: int = 0
 	
-	var roomToSpawn: PackedScene = null
-	
 	match surroundingRooms:
 		1:
 			spawnedRoom = spawn_room(spawnRoom, x, z) # spawn end room instead
@@ -185,16 +183,16 @@ func replace_and_rotate_temporary_room(temporaryRoom, surroundingRooms: int, x: 
 				spawnedRoom = spawn_room(twoWayBends[0], x, z)
 				replacableTwoWayBends.append(spawnedRoom)
 				
-				if temporaryRooms[x][z+1] != null:
-					if temporaryRooms[x+1][z]:
+				if (!z+1 > zSize and temporaryRooms[x][z+1] != null):
+					if (!x+1 > xSize and temporaryRooms[x+1][z]):
 						timesToRotate = 2
-					if temporaryRooms[x-1][z]:
+					if (!x-1 < 0 and temporaryRooms[x-1][z]):
 						timesToRotate = 3
 				
-				if temporaryRooms[x][z-1] != null:
-					if temporaryRooms[x+1][z]:
+				if (!z-1 < 0 and temporaryRooms[x][z-1] != null):
+					if (!x+1 > xSize and temporaryRooms[x+1][z]):
 						timesToRotate = 1
-					if temporaryRooms[x-1][z]:
+					if (!x-1 < 0 and temporaryRooms[x-1][z]):
 						timesToRotate = 0
 		3:
 			spawnedRoom = spawn_room(threeWayIntersections[0], x, z)

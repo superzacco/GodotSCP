@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalPlayerVariables="*res://entities/global_player_variables.gd"
-ZFunc="*res://entities/ZFunc.gd"
+GlobalPlayerVariables="*res://entities/player/global_player_variables.gd"
+ZFunc="*res://util/ZFunc.gd"
 VersionController="*res://version_controller.gd"
 
 [debug]

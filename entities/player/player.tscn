@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=15 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
-[ext_resource type="Script" uid="uid://cfonb50pd5240" path="res://entities/player/inventory.gd" id="3_pw237"]
 [ext_resource type="Script" uid="uid://mnm27fr2qpv8" path="res://entities/player/interaction.gd" id="4_jnjp4"]
-[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="4_ma6qb"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/UI/invslot.png" id="4_ma6qb"]
 [ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
 [ext_resource type="Script" uid="uid://if5y2hgoe5tu" path="res://entities/player/blinking.gd" id="5_lyn41"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="8_8n5i1"]
@@ -129,7 +128,7 @@ no_depth_test = true
 texture = ExtResource("5_7cger")
 
 [node name="GrabbySpriteEndPoint" type="Node3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74228e-08, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99382e-08, 0, -0.8)
 
 [node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 8.74228e-08, 0, -1)
@@ -143,8 +142,6 @@ eyeDrynessPerSecond = 7.5
 
 [node name="Inventory" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
-script = ExtResource("3_pw237")
-inventorySize = 8
 
 [node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("inventoryNode", "player", "interactionSprite", "spriteEndPoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://7qke47ahhb3a" path="res://entities/items/cards/models/keycard0.blend" id="1_hnqs8"]
 [ext_resource type="PackedScene" uid="uid://dhvttrwdkk23" path="res://entities/items/cards/keycardbase.tscn" id="1_niyi7"]
-[ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_xysdf"]
+[ext_resource type="Texture2D" uid="uid://bsjpnpgh7flcp" path="res://entities/items/cards/card0itemicon.png" id="2_x7rh8"]
 
 [node name="keycard00" groups=["interactables"] instance=ExtResource("1_niyi7")]
-inventorySprite = ExtResource("2_xysdf")
+inventorySprite = ExtResource("2_x7rh8")
+inventoryName = "Level 0 Keycard"
 
 [node name="keycard0" parent="keycard" index="0" instance=ExtResource("1_hnqs8")]

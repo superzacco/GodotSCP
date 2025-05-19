@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://xut0iq5tgu6k"]
+[gd_scene load_steps=12 format=3 uid="uid://xut0iq5tgu6k"]
 
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_5236q"]
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_w3ko6"]
 [ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/spawnroom.tscn" id="2_6ms83"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="2_201hs"]
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/LConHall001.tscn" id="3_hpg4u"]
-[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/LConTeslaOffice.tscn" id="3_muv7y"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/LCon3Way001.tscn" id="4_fsxhi"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/LCon4Way001.tscn" id="4_o5aq6"]
 [ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/LConBend001.tscn" id="6_jpx6p"]
@@ -27,7 +26,7 @@ glow_enabled = true
 top_level = true
 script = ExtResource("1_w3ko6")
 spawnRoom = ExtResource("2_6ms83")
-necessaryTwoWayRooms = Array[PackedScene]([ExtResource("3_muv7y")])
+endRooms = Array[PackedScene]([ExtResource("2_6ms83")])
 twoWayHallways = Array[PackedScene]([ExtResource("3_hpg4u")])
 threeWayIntersections = Array[PackedScene]([ExtResource("4_fsxhi")])
 fourWayInteresctions = Array[PackedScene]([ExtResource("4_o5aq6")])

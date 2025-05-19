@@ -7,26 +7,25 @@ extends Area3D
 @export var spriteEndPoint: Node3D
 
 var interactablesInRange: Array
-var nearestInteractable 
+var nearestInteractable = null
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact") and interactablesInRange.size() != 0:
+		on_click_interactable()
+	pass
 
 
 func _process(delta: float) -> void:
 	if nearestInteractable != null:
-		interactionSprite.global_position = spriteEndPoint.global_position.lerp(nearestInteractable.global_position, 0.75)
+		interactionSprite.global_position = spriteEndPoint.global_position.lerp(nearestInteractable.global_position, 0.5)
 	
 	if interactablesInRange.size() > 0:
 		find_nearest_interactable()
 
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact") and interactablesInRange.size() != 0:
-		find_nearest_interactable(true)
-	pass
-
-
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
-		#print("in range of " + str(area.get_parent().name))
 		interactablesInRange.append(area.get_parent())
 		
 		find_nearest_interactable()
@@ -36,7 +35,6 @@ func _on_area_entered(area: Area3D) -> void:
 
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
-		#print("exiting range of " + str(area.get_parent().name))
 		interactablesInRange.erase(area.get_parent())
 		
 		if interactablesInRange.size() == 0:
@@ -44,21 +42,7 @@ func _on_area_exited(area: Area3D) -> void:
 	pass 
 
 
-func interact(interactable):
-	interactable.on_pressed()
-	pass
-
-
-func pick_up_item(item):
-	if item != null:
-		item.reparent(inventoryNode)
-		item.global_position = inventoryNode.global_position
-		item.freeze = true
-		inventoryNode.store_item(item)
-	pass
-
-
-func find_nearest_interactable(callOther: bool = false):
+func find_nearest_interactable():
 	var lowestDistance = INF
 	
 	for interactable in interactablesInRange:
@@ -67,16 +51,32 @@ func find_nearest_interactable(callOther: bool = false):
 		if distance < lowestDistance:
 			nearestInteractable = interactable
 			lowestDistance = distance
-		
-		# print("current intereactable: " + str(interactable.name))
+
+
+func on_click_interactable():
+	find_nearest_interactable()
 	
-	# print("nearest intereactable: " + str(nearestInteractable))
+	if GlobalPlayerVariables.inventory.inventoryOpen:
+		return
 	
-	if callOther:
-		if nearestInteractable.is_in_group("item"):
-			pick_up_item(nearestInteractable)
-			return
+	if nearestInteractable.is_in_group("item"):
+		pick_up_item(nearestInteractable)
+		return
+	
+	if nearestInteractable.is_in_group("button"):
+		interact(nearestInteractable)
+		return
+
+
+func interact(interactable):
+	interactable.on_pressed()
+
+
+func pick_up_item(item):
+	if item != null:
+		item.reparent(inventoryNode)
+		item.global_position = inventoryNode.global_position
+		item.freeze = true
 		
-		if nearestInteractable.is_in_group("button"):
-			interact(nearestInteractable)
-			return
+		print("hi")
+		GlobalPlayerVariables.inventory.on_pickup_item(item)

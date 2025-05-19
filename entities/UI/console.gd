@@ -16,7 +16,6 @@ func _input(event: InputEvent) -> void:
 			return
 		
 		GlobalPlayerVariables.consoleOpen = true
-		GlobalPlayerVariables.canMove = false
 		
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 		inputField.editable = false
@@ -32,7 +31,6 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		inputField.clear()
 		GlobalPlayerVariables.consoleOpen = false
-		GlobalPlayerVariables.canMove = true
 		
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 		visible = false

@@ -1,17 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://coiiycrsxeol7"]
+[gd_scene load_steps=6 format=3 uid="uid://coiiycrsxeol7"]
 
-[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/player/invslot.png" id="1_8yto6"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/UI/invslot.png" id="1_8yto6"]
+[ext_resource type="Script" uid="uid://beei6h8no7vqx" path="res://entities/UI/inventoryslot.gd" id="2_ljowq"]
+[ext_resource type="Texture2D" uid="uid://ucv3eab8c7gn" path="res://entities/UI/invoutline.png" id="3_aow1a"]
+[ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="4_642a2"]
 
-[node name="Invslot" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
+[sub_resource type="LabelSettings" id="LabelSettings_aow1a"]
+font = ExtResource("4_642a2")
+font_size = 12
+shadow_color = Color(0, 0, 0, 0.572549)
+
+[node name="Invslot" type="TextureRect" node_paths=PackedStringArray("outline", "slotIcon", "slotText")]
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("1_8yto6")
+script = ExtResource("2_ljowq")
+outline = NodePath("Outline")
+slotIcon = NodePath("ItemIcon")
+slotText = NodePath("Label")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Outline" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 1
+texture = ExtResource("3_aow1a")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_aow1a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

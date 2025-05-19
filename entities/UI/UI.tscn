@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=9 format=3 uid="uid://xrdd7v6d2fs"]
 
-[ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/console.gd" id="1_al48r"]
+[ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/UI/console.gd" id="1_al48r"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/UI/inventory_screen.tscn" id="2_suasf"]
-[ext_resource type="Script" uid="uid://colmln52eakep" path="res://entities/version_info.gd" id="3_pg7nq"]
+[ext_resource type="Script" uid="uid://colmln52eakep" path="res://version_info.gd" id="3_pg7nq"]
 [ext_resource type="Script" uid="uid://csco5m1d83kxb" path="res://entities/UI/sprintandblinkmeters.gd" id="4_3l1o5"]
 [ext_resource type="Texture2D" uid="uid://gbg70hime1rk" path="res://entities/UI/Outline.png" id="4_dlixo"]
 [ext_resource type="Texture2D" uid="uid://cb6oq5ahsbk4w" path="res://entities/UI/BrightBars.png" id="5_5cfgd"]
 [ext_resource type="Texture2D" uid="uid://b4hpm86uruwn1" path="res://entities/UI/bars.png" id="5_ght5y"]
+
+[sub_resource type="GDScript" id="GDScript_suasf"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -15,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_suasf")
 
 [node name="Console" type="Control" parent="." node_paths=PackedStringArray("inputField") groups=["console"]]
 layout_mode = 1
@@ -87,6 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InventoryScreen" parent="." instance=ExtResource("2_suasf")]
+visible = false
 layout_mode = 1
 
 [node name="VersionInfo" type="Control" parent="." node_paths=PackedStringArray("versionString")]
