@@ -11,9 +11,8 @@ var nearestInteractable = null
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact") and interactablesInRange.size() != 0:
+	if event.is_action_pressed("interact") and interactablesInRange.size() != 0:
 		on_click_interactable()
-	pass
 
 
 func _process(delta: float) -> void:
@@ -78,5 +77,4 @@ func pick_up_item(item):
 		item.global_position = inventoryNode.global_position
 		item.freeze = true
 		
-		print("hi")
 		GlobalPlayerVariables.inventory.on_pickup_item(item)

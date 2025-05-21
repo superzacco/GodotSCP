@@ -6,6 +6,8 @@ class_name Item
 
 @export var chanceToSpawn: float = 100
 
-func _ready() -> void: 
+@export var functionItem: Node3D
+
+func _ready() -> void:
 	if !ZFunc.randInPercent(chanceToSpawn):
 		queue_free()

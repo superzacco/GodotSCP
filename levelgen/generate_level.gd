@@ -43,6 +43,8 @@ var zSize: int
 var numOfSurroundingRooms: int
 
 func _ready() -> void:
+	GlobalPlayerVariables.consoleOpen = false
+	
 	for i in mapWidth:
 		mapGrid.append([])
 		for j in mapHeight:
@@ -57,6 +59,7 @@ func _ready() -> void:
 	zSize = temporaryRooms[0].size() - 1
 	
 	generate_map()
+
 
 
 func generate_map():

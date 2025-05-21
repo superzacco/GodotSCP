@@ -1,17 +1,19 @@
 extends Control
 class_name Inventory
 
-@export var dropArea: Control
+@export var equippedItemFrame: TextureRect
+var equippedItemIcon: TextureRect 
+
 @export var slotsNode: GridContainer
-
 var slots: Array[InventorySlot]
-var inventoryOpen: bool = false
 
+var inventoryOpen: bool = false
 var clickHeld: bool = false
 var overDropArea: bool = false
 
+var equippedItem: Item
 var heldItem: Item
-var heldItemIdx: int
+var hoveredSlotIdx: int
 
 var currentSlot: InventorySlot
 var currentSlotIcon: TextureRect
@@ -22,31 +24,28 @@ func _ready() -> void:
 		slots.append(slotsNode.get_child(i))
 	
 	GlobalPlayerVariables.inventory = self
+	equippedItemFrame = $"../HeldItemFrame"
+	equippedItemIcon = $"../HeldItemFrame/Item"
 
+
+var clicki: int = 0
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		if inventoryOpen:
-			DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-			GlobalPlayerVariables.lookingEnabled = true
-			
-			self.hide()
-			inventoryOpen = false
+			close_inventory()
 		else:
-			DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-			GlobalPlayerVariables.lookingEnabled = false
-			
-			self.show()
-			inventoryOpen = true
+			open_inventory()
 	
 	
 	if Input.is_action_just_pressed("interact") and inventoryOpen:
 		if GlobalPlayerVariables.hoveredSlot != null:
-			heldItemIdx = GlobalPlayerVariables.hoveredSlot.get_index()
+			hoveredSlotIdx = GlobalPlayerVariables.hoveredSlot.get_index()
 			
-			currentSlot = slots[heldItemIdx]
-			heldItem = currentSlot.heldItem
+			currentSlot = slots[hoveredSlotIdx]
 			currentSlotIcon = currentSlot.slotIcon
+			
+			heldItem = currentSlot.heldItem
 			iconOriginPoint = currentSlotIcon.global_position
 		
 		clickHeld = true
@@ -55,13 +54,26 @@ func _input(event: InputEvent) -> void:
 		if currentSlotIcon != null:
 			currentSlotIcon.global_position = iconOriginPoint
 		
-		if heldItem != null and overDropArea:
+		if heldItem != null and overDropArea and inventoryOpen:
 			on_drop_item(heldItem, currentSlot)
+		
+		if GlobalPlayerVariables.hoveredSlot != null and heldItem != null:
+			swap_item(currentSlot, GlobalPlayerVariables.hoveredSlot)
 		
 		clickHeld = false
 		currentSlot = null
 		currentSlotIcon = null
 		heldItem = null
+	
+	
+	if event.is_action_pressed("interact") and inventoryOpen:
+		clicki += 1
+		await  get_tree().create_timer(0.2).timeout
+		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
+			var item = GlobalPlayerVariables.hoveredSlot.heldItem
+			if item != null:
+				equip_item(item)
+		clicki = 0
 
 
 func _process(delta: float) -> void:
@@ -71,6 +83,24 @@ func _process(delta: float) -> void:
 	var mousePosition: Vector2 = get_global_mouse_position()
 	if currentSlotIcon != null:
 		currentSlotIcon.global_position = Vector2(mousePosition.x - (currentSlotIcon.size.x/2), mousePosition.y - (currentSlotIcon.size.y/2))
+
+
+func open_inventory():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	GlobalPlayerVariables.lookingEnabled = false
+	
+	self.show()
+	inventoryOpen = true
+	
+	clear_equip()
+
+
+func close_inventory():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+	GlobalPlayerVariables.lookingEnabled = true
+	
+	self.hide()
+	inventoryOpen = false
 
 
 func on_pickup_item(item: Item):
@@ -97,6 +127,42 @@ func on_drop_item(item: Item, slot: InventorySlot):
 	slot.slotText.text = ""
 
 
+func swap_item(prevSlot: InventorySlot, newSlot: InventorySlot):
+	var temporaryItem: Item = null
+	
+	if newSlot.heldItem == null:
+		newSlot.heldItem = prevSlot.heldItem
+		newSlot.slotIcon.texture = prevSlot.heldItem.inventorySprite
+		newSlot.slotText.text = prevSlot.slotText.text
+		
+		prevSlot.heldItem = null
+		prevSlot.slotIcon.texture = null
+		prevSlot.slotText.text = ""
+	else:
+		temporaryItem = newSlot.heldItem
+		
+		newSlot.heldItem = prevSlot.heldItem
+		newSlot.slotIcon.texture = prevSlot.heldItem.inventorySprite
+		newSlot.slotText.text = prevSlot.slotText.text
+		
+		prevSlot.heldItem = temporaryItem
+		prevSlot.slotIcon.texture = temporaryItem.inventorySprite
+		prevSlot.slotText.text = temporaryItem.inventoryName
+
+
+func equip_item(item: Item):
+	equippedItemFrame.show()
+	
+	equippedItem = item
+	equippedItemIcon.texture = item.inventorySprite
+	
+	close_inventory()
+	pass
+
+
+func clear_equip():
+	equippedItemFrame.hide()
+	equippedItem = null
 
 
 func _on_slots_mouse_entered() -> void:

@@ -1,20 +1,24 @@
 extends Node
 
-var consoleOpen: bool = false
+var player: Player
+var playerPosition: Vector3 
+
 var lookingEnabled: bool = true
 
-var playerPosition: Vector3 
 var sprintJuice: float = 100
 var blinkJuice: float = 100
 
 
-# INVENTORY
 
+# INVENTORY
 var inventory: Inventory
 var hoveredSlot: InventorySlot
 
 
+
 # CONSOLE VARIABLES
+var consoleOpen: bool = false
+
 var noclipEnabled: bool = false
 var blinkingEnabled: bool = true
 var blinkSpriteEnabled: bool = true

@@ -12,8 +12,6 @@ func _ready() -> void:
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	onScreen = true
-
-
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	onScreen = false
 

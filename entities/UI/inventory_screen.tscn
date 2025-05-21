@@ -22,15 +22,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -176.0
+offset_left = -128.0
 offset_top = -80.0
-offset_right = 176.0
+offset_right = 128.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 32
 theme_override_constants/v_separation = 32
-columns = 4
+columns = 3
 
 [node name="Invslot1" parent="Slots" instance=ExtResource("2_molo7")]
 layout_mode = 2
@@ -54,13 +54,6 @@ layout_mode = 2
 [node name="Invslot6" parent="Slots" instance=ExtResource("2_molo7")]
 layout_mode = 2
 flip_v = true
-
-[node name="Invslot7" parent="Slots" instance=ExtResource("2_molo7")]
-layout_mode = 2
-
-[node name="Invslot8" parent="Slots" instance=ExtResource("2_molo7")]
-layout_mode = 2
-flip_h = true
 
 [connection signal="mouse_entered" from="Slots" to="." method="_on_slots_mouse_entered"]
 [connection signal="mouse_exited" from="Slots" to="." method="_on_slots_mouse_exited"]

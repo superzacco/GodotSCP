@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Player
 
 @export var stuffToRotate: Node3D
 @export var collider: CollisionShape3D
@@ -18,6 +19,8 @@ var wishDir: Vector3
 var sprinting: bool = false
 
 func _ready() -> void:
+	GlobalPlayerVariables.player = self
+	
 	if !is_multiplayer_authority():
 		camera.queue_free()
 	
