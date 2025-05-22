@@ -2,40 +2,31 @@
 
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_5236q"]
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_w3ko6"]
-[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/spawnroom.tscn" id="2_6ms83"]
+[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="2_6ms83"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="2_201hs"]
-[ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/LConHall001.tscn" id="3_hpg4u"]
-[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/LConTeslaOffice.tscn" id="3_muv7y"]
-[ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/LCon3Way001.tscn" id="4_fsxhi"]
-[ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/LCon4Way001.tscn" id="4_o5aq6"]
-[ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/LConBend001.tscn" id="6_jpx6p"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qo1je"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_jktgb"]
-sky_material = SubResource("ProceduralSkyMaterial_qo1je")
-
-[sub_resource type="Environment" id="Environment_bq40d"]
-background_mode = 2
-sky = SubResource("Sky_jktgb")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="3_hpg4u"]
+[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="3_muv7y"]
+[ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="4_fsxhi"]
+[ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="4_jclkl"]
+[ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="4_o5aq6"]
+[ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="6_jpx6p"]
+[ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://graphics.tres" id="9_mjkcd"]
+[ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="10_gfee4"]
 
 [node name="mapgentest" type="Node3D"]
 top_level = true
 script = ExtResource("1_w3ko6")
 spawnRoom = ExtResource("2_6ms83")
 necessaryTwoWayRooms = Array[PackedScene]([ExtResource("3_muv7y")])
-endRooms = Array[PackedScene]([ExtResource("2_6ms83")])
+endRooms = Array[PackedScene]([ExtResource("4_jclkl")])
 twoWayHallways = Array[PackedScene]([ExtResource("3_hpg4u")])
 threeWayIntersections = Array[PackedScene]([ExtResource("4_fsxhi")])
 fourWayInteresctions = Array[PackedScene]([ExtResource("4_o5aq6")])
 twoWayBends = Array[PackedScene]([ExtResource("6_jpx6p")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bq40d")
+environment = ExtResource("9_mjkcd")
+script = ExtResource("10_gfee4")
 
 [node name="Player" parent="." instance=ExtResource("1_5236q")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -7)

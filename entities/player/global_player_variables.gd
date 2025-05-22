@@ -17,6 +17,8 @@ var hoveredSlot: InventorySlot
 
 
 # CONSOLE VARIABLES
+var worldEnv: WorldEnvironment
+
 var consoleOpen: bool = false
 
 var noclipEnabled: bool = false

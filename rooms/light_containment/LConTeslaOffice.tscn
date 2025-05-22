@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_cyh60"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="3_e48wd"]
 [ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/Textures/tesla.png" id="3_eg4c6"]
-[ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/teslagate.gd" id="4_l3165"]
+[ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/light_containment/teslagate.gd" id="4_l3165"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="4_oqvxl"]
 [ext_resource type="AudioStream" uid="uid://djf6eoq7mef2g" path="res://audio/rooms/tesla/Idle.ogg" id="5_877pg"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="5_bo8dr"]
@@ -131,14 +131,14 @@ size = Vector3(5, 5, 3)
 script = ExtResource("1_cyh60")
 
 [node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.25, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.05, 0)
 
 [node name="keycard" parent="." instance=ExtResource("9_hdn66")]
-transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, -2.3, -1.00333, -3)
+transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, -2.3, -0.50333, -3)
 chanceToSpawn = 50.0
 
 [node name="Door" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.95, -0.3, 3.8)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.95, 0.08, 3.8)
 script = ExtResource("3_e48wd")
 animationPlayer = NodePath("door/AnimationPlayer")
 
@@ -161,7 +161,7 @@ doorToControl = NodePath("..")
 keycardLevel = 1
 
 [node name="TeslaGate" type="Sprite3D" parent="."]
-transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.637, 0, 1.39482, 0)
+transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.637, 0, 2, 0)
 texture = ExtResource("3_eg4c6")
 hframes = 2
 vframes = 2
@@ -219,17 +219,17 @@ light_energy = 0.0
 light_specular = 1.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, -4)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.48663, -4)
 spot_range = 15.0
 spot_angle = 65.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4, 4)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.48663, 4)
 spot_range = 15.0
 spot_angle = 65.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 1.7, -0.7)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 1.18663, -0.7)
 light_indirect_energy = 8.626
 spot_range = 15.0
 spot_angle = 65.0

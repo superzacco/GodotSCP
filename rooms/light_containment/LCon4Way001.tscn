@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c51e2qcf67eci"]
+
+[ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="1_g0x0b"]
+
+[node name="LCon4Way001" type="Node3D"]
+
+[node name="LCon4Way001" parent="." instance=ExtResource("1_g0x0b")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22856, 0)
+light_specular = 0.0
+omni_range = 10.0

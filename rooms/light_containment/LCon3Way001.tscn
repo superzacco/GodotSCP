@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ubs0d7q4xbr"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_frg2d"]
+[ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_ee4n3"]
+
+[node name="LCon3Way001" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_frg2d")
+
+[node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74232e-08, 3.5, -1)
+light_specular = 0.0
+omni_range = 10.0

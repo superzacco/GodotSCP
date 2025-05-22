@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://wp2hdd66ssek"]
+
+[ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/UI/console.gd" id="1_1wmyx"]
+
+[node name="Console" type="Control" node_paths=PackedStringArray("inputField") groups=["console"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wmyx")
+inputField = NodePath("Panel/VBoxContainer/Container/LineEdit")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Container2" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Container2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "] noclip
+] help
+"
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+vertical_alignment = 2
+
+[node name="Container" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Container"]
+layout_mode = 2
+placeholder_text = "type <help> for a list of avalible commands"
+caret_blink = true
+caret_mid_grapheme = true

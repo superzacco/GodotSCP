@@ -1,5 +1,5 @@
-SpotLight3D
 OmniLight3D
+SpotLight3D
 PointLight2D
 StaticBody3D
 TextureRect
@@ -12,4 +12,3 @@ CollisionShape2D
 Area2D
 MarginContainer
 VBoxContainer
-Node3D

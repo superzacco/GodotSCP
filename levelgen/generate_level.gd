@@ -67,7 +67,7 @@ func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0, false)
 	
 	var zOffset = 1
-	for i in 5:
+	for i in 3:
 		generate_long_hall(zOffset)
 		zOffset += 3
 	
@@ -168,8 +168,15 @@ func replace_and_rotate_temporary_room(temporaryRoom, surroundingRooms: int, x: 
 	
 	match surroundingRooms:
 		1:
-			spawnedRoom = spawn_room(spawnRoom, x, z) # spawn end room instead
+			spawnedRoom = spawn_room(endRooms[0], x, z) # spawn end room instead
 			replacableEndRooms.append(spawnedRoom)
+			
+			if ((!x+1 > xSize) and (temporaryRooms[x+1][z] != null)):
+				timesToRotate = 1
+			if ((!z+1 > zSize) and (temporaryRooms[x][z+1] != null)):
+				timesToRotate = 2
+			if ((!x-1 < 0) and (temporaryRooms[x-1][z] != null)):
+				timesToRotate = 3
 		2:
 			# if up & down spawn default hall, if side to side hall once, if not it's a corner hall
 			if ((!x+1 > xSize and !x-1 < 0) and (temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null)):

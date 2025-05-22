@@ -12,8 +12,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("console"):
-		if GlobalPlayerVariables.consoleOpen:
-			return
+		#if GlobalPlayerVariables.consoleOpen:
+			#return
 		
 		GlobalPlayerVariables.consoleOpen = true
 		
@@ -49,6 +49,8 @@ func _input(event: InputEvent) -> void:
 				goto_mainmenu()
 			"noblink":
 				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
+			"fog":
+				toggle_fog()
 		
 		if (inputField.text != ""):
 			commandHistory.append(inputField.text)
@@ -82,3 +84,13 @@ func quit():
 
 func goto_mainmenu():
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func toggle_fog():
+	var env = GlobalPlayerVariables.worldEnv
+	
+	if env.environment.fog_enabled:
+		env.environment.fog_enabled = 0
+		env.environment.volumetric_fog_enabled = 0
+	else:
+		env.environment.fog_enabled = 1
+		env.environment.volumetric_fog_enabled = 1

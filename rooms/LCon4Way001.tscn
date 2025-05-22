@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c51e2qcf67eci"]
-
-[ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="2_her8l"]
-
-[node name="LCon4Way001" type="Node3D"]
-
-[node name="LCon4Way001" parent="." instance=ExtResource("2_her8l")]

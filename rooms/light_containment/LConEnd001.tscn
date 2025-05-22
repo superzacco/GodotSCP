@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkggfnfyoup03"]
+
+[ext_resource type="PackedScene" uid="uid://dp32xwnaqdtm1" path="res://rooms/Models/LConEnd001.blend" id="1_2lr0b"]
+
+[node name="LConEnd001" type="Node3D"]
+
+[node name="LConEnd001" parent="." instance=ExtResource("1_2lr0b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -1.5)
+light_specular = 0.0
+omni_range = 7.5
