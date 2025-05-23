@@ -1,8 +1,9 @@
 OmniLight3D
+TextureRect
+TextureButton
 SpotLight3D
 PointLight2D
 StaticBody3D
-TextureRect
 Panel
 Control
 Container
@@ -11,4 +12,3 @@ Label
 CollisionShape2D
 Area2D
 MarginContainer
-VBoxContainer

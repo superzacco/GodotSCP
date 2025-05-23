@@ -4,4 +4,4 @@ extends Control
 @export var version: String
 
 func _ready() -> void:
-	versionString.text = (version + " | build version: " + str(VersionController.buildVersion))
+	versionString.text = (version + "-" + str(VersionController.buildVersion))

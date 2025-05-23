@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmlmovv3qtocd"]
+
+[ext_resource type="PackedScene" uid="uid://cpjayajeujptt" path="res://rooms/Models/LConHall002.blend" id="1_irael"]
+
+[node name="LConHall002" type="Node3D"]
+
+[node name="LConHall002" parent="." instance=ExtResource("1_irael")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3)

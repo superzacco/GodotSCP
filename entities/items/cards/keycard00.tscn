@@ -15,9 +15,10 @@ radius = 1.0
 size = Vector3(0.3, 0.05, 0.4)
 
 [node name="keycard00" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["interactables", "item"]]
-collision_layer = 2
-collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
+continuous_cd = true
 script = ExtResource("1_r58d1")
 inventorySprite = ExtResource("2_x7rh8")
 inventoryName = "Level 0 Keycard"
