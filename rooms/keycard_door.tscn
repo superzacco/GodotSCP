@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://7l4nci6wjc8r"]
+
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_ofwoi"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="2_a3yfc"]
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_g8fdx"]
+
+[node name="Door" type="Node3D" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_ofwoi")
+animationPlayer = NodePath("door/AnimationPlayer")
+
+[node name="door" parent="." instance=ExtResource("2_a3yfc")]
+
+[node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_g8fdx")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1, 0, 0.2)
+doorToControl = NodePath("..")
+
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_g8fdx")]
+transform = Transform3D(1, 3.82137e-15, -1.74846e-07, 1.14641e-14, 1, 8.74228e-08, 1.74846e-07, -8.74228e-08, 1, -1.1, 0, -0.2)
+doorToControl = NodePath("..")
+
+[editable path="door"]

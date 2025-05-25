@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ywd465j3m17b"]
+
+[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_2a32u"]
+
+[node name="point1" type="Node3D" groups=["roomconnectionpoints"]]
+script = ExtResource("1_2a32u")

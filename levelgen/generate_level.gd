@@ -113,7 +113,7 @@ func generate_long_hall(zOffset):
 
 
 func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
-	var amountOfConnectingHalls: int = randi_range(2, 4)
+	var amountOfConnectingHalls: int = 4
 	
 	var startingPoint = hallMinExtent.x / spaceMultiplier
 	var endingPoint = hallMaxExtent.x / spaceMultiplier
@@ -121,12 +121,13 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	var zPosition = hallMinExtent.z / spaceMultiplier
 	
 	for i in amountOfConnectingHalls:
-		var distanceAddedBetween: int = randi_range(3,5)
+		var distanceAddedBetween: int = randi_range(1,3)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
 			return
 		
+		distanceAddedBetween = randi_range(1,3) + randi_range(1,3)
 		for i2 in 2:
 			spawn_room(fillerLConFourWayHalls[0], xPosition, zPosition + i2 + 1, true)
 #endregion // SHAPE
@@ -179,9 +180,7 @@ func check_surrounding_rooms(temporaryRoom, x, z):
 		push_error(temporaryRoom.name + " has no surrounding rooms!")
 
 
-func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):
-	temporaryRoom.queue_free()
-	
+func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):	
 	var fillerRoom = null
 	var timesToRotate: int = 0
 	
@@ -193,6 +192,9 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 	
 	match surroundingRooms:
 		1:
+			if x == mapWidth/2 and z == 0:
+				return
+			
 			if z < LContoHConCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerLConEndRooms, replacableLConEndRooms, x, z)
 			else:
@@ -256,6 +258,7 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 			else:
 				fillerRoom = place_filler_room_in_containment(fillerHConFourWayHalls, replacableHConFourWayHalls, x, z)
 	
+	temporaryRoom.queue_free()
 	if timesToRotate > 0:
 		rotate_room(fillerRoom, timesToRotate)
 

@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="4_jclkl"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="4_o5aq6"]
 [ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="6_jpx6p"]
-[ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/heavy_containment/LConHall002.tscn" id="6_w8rlh"]
-[ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/heavy_containment/LconHall003.tscn" id="7_gc7sq"]
+[ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="6_w8rlh"]
+[ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/LconHall003.tscn" id="7_gc7sq"]
 [ext_resource type="PackedScene" uid="uid://c6ao02qwvnt4g" path="res://rooms/heavy_containment/HConEnd001.tscn" id="8_x3gr6"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://graphics.tres" id="9_mjkcd"]
 [ext_resource type="PackedScene" uid="uid://7ro1b7portdx" path="res://rooms/heavy_containment/HConHall001.tscn" id="9_w4jv5"]
@@ -40,4 +40,4 @@ environment = ExtResource("9_mjkcd")
 script = ExtResource("10_gfee4")
 
 [node name="Player" parent="." instance=ExtResource("1_5236q")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)

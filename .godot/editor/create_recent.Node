@@ -1,7 +1,8 @@
-OmniLight3D
-TextureRect
-TextureButton
+Node3D
 SpotLight3D
+TextureRect
+OmniLight3D
+TextureButton
 PointLight2D
 StaticBody3D
 Panel
@@ -11,4 +12,3 @@ GridContainer
 Label
 CollisionShape2D
 Area2D
-MarginContainer

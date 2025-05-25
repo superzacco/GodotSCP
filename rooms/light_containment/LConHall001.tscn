@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://denjqd6filqia"]
+[gd_scene load_steps=4 format=3 uid="uid://denjqd6filqia"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_vk6a5"]
 [ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="2_el3pu"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_5g4wb"]
 
 [node name="LConHall001" type="Node3D"]
 script = ExtResource("1_vk6a5")
@@ -13,3 +14,11 @@ light_specular = 0.0
 omni_range = 10.0
 
 [node name="LConHall001" parent="." instance=ExtResource("2_el3pu")]
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("3_5g4wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("3_5g4wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)

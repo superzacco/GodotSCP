@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=11 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/UI/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/UI/inventory_screen.tscn" id="2_suasf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://gbg70hime1rk" path="res://entities/UI/Outline.png" id="4_dlixo"]
 [ext_resource type="Texture2D" uid="uid://cb6oq5ahsbk4w" path="res://entities/UI/BrightBars.png" id="5_5cfgd"]
 [ext_resource type="Texture2D" uid="uid://b4hpm86uruwn1" path="res://entities/UI/bars.png" id="5_ght5y"]
+[ext_resource type="Texture2D" uid="uid://bdh3xaxpbh8i2" path="res://entities/player/vignette.png" id="9_rqao8"]
 
 [sub_resource type="GDScript" id="GDScript_suasf"]
 
@@ -19,6 +20,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_suasf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_rqao8")
+expand_mode = 1
 
 [node name="Console" parent="." instance=ExtResource("1_oefnm")]
 layout_mode = 1

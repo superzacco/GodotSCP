@@ -41,9 +41,12 @@
 	"materials":[
 		{
 			"name":"wallbottom",
+			"normalTexture":{
+				"index":0
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":0
+					"index":1
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0
@@ -51,9 +54,12 @@
 		},
 		{
 			"name":"Material.002",
+			"normalTexture":{
+				"index":2
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":1
+					"index":3
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -61,9 +67,12 @@
 		},
 		{
 			"name":"floor",
+			"normalTexture":{
+				"index":4
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":2
+					"index":5
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -80,7 +89,7 @@
 					0.9904040098190308
 				],
 				"baseColorTexture":{
-					"index":3
+					"index":6
 				},
 				"metallicFactor":0.21212121844291687,
 				"roughnessFactor":0
@@ -90,7 +99,7 @@
 			"name":"Material.003",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":4
+					"index":7
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -100,7 +109,7 @@
 			"name":"Material.004",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":5
+					"index":8
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -111,7 +120,7 @@
 			"name":"Material.006",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":6
+					"index":9
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -122,7 +131,7 @@
 			"name":"Material",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":7
+					"index":10
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -133,7 +142,7 @@
 			"name":"Material.001",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":8
+					"index":11
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -313,18 +322,45 @@
 		{
 			"sampler":0,
 			"source":8
+		},
+		{
+			"sampler":0,
+			"source":9
+		},
+		{
+			"sampler":0,
+			"source":10
+		},
+		{
+			"sampler":0,
+			"source":11
 		}
 	],
 	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"whitewall1_specular.png",
+			"uri":"../../rooms/Textures/normals/whitewall1_specular.png"
+		},
 		{
 			"mimeType":"image/png",
 			"name":"whitewall1.png",
 			"uri":"../../rooms/Textures/whitewall1.png"
 		},
 		{
+			"mimeType":"image/png",
+			"name":"whitewall_specular.png",
+			"uri":"../../rooms/Textures/normals/whitewall_specular.png"
+		},
+		{
 			"mimeType":"image/jpeg",
 			"name":"whitewall.jpg",
 			"uri":"../../rooms/Textures/whitewall.jpg"
+		},
+		{
+			"mimeType":"image/png",
+			"name":"concrete_floor.png",
+			"uri":"../../rooms/Textures/normals/concrete_floor.png"
 		},
 		{
 			"mimeType":"image/jpeg",

@@ -51,6 +51,8 @@ func _input(event: InputEvent) -> void:
 				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
 			"fog":
 				toggle_fog()
+			"getpos":
+				print(GlobalPlayerVariables.playerPosition)
 		
 		if (inputField.text != ""):
 			commandHistory.append(inputField.text)

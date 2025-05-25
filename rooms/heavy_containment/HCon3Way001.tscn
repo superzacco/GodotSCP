@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1awy2dnjptsq"]
+[gd_scene load_steps=3 format=3 uid="uid://d1awy2dnjptsq"]
 
 [ext_resource type="PackedScene" uid="uid://c702vc2iycdlw" path="res://rooms/Models/HCon3Way001.blend" id="1_2xvbw"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_h1whc"]
 
 [node name="HCon3Way001" type="Node3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -16,3 +17,15 @@ omni_range = 7.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2.5)
 light_specular = 0.0
 omni_range = 7.5
+
+[node name="Points" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="point1" parent="Points" instance=ExtResource("2_h1whc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("2_h1whc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="point3" parent="Points" instance=ExtResource("2_h1whc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -1.14512, 9.83506e-07)

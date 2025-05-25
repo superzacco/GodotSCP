@@ -1,16 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq36u66dwnw6w"]
+[gd_scene load_steps=16 format=3 uid="uid://cq36u66dwnw6w"]
 
 [ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/Models/LConTeslaOffice.blend" id="1_bexi0"]
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_cyh60"]
-[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="3_e48wd"]
 [ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/Textures/tesla.png" id="3_eg4c6"]
 [ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/light_containment/teslagate.gd" id="4_l3165"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="4_oqvxl"]
 [ext_resource type="AudioStream" uid="uid://djf6eoq7mef2g" path="res://audio/rooms/tesla/Idle.ogg" id="5_877pg"]
-[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="5_bo8dr"]
 [ext_resource type="AudioStream" uid="uid://dw12rvtl3x14f" path="res://audio/rooms/tesla/WindUp.ogg" id="6_xkfh6"]
 [ext_resource type="AudioStream" uid="uid://bnq1v0tmwdb4v" path="res://audio/rooms/tesla/Shock.ogg" id="7_hnrdu"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="9_4e5mo"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="9_hdn66"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="10_kr22m"]
 
 [sub_resource type="Animation" id="Animation_46xis"]
 length = 0.001
@@ -137,29 +136,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.
 transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, -2.3, -0.50333, -3)
 chanceToSpawn = 50.0
 
-[node name="Door" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.95, 0.08, 3.8)
-script = ExtResource("3_e48wd")
-animationPlayer = NodePath("door/AnimationPlayer")
-
-[node name="door" parent="Door" instance=ExtResource("4_oqvxl")]
-
-[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Keycardbutton" parent="Door" node_paths=PackedStringArray("doorToControl") instance=ExtResource("5_bo8dr")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.2)
-doorToControl = NodePath("..")
-keycardLevel = 1
-
-[node name="Keycardbutton2" parent="Door" node_paths=PackedStringArray("doorToControl") instance=ExtResource("5_bo8dr")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -1.1, 0, -0.2)
-doorToControl = NodePath("..")
-keycardLevel = 1
-
 [node name="TeslaGate" type="Sprite3D" parent="."]
 transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.637, 0, 2, 0)
 texture = ExtResource("3_eg4c6")
@@ -234,9 +210,33 @@ light_indirect_energy = 8.626
 spot_range = 15.0
 spot_angle = 65.0
 
+[node name="Door" parent="." instance=ExtResource("9_4e5mo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.95, 0.07, 3.8)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="Door" index="1"]
+keycardLevel = 1
+
+[node name="Keycardbutton2" parent="Door" index="2"]
+keycardLevel = 1
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("10_kr22m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("10_kr22m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
 [connection signal="body_entered" from="TeslaGate/TeslaKillBox" to="TeslaGate" method="_on_tesla_kill_box_body_entered"]
 [connection signal="body_exited" from="TeslaGate/TeslaKillBox" to="TeslaGate" method="_on_tesla_kill_box_body_exited"]
 [connection signal="body_entered" from="TeslaGate/TeslaTriggerBox" to="TeslaGate" method="_on_tesla_trigger_box_body_entered"]
 [connection signal="body_exited" from="TeslaGate/TeslaTriggerBox" to="TeslaGate" method="_on_tesla_trigger_box_body_exited"]
 
+[editable path="Door"]
 [editable path="Door/door"]

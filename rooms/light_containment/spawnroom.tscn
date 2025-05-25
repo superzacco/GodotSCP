@@ -1,14 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx1ergchu2j1f"]
+[gd_scene load_steps=4 format=3 uid="uid://cx1ergchu2j1f"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_njtbk"]
-[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_tvdc3"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_xaeff"]
+[ext_resource type="PackedScene" uid="uid://bxxnvxr1if2hq" path="res://rooms/Models/SpawnRoom.blend" id="3_xaeff"]
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 script = ExtResource("1_njtbk")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(2, 1, 2)
+[node name="point1" parent="." instance=ExtResource("2_xaeff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30771e-06, -1.17887, -7.47635)
 
-[node name="point1" type="Node3D" parent="." groups=["roomconnectionpoints"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)
-script = ExtResource("1_tvdc3")
+[node name="SpawnRoom" parent="." instance=ExtResource("3_xaeff")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14, 4.19659, -2)
+light_energy = 4.0
+spot_range = 15.0
+spot_angle = 80.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.56363e-08, 4.19659, -2)
+light_energy = 4.0
+spot_range = 15.0
+spot_angle = 80.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.59659, 5)
+light_energy = 4.0
+spot_range = 15.0
+spot_angle = 80.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 7.59659, 0.8)
+light_energy = 3.0
+light_specular = 0.0
+spot_range = 15.0
+spot_angle = 80.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 15.1)
+spot_range = 15.0
+spot_angle = 70.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 25.5)
+spot_range = 15.0
+spot_angle = 70.0
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 35.7)
+spot_range = 15.0
+spot_angle = 70.0

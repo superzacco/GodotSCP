@@ -21,17 +21,9 @@
 	"materials":[
 		{
 			"name":"Concrete Floor",
-			"pbrMetallicRoughness":{
-				"baseColorTexture":{
-					"index":0
-				},
-				"metallicFactor":0,
-				"roughnessFactor":0.5
-			}
-		},
-		{
-			"doubleSided":true,
-			"name":"Material.001",
+			"normalTexture":{
+				"index":0
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":1
@@ -41,10 +33,27 @@
 			}
 		},
 		{
-			"name":"Material.002",
+			"doubleSided":true,
+			"name":"Material.001",
+			"normalTexture":{
+				"index":2
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":2
+					"index":3
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"name":"Material.002",
+			"normalTexture":{
+				"index":4
+			},
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":5
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -97,18 +106,45 @@
 		{
 			"sampler":0,
 			"source":2
+		},
+		{
+			"sampler":0,
+			"source":3
+		},
+		{
+			"sampler":0,
+			"source":4
+		},
+		{
+			"sampler":0,
+			"source":5
 		}
 	],
 	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"concrete_floor.png",
+			"uri":"../../rooms/Textures/normals/concrete_floor.png"
+		},
 		{
 			"mimeType":"image/jpeg",
 			"name":"concretefloor.jpg",
 			"uri":"../../rooms/Textures/concretefloor.jpg"
 		},
 		{
+			"mimeType":"image/png",
+			"name":"tile_floor.png",
+			"uri":"../../rooms/Textures/normals/tile_floor.png"
+		},
+		{
 			"mimeType":"image/jpeg",
 			"name":"tilefloor.jpg",
 			"uri":"../../rooms/Textures/tilefloor.jpg"
+		},
+		{
+			"mimeType":"image/png",
+			"name":"whitewall_specular.png",
+			"uri":"../../rooms/Textures/normals/whitewall_specular.png"
 		},
 		{
 			"mimeType":"image/jpeg",

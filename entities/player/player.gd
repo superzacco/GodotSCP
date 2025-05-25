@@ -21,9 +21,6 @@ var sprinting: bool = false
 func _ready() -> void:
 	GlobalPlayerVariables.player = self
 	
-	if !is_multiplayer_authority():
-		camera.queue_free()
-	
 	moveSpeed = moveSpeedDesired
 	sensitivity = sensitivityDesired
 	
@@ -49,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	wishDir.z = Input.get_axis("back", "forward")
 	
 	if !GlobalPlayerVariables.noclipEnabled:
-		moveDir = stuffToRotate.basis.z * wishDir.z + stuffToRotate.basis.x * wishDir.x
+		moveDir = -(stuffToRotate.basis.z * wishDir.z + stuffToRotate.basis.x * wishDir.x)
 		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	else:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x
@@ -72,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
 		recharge_sprint(delta)
 	
-	if sprinting:
+	if sprinting and GlobalPlayerVariables.sprintJuice > 0:
 		$AnimationPlayer.speed_scale = 1.35
 	else:
 		$AnimationPlayer.speed_scale = 1 
