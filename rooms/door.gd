@@ -20,10 +20,12 @@ func toggle_door():
 
 
 func open():
+	$Open.play()
 	animationPlayer.play("open")
 	doorOpen = true
 
 
 func close():
+	$Close.play()
 	animationPlayer.play("close")
 	doorOpen = false

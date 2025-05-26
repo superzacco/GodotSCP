@@ -4,11 +4,9 @@ var buildVersion: int
 var versionInfoFile = "res://versioninfo.txt"
 
 func _ready() -> void:
-	
-	
 	var fileRead = FileAccess.open(versionInfoFile, FileAccess.READ)
 	buildVersion = fileRead.get_as_text().to_int()
-	print(buildVersion)
+	print("build " + str(buildVersion))
 	
 	buildVersion += 1
 	

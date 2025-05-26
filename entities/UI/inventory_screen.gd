@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 			currentSlotIcon.global_position = iconOriginPoint
 		
 		if heldItem != null and overDropArea and inventoryOpen:
-			on_drop_item(heldItem, currentSlot)
+			on_drop_item(currentSlot)
 		
 		if GlobalPlayerVariables.hoveredSlot != null and heldItem != null:
 			swap_item(currentSlot, GlobalPlayerVariables.hoveredSlot)
@@ -113,7 +113,7 @@ func on_pickup_item(item: Item):
 			break
 
 
-func on_drop_item(item: Item, slot: InventorySlot):
+func on_drop_item(slot: InventorySlot):
 	var randomPos = Vector3(randf_range(-0.25, 0.25), 1, randf_range(-0.25, 0.25))
 	var randomRotation = randi_range(0, 360)
 	

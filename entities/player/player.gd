@@ -32,9 +32,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !is_multiplayer_authority():
-		return
-	
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
 	

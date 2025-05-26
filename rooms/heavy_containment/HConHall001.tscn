@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7ro1b7portdx"]
+[gd_scene load_steps=3 format=3 uid="uid://7ro1b7portdx"]
 
 [ext_resource type="PackedScene" uid="uid://dxjipil7bow4j" path="res://rooms/Models/HConHall001.blend" id="1_p2jl8"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_ry6i8"]
 
 [node name="HConHall001" type="Node3D"]
 
@@ -10,3 +11,11 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_specular = 0.0
 omni_range = 9.0
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("2_ry6i8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("2_ry6i8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)

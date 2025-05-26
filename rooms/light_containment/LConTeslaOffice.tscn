@@ -159,29 +159,6 @@ shape = SubResource("BoxShape3D_ohbr2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TeslaGate/TeslaTriggerBox"]
 shape = SubResource("BoxShape3D_k17ir")
 
-[node name="TeslaIdle" type="AudioStreamPlayer3D" parent="TeslaGate"]
-stream = ExtResource("5_877pg")
-volume_db = -15.0
-unit_size = 8.0
-max_distance = 12.0
-bus = &"SFX"
-emission_angle_filter_attenuation_db = 0.0
-attenuation_filter_cutoff_hz = 8640.0
-attenuation_filter_db = -15.0
-parameters/looping = true
-
-[node name="TeslaCharge" type="AudioStreamPlayer3D" parent="TeslaGate"]
-stream = ExtResource("6_xkfh6")
-max_distance = 30.0
-bus = &"SFX"
-emission_angle_filter_attenuation_db = 0.0
-
-[node name="TeslaFire" type="AudioStreamPlayer3D" parent="TeslaGate"]
-stream = ExtResource("7_hnrdu")
-max_distance = 30.0
-bus = &"SFX"
-emission_angle_filter_attenuation_db = 0.0
-
 [node name="TeslaLight1" type="OmniLight3D" parent="TeslaGate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 light_color = Color(0.396078, 0.878431, 1, 1)
@@ -193,6 +170,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_color = Color(0.396078, 0.878431, 1, 1)
 light_energy = 0.0
 light_specular = 1.0
+
+[node name="TeslaIdle" type="AudioStreamPlayer3D" parent="TeslaGate"]
+stream = ExtResource("5_877pg")
+attenuation_model = 2
+volume_db = -15.0
+autoplay = true
+max_distance = 15.0
+bus = &"Sound Effects"
+
+[node name="TeslaCharge" type="AudioStreamPlayer3D" parent="TeslaGate"]
+stream = ExtResource("6_xkfh6")
+
+[node name="TeslaFire" type="AudioStreamPlayer3D" parent="TeslaGate"]
+stream = ExtResource("7_hnrdu")
+volume_db = 3.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.48663, -4)

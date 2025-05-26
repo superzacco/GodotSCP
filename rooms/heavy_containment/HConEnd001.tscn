@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6ao02qwvnt4g"]
+[gd_scene load_steps=3 format=3 uid="uid://c6ao02qwvnt4g"]
 
 [ext_resource type="PackedScene" uid="uid://dgdsi0kdqyaje" path="res://rooms/Models/HConEnd001.blend" id="1_ds7vn"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_v57yt"]
 
 [node name="HConEnd001" type="Node3D"]
 
@@ -10,3 +11,8 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 light_specular = 0.0
 omni_range = 7.0
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point2" parent="Points" instance=ExtResource("2_v57yt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)

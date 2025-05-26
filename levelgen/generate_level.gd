@@ -1,9 +1,12 @@
 extends Node
 
+@export var navigationRegion: NavigationRegion3D 
+@export var doorsNode: Node3D
+@export var door: PackedScene
 #region // ROOMS
-@export var spawnRoom: PackedScene
 
 @export_group("Necessary Rooms")
+@export var spawnRoom: PackedScene
 @export_subgroup("Light Containment")
 @export var necessaryLConEndRooms: Array[PackedScene]
 @export var necessaryLConTwoWayHalls: Array[PackedScene]
@@ -91,6 +94,10 @@ func generate_map():
 	
 	check_rooms_and_replace() # re-name this function chain pls
 	replace_filler_rooms()
+	
+	place_doors()
+	generate_nav_mesh()
+	
 
 
 func generate_long_hall(zOffset):
@@ -121,13 +128,13 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	var zPosition = hallMinExtent.z / spaceMultiplier
 	
 	for i in amountOfConnectingHalls:
-		var distanceAddedBetween: int = randi_range(1,3)
+		var distanceAddedBetween: int = randi_range(1,3) + randi_range(1,3)
+		if i == 0: distanceAddedBetween = randi_range(1,4)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
 			return
 		
-		distanceAddedBetween = randi_range(1,3) + randi_range(1,3)
 		for i2 in 2:
 			spawn_room(fillerLConFourWayHalls[0], xPosition, zPosition + i2 + 1, true)
 #endregion // SHAPE
@@ -136,11 +143,11 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 func spawn_room(room, x, z, temp: bool = false):
 	var spawnedRoom: Node3D = null
 	spawnedRoom = room.instantiate()
+	navigationRegion.add_child(spawnedRoom)
 	
 	if temp:
 		temporaryRooms[x][z] = spawnedRoom
 	
-	add_child(spawnedRoom)
 	spawnedRoom.position = Vector3(x, 0, z) * spaceMultiplier
 	return spawnedRoom
 
@@ -298,3 +305,35 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 		replacableRoomArray[roomToReplace].queue_free()
 		replacableRoomArray.remove_at(roomToReplace)
 #endregion
+
+
+func place_doors():
+	await get_tree().create_timer(1).timeout
+	var connectionPoints: Array = get_tree().get_nodes_in_group("roomconnectionpoints")
+	var doorLocations: Array
+	
+	for i in connectionPoints.size():
+		var point = connectionPoints[i]
+		point.position.y = -1.145
+		
+		if !doorLocations.has(point.global_position):
+			var spawnedDoor = door.instantiate()
+			doorsNode.add_child(spawnedDoor)
+			spawnedDoor.global_position = point.global_position
+			spawnedDoor.global_basis = point.global_basis
+			spawnedDoor.global_position.y += 1.2
+			doorLocations.append(point.global_position)
+
+
+func generate_nav_mesh():
+	var mesh = NavigationMesh.new()
+	
+	mesh.agent_radius = 0.1
+	mesh.cell_size = 0.1
+	
+	navigationRegion.navigation_mesh = mesh
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	navigationRegion.bake_navigation_mesh()
+	

@@ -78,3 +78,4 @@ func pick_up_item(item):
 		item.freeze = true
 		
 		GlobalPlayerVariables.inventory.on_pickup_item(item)
+		$PickItem.play()

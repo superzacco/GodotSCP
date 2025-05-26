@@ -8,7 +8,7 @@ var lookingEnabled: bool = true
 var sprintJuice: float = 100
 var blinkJuice: float = 100
 
-
+var interactionText: InteractionText
 
 # INVENTORY
 var inventory: Inventory

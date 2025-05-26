@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=16 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
 [ext_resource type="Script" uid="uid://if5y2hgoe5tu" path="res://entities/player/blinking.gd" id="5_lyn41"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="8_8n5i1"]
+[ext_resource type="AudioStream" uid="uid://dayl4k61sccyr" path="res://audio/interaction/PickItem.ogg" id="8_26q78"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 0.0
@@ -86,6 +87,7 @@ _data = {
 }
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "teslashockable"]]
+physics_interpolation_mode = 1
 top_level = true
 collision_priority = 5.0
 input_ray_pickable = false
@@ -158,6 +160,11 @@ spriteEndPoint = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySprite
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("CylinderShape3D_smri4")
+
+[node name="PickItem" type="AudioStreamPlayer3D" parent="InteractionZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+stream = ExtResource("8_26q78")
+volume_db = -6.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
