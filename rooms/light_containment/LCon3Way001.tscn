@@ -10,9 +10,10 @@ script = ExtResource("1_frg2d")
 
 [node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74232e-08, 3.5, -1)
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 8.74228e-08, 8.74228e-08, -8.74228e-08, -4.37114e-08, 1, 8.74228e-08, -1, -4.37114e-08, 8.74232e-08, 3.99916, -1)
 light_specular = 0.0
+shadow_enabled = true
 omni_range = 10.0
 
 [node name="Points" type="Node3D" parent="."]

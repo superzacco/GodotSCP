@@ -29,3 +29,10 @@ func close():
 	$Close.play()
 	animationPlayer.play("close")
 	doorOpen = false
+
+
+func one_seven_three_open():
+	$"173 Open".play()
+	animationPlayer.play("open")
+	doorOpen = true
+	

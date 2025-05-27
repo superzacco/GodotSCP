@@ -139,9 +139,12 @@
 		{
 			"doubleSided":true,
 			"name":"173",
+			"normalTexture":{
+				"index":0
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":0
+					"index":1
 				},
 				"metallicFactor":0
 			}
@@ -171,9 +174,18 @@
 		{
 			"sampler":0,
 			"source":0
+		},
+		{
+			"sampler":0,
+			"source":1
 		}
 	],
 	"images":[
+		{
+			"mimeType":"image/png",
+			"name":"173normal.png",
+			"uri":"../../entities/SCPs/173normal.png"
+		},
 		{
 			"mimeType":"image/png",
 			"name":"173",
@@ -207,7 +219,7 @@
 			"min":[
 				-0.749885618686676,
 				-1.4553170204162598,
-				-0.26142629981040955
+				-0.25646063685417175
 			],
 			"type":"VEC3"
 		},

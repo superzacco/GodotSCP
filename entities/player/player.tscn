@@ -1,13 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=25 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
+[ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
+[ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
 [ext_resource type="Script" uid="uid://mnm27fr2qpv8" path="res://entities/player/interaction.gd" id="4_jnjp4"]
 [ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/UI/invslot.png" id="4_ma6qb"]
 [ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
 [ext_resource type="Script" uid="uid://if5y2hgoe5tu" path="res://entities/player/blinking.gd" id="5_lyn41"]
+[ext_resource type="AudioStream" uid="uid://bx0dv5n45qni7" path="res://audio/steps/Step3.ogg" id="5_we0b7"]
+[ext_resource type="AudioStream" uid="uid://vtlicw7re5dq" path="res://audio/steps/Step4.ogg" id="6_mtric"]
+[ext_resource type="AudioStream" uid="uid://dvrlqm1vvuhul" path="res://audio/steps/Step5.ogg" id="7_eyb6c"]
 [ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="8_8n5i1"]
 [ext_resource type="AudioStream" uid="uid://dayl4k61sccyr" path="res://audio/interaction/PickItem.ogg" id="8_26q78"]
+[ext_resource type="AudioStream" uid="uid://dmu3yyhkn0dqj" path="res://audio/steps/Step6.ogg" id="8_221hk"]
+[ext_resource type="Script" uid="uid://c7mscsdfl6h54" path="res://entities/player/player_step_sounds.gd" id="9_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://iihneek57gsf" path="res://audio/steps/Step7.ogg" id="9_ghoj8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 0.0
@@ -79,6 +88,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerStepSounds")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step"
+}, {
+"args": [],
+"method": &"step"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_git2y"]
 _data = {
@@ -89,6 +115,8 @@ _data = {
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "teslashockable"]]
 physics_interpolation_mode = 1
 top_level = true
+collision_layer = 257
+collision_mask = 257
 collision_priority = 5.0
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_uuhg5")
@@ -172,6 +200,14 @@ libraries = {
 }
 
 [node name="UI" parent="." instance=ExtResource("8_8n5i1")]
+
+[node name="PlayerStepSounds" type="Node3D" parent="."]
+script = ExtResource("9_3wlsy")
+stepSounds = Array[AudioStream]([ExtResource("2_yqrof"), ExtResource("3_3wlsy"), ExtResource("4_b2kln"), ExtResource("5_we0b7"), ExtResource("6_mtric"), ExtResource("7_eyb6c"), ExtResource("8_221hk"), ExtResource("9_ghoj8")])
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerStepSounds"]
+
+[node name="Steps" type="AudioStreamPlayer3D" parent="PlayerStepSounds"]
 
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]

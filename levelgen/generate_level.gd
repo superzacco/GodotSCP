@@ -56,8 +56,8 @@ var mapHeight: int = 25
 var LContoHConCheckpointLine: int = 5
 var HContoEntranceCheckpointLine: int = 11
 
-var mapGrid = []
 var temporaryRooms = []
+var finishedRooms = []
 
 var xSize: int
 var zSize: int
@@ -65,11 +65,6 @@ var zSize: int
 
 func _ready() -> void:
 	GlobalPlayerVariables.consoleOpen = false
-	
-	for i in mapWidth:
-		mapGrid.append([])
-		for j in mapHeight:
-			mapGrid[i].append(null)
 	
 	for i in mapWidth:
 		temporaryRooms.append([])
@@ -98,6 +93,7 @@ func generate_map():
 	place_doors()
 	generate_nav_mesh()
 	
+	GlobalPlayerVariables.facilityManager.rooms = finishedRooms
 
 
 func generate_long_hall(zOffset):
@@ -129,7 +125,7 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	
 	for i in amountOfConnectingHalls:
 		var distanceAddedBetween: int = randi_range(1,3) + randi_range(1,3)
-		if i == 0: distanceAddedBetween = randi_range(1,4)
+		if i == 0: distanceAddedBetween = randi_range(1,3)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
@@ -273,6 +269,7 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 func place_filler_room_in_containment(fillerRoomArray: Array, replacableRoomArray: Array, x, z):
 	var fillerRoom = spawn_room(fillerRoomArray[randi_range(0, fillerRoomArray.size()-1)], x, z)
 	replacableRoomArray.append(fillerRoom)
+	finishedRooms.append(fillerRoom)
 	
 	return fillerRoom
 #endregion // TEMPORARY ROOM REPLACMENT
@@ -304,6 +301,8 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 		
 		replacableRoomArray[roomToReplace].queue_free()
 		replacableRoomArray.remove_at(roomToReplace)
+		finishedRooms.append(r)
+		finishedRooms.erase(roomToReplace)
 #endregion
 
 
@@ -328,8 +327,9 @@ func place_doors():
 func generate_nav_mesh():
 	var mesh = NavigationMesh.new()
 	
-	mesh.agent_radius = 0.1
-	mesh.cell_size = 0.1
+	mesh.agent_radius = 0.325
+	mesh.agent_height = 1
+	mesh.cell_size = 0.05
 	
 	navigationRegion.navigation_mesh = mesh
 	

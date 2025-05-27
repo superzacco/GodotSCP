@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cwkcg3xhgrc20" path="res://entities/items/cards/models/keycard1.blend" id="2_qhhfs"]
 
 [node name="keycard001" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_8k4tb")]
-collision_layer = 1
-collision_mask = 1
+collision_layer = 257
+collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 continuous_cd = true

@@ -9,6 +9,10 @@
 
 [node name="LConHall003" parent="." instance=ExtResource("1_b6wht")]
 
+[node name="StaticBody3D" parent="LConHall003/Concrete floor" index="0"]
+collision_layer = 3
+collision_mask = 3
+
 [node name="OmniLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.6, 3.6)
 light_specular = 0.0

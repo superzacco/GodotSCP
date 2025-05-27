@@ -72,6 +72,10 @@ func interact(interactable):
 
 
 func pick_up_item(item):
+	if inventoryNode.get_children().size() > 5:
+		GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")
+		return
+	
 	if item != null:
 		item.reparent(inventoryNode)
 		item.global_position = inventoryNode.global_position

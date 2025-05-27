@@ -1,5 +1,12 @@
 extends Node
 
+
+# MANAGERS / CONTROLS / UTIL
+var interactionText: InteractionText
+var facilityManager: FacilityManager
+
+
+# EXPLICITLY player related
 var player: Player
 var playerPosition: Vector3 
 
@@ -8,7 +15,8 @@ var lookingEnabled: bool = true
 var sprintJuice: float = 100
 var blinkJuice: float = 100
 
-var interactionText: InteractionText
+
+
 
 # INVENTORY
 var inventory: Inventory

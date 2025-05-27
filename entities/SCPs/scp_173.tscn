@@ -1,48 +1,83 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=8 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pgxa8"]
-size = Vector3(0.75, 1.8, 0.35)
+[ext_resource type="AudioStream" uid="uid://65psgc6dw2ah" path="res://audio/scps/173/StoneDrag.ogg" id="3_u3wo6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2xb13"]
-radius = 0.175
-height = 0.75
+radius = 0.179896
+height = 1.92174
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
-size = Vector3(1.25, 5, 0.75)
+size = Vector3(1.25, 2, 0.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3wo6"]
+size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u3wo6"]
+height = 10.0
+radius = 30.0
 
 [node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+collision_layer = 257
+collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
 speed = 35.0
 agent = NodePath("NavigationAgent3D")
 
-[node name="173" parent="." instance=ExtResource("2_tmptw")]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
-aabb = AABB(-0.75, -1.427, -1, 0.75, 1.9, 0.29)
-
-[node name="Body" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.262513, 0)
-shape = SubResource("BoxShape3D_pgxa8")
+aabb = AABB(-0.801, -1.427, -1, 0.831, 1.9, 0.29)
 
 [node name="Feet" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.614829, 0)
+transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, -0.224243, 0.169684, 0.0196213)
+shape = SubResource("CapsuleShape3D_2xb13")
+
+[node name="Feet2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, 0.24947, 0.169684, 0.0196213)
 shape = SubResource("CapsuleShape3D_2xb13")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.4
+path_height_offset = -0.5
 debug_enabled = true
 
 [node name="NeckSnapArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeckSnapArea"]
 shape = SubResource("BoxShape3D_jahs6")
 
+[node name="173" parent="." instance=ExtResource("2_tmptw")]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, 0, 0)
+
+[node name="StoneScraping" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_u3wo6")
+attenuation_model = 2
+volume_db = 12.0
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="DoorDetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorDetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_u3wo6")
+
+[node name="ChaseRadius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRadius"]
+shape = SubResource("CylinderShape3D_u3wo6")
+
+[node name="3sRelocateTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="DoorDetectionArea" to="." method="_on_door_detection_area_body_entered"]
+[connection signal="body_exited" from="DoorDetectionArea" to="." method="_on_door_detection_area_body_exited"]
+[connection signal="body_entered" from="ChaseRadius" to="." method="_on_chase_radius_body_entered"]
+[connection signal="body_exited" from="ChaseRadius" to="." method="_on_chase_radius_body_exited"]

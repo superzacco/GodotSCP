@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://xut0iq5tgu6k"]
+[gd_scene load_steps=23 format=3 uid="uid://xut0iq5tgu6k"]
 
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="1_5236q"]
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_w3ko6"]
@@ -19,11 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="10_w8rlh"]
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="11_gc7sq"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="12_doq7x"]
+[ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_xvntj"]
 [ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="19_gc7sq"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_w8rlh"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
-[node name="mapgentest" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
 top_level = true
 script = ExtResource("1_w3ko6")
 navigationRegion = NodePath("Facility/FacilityRegion")
@@ -42,12 +43,15 @@ fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("10_w8rlh")])
 fillerHConFourWayHalls = Array[PackedScene]([ExtResource("11_gc7sq")])
 fillerHConBends = Array[PackedScene]([ExtResource("12_doq7x")])
 
+[node name="Facility Manager" type="Node" parent="."]
+script = ExtResource("17_xvntj")
+
 [node name="Facility" type="Node3D" parent="."]
 
 [node name="Doors" type="Node3D" parent="Facility"]
 
 [node name="FacilityRegion" type="NavigationRegion3D" parent="Facility"]
-navigation_mesh = SubResource("NavigationMesh_w8rlh")
+navigation_mesh = SubResource("NavigationMesh_doq7x")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("9_mjkcd")
@@ -57,4 +61,4 @@ script = ExtResource("10_gfee4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)
 
 [node name="Scp173" parent="." instance=ExtResource("19_gc7sq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.58247, 0)

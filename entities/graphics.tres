@@ -4,7 +4,6 @@
 background_mode = 2
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
-reflected_light_source = 1
 ssr_max_steps = 512
 ssr_depth_tolerance = 26.31
 ssao_enabled = true
@@ -12,6 +11,7 @@ ssao_radius = 1.69
 ssao_light_affect = 0.78
 ssao_ao_channel_affect = 0.5
 ssil_radius = 10.0
+ssil_intensity = 3.4
 ssil_sharpness = 0.1
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
