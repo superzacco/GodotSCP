@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=9 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
@@ -16,7 +16,10 @@ size = Vector3(1.5, 3, 1.5)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_u3wo6"]
 height = 10.0
-radius = 30.0
+radius = 40.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16wn7"]
+size = Vector3(0.473389, 1.51569, 0.349854)
 
 [node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
@@ -32,11 +35,11 @@ agent = NodePath("NavigationAgent3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
 aabb = AABB(-0.801, -1.427, -1, 0.831, 1.9, 0.29)
 
-[node name="Feet" type="CollisionShape3D" parent="."]
+[node name="Body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, -0.224243, 0.169684, 0.0196213)
 shape = SubResource("CapsuleShape3D_2xb13")
 
-[node name="Feet2" type="CollisionShape3D" parent="."]
+[node name="Body2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, 0.24947, 0.169684, 0.0196213)
 shape = SubResource("CapsuleShape3D_2xb13")
 
@@ -54,13 +57,6 @@ shape = SubResource("BoxShape3D_jahs6")
 [node name="173" parent="." instance=ExtResource("2_tmptw")]
 transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, 0, 0)
 
-[node name="StoneScraping" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_u3wo6")
-attenuation_model = 2
-volume_db = 12.0
-unit_size = 5.0
-max_distance = 64.0
-
 [node name="DoorDetectionArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorDetectionArea"]
@@ -74,6 +70,17 @@ shape = SubResource("CylinderShape3D_u3wo6")
 
 [node name="3sRelocateTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0142822, 0.17099, 0.019165)
+shape = SubResource("BoxShape3D_16wn7")
+
+[node name="StoneScraping" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+stream = ExtResource("3_u3wo6")
+attenuation_model = 2
+unit_size = 5.0
+max_distance = 64.0
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

@@ -133,8 +133,8 @@ lastcommand={
 
 3d_physics/layer_1="World/Player"
 3d_navigation/layer_1="World"
-3d_physics/layer_2="Items"
-3d_navigation/layer_2="Items"
+3d_physics/layer_2="Items/Interaction/Buttons"
+3d_navigation/layer_2="Items/Interaction/Buttons"
 3d_physics/layer_9="Doors Only"
 3d_navigation/layer_9="Doors (DONT CLICK)"
 
@@ -146,3 +146,7 @@ baking/use_crash_prevention_checks=false
 
 common/physics_ticks_per_second=120
 common/physics_interpolation=true
+
+[rendering]
+
+lightmapping/primitive_meshes/texel_size=0.1

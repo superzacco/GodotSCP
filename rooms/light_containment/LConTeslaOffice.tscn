@@ -177,6 +177,7 @@ omni_range = 7.0
 stream = ExtResource("5_877pg")
 attenuation_model = 2
 volume_db = -15.0
+unit_size = 5.0
 autoplay = true
 max_distance = 15.0
 bus = &"Sound Effects"
@@ -186,7 +187,6 @@ stream = ExtResource("6_xkfh6")
 
 [node name="TeslaFire" type="AudioStreamPlayer3D" parent="TeslaGate"]
 stream = ExtResource("7_hnrdu")
-volume_db = 3.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.48663, -4)

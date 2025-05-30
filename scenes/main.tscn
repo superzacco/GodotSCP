@@ -1,0 +1,86 @@
+[gd_scene load_steps=27 format=3 uid="uid://iyctvu16a6uw"]
+
+[ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
+[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="3_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914.tscn" id="4_og1vs"]
+[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
+[ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/LconHall003.tscn" id="5_og1vs"]
+[ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="6_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="7_vxglm"]
+[ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="8_2f3dj"]
+[ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="9_yq6so"]
+[ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="10_fv21b"]
+[ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="11_tel4y"]
+[ext_resource type="PackedScene" uid="uid://c6ao02qwvnt4g" path="res://rooms/heavy_containment/HConEnd001.tscn" id="12_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://7ro1b7portdx" path="res://rooms/heavy_containment/HConHall001.tscn" id="13_5q0nq"]
+[ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
+[ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
+[ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
+[ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
+[ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://scenes/music_ambiance_manager.gd" id="18_pm3ni"]
+[ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
+[ext_resource type="AudioStream" uid="uid://bs5rf6svm0df2" path="res://audio/ambient/LCZmusic.ogg" id="19_y6deb"]
+[ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="20_5he1u"]
+[ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
+[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
+top_level = true
+script = ExtResource("1_yc10j")
+navigationRegion = NodePath("Facility/FacilityRegion")
+doorsNode = NodePath("Facility/Doors")
+door = ExtResource("2_jscy8")
+spawnRoom = ExtResource("3_pm3ni")
+necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
+necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs")])
+fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
+fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
+fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so")])
+fillerLConFourWayHalls = Array[PackedScene]([ExtResource("10_fv21b")])
+fillerLConBends = Array[PackedScene]([ExtResource("11_tel4y")])
+fillerHConEndRooms = Array[PackedScene]([ExtResource("12_qkpxi")])
+fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq")])
+fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k")])
+fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
+fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
+
+[node name="Facility Manager" type="Node" parent="."]
+script = ExtResource("17_fuf3a")
+
+[node name="OtherPlayer" type="AudioStreamPlayer" parent="Facility Manager"]
+
+[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayer", "soundsPlayer")]
+script = ExtResource("18_pm3ni")
+musicPlayer = NodePath("AmbienceMusic")
+soundsPlayer = NodePath("AmbienceSounds")
+LConMusic = ExtResource("19_y6deb")
+spawnInSound = ExtResource("20_y6deb")
+
+[node name="AmbienceMusic" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+stream = ExtResource("19_y6deb")
+volume_db = -9.0
+bus = &"Music"
+parameters/looping = true
+
+[node name="AmbienceSounds" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+
+[node name="Facility" type="Node3D" parent="."]
+
+[node name="Doors" type="Node3D" parent="Facility"]
+
+[node name="FacilityRegion" type="NavigationRegion3D" parent="Facility"]
+navigation_mesh = SubResource("NavigationMesh_doq7x")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("18_pibwh")
+script = ExtResource("19_c6pm6")
+
+[node name="Player" parent="." instance=ExtResource("20_5he1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)
+
+[node name="Scp173" parent="." instance=ExtResource("21_5poiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.58247, 0)

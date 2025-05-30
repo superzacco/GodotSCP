@@ -1,6 +1,8 @@
+res://rooms/light_containment
+res://rooms
+res://scenes
 res://
 res://levelgen
-res://rooms
 res://rooms/heavy_containment
 res://entities/UI
 res://entities

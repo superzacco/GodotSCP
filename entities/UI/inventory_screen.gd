@@ -120,7 +120,7 @@ func on_drop_item(slot: InventorySlot):
 	slot.heldItem.global_position = GlobalPlayerVariables.playerPosition + randomPos
 	slot.heldItem.global_rotation.y = randomRotation
 	slot.heldItem.reparent(get_tree().root)
-	slot.heldItem.freeze = false
+	#slot.heldItem.freeze = false
 	
 	slot.heldItem = null
 	slot.slotIcon.texture = null

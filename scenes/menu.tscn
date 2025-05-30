@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpyk7be5ocw3g" path="res://scenes/menu.gd" id="1_r3twu"]
 [ext_resource type="PackedScene" uid="uid://wymqic7fdd0x" path="res://scenes/dev.tscn" id="2_3i1eg"]
-[ext_resource type="PackedScene" uid="uid://xut0iq5tgu6k" path="res://levelgen/mapgentest.tscn" id="3_slfrh"]
+[ext_resource type="PackedScene" uid="uid://iyctvu16a6uw" path="res://scenes/main.tscn" id="3_con2f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r3twu")
 devScene = ExtResource("2_3i1eg")
-mapGenScene = ExtResource("3_slfrh")
+mainScene = ExtResource("3_con2f")
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
@@ -40,7 +40,7 @@ offset_top = 10.0
 offset_right = 620.0
 offset_bottom = 110.0
 pivot_offset = Vector2(150, 50)
-text = "PLAY (MAP GEN TEST)"
+text = "PLAY (MAIN)"
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PlayDev" to="." method="_on_play_dev_pressed"]

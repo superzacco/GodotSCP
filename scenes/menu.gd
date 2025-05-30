@@ -1,7 +1,7 @@
 extends Control
 
 @export var devScene: PackedScene
-@export var mapGenScene: PackedScene
+@export var mainScene: PackedScene
 
 
 #region # BUTTONS
@@ -11,7 +11,7 @@ func _on_play_dev_pressed() -> void:
 
 
 func _on_play_map_gen_test_pressed() -> void:
-	get_tree().change_scene_to_packed(mapGenScene)
+	get_tree().change_scene_to_packed(mainScene)
 	pass
 
 

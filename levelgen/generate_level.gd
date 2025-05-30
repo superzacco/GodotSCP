@@ -94,6 +94,7 @@ func generate_map():
 	generate_nav_mesh()
 	
 	GlobalPlayerVariables.facilityManager.rooms = finishedRooms
+	GlobalPlayerVariables.facilityManager.hiderooms()
 
 
 func generate_long_hall(zOffset):

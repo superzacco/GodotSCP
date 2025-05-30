@@ -29,19 +29,22 @@ func _physics_process(delta: float) -> void:
 		self.rotation.z = 0
 		
 		if !$StoneScraping.playing: # fires on the first frame
-			if nearDoor != null:
-				try_break_door()
 			$StoneScraping.play(randf_range(0.0, 5.0))
+			if nearDoor != null and !waiting:
+				try_break_door()
 		
 		return
 	
 	$StoneScraping.stop()
 
 
+var waiting: bool = false
 func try_break_door():
+	waiting = true
 	print("Trying to break through door!")
 	
 	await get_tree().create_timer(2).timeout
+	waiting = false
 	if randi_range(0, 3) == 0:
 		if nearDoor != null:
 			nearDoor.one_seven_three_open()
@@ -54,11 +57,10 @@ func relocate():
 	var rooms = GlobalPlayerVariables.facilityManager.rooms
 	var room = rooms[randi_range(0, rooms.size()-1)]
 	
-	
-	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 25:
+	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 15:
 		self.global_position = room.global_position + Vector3(0, 1, 0)
 	
-	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 30:
+	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
 		print("close to player")
 		
 	else:
