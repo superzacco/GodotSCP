@@ -9,11 +9,6 @@ var doorOpen: bool = false
 var opening: bool = false
 
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_released("open"):
-		toggle_door()
-
-
 func toggle_door():
 	if !animationPlayer.is_playing():
 		if doorOpen:

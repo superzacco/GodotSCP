@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="2_el3pu"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_5g4wb"]
 
-[node name="LConHall001" type="Node3D"]
+[node name="LConHall001" type="Node3D" groups=["room"]]
 script = ExtResource("1_vk6a5")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

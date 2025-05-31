@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgdsi0kdqyaje" path="res://rooms/Models/HConEnd001.blend" id="1_ds7vn"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_v57yt"]
 
-[node name="HConEnd001" type="Node3D"]
+[node name="HConEnd001" type="Node3D" groups=["room"]]
 
 [node name="HConEnd001" parent="." instance=ExtResource("1_ds7vn")]
 

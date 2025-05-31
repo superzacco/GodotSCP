@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7r2j3asvavg0" path="res://rooms/Models/HCon4Way001.blend" id="1_m68ag"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_a6naf"]
 
-[node name="HCon4Way001" type="Node3D"]
+[node name="HCon4Way001" type="Node3D" groups=["room"]]
 
 [node name="HCon4Way001" parent="." instance=ExtResource("1_m68ag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)

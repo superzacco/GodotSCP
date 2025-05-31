@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dp32xwnaqdtm1" path="res://rooms/Models/LConEnd001.blend" id="1_2lr0b"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_3mq42"]
 
-[node name="LConEnd001" type="Node3D"]
+[node name="LConEnd001" type="Node3D" groups=["room"]]
 
 [node name="LConEnd001" parent="." instance=ExtResource("1_2lr0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)

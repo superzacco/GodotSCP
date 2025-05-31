@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckpckhl646a40"]
+
+[ext_resource type="Script" uid="uid://byljttceuoaka" path="res://914.gd" id="1_tpx0i"]
+[ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/Models/914.blend" id="2_rw2e6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tpx0i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
+size = Vector3(3, 3, 1.6)
+
+[node name="scp914" type="StaticBody3D" node_paths=PackedStringArray("knob")]
+script = ExtResource("1_tpx0i")
+knob = NodePath("914/Knob")
+
+[node name="914" parent="." instance=ExtResource("2_rw2e6")]
+
+[node name="KnobArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KnobArea"]
+shape = SubResource("BoxShape3D_tpx0i")
+
+[node name="Input" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.5)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Input"]
+shape = SubResource("BoxShape3D_rw2e6")
+
+[node name="OutputPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0.4)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.9, 0.3)
+light_energy = 0.2
+light_specular = 0.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0.3)
+light_energy = 0.2
+light_specular = 0.0
+
+[connection signal="body_entered" from="KnobArea" to="." method="_on_knob_area_body_entered"]
+[connection signal="body_exited" from="KnobArea" to="." method="_on_knob_area_body_exited"]
+[connection signal="body_entered" from="Input" to="." method="_on_input_body_entered"]
+[connection signal="body_exited" from="Input" to="." method="_on_input_body_exited"]
+
+[editable path="914"]

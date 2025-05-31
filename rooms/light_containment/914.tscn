@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw3hwsiih5tal"]
+[gd_scene load_steps=6 format=3 uid="uid://dw3hwsiih5tal"]
 
 [ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
 [ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="2_kyeim"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_0gwk4"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="4_kyeim"]
+[ext_resource type="PackedScene" uid="uid://ckpckhl646a40" path="res://entities/SCPs/scp_914.tscn" id="5_0gwk4"]
 
-[node name="914" type="Node3D"]
+[node name="914" type="StaticBody3D" groups=["room"]]
 
 [node name="chamber914" parent="." instance=ExtResource("1_lb7g5")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, -5)
-light_energy = 2.0
 light_indirect_energy = 3.0
 light_specular = 0.0
 shadow_enabled = true
@@ -19,8 +19,7 @@ spot_range = 12.0
 spot_angle = 80.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 2)
-light_energy = 2.0
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 3)
 light_indirect_energy = 3.0
 light_specular = 0.0
 shadow_enabled = true
@@ -28,8 +27,7 @@ spot_range = 12.0
 spot_angle = 80.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8, 3, 2)
-light_energy = 2.0
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8, 3, 3)
 light_indirect_energy = 3.0
 light_specular = 0.0
 shadow_enabled = true
@@ -38,7 +36,6 @@ spot_angle = 80.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7, 1.5, -4.4)
-light_energy = 2.0
 light_indirect_energy = 3.0
 light_specular = 0.0
 shadow_enabled = true
@@ -72,6 +69,9 @@ keycardLevel = 3
 
 [node name="Keycardbutton2" parent="Door" index="2"]
 keycardLevel = 3
+
+[node name="scp914" parent="." instance=ExtResource("5_0gwk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71232, 0.974379, 7)
 
 [editable path="Door"]
 [editable path="Door/door"]

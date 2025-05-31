@@ -36,11 +36,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
 aabb = AABB(-0.801, -1.427, -1, 0.831, 1.9, 0.29)
 
 [node name="Body" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, -0.224243, 0.169684, 0.0196213)
+transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, -0.224243, 0.202585, 0.0196213)
 shape = SubResource("CapsuleShape3D_2xb13")
 
 [node name="Body2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, 0.24947, 0.169684, 0.0196213)
+transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, 0.24947, 0.202585, 0.0196213)
 shape = SubResource("CapsuleShape3D_2xb13")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

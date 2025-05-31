@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_ee4n3"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_ee4n3"]
 
-[node name="LCon3Way001" type="Node3D"]
+[node name="LCon3Way001" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_frg2d")
 

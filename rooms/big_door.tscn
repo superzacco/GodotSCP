@@ -12,8 +12,8 @@
 [node name="big_door" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_ol6ec")]
 script = ExtResource("2_xpv6d")
 animationPlayer = NodePath("AnimationPlayer")
-openSounds = [ExtResource("3_xee4u"), ExtResource("4_eb36k"), ExtResource("5_o7dva")]
-closeSounds = [ExtResource("6_73gmf"), ExtResource("7_j54al"), ExtResource("8_gdwp7")]
+openSounds = Array[AudioStream]([ExtResource("3_xee4u"), ExtResource("4_eb36k"), ExtResource("5_o7dva")])
+closeSounds = Array[AudioStream]([ExtResource("6_73gmf"), ExtResource("7_j54al"), ExtResource("8_gdwp7")])
 
 [node name="DoorR-col" parent="Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)

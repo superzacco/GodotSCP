@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b158b8qeksa6p" path="res://rooms/Models/LConBend001.blend" id="2_4w26r"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_j8tdl"]
 
-[node name="LConBend001" type="Node3D"]
+[node name="LConBend001" type="Node3D" groups=["room"]]
 script = ExtResource("1_gpops")
 
 [node name="LConBend001" parent="." instance=ExtResource("2_4w26r")]

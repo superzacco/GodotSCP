@@ -126,7 +126,7 @@ size = Vector3(5, 5, 2.75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k17ir"]
 size = Vector3(5, 5, 3)
 
-[node name="LConTeslaOffice" type="Node3D"]
+[node name="LConTeslaOffice" type="Node3D" groups=["room"]]
 script = ExtResource("1_cyh60")
 
 [node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]

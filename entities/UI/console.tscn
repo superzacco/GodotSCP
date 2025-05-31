@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://wp2hdd66ssek"]
+[gd_scene load_steps=3 format=3 uid="uid://wp2hdd66ssek"]
 
 [ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/UI/console.gd" id="1_1wmyx"]
+[ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="3_dn7sy"]
 
-[node name="Console" type="Control" node_paths=PackedStringArray("inputField") groups=["console"]]
+[node name="Console" type="Control" node_paths=PackedStringArray("inputField", "consoleTextWindow") groups=["console"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1wmyx")
 inputField = NodePath("Panel/VBoxContainer/Container/LineEdit")
+consoleTextWindow = NodePath("Panel/VBoxContainer/Container2/RichTextLabel")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -43,6 +45,7 @@ theme_override_constants/margin_bottom = 5
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Container2"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_dn7sy")
 text = "] noclip
 ] help
 "
@@ -60,6 +63,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/Container"]
 layout_mode = 2
-placeholder_text = "type <help> for a list of avalible commands"
+theme_override_fonts/font = ExtResource("3_dn7sy")
+placeholder_text = "type <help> for a list of commands"
 caret_blink = true
 caret_mid_grapheme = true

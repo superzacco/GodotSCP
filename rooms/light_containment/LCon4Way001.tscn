@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="1_g0x0b"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_rkp52"]
 
-[node name="LCon4Way001" type="Node3D"]
+[node name="LCon4Way001" type="Node3D" groups=["room"]]
 
 [node name="LCon4Way001" parent="." instance=ExtResource("1_g0x0b")]
 

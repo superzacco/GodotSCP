@@ -1,12 +1,12 @@
 OmniLight3D
-SpotLight3D
-AudioStreamPlayer3D
-StaticBody3D
 Node3D
-AudioStreamPlayer
-Node
 CollisionShape3D
 Area3D
+StaticBody3D
+SpotLight3D
+AudioStreamPlayer3D
+AudioStreamPlayer
+Node
 Timer
 RayCast3D
 TextureRect

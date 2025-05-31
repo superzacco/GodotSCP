@@ -1,19 +1,21 @@
 extends Control
+class_name Console
 
-var commandHistory: Array[String]
+var commandHistoryIdx: int
+var commandHistory: Array[PackedStringArray]
+var consoleOutput: String
 
 @export var inputField: LineEdit
-@export var consoleLog: RichTextLabel
+@export var consoleTextWindow: RichTextLabel
 
 
 func _ready() -> void:
+	Commands.console = self
 	visible = false
 
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("console"):
-		#if GlobalPlayerVariables.consoleOpen:
-			#return
 		
 		GlobalPlayerVariables.consoleOpen = true
 		
@@ -37,26 +39,35 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if Input.is_action_just_pressed("enter"):
-		match inputField.text:
-			"help":
-				help()
-			"noclip":
-				GlobalPlayerVariables.noclipEnabled = !GlobalPlayerVariables.noclipEnabled
-				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
-			"quit":
-				quit()
-			"disconnect":
-				goto_mainmenu()
-			"noblink":
-				GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
-			"fog":
-				toggle_fog()
-			"getpos":
-				print(GlobalPlayerVariables.playerPosition)
+		var commandStringArray: PackedStringArray
+		var commandString: String
 		
 		if (inputField.text != ""):
-			commandHistory.append(inputField.text)
-		print(commandHistory)
+			commandStringArray = inputField.text.strip_edges().split(" ")
+			commandString = inputField.text.strip_edges()
+			
+			commandHistory.append(commandStringArray)
+			commandHistoryIdx = commandHistory.size()-1
+			print(commandStringArray)
+			println(str(commandStringArray))
+		
+		match commandStringArray:
+			"help":
+				Commands.help()
+			"noclip":
+				Commands.noclip()
+			"quit":
+				Commands.quit()
+			"disconnect":
+				Commands.goto_mainmenu()
+			"noblink":
+				Commands.no_blink()
+			"fog":
+				Commands.toggle_fog()
+			"getpos":
+				Commands.get_pos()
+			"spawn":
+				Commands.spawn_item()
 		
 		inputField.clear()
 	
@@ -66,33 +77,15 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if Input.is_action_just_pressed("lastcommand"):
+		print(commandHistory[commandHistoryIdx])
+		inputField.text = commandHistory[commandHistoryIdx].join(" ")
+		commandHistoryIdx -= 1
+		if commandHistoryIdx == -1:
+			commandHistoryIdx = commandHistory.size()-1
 		pass
 
 
-
-func help():
-	print("
-		help - Displays this text.
-		noclip - Allows the player to fly without world collision.
-		quit - Exits the game immediately.
-		disconnect - Exits to the main menu.
-		noblink - Toggles player blinking on or off.
-	")
-	pass
-
-func quit():
-	get_tree().quit()
-	pass
-
-func goto_mainmenu():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
-
-func toggle_fog():
-	var env = GlobalPlayerVariables.worldEnv
+func println(text: String):
+			consoleOutput = consoleOutput + "\n" + "] " + text
+			consoleTextWindow.text = consoleOutput
 	
-	if env.environment.fog_enabled:
-		env.environment.fog_enabled = 0
-		env.environment.volumetric_fog_enabled = 0
-	else:
-		env.environment.fog_enabled = 1
-		env.environment.volumetric_fog_enabled = 1

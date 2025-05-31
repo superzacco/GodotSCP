@@ -106,12 +106,14 @@ func toggle_noclip():
 		collider.disabled = false
 		GlobalPlayerVariables.noclipEnabled = false
 		GlobalPlayerVariables.blinkingEnabled = true
+		Commands.console.println("noclip OFF")
 		print("noclip OFF")
 	else:
 		gravity_scale = 0
 		collider.disabled = true
 		GlobalPlayerVariables.noclipEnabled = true
 		GlobalPlayerVariables.blinkingEnabled = false
+		Commands.console.println("noclip ON")
 		print("noclip ON")
 	pass
 

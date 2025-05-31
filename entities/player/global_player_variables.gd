@@ -4,6 +4,7 @@ extends Node
 # MANAGERS / CONTROLS / UTIL
 var interactionText: InteractionText
 var facilityManager: FacilityManager
+var interactionScript: Interaction
 
 
 # EXPLICITLY player related

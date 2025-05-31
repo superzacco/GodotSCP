@@ -1,0 +1,46 @@
+extends Node
+
+var console: Console
+
+
+func help():
+	console.println("
+	help - Displays this text.
+	noclip - Allows the player to fly without world collision.
+	quit - Exits the game immediately.
+	disconnect - Exits to the main menu.
+	noblink - Toggles player blinking on or off.
+	fog - Toggles fog.
+	getpos - Returns player position.
+	")
+
+func quit():
+	get_tree().quit()
+
+func goto_mainmenu():
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func noclip():
+	GlobalPlayerVariables.player.toggle_noclip()
+
+func toggle_fog():
+	var env = GlobalPlayerVariables.worldEnv
+	
+	if env.environment.fog_enabled:
+		env.environment.fog_enabled = 0
+		env.environment.volumetric_fog_enabled = 0
+	else:
+		env.environment.fog_enabled = 1
+		env.environment.volumetric_fog_enabled = 1
+
+func no_blink():
+	GlobalPlayerVariables.blinkingEnabled = !GlobalPlayerVariables.blinkingEnabled
+
+func get_pos():
+	console.println(str(GlobalPlayerVariables.playerPosition))
+	print(GlobalPlayerVariables.playerPosition)
+
+
+
+func spawn_item():
+	print("t")

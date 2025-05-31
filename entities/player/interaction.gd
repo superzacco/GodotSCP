@@ -1,4 +1,5 @@
 extends Area3D
+class_name Interaction
 
 @export var inventoryNode: Node3D
 @export var player: RigidBody3D
@@ -8,6 +9,10 @@ extends Area3D
 
 var interactablesInRange: Array
 var nearestInteractable = null
+
+
+func _ready() -> void:
+	GlobalPlayerVariables.interactionScript = self
 
 
 func _input(event: InputEvent) -> void:
