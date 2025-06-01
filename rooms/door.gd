@@ -18,15 +18,17 @@ func toggle_door():
 
 
 func open():
-	$Open.stream = openSounds[randi_range(0, openSounds.size()-1)]
-	$Open.play()
+	if openSounds.size() > 0:
+		$Open.stream = openSounds[randi_range(0, openSounds.size()-1)]
+		$Open.play()
 	animationPlayer.play("open")
 	doorOpen = true
 
 
 func close():
-	$Close.stream = closeSounds[randi_range(0, closeSounds.size()-1)]
-	$Close.play()
+	if openSounds.size() > 0:
+		$Close.stream = closeSounds[randi_range(0, closeSounds.size()-1)]
+		$Close.play()
 	animationPlayer.play("close")
 	doorOpen = false
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuqrl2w7xfb23"]
+[gd_scene load_steps=6 format=3 uid="uid://cuqrl2w7xfb23"]
 
-[ext_resource type="PackedScene" uid="uid://cnw814awf5v3a" path="res://rooms/Models/LConHall003.blend" id="1_b6wht"]
-[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="2_10vab"]
-[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="3_2cxcv"]
-[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="4_2cxcv"]
+[ext_resource type="PackedScene" uid="uid://cnw814awf5v3a" path="res://rooms/Models/LConHall003.blend" id="1_siogi"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_oqvsy"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="3_rkwrc"]
+[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="4_rm72h"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="5_xbm6k"]
 
 [node name="LConHall003" type="Node3D"]
 
-[node name="LConHall003" parent="." instance=ExtResource("1_b6wht")]
+[node name="LConHall003" parent="." instance=ExtResource("1_siogi")]
 
 [node name="StaticBody3D" parent="LConHall003/Concrete floor" index="0"]
 collision_layer = 3
@@ -42,28 +43,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 
 [node name="Points" type="Node3D" parent="."]
 
-[node name="point1" parent="Points" instance=ExtResource("4_2cxcv")]
+[node name="point1" parent="Points" instance=ExtResource("2_oqvsy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
 
-[node name="point2" parent="Points" instance=ExtResource("4_2cxcv")]
+[node name="point2" parent="Points" instance=ExtResource("2_oqvsy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
-[node name="keycard00" parent="." instance=ExtResource("2_10vab")]
+[node name="keycard00" parent="." instance=ExtResource("3_rkwrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 4)
 
-[node name="keycard01" parent="." instance=ExtResource("2_10vab")]
+[node name="keycard01" parent="." instance=ExtResource("3_rkwrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 3)
 
-[node name="keycard02" parent="." instance=ExtResource("2_10vab")]
+[node name="keycard02" parent="." instance=ExtResource("3_rkwrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 2)
 
-[node name="keycard001" parent="." instance=ExtResource("3_2cxcv")]
+[node name="keycard001" parent="." instance=ExtResource("4_rm72h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 
-[node name="keycard002" parent="." instance=ExtResource("3_2cxcv")]
+[node name="keycard002" parent="." instance=ExtResource("4_rm72h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.6, 1)
 
-[node name="keycard003" parent="." instance=ExtResource("3_2cxcv")]
+[node name="keycard003" parent="." instance=ExtResource("4_rm72h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 1)
+
+[node name="RoomArea" parent="." instance=ExtResource("5_xbm6k")]
 
 [editable path="LConHall003"]

@@ -46,7 +46,7 @@ func find_nearest_interactable():
 	var lowestDistance = INF
 	
 	for interactable in interactablesInRange:
-		var distance = interactable.global_position.distance_to(player.global_position)
+		var distance = interactable.global_position.distance_to(spriteEndPoint.global_position)
 		
 		if distance < lowestDistance:
 			nearestInteractable = interactable

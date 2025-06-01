@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dowuwffank011"]
+
+[ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_2elp2"]
+[ext_resource type="Texture2D" uid="uid://b4qf0hkmwjgfx" path="res://entities/items/cards/card4itemicon.png" id="2_2elp2"]
+[ext_resource type="Script" uid="uid://db44vl6v1ousg" path="res://entities/items/cards/keycard.gd" id="3_m08pk"]
+[ext_resource type="PackedScene" uid="uid://cchdpnnh8sygi" path="res://entities/items/cards/models/keycard4.blend" id="4_2elp2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdl2c"]
+friction = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8321"]
+size = Vector3(0.3, 0.05, 0.4)
+
+[node name="keycard004" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["item"]]
+collision_layer = 3
+collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_gdl2c")
+continuous_cd = true
+script = ExtResource("1_2elp2")
+inventorySprite = ExtResource("2_2elp2")
+inventoryName = "Level 4 Keycard"
+functionItem = NodePath("keycard")
+
+[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_2htau")
+
+[node name="keycard" type="Node3D" parent="."]
+script = ExtResource("3_m08pk")
+keycardLevel = 4
+
+[node name="keycard4" parent="keycard" instance=ExtResource("4_2elp2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_r8321")

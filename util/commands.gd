@@ -2,6 +2,8 @@ extends Node
 
 var console: Console
 
+var errorColor: String = "FF0000"
+
 
 func help():
 	console.println("
@@ -42,5 +44,28 @@ func get_pos():
 
 
 
-func spawn_item():
-	print("t")
+func spawn_item(item: String):
+	var itemToSpawn
+	
+	match item:
+		"keycard0":
+			itemToSpawn = Items.keycard0
+		"keycard1":
+			itemToSpawn = Items.keycard1
+		"keycard2":
+			itemToSpawn = Items.keycard2
+		"keycard3":
+			itemToSpawn = Items.keycard3
+		"keycard4":
+			itemToSpawn = Items.keycard4
+		"keycard5":
+			itemToSpawn = Items.keycard5
+		"keycard6":
+			itemToSpawn = Items.keycard6
+		"keycardomni":
+			itemToSpawn = Items.keycardomni
+	
+	if itemToSpawn != null:
+		var spawnedItem: Node = itemToSpawn.instantiate()
+		get_tree().root.add_child(spawnedItem)
+		spawnedItem.global_position = GlobalPlayerVariables.playerPosition + Vector3(0, 1, 0)

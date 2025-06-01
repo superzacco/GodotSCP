@@ -40,18 +40,18 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("enter"):
 		var commandStringArray: PackedStringArray
-		var commandString: String
 		
-		if (inputField.text != ""):
-			commandStringArray = inputField.text.strip_edges().split(" ")
-			commandString = inputField.text.strip_edges()
-			
-			commandHistory.append(commandStringArray)
-			commandHistoryIdx = commandHistory.size()-1
-			print(commandStringArray)
-			println(str(commandStringArray))
+		if inputField.text == "":
+			return
 		
-		match commandStringArray:
+		commandStringArray = inputField.text.strip_edges().split(" ")
+		
+		commandHistory.append(commandStringArray)
+		commandHistoryIdx = commandHistory.size()-1
+		print(commandStringArray)
+		println(" ".join(commandStringArray))
+		
+		match commandStringArray[0]:
 			"help":
 				Commands.help()
 			"noclip":
@@ -67,7 +67,10 @@ func _input(event: InputEvent) -> void:
 			"getpos":
 				Commands.get_pos()
 			"spawn":
-				Commands.spawn_item()
+				if commandStringArray.size() == 1:
+					println("missing <item>", Commands.errorColor)
+				else:
+					Commands.spawn_item(commandStringArray[1])
 		
 		inputField.clear()
 	
@@ -77,15 +80,18 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if Input.is_action_just_pressed("lastcommand"):
+		var commandHistoryString: String
 		print(commandHistory[commandHistoryIdx])
-		inputField.text = commandHistory[commandHistoryIdx].join(" ")
+		for i in commandHistory.size():
+			commandHistoryString = commandHistoryString + " " + str(commandHistory[commandHistoryIdx])
+		inputField.text = " ".join(commandHistory[commandHistoryIdx])
+		
 		commandHistoryIdx -= 1
 		if commandHistoryIdx == -1:
 			commandHistoryIdx = commandHistory.size()-1
-		pass
 
 
-func println(text: String):
-			consoleOutput = consoleOutput + "\n" + "] " + text
+func println(text: String, color: String = "#FFFFFF"):
+			consoleOutput = consoleOutput + "[color="+color+"]" + "\n"+"] " + text + "[/color]"
 			consoleTextWindow.text = consoleOutput
 	

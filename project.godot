@@ -25,7 +25,8 @@ GlobalPlayerVariables="*res://entities/player/global_player_variables.gd"
 ZFunc="*res://util/ZFunc.gd"
 VersionController="*res://version_controller.gd"
 AudioManager="*res://util/audio_manager.gd"
-Commands="*res://commands.gd"
+Commands="*res://util/commands.gd"
+Items="*res://entities/items/items.gd"
 
 [debug]
 
@@ -41,6 +42,14 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SCP"
 
+[file_customization]
+
+folder_colors={
+"res://entities/": "pink",
+"res://levelgen/": "red",
+"res://util/": "gray"
+}
+
 [global_group]
 
 roomconnectionpoints=""
@@ -52,6 +61,7 @@ button=""
 teslashockable=""
 door=""
 room=""
+grabbypoint=""
 
 [input]
 

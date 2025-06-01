@@ -1,11 +1,13 @@
+res://entities/items
 res://
+res://entities/UI
+res://entities/items/cards
+res://rooms
 res://entities/SCPs
 res://rooms/light_containment
-res://rooms
 res://scenes
 res://levelgen
 res://rooms/heavy_containment
-res://entities/UI
 res://entities
 <<<<<<< Updated upstream
 res://audio/rooms/tesla
@@ -14,4 +16,3 @@ E:/Desktop/games or whatever/Godot Projects/Scp
 C:/Stuff/Steam/steamapps/common/Blender
 res://audio/rooms/tesla
 >>>>>>> Stashed changes
-res://entities/items/cards

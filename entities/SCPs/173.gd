@@ -40,6 +40,9 @@ func _physics_process(delta: float) -> void:
 
 var waiting: bool = false
 func try_break_door():
+	if nearDoor.doorOpen:
+		return
+	
 	waiting = true
 	print("Trying to break through door!")
 	
@@ -54,11 +57,14 @@ func try_break_door():
 func relocate():
 	print("relocating!")
 	
-	var rooms = GlobalPlayerVariables.facilityManager.rooms
+	var rooms = GlobalPlayerVariables.facilityManager.playerNearbyRooms
+	if !rooms.size() > 0:
+		return
+	
 	var room = rooms[randi_range(0, rooms.size()-1)]
 	
-	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 15:
-		self.global_position = room.global_position + Vector3(0, 1, 0)
+	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 17:
+		self.global_position = room.global_position + Vector3(0, 0.25, 0)
 	
 	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
 		print("close to player")

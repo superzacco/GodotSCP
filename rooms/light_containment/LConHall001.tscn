@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://denjqd6filqia"]
+[gd_scene load_steps=5 format=3 uid="uid://denjqd6filqia"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_vk6a5"]
 [ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="2_el3pu"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_5g4wb"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_75ksv"]
 
 [node name="LConHall001" type="Node3D" groups=["room"]]
 script = ExtResource("1_vk6a5")
@@ -23,3 +24,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
 
 [node name="point2" parent="Points" instance=ExtResource("3_5g4wb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_75ksv")]
