@@ -64,6 +64,8 @@ func spawn_item(item: String):
 			itemToSpawn = Items.keycard6
 		"keycardomni":
 			itemToSpawn = Items.keycardomni
+		"gasmask":
+			itemToSpawn = Items.gasmask
 	
 	if itemToSpawn != null:
 		var spawnedItem: Node = itemToSpawn.instantiate()

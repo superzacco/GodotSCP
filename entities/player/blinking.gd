@@ -39,9 +39,5 @@ func _input(event: InputEvent) -> void:
 		GlobalPlayerVariables.blinkJuice = 0
 	
 	if Input.is_action_just_released("blink"):
-		GlobalPlayerVariables.blinking = false
 		blinkHeld = false
-		self.hide()
 		blink()
-		
-		push_warning("can insta-unblink, fix.")

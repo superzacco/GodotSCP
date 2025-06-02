@@ -8,3 +8,5 @@ var keycard4: PackedScene = preload("res://entities/items/cards/keycard04.tscn")
 var keycard5: PackedScene = preload("res://entities/items/cards/keycard05.tscn")
 var keycard6: PackedScene = preload("res://entities/items/cards/keycard06.tscn")
 var keycardomni: PackedScene = preload("res://entities/items/cards/keycardomni.tscn")
+
+var gasmask: PackedScene = preload("res://entities/items/tools/gas_mask.tscn")

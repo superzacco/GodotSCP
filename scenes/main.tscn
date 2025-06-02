@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
 [ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
-[ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://scenes/music_ambiance_manager.gd" id="18_pm3ni"]
+[ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://util/music_ambiance_manager.gd" id="18_pm3ni"]
 [ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
 [ext_resource type="AudioStream" uid="uid://bs5rf6svm0df2" path="res://audio/ambient/LCZmusic.ogg" id="19_y6deb"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="20_5he1u"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyg2xivtl3e7y"]
+
+[ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_1oli7"]
+[ext_resource type="Script" uid="uid://cckne1anqoi7u" path="res://entities/items/tools/gas_mask.gd" id="1_a6wn5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hxulm"]
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1oli7"]
+size = Vector3(0.3, 0.1, 0.4)
+
+[node name="GasMask" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["item"]]
+script = ExtResource("1_1oli7")
+inventoryName = "Gas Mask"
+functionItem = NodePath("gasmask")
+
+[node name="PickupArea" type="Area3D" parent="." groups=["interactables"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
+shape = SubResource("SphereShape3D_hxulm")
+
+[node name="gasmask" type="Node3D" parent="."]
+script = ExtResource("1_a6wn5")
+
+[node name="model" type="CSGBox3D" parent="gasmask"]
+size = Vector3(0.3, 0.1, 0.4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00131624, -0.00207929, -1.49012e-08)
+shape = SubResource("BoxShape3D_1oli7")

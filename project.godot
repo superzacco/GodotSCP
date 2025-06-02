@@ -27,6 +27,8 @@ VersionController="*res://version_controller.gd"
 AudioManager="*res://util/audio_manager.gd"
 Commands="*res://util/commands.gd"
 Items="*res://entities/items/items.gd"
+SteamManager="*res://multiplayer/steam_manager.gd"
+Lobby="*res://multiplayer/lobby.gd"
 
 [debug]
 
@@ -46,7 +48,7 @@ project/assembly_name="SCP"
 
 folder_colors={
 "res://entities/": "pink",
-"res://levelgen/": "red",
+"res://multiplayer/": "purple",
 "res://util/": "gray"
 }
 

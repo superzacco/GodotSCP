@@ -33,7 +33,6 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-visible = false
 shape = SubResource("SphereShape3D_2htau")
 
 [node name="keycard" type="Node3D" parent="."]
@@ -43,5 +42,4 @@ keycardLevel = 2
 [node name="keycard2" parent="keycard" instance=ExtResource("4_k15mp")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("BoxShape3D_r8321")
