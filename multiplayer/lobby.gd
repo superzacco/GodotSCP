@@ -8,9 +8,12 @@ var lobby_members: Array = []
 
 var menuLobbyList: Control
 
+var peer = SteamMultiplayerPeer.new()
+
 
 
 func _ready() -> void:
+	peer.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	Steam.lobby_joined.connect(_on_lobby_joined)
@@ -26,7 +29,10 @@ func _ready() -> void:
 
 func create_lobby():
 	if lobby_ID == 0:
-		Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, SteamManager.lobbyMaxPlayers)
+		peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+		multiplayer.multiplayer_peer = peer
+	else:
+		print("You are already hosting a lobby! -- "+ str(lobby_ID))
 
 
 func check_command_line() -> void:
@@ -107,7 +113,8 @@ func join_lobby(this_lobby_id: int) -> void:
 	lobby_members.clear()
 	
 	# Make the lobby join request to Steam
-	Steam.joinLobby(this_lobby_id)
+	peer.connect_lobby(this_lobby_id)
+	multiplayer.multiplayer_peer = peer
 
 
 func _on_lobby_join_requested(this_lobby_id: int, friend_id: int) -> void:
@@ -162,6 +169,7 @@ func leave_lobby() -> void:
 	if lobby_ID != 0:
 		# Send leave request to Steam
 		Steam.leaveLobby(lobby_ID)
+		peer.close()
 		
 		# Wipe the Steam lobby ID then display the default lobby ID and player list title
 		lobby_ID = 0

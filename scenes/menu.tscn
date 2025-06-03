@@ -4,18 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://wymqic7fdd0x" path="res://scenes/dev.tscn" id="2_3i1eg"]
 [ext_resource type="PackedScene" uid="uid://iyctvu16a6uw" path="res://scenes/main.tscn" id="3_con2f"]
 
-[node name="Menu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Main" type="Node" node_paths=PackedStringArray("multiplayerSpawner")]
 script = ExtResource("1_r3twu")
+multiplayerSpawner = NodePath("MultiplayerSpawner")
 devScene = ExtResource("2_3i1eg")
 mainScene = ExtResource("3_con2f")
 
 [node name="Singleplayer Buttons" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -39,7 +35,7 @@ pivot_offset = Vector2(150, 50)
 text = "PLAY (MAIN)"
 
 [node name="Steam Buttons" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -86,7 +82,7 @@ theme_override_constants/outline_size = 0
 text = "Refresh Lobbies
 "
 
-[node name="Button" type="Button" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
+[node name="LeaveLobby" type="Button" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
 layout_mode = 2
 text = "Leave Lobby"
 
@@ -103,7 +99,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Quit" type="Button" parent="."]
-layout_mode = 1
 offset_left = 10.0
 offset_top = 120.0
 offset_right = 310.0
@@ -111,9 +106,12 @@ offset_bottom = 220.0
 pivot_offset = Vector2(150, 50)
 text = "QUIT"
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
 [connection signal="pressed" from="Singleplayer Buttons/PlayDev" to="." method="_on_play_dev_pressed"]
 [connection signal="pressed" from="Singleplayer Buttons/PlayMain" to="." method="_on_play_map_gen_test_pressed"]
 [connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/Host" to="." method="host_game"]
 [connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/RefreshLobbies" to="." method="refresh_lobbies"]
-[connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/Button" to="." method="leave_lobby"]
+[connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/LeaveLobby" to="." method="leave_lobby"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 		fakeNearKey = nearKey
 		if fakeNearKey:
 			turningKnobUI.show()
-		interactionScript.interactionSprite.hide()
+			interactionScript.interactionSprite.hide()
 	if Input.is_action_just_released("interact"):
 		keyJuice = 0
 		turningKnobUI.hide()

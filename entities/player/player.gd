@@ -19,6 +19,8 @@ var wishDir: Vector3
 var sprinting: bool = false
 
 func _ready() -> void:
+	if is_multiplayer_authority():
+		camera.make_current()
 	GlobalPlayerVariables.player = self
 	
 	moveSpeed = moveSpeedDesired
@@ -32,6 +34,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
 	
@@ -43,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	wishDir.z = Input.get_axis("back", "forward")
 	
 	if !GlobalPlayerVariables.noclipEnabled:
-		moveDir = -(stuffToRotate.basis.z * wishDir.z + stuffToRotate.basis.x * wishDir.x)
+		moveDir = -(stuffToRotate.global_basis.z * wishDir.z + stuffToRotate.global_basis.x * wishDir.x)
 		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	else:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x

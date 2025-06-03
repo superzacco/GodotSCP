@@ -1,3 +1,7 @@
+Node3D
+Node
+MultiplayerSpawner
+MultiplayerSynchronizer
 Button
 MarginContainer
 HBoxContainer
@@ -6,9 +10,5 @@ ScrollContainer
 Control
 CollisionShape3D
 CSGBox3D
-Node3D
 RigidBody3D
 AudioStreamPlayer3D
-Area3D
-TextureRect
-OmniLight3D

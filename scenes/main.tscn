@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=28 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
 [ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
+[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://scenes/multiplayer_spawner.gd" id="18_og1vs"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
 [ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://util/music_ambiance_manager.gd" id="18_pm3ni"]
 [ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
@@ -47,6 +48,14 @@ fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq")])
 fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k")])
 fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
 fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../PlayerSpawn")
+script = ExtResource("18_og1vs")
+playerScene = ExtResource("20_5he1u")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)
 
 [node name="Facility Manager" type="Node" parent="."]
 script = ExtResource("17_fuf3a")
@@ -78,9 +87,6 @@ navigation_mesh = SubResource("NavigationMesh_doq7x")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("18_pibwh")
 script = ExtResource("19_c6pm6")
-
-[node name="Player" parent="." instance=ExtResource("20_5he1u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)
 
 [node name="Scp173" parent="." instance=ExtResource("21_5poiv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.58247, 0)

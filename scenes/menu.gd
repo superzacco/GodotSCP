@@ -1,10 +1,13 @@
-extends Control
+extends Node
+
+@export var multiplayerSpawner: MultiplayerSpawner
 
 @export var devScene: PackedScene
 @export var mainScene: PackedScene
 
 
 func _ready() -> void:
+	multiplayerSpawner.spawn_function = spawn_level
 	Lobby.menuLobbyList = %LobbyVbox
 
 
@@ -23,6 +26,7 @@ func _on_play_map_gen_test_pressed() -> void:
 
 #region // STEAM MULTIPLAYER
 func host_game():
+	multiplayerSpawner.spawn("res://scenes/dev.tscn")
 	Lobby.create_lobby()
 
 func refresh_lobbies():
@@ -30,6 +34,11 @@ func refresh_lobbies():
 
 func leave_lobby():
 	Lobby.leave_lobby()
+
+
+func spawn_level(data):
+	var level = (load(data) as PackedScene).instantiate()
+	return level
 #endregion // STEAM MULTIPLAYER
 
 
