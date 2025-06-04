@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://byljttceuoaka" path="res://entities/SCPs/914.gd" id="1_tpx0i"]
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="2_fwluj"]
-[ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/models/914.blend" id="2_rw2e6"]
+[ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/Models/914.blend" id="2_rw2e6"]
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="3_jjtnl"]
-[ext_resource type="Texture2D" uid="uid://bhdxr61b0sktg" path="res://entities/ui/914.png" id="3_rw2e6"]
+[ext_resource type="Texture2D" uid="uid://bhdxr61b0sktg" path="res://entities/UI/914.png" id="3_rw2e6"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_ld6lp"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="4_yokc0"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/rooms/DoorOpen0.ogg" id="5_j0ak0"]
@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/rooms/DoorClose1.ogg" id="9_jjtnl"]
 [ext_resource type="AudioStream" uid="uid://fm2w87eck4xq" path="res://audio/scps/914/Refining.ogg" id="10_mjqu1"]
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="10_yokc0"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/models/door.blend" id="11_o24k7"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="11_o24k7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tpx0i"]
 size = Vector3(0.5, 0.5, 1)

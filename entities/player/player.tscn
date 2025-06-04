@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
 [ext_resource type="Script" uid="uid://mnm27fr2qpv8" path="res://entities/player/interaction.gd" id="4_jnjp4"]
 [ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/ui/invslot.png" id="4_ma6qb"]
-[ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
+[ext_resource type="Texture2D" uid="uid://dfap1namqsts6" path="res://entities/ui/handsymbol2.png" id="5_7cger"]
 [ext_resource type="Script" uid="uid://if5y2hgoe5tu" path="res://entities/player/blinking.gd" id="5_lyn41"]
 [ext_resource type="AudioStream" uid="uid://bx0dv5n45qni7" path="res://audio/steps/Step3.ogg" id="5_we0b7"]
 [ext_resource type="AudioStream" uid="uid://vtlicw7re5dq" path="res://audio/steps/Step4.ogg" id="6_mtric"]
@@ -153,7 +153,6 @@ replication_config = SubResource("SceneReplicationConfig_b2kln")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 mesh = SubResource("CapsuleMesh_3mim6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

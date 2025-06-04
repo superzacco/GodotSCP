@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://denjqd6filqia"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_vk6a5"]
-[ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/models/LConHall001.blend" id="2_el3pu"]
+[ext_resource type="PackedScene" uid="uid://clyk3wpxd8ddy" path="res://rooms/Models/LConHall001.blend" id="2_el3pu"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_5g4wb"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_75ksv"]
 

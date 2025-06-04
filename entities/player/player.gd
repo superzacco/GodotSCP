@@ -21,6 +21,7 @@ var sprinting: bool = false
 func _ready() -> void:
 	if is_multiplayer_authority():
 		camera.make_current()
+	
 	GlobalPlayerVariables.player = self
 	
 	moveSpeed = moveSpeedDesired
@@ -85,7 +86,7 @@ func _physics_process(delta: float) -> void:
 
 #region CAMERA MOVEMENT
 func _input(event):
-	if GlobalPlayerVariables.consoleOpen:
+	if GlobalPlayerVariables.consoleOpen or !is_multiplayer_authority():
 		return
 	
 	if event is InputEventMouseMotion and GlobalPlayerVariables.lookingEnabled:
