@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://wymqic7fdd0x" path="res://scenes/dev.tscn" id="2_3i1eg"]
 [ext_resource type="PackedScene" uid="uid://iyctvu16a6uw" path="res://scenes/main.tscn" id="3_con2f"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("multiplayerSpawner")]
+[node name="Main" type="Node" node_paths=PackedStringArray("multiplayerSpawner", "menuNode")]
 script = ExtResource("1_r3twu")
 multiplayerSpawner = NodePath("MultiplayerSpawner")
+menuNode = NodePath("MainMenu")
 devScene = ExtResource("2_3i1eg")
 mainScene = ExtResource("3_con2f")
 

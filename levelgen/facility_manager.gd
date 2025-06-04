@@ -5,6 +5,9 @@ var rooms: Array
 var playerNearbyRooms: Array
 
 
+var scp173: CharacterBody3D
+
+
 func _ready() -> void:
 	GlobalPlayerVariables.facilityManager = self 
 

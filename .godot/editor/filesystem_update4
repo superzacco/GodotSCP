@@ -1,3 +1,15 @@
 res://scenes/dev.tscn
 res://entities/player/player.gd
 res://entities/player/player.tscn
+res://scenes/multiplayer_spawner.gd
+res://scenes/menu.tscn
+res://rooms/big_door.tscn
+res://scenes/menu.gd
+res://scenes/main.tscn
+res://rooms/door.tscn
+res://entities/SCPs/173.gd
+res://entities/SCPs/scp_173.tscn
+res://multiplayer/lobby.gd
+res://entities/player/global_player_variables.gd
+res://scenes/spectator_screen.gd
+res://levelgen/facility_manager.gd

@@ -18,9 +18,11 @@ var moveSpeed: float
 var wishDir: Vector3
 var sprinting: bool = false
 
+var multiplayerAuthorityID: int 
+
 func _ready() -> void:
-	if is_multiplayer_authority():
-		camera.make_current()
+	print(multiplayerAuthorityID)
+	camera.current = is_multiplayer_authority()
 	
 	GlobalPlayerVariables.player = self
 	
@@ -130,3 +132,11 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 	
 	if GlobalPlayerVariables.sprintJuice > 100:
 		GlobalPlayerVariables.sprintJuice = 100
+
+
+func on_death():
+	collider.disabled = true
+	print(str(self) + " is dead")
+	GlobalPlayerVariables.spectatorManager.switch_spectator()
+	queue_free()
+	pass

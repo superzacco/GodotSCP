@@ -5,6 +5,7 @@ extends Node
 var interactionText: InteractionText
 var facilityManager: FacilityManager
 var interactionScript: Interaction
+var spectatorManager: SpectatorManager
 
 
 # EXPLICITLY player related

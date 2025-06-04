@@ -2,6 +2,8 @@ extends Node
 
 @export var multiplayerSpawner: MultiplayerSpawner
 
+@export var menuNode: Control
+
 @export var devScene: PackedScene
 @export var mainScene: PackedScene
 
@@ -26,8 +28,9 @@ func _on_play_map_gen_test_pressed() -> void:
 
 #region // STEAM MULTIPLAYER
 func host_game():
-	multiplayerSpawner.spawn("res://scenes/dev.tscn")
+	multiplayerSpawner.spawn("res://scenes/main.tscn")
 	Lobby.create_lobby()
+	menuNode.hide()
 
 func refresh_lobbies():
 	Lobby.on_open_lobby_list_pressed()

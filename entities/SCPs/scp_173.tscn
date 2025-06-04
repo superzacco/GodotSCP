@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=13 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
+[ext_resource type="AudioStream" uid="uid://btbq6q6uw7u4t" path="res://audio/scps/173/NeckSnap0.ogg" id="2_l0rpv"]
 [ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
+[ext_resource type="AudioStream" uid="uid://dtjj5b71cgmtr" path="res://audio/scps/173/NeckSnap1.ogg" id="3_l2l7v"]
 [ext_resource type="AudioStream" uid="uid://65psgc6dw2ah" path="res://audio/scps/173/StoneDrag.ogg" id="3_u3wo6"]
+[ext_resource type="AudioStream" uid="uid://1crfkgm2bowy" path="res://audio/scps/173/NeckSnap2.ogg" id="4_p8ad7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2xb13"]
 radius = 0.179896
@@ -21,7 +24,15 @@ radius = 40.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_16wn7"]
 size = Vector3(0.473389, 1.51569, 0.349854)
 
-[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_u3wo6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent") groups=["scp"]]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 collision_layer = 257
 collision_mask = 257
@@ -30,6 +41,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
 speed = 35.0
 agent = NodePath("NavigationAgent3D")
+neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
@@ -82,8 +94,19 @@ attenuation_model = 2
 unit_size = 5.0
 max_distance = 64.0
 
+[node name="NeckSnap" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="HorrorSFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_u3wo6")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="NeckSnapArea" to="." method="_on_neck_snap_area_body_entered"]
+[connection signal="body_exited" from="NeckSnapArea" to="." method="_on_neck_snap_area_body_exited"]
 [connection signal="body_entered" from="DoorDetectionArea" to="." method="_on_door_detection_area_body_entered"]
 [connection signal="body_exited" from="DoorDetectionArea" to="." method="_on_door_detection_area_body_exited"]
 [connection signal="body_entered" from="ChaseRadius" to="." method="_on_chase_radius_body_entered"]

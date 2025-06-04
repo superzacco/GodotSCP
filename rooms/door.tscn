@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cut7dojaypgd5"]
+[gd_scene load_steps=13 format=3 uid="uid://cut7dojaypgd5"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_i3vr1"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/models/door.blend" id="1_w23wf"]
@@ -12,6 +12,17 @@
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="7_w5vcm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
+properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("door/Armature/Skeleton3D/doorside1_col:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("door/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 script = ExtResource("1_i3vr1")
@@ -57,5 +68,8 @@ shape = SubResource("BoxShape3D_pgugy")
 stream = ExtResource("6_pgugy")
 unit_size = 5.0
 max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
 
 [editable path="door"]

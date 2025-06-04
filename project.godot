@@ -65,6 +65,7 @@ teslashockable=""
 door=""
 room=""
 grabbypoint=""
+scp=""
 
 [input]
 

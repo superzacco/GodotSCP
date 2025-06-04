@@ -9,7 +9,7 @@ res://entities/items/cards/keycardbase.tscn::d06ed67e5b63b56a7f1a6c4278d7f530::1
 res://entities/items/cards/keycardomni.tscn::86e9919561d82253235339dcd17cabef::1749016302::res://.godot/exported/133200997/export-03c1b8edcac078e22727468c31240df3-keycardomni.scn
 res://entities/items/tools/gas_mask.tscn::79dda2e7167015d424461907913d34d7::1749016302::res://.godot/exported/133200997/export-1a459d5d585e1991c54812dd1de41b1d-gas_mask.scn
 res://entities/items/item.tscn::5502dd65e24d67310ea6f969eee109bd::1749016302::res://.godot/exported/133200997/export-ace25bcef680fec3272594e4642954bd-item.scn
-res://entities/player/player.tscn::809ff82ee8148630fea8b7f4e7bb8373::1749021021::res://.godot/exported/133200997/export-21b780c0d4e68e8c35280599c3e67de2-player.scn
+res://entities/player/player.tscn::809ff82ee8148630fea8b7f4e7bb8373::1749023690::res://.godot/exported/133200997/export-21b780c0d4e68e8c35280599c3e67de2-player.scn
 res://entities/SCPs/scp_173.tscn::982622df891b22bb33e49748de334127::1749016302::res://.godot/exported/133200997/export-5c05ce09e84a5f7b47a054fc03d7e532-scp_173.scn
 res://entities/SCPs/scp_914.tscn::035c547a53bc0e7dc5e352be87c5fa69::1749017533::res://.godot/exported/133200997/export-dd39bff36b40dffcd8cf0683192274fc-scp_914.scn
 res://entities/ui/console.tscn::8df7dbe1b4642714f349db64a32b3e07::1749016302::res://.godot/exported/133200997/export-e37cd63cfd2cce2d7450f63ff4b416b7-console.scn
@@ -36,12 +36,12 @@ res://rooms/light_containment/LConHall002.tscn::b08ac203ea5dc8a8bf5000c5ce2b54f5
 res://rooms/light_containment/LconHall003.tscn::4a35e3ae6a2d8b2ab5d578cbcbdc118c::1749016303::res://.godot/exported/133200997/export-e91e1f29efc1a5ded517ad4ef1663231-LconHall003.scn
 res://rooms/light_containment/LConTeslaOffice.tscn::7535fd40e417f5ee0f22efb550c0d6c1::1749017581::res://.godot/exported/133200997/export-076e41e8b18b244e75da635642b7f86e-LConTeslaOffice.scn
 res://rooms/light_containment/spawnroom.tscn::d4edea0f1ff320afd2fc5e56aafe4684::1749017533::res://.godot/exported/133200997/export-720c0cd5cd7b1b816ff6eb03ffc6ba6d-spawnroom.scn
-res://rooms/big_door.tscn::d213e58f0e3e09a140de0dc049a2cf51::1749016303::res://.godot/exported/133200997/export-b744dfeb7b25a00f8e4cad9eb8584b8d-big_door.scn
+res://rooms/big_door.tscn::36d4b59b5d783d510ba12b1849608e27::1749023691::res://.godot/exported/133200997/export-b744dfeb7b25a00f8e4cad9eb8584b8d-big_door.scn
 res://rooms/button.tscn::45da5e95f6ca0148897db664469416b7::1749016303::res://.godot/exported/133200997/export-28229438a9003b15f95115a13210435b-button.scn
-res://rooms/door.tscn::9dda1e0748a869942c6d01fc36f215eb::1749016303::res://.godot/exported/133200997/export-db5823697cacfb95178e71df1f26bc9c-door.scn
+res://rooms/door.tscn::f81482f47d52771b680c102bcba82473::1749023691::res://.godot/exported/133200997/export-db5823697cacfb95178e71df1f26bc9c-door.scn
 res://rooms/keycardbutton.tscn::9c3175612605378cf392598e769d582a::1749016303::res://.godot/exported/133200997/export-9492e394b1dafc8e597d46e758d74827-keycardbutton.scn
 res://rooms/keycard_door.tscn::d5bb0fce12701bc8fcfce02aa24dcac8::1749016303::res://.godot/exported/133200997/export-3c14a8d7e424bff712259437e21e7c7a-keycard_door.scn
 res://rooms/room_area.tscn::67f7143aabebe26c9c23d7a303158126::1749016303::res://.godot/exported/133200997/export-64e50cd941c3fe099d7a78f816887b9c-room_area.scn
-res://scenes/dev.tscn::580c3c5eae49b9339e71629dc7e5f912::1749020559::res://.godot/exported/133200997/export-d1673b7569672e5b8e7e1218e546fe77-dev.scn
-res://scenes/main.tscn::5bf407c82f87e758a5174d556cfd6f6e::1749019826::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
-res://scenes/menu.tscn::8906de8a7356b79b357c0a2841245f97::1749020007::res://.godot/exported/133200997/export-1ce5c86e8ca186dcaaeaa8726f1268db-menu.scn
+res://scenes/dev.tscn::580c3c5eae49b9339e71629dc7e5f912::1749023690::res://.godot/exported/133200997/export-d1673b7569672e5b8e7e1218e546fe77-dev.scn
+res://scenes/main.tscn::5bf407c82f87e758a5174d556cfd6f6e::1749023699::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://scenes/menu.tscn::8906de8a7356b79b357c0a2841245f97::1749023690::res://.godot/exported/133200997/export-1ce5c86e8ca186dcaaeaa8726f1268db-menu.scn

@@ -3,10 +3,12 @@ extends CharacterBody3D
 @export var speed: float
 @export var agent: NavigationAgent3D
 
+@export var neckSnapSounds: Array[AudioStream]
+
 var onScreen: bool = false
 var nearPlayer: bool = false
+var playerInKillRange: Player = null
 var nearDoor: StaticBody3D 
-
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	onScreen = true
@@ -15,7 +17,8 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if (!onScreen or GlobalPlayerVariables.blinking) and nearPlayer :
+	if (!onScreen or GlobalPlayerVariables.blinking) and nearPlayer:
+		try_kill_player(playerInKillRange)
 		var nextPathPos: Vector3
 		
 		agent.target_position = GlobalPlayerVariables.playerPosition
@@ -75,6 +78,15 @@ func relocate():
 		relocate()
 
 
+func try_kill_player(player: Player):
+	if playerInKillRange != null:
+		if GlobalPlayerVariables.blinking or !onScreen:
+			$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
+			$NeckSnap.play()
+			player.on_death()
+			playerInKillRange = null
+
+
 func _on_door_detection_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("door"):
 		nearDoor = body
@@ -95,3 +107,12 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 		$"3sRelocateTimer".start()
 		await $"3sRelocateTimer".timeout
 		relocate()
+
+
+func _on_neck_snap_area_body_entered(body: Player) -> void:
+	if body.is_in_group("player"):
+		playerInKillRange = body
+		try_kill_player(body)
+func _on_neck_snap_area_body_exited(body: Player) -> void:
+	if body.is_in_group("player"):
+		playerInKillRange = null

@@ -1,7 +1,6 @@
 extends MultiplayerSpawner
 
 @export var playerScene: PackedScene
-var players: Array = []
 
 
 func _ready() -> void:
@@ -9,15 +8,16 @@ func _ready() -> void:
 	
 	if is_multiplayer_authority():
 		spawn(1)
-		multiplayer.peer_connected.connect(spawn_player)
+		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(remove_player)
 
 
-
+var players = {}
 func spawn_player(data):
-	var p = playerScene.instantiate()
+	var p: Player = playerScene.instantiate()
 	p.set_multiplayer_authority(data)
-	players.append(data)
+	players[data] = p
+	p.multiplayerAuthorityID = data
 	return p
 
 
