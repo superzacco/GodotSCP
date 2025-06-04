@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=29 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
 [ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="6_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://bckxtfpowonvq" path="res://rooms/light_containment/LConBendGas001.tscn" id="7_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="7_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="8_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="9_yq6so"]
@@ -38,6 +39,7 @@ door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs")])
+necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
 fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
 fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so")])

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xxqjr7f4w30y"
-path.s3tc="res://.godot/imported/bed-table.jpg-6bc220d2d5af723608ff7b3b7b69ed9e.s3tc.ctex"
+path.s3tc="res://.godot/imported/bed-table.jpg-8cef04e9c65039c24bfb13ea5bfbdd8c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rooms/Textures/bed-table.jpg"
-dest_files=["res://.godot/imported/bed-table.jpg-6bc220d2d5af723608ff7b3b7b69ed9e.s3tc.ctex"]
+source_file="res://rooms/textures/bed-table.jpg"
+dest_files=["res://.godot/imported/bed-table.jpg-8cef04e9c65039c24bfb13ea5bfbdd8c.s3tc.ctex"]
 
 [params]
 

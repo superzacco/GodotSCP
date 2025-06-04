@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4s410dhlvffs"
-path.s3tc="res://.godot/imported/big_door.png-782b67af1081ce20865dc0146e00df1b.s3tc.ctex"
+path.s3tc="res://.godot/imported/big_door.png-a5705dab24029315ed6ce1339bddf590.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rooms/Textures/normals/big_door.png"
-dest_files=["res://.godot/imported/big_door.png-782b67af1081ce20865dc0146e00df1b.s3tc.ctex"]
+source_file="res://rooms/textures/normals/big_door.png"
+dest_files=["res://.godot/imported/big_door.png-a5705dab24029315ed6ce1339bddf590.s3tc.ctex"]
 
 [params]
 

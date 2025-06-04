@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dxjipil7bow4j"
-path="res://.godot/imported/HConHall001.blend-c405eab07ac55d269cba93a5b2978a4c.scn"
+path="res://.godot/imported/HConHall001.blend-0c73ac1a13262aa8ce47a7e68417cb2d.scn"
 
 [deps]
 
-source_file="res://rooms/Models/HConHall001.blend"
-dest_files=["res://.godot/imported/HConHall001.blend-c405eab07ac55d269cba93a5b2978a4c.scn"]
+source_file="res://rooms/models/HConHall001.blend"
+dest_files=["res://.godot/imported/HConHall001.blend-0c73ac1a13262aa8ce47a7e68417cb2d.scn"]
 
 [params]
 

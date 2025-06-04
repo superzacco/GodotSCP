@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://daw4vr32tl8u7"
-path="res://.godot/imported/LCon3Way001.blend-64cd78599fd31d08253485ccfcae3475.scn"
+path="res://.godot/imported/LCon3Way001.blend-123b935766456c95f4753664ead79f78.scn"
 
 [deps]
 
-source_file="res://rooms/Models/LCon3Way001.blend"
-dest_files=["res://.godot/imported/LCon3Way001.blend-64cd78599fd31d08253485ccfcae3475.scn"]
+source_file="res://rooms/models/LCon3Way001.blend"
+dest_files=["res://.godot/imported/LCon3Way001.blend-123b935766456c95f4753664ead79f78.scn"]
 
 [params]
 

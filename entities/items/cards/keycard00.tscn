@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1vyvsa34747c"]
+[gd_scene load_steps=8 format=3 uid="uid://c1vyvsa34747c"]
 
 [ext_resource type="PackedScene" uid="uid://7qke47ahhb3a" path="res://entities/items/cards/models/keycard0.blend" id="1_hnqs8"]
 [ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_r58d1"]
 [ext_resource type="Texture2D" uid="uid://bsjpnpgh7flcp" path="res://entities/items/cards/card0itemicon.png" id="2_x7rh8"]
-[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="3_bm0kv"]
 [ext_resource type="Script" uid="uid://db44vl6v1ousg" path="res://entities/items/cards/keycard.gd" id="3_w4j7n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdl2c"]
@@ -21,12 +20,13 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
+can_sleep = false
 continuous_cd = true
 script = ExtResource("1_r58d1")
 inventorySprite = ExtResource("2_x7rh8")
 inventoryName = "Level 0 Keycard"
+itemName = "keycard0"
 functionItem = NodePath("keycard")
-fineItem = ExtResource("3_bm0kv")
 
 [node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
 collision_layer = 2

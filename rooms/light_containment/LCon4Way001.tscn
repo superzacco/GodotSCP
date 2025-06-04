@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c51e2qcf67eci"]
 
-[ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="1_g0x0b"]
+[ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/models/LCon4Way001.blend" id="1_g0x0b"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_rkp52"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_yis8k"]
 

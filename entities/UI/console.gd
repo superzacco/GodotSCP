@@ -81,14 +81,17 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("lastcommand"):
 		var commandHistoryString: String
-		print(commandHistory[commandHistoryIdx])
 		for i in commandHistory.size():
 			commandHistoryString = commandHistoryString + " " + str(commandHistory[commandHistoryIdx])
-		inputField.text = " ".join(commandHistory[commandHistoryIdx])
+		if commandHistory.size() > 0:
+			inputField.text = " ".join(commandHistory[commandHistoryIdx])
 		
 		commandHistoryIdx -= 1
 		if commandHistoryIdx == -1:
 			commandHistoryIdx = commandHistory.size()-1
+	
+	if Input.is_action_just_released("lastcommand"):
+		inputField.caret_column = inputField.text.length()
 
 
 func println(text: String, color: String = "#FFFFFF"):

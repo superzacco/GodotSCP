@@ -1,3 +1,5 @@
+SpotLight3D
+Control
 Node3D
 Node
 MultiplayerSpawner
@@ -7,8 +9,6 @@ MarginContainer
 HBoxContainer
 VBoxContainer
 ScrollContainer
-Control
 CollisionShape3D
 CSGBox3D
 RigidBody3D
-AudioStreamPlayer3D

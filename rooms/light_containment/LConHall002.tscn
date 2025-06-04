@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmlmovv3qtocd"]
 
-[ext_resource type="PackedScene" uid="uid://cpjayajeujptt" path="res://rooms/Models/LConHall002.blend" id="1_irael"]
+[ext_resource type="PackedScene" uid="uid://cpjayajeujptt" path="res://rooms/models/LConHall002.blend" id="1_irael"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_22xt3"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_o0ncu"]
 

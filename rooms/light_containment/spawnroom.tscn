@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_njtbk"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_xaeff"]
-[ext_resource type="PackedScene" uid="uid://bxxnvxr1if2hq" path="res://rooms/Models/SpawnRoom.blend" id="3_xaeff"]
+[ext_resource type="PackedScene" uid="uid://bxxnvxr1if2hq" path="res://rooms/models/SpawnRoom.blend" id="3_xaeff"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="4_aslt0"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_xvian"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="5_7k8ml"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/models/door.blend" id="5_7k8ml"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="6_lcceb"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="8_7k8ml"]
 
@@ -21,18 +21,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.179, -7.5)
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14, 4.19659, -2)
 light_energy = 4.0
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 80.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.56363e-08, 4.19659, -2)
 light_energy = 4.0
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 80.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.59659, 5)
 light_energy = 4.0
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 80.0
 
@@ -50,20 +53,24 @@ spot_angle = 65.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, -1.2)
 light_energy = 0.25
 light_specular = 0.0
+shadow_enabled = true
 omni_range = 12.142
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 15.1)
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 70.0
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 25.5)
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 70.0
 
 [node name="SpotLight3D7" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 35.7)
+shadow_enabled = true
 spot_range = 15.0
 spot_angle = 70.0
 

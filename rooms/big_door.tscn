@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlpir7u7sfxhv"]
 
-[ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="1_ol6ec"]
+[ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/models/big_door.blend" id="1_ol6ec"]
 [ext_resource type="Script" uid="uid://nmki5prdfxxp" path="res://rooms/big_door.gd" id="2_xpv6d"]
 [ext_resource type="AudioStream" uid="uid://cxwqfxlhtk2nt" path="res://audio/rooms/BigDoorOpen0.ogg" id="3_xee4u"]
 [ext_resource type="AudioStream" uid="uid://c57fjv4406o4m" path="res://audio/rooms/BigDoorOpen1.ogg" id="4_eb36k"]

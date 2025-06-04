@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2u8i6rmp05ul"
-path="res://.godot/imported/keycardbutton.blend-2be41fa961e724eb0f091f708c609515.scn"
+path="res://.godot/imported/keycardbutton.blend-88602fda62f084f0bcccf04b7da0fabd.scn"
 
 [deps]
 
-source_file="res://rooms/Models/keycardbutton.blend"
-dest_files=["res://.godot/imported/keycardbutton.blend-2be41fa961e724eb0f091f708c609515.scn"]
+source_file="res://rooms/models/keycardbutton.blend"
+dest_files=["res://.godot/imported/keycardbutton.blend-88602fda62f084f0bcccf04b7da0fabd.scn"]
 
 [params]
 

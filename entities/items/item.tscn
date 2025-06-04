@@ -12,6 +12,7 @@ radius = 1.0
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
+can_sleep = false
 script = ExtResource("1_0nrx4")
 
 [node name="Area3D" type="Area3D" parent="." groups=["interactables"]]

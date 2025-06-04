@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cgyhorsk5854i"
-path="res://.godot/imported/door.blend-8e7962c4ffc507756338dc4c7f998de2.scn"
+path="res://.godot/imported/door.blend-346cda3e48de3efc086f39ac8bd48e3c.scn"
 
 [deps]
 
-source_file="res://rooms/Models/door.blend"
-dest_files=["res://.godot/imported/door.blend-8e7962c4ffc507756338dc4c7f998de2.scn"]
+source_file="res://rooms/models/door.blend"
+dest_files=["res://.godot/imported/door.blend-346cda3e48de3efc086f39ac8bd48e3c.scn"]
 
 [params]
 

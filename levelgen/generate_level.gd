@@ -250,11 +250,11 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 				fillerRoom = place_filler_room_in_containment(fillerHConThreeWayHalls, replacableHConThreeWayHalls, x, z)
 				
 			
-			if temporaryRooms[x-1][z] == null:
+			if (!x-1 < 0 and temporaryRooms[x-1][z] == null):
 				timesToRotate = 3
-			if temporaryRooms[x][z+1] == null:
+			if (!z+1 > zSize and temporaryRooms[x][z+1] == null):
 				timesToRotate = 2
-			if temporaryRooms[x+1][z] == null:
+			if (!x+1 > xSize and temporaryRooms[x+1][z] == null):
 				timesToRotate = 1
 		4:
 			if z < LContoHConCheckpointLine:
@@ -295,6 +295,9 @@ func replace_filler_rooms():
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
 		var roomToReplace: int = randi_range(0, replacableRoomArray.size()-1)
+		if roomToReplace == -1 or replacableRoomArray.size() == 0:
+			break
+			printerr("Missing some necessary rooms!")
 		var roomToReplacePos: Vector3 = replacableRoomArray[roomToReplace].global_position
 		
 		var r: Node3D = spawn_room(necessaryRoomArray[i], roomToReplacePos.x / 15, roomToReplacePos.z /15)

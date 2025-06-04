@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dw3hwsiih5tal"]
 
-[ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
+[ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/models/chamber914.blend" id="1_lb7g5"]
 [ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="2_kyeim"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_0gwk4"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="4_kyeim"]

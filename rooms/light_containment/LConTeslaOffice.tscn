@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://cq36u66dwnw6w"]
 
-[ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/Models/LConTeslaOffice.blend" id="1_bexi0"]
+[ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/models/LConTeslaOffice.blend" id="1_bexi0"]
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_cyh60"]
-[ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/Textures/tesla.png" id="3_eg4c6"]
+[ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/textures/tesla.png" id="3_eg4c6"]
 [ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/light_containment/teslagate.gd" id="4_l3165"]
 [ext_resource type="AudioStream" uid="uid://djf6eoq7mef2g" path="res://audio/rooms/tesla/Idle.ogg" id="5_877pg"]
 [ext_resource type="AudioStream" uid="uid://dw12rvtl3x14f" path="res://audio/rooms/tesla/WindUp.ogg" id="6_xkfh6"]
@@ -204,12 +204,12 @@ spot_range = 15.0
 spot_angle = 65.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 1.18663, -0.7)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 1.86828, -0.7)
 light_indirect_energy = 8.626
 light_specular = 0.0
 shadow_enabled = true
 spot_range = 15.0
-spot_angle = 65.0
+spot_angle = 75.0
 
 [node name="Door" parent="." instance=ExtResource("9_4e5mo")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.95, 0.07, 3.8)

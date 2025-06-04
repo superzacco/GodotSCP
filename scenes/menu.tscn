@@ -10,13 +10,24 @@ multiplayerSpawner = NodePath("MultiplayerSpawner")
 devScene = ExtResource("2_3i1eg")
 mainScene = ExtResource("3_con2f")
 
-[node name="Singleplayer Buttons" type="Control" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Singleplayer Buttons" type="Control" parent="MainMenu"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 631.0
+offset_bottom = 232.0
 
-[node name="PlayDev" type="Button" parent="Singleplayer Buttons"]
+[node name="PlayDev" type="Button" parent="MainMenu/Singleplayer Buttons"]
 layout_mode = 1
 offset_left = 10.0
 offset_top = 10.0
@@ -25,7 +36,7 @@ offset_bottom = 110.0
 pivot_offset = Vector2(150, 50)
 text = "PLAY (DEV SCENE)"
 
-[node name="PlayMain" type="Button" parent="Singleplayer Buttons"]
+[node name="PlayMain" type="Button" parent="MainMenu/Singleplayer Buttons"]
 layout_mode = 0
 offset_left = 320.0
 offset_top = 10.0
@@ -34,8 +45,8 @@ offset_bottom = 110.0
 pivot_offset = Vector2(150, 50)
 text = "PLAY (MAIN)"
 
-[node name="Steam Buttons" type="Control" parent="."]
-layout_mode = 3
+[node name="Steam Buttons" type="Control" parent="MainMenu"]
+layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -44,7 +55,7 @@ offset_left = -366.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="LobbyandButtonMargin" type="MarginContainer" parent="Steam Buttons"]
+[node name="LobbyandButtonMargin" type="MarginContainer" parent="MainMenu/Steam Buttons"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -58,23 +69,23 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="LobbyandButtonContainer" type="VBoxContainer" parent="Steam Buttons/LobbyandButtonMargin"]
+[node name="LobbyandButtonContainer" type="VBoxContainer" parent="MainMenu/Steam Buttons/LobbyandButtonMargin"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ButtonContainer" type="HBoxContainer" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Host" type="Button" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer"]
+[node name="Host" type="Button" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/outline_size = 0
 text = "Host (MAIN)"
 
-[node name="RefreshLobbies" type="Button" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer"]
+[node name="RefreshLobbies" type="Button" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -82,23 +93,24 @@ theme_override_constants/outline_size = 0
 text = "Refresh Lobbies
 "
 
-[node name="LeaveLobby" type="Button" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
+[node name="LeaveLobby" type="Button" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
 layout_mode = 2
 text = "Leave Lobby"
 
-[node name="LobbyContainer" type="ScrollContainer" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
+[node name="LobbyContainer" type="ScrollContainer" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="LobbyVbox" type="VBoxContainer" parent="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/LobbyContainer"]
+[node name="LobbyVbox" type="VBoxContainer" parent="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/LobbyContainer"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="MainMenu"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 120.0
 offset_right = 310.0
@@ -106,12 +118,9 @@ offset_bottom = 220.0
 pivot_offset = Vector2(150, 50)
 text = "QUIT"
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("..")
-
-[connection signal="pressed" from="Singleplayer Buttons/PlayDev" to="." method="_on_play_dev_pressed"]
-[connection signal="pressed" from="Singleplayer Buttons/PlayMain" to="." method="_on_play_map_gen_test_pressed"]
-[connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/Host" to="." method="host_game"]
-[connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/RefreshLobbies" to="." method="refresh_lobbies"]
-[connection signal="pressed" from="Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/LeaveLobby" to="." method="leave_lobby"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MainMenu/Singleplayer Buttons/PlayDev" to="." method="_on_play_dev_pressed"]
+[connection signal="pressed" from="MainMenu/Singleplayer Buttons/PlayMain" to="." method="_on_play_map_gen_test_pressed"]
+[connection signal="pressed" from="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/Host" to="." method="host_game"]
+[connection signal="pressed" from="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/ButtonContainer/RefreshLobbies" to="." method="refresh_lobbies"]
+[connection signal="pressed" from="MainMenu/Steam Buttons/LobbyandButtonMargin/LobbyandButtonContainer/LeaveLobby" to="." method="leave_lobby"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_on_quit_pressed"]

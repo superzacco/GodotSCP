@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://1nmpwywfcgb8"
-path="res://.godot/imported/LConTeslaOffice.blend-64f745de60295459556867ed8c50f0bb.scn"
+path="res://.godot/imported/LConTeslaOffice.blend-e5e003556d07077fa9e2d37b4da65dde.scn"
 
 [deps]
 
-source_file="res://rooms/Models/LConTeslaOffice.blend"
-dest_files=["res://.godot/imported/LConTeslaOffice.blend-64f745de60295459556867ed8c50f0bb.scn"]
+source_file="res://rooms/models/LConTeslaOffice.blend"
+dest_files=["res://.godot/imported/LConTeslaOffice.blend-e5e003556d07077fa9e2d37b4da65dde.scn"]
 
 [params]
 

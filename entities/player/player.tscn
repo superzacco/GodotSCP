@@ -6,13 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
 [ext_resource type="Script" uid="uid://mnm27fr2qpv8" path="res://entities/player/interaction.gd" id="4_jnjp4"]
-[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/UI/invslot.png" id="4_ma6qb"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/ui/invslot.png" id="4_ma6qb"]
 [ext_resource type="Texture2D" uid="uid://cxexrlsqsxcup" path="res://rooms/Textures/handsymbol2.png" id="5_7cger"]
 [ext_resource type="Script" uid="uid://if5y2hgoe5tu" path="res://entities/player/blinking.gd" id="5_lyn41"]
 [ext_resource type="AudioStream" uid="uid://bx0dv5n45qni7" path="res://audio/steps/Step3.ogg" id="5_we0b7"]
 [ext_resource type="AudioStream" uid="uid://vtlicw7re5dq" path="res://audio/steps/Step4.ogg" id="6_mtric"]
 [ext_resource type="AudioStream" uid="uid://dvrlqm1vvuhul" path="res://audio/steps/Step5.ogg" id="7_eyb6c"]
-[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/UI/UI.tscn" id="8_8n5i1"]
+[ext_resource type="PackedScene" uid="uid://xrdd7v6d2fs" path="res://entities/ui/UI.tscn" id="8_8n5i1"]
 [ext_resource type="AudioStream" uid="uid://dayl4k61sccyr" path="res://audio/interaction/PickItem.ogg" id="8_26q78"]
 [ext_resource type="AudioStream" uid="uid://dmu3yyhkn0dqj" path="res://audio/steps/Step6.ogg" id="8_221hk"]
 [ext_resource type="Script" uid="uid://c7mscsdfl6h54" path="res://entities/player/player_step_sounds.gd" id="9_3wlsy"]
@@ -153,6 +153,7 @@ replication_config = SubResource("SceneReplicationConfig_b2kln")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_3mim6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

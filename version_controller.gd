@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 var buildVersion: int
 var versionInfoFile = "res://versioninfo.txt"

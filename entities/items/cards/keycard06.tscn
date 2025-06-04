@@ -20,10 +20,12 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
+can_sleep = false
 continuous_cd = true
 script = ExtResource("1_1ru0n")
 inventorySprite = ExtResource("2_1ru0n")
 inventoryName = "Level 6 Keycard"
+itemName = "keycard6"
 functionItem = NodePath("keycard")
 
 [node name="Area3D" type="Area3D" parent="." groups=["interactables"]]

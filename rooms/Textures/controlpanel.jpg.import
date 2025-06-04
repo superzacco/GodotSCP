@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://korgdqdmj5y6"
-path="res://.godot/imported/controlpanel.jpg-ed29d8adfa95473f6ff488fde522a5a6.ctex"
+path="res://.godot/imported/controlpanel.jpg-5a1dae789b9bbe9965b8ef0dafb1ad0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/Textures/controlpanel.jpg"
-dest_files=["res://.godot/imported/controlpanel.jpg-ed29d8adfa95473f6ff488fde522a5a6.ctex"]
+source_file="res://rooms/textures/controlpanel.jpg"
+dest_files=["res://.godot/imported/controlpanel.jpg-5a1dae789b9bbe9965b8ef0dafb1ad0c.ctex"]
 
 [params]
 

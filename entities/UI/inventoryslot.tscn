@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://coiiycrsxeol7"]
 
-[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/UI/invslot.png" id="1_8yto6"]
-[ext_resource type="Script" uid="uid://beei6h8no7vqx" path="res://entities/UI/inventoryslot.gd" id="2_ljowq"]
-[ext_resource type="Texture2D" uid="uid://ucv3eab8c7gn" path="res://entities/UI/invoutline.png" id="3_aow1a"]
+[ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/ui/invslot.png" id="1_8yto6"]
+[ext_resource type="Script" uid="uid://beei6h8no7vqx" path="res://entities/ui/inventoryslot.gd" id="2_ljowq"]
+[ext_resource type="Texture2D" uid="uid://ucv3eab8c7gn" path="res://entities/ui/invoutline.png" id="3_aow1a"]
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="4_642a2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aow1a"]

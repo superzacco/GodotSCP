@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1lxs4lpkamaa"
-path="res://.godot/imported/crtroc.jpg-f20e6388aca3b6cfd5e94cd3159ecc0f.ctex"
+path="res://.godot/imported/crtroc.jpg-cfb035df13bb9bdebafe2c9e9c8ab591.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/Textures/crtroc.jpg"
-dest_files=["res://.godot/imported/crtroc.jpg-f20e6388aca3b6cfd5e94cd3159ecc0f.ctex"]
+source_file="res://rooms/textures/crtroc.jpg"
+dest_files=["res://.godot/imported/crtroc.jpg-cfb035df13bb9bdebafe2c9e9c8ab591.ctex"]
 
 [params]
 

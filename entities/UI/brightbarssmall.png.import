@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b23heykbvlrkx"
-path="res://.godot/imported/brightbarssmall.png-6bf276f1a708816b27c4f0abc973a963.ctex"
+path="res://.godot/imported/brightbarssmall.png-67546695c41ead3c70b896abe8bea66b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/UI/brightbarssmall.png"
-dest_files=["res://.godot/imported/brightbarssmall.png-6bf276f1a708816b27c4f0abc973a963.ctex"]
+source_file="res://entities/ui/brightbarssmall.png"
+dest_files=["res://.godot/imported/brightbarssmall.png-67546695c41ead3c70b896abe8bea66b.ctex"]
 
 [params]
 

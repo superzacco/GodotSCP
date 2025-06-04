@@ -12,6 +12,7 @@ size = Vector3(0.3, 0.1, 0.4)
 [node name="GasMask" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["item"]]
 script = ExtResource("1_1oli7")
 inventoryName = "Gas Mask"
+itemName = "gasmask"
 functionItem = NodePath("gasmask")
 
 [node name="PickupArea" type="Area3D" parent="." groups=["interactables"]]

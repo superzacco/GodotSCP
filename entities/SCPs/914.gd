@@ -2,6 +2,12 @@ extends StaticBody3D
 
 var knobSetting: int
 
+@export var veryFineDict: Dictionary[String, PackedScene]
+@export var fineDict: Dictionary[String, PackedScene]
+@export var onetooneDict: Dictionary[String, PackedScene]
+@export var coarseDict: Dictionary[String, PackedScene]
+@export var roughDict: Dictionary[String, PackedScene]
+
 @export var doorL: StaticBody3D
 @export var doorR: StaticBody3D
 @export var refiningAudioPlayer: AudioStreamPlayer3D
@@ -24,9 +30,9 @@ var itemsInInput: Array[Item]
 @export var outputPoint: Node3D
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKnob:
+	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKnob and !refining:
 		knob.rotate_z(event.relative.x * 0.005) 
-	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKey:
+	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKey and !refining:
 		keyJuice += abs(event.relative.x)
 
 
@@ -46,7 +52,7 @@ func _process(delta: float) -> void:
 		keyJuice = 0
 		fakeNearKnob = nearKnob
 		fakeNearKey = nearKey
-		if fakeNearKey:
+		if fakeNearKey and !refining:
 			turningKnobUI.show()
 			interactionScript.interactionSprite.hide()
 	if Input.is_action_just_released("interact"):
@@ -89,41 +95,29 @@ func activate():
 		
 		match knobSetting:
 			0:
-				if inputItem.roughItem == null:
-					nonAffectedItem = inputItem
-				else:
-					outputItem = inputItem.roughItem
+				if roughDict.has(inputItem.itemName):
+					outputItem = roughDict[inputItem.itemName]
 			1:
-				if inputItem.coarseItem == null:
-					nonAffectedItem = inputItem
-				else:
-					outputItem = inputItem.coarseItem
+				if coarseDict.has(inputItem.itemName):
+					outputItem = coarseDict[inputItem.itemName]
 			2:
-				if inputItem.onetooneItem == null:
-					nonAffectedItem = inputItem
-				else:
-					outputItem = inputItem.onetooneItem
+				if onetooneDict.has(inputItem.itemName):
+					outputItem = onetooneDict[inputItem.itemName]
 			3:
-				if inputItem.fineItem == null:
-					nonAffectedItem = inputItem
-				else:
-					outputItem = inputItem.fineItem
+				if fineDict.has(inputItem.itemName):
+					outputItem = fineDict[inputItem.itemName]
 			4:
-				if inputItem.veryFineItem == null:
-					nonAffectedItem = inputItem
-				else:
-					outputItem = inputItem.veryFineItem
+				if veryFineDict.has(inputItem.itemName):
+					outputItem = veryFineDict[inputItem.itemName]
 		
-		inputItem.queue_free()
 		if outputItem != null:
 			var spawnedItem = outputItem.instantiate()
 			get_tree().root.add_child(spawnedItem)
 			spawnedItem.global_position = outputPoint.global_position
+			inputItem.queue_free()
+			
 		else:
-			push_error("Output item was null")
-		
-		if nonAffectedItem != null:
-			nonAffectedItem.global_position = outputPoint.global_position
+			inputItem.global_position = outputPoint.global_position
 	
 	doorL.toggle_door()
 	doorR.toggle_door()
@@ -131,49 +125,43 @@ func activate():
 	refining = false
 
 
+func show_interaction_sprite(onWhat: Node3D):
+	if !refining:
+		interactionScript.interactionSprite.show()
+		interactionScript.nearestInteractable = onWhat
+
+
 func _on_knob_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		interactionScript.interactionSprite.show()
-		interactionScript.nearestInteractable = knob
+		show_interaction_sprite(knob)
 		nearControls = true
 func _on_knob_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		interactionScript.interactionSprite.hide()
-		interactionScript.nearestInteractable = knob
 		nearControls = false
 
 
 func _on_input_body_entered(body: Node3D) -> void:
 	itemsInInput.append(body)
-	print(itemsInInput)
 func _on_input_body_exited(body: Node3D) -> void:
 	itemsInInput.erase(body)
-	print(itemsInInput)
 
 
 func _on_knob_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKnob = true
-		print("nearknob equals " + str(nearKnob))
-		interactionScript.interactionSprite.show()
-		interactionScript.nearestInteractable = knob
+		show_interaction_sprite(knob)
 func _on_knob_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKnob = false
-		print("nearknob equals " + str(nearKnob))
 		interactionScript.interactionSprite.hide()
-		interactionScript.nearestInteractable = knob
 
 
 func _on_key_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKey = true
-		interactionScript.interactionSprite.show()
-		interactionScript.nearestInteractable = key
-		print("nearkey equals " + str(nearKey))
+		show_interaction_sprite(key)
 func _on_key_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKey = false
-		print("nearkey equals " + str(nearKey))
 		interactionScript.interactionSprite.hide()
-		interactionScript.nearestInteractable = key

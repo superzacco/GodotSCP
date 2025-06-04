@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wqacfqo15vc"
-path.s3tc="res://.godot/imported/fence.png-fa9bfd6535d9d3430fe4d9e5f5fc22ce.s3tc.ctex"
+path.s3tc="res://.godot/imported/fence.png-ce081c4ac1ccec05f914329ffcbb610e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rooms/Textures/fence.png"
-dest_files=["res://.godot/imported/fence.png-fa9bfd6535d9d3430fe4d9e5f5fc22ce.s3tc.ctex"]
+source_file="res://rooms/textures/fence.png"
+dest_files=["res://.godot/imported/fence.png-ce081c4ac1ccec05f914329ffcbb610e.s3tc.ctex"]
 
 [params]
 
