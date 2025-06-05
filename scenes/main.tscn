@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=31 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -19,19 +19,20 @@
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
 [ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
-[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://scenes/multiplayer_spawner.gd" id="18_og1vs"]
+[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="18_og1vs"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
 [ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://util/music_ambiance_manager.gd" id="18_pm3ni"]
-[ext_resource type="Script" uid="uid://dd4rvwmhcar75" path="res://scenes/spectator_screen.gd" id="19_2f3dj"]
+[ext_resource type="Script" uid="uid://dd4rvwmhcar75" path="res://multiplayer/spectator_screen.gd" id="19_2f3dj"]
 [ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
 [ext_resource type="AudioStream" uid="uid://bs5rf6svm0df2" path="res://audio/ambient/LCZmusic.ogg" id="19_y6deb"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="20_5he1u"]
 [ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
+[ext_resource type="PackedScene" uid="uid://ci25vwa1xs255" path="res://entities/player/spectatorCamera.tscn" id="20_yq6so"]
 [ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
+[node name="Facility" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
 top_level = true
 script = ExtResource("1_yc10j")
 navigationRegion = NodePath("Facility/FacilityRegion")
@@ -54,12 +55,7 @@ fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
 
 [node name="SpectatorScreenManager" type="Node" parent="."]
 script = ExtResource("19_2f3dj")
-
-[node name="UI" type="Control" parent="SpectatorScreenManager"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+spectatorScene = ExtResource("20_yq6so")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../PlayerSpawn")

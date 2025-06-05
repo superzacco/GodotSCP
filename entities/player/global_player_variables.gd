@@ -16,6 +16,7 @@ var lookingEnabled: bool = true
 
 var sprintJuice: float = 100
 var blinkJuice: float = 100
+var sensitivity: float = 0.5
 
 
 

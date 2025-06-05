@@ -30,6 +30,7 @@ Commands="*res://util/commands.gd"
 Items="*res://entities/items/items.gd"
 SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
+GameManager="*res://game_manager.gd"
 
 [debug]
 

@@ -142,7 +142,6 @@ script = ExtResource("1_qccfk")
 stuffToRotate = NodePath("StuffToRotate")
 collider = NodePath("CollisionShape3D")
 camera = NodePath("StuffToRotate/CameraBobPivot/Camera3D")
-sensitivityDesired = 0.5
 moveSpeedDesired = 25.0
 sprintSpeedDesired = 50.0
 sprintDepletionRate = 20.0
@@ -153,6 +152,8 @@ replication_config = SubResource("SceneReplicationConfig_b2kln")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("CapsuleMesh_3mim6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

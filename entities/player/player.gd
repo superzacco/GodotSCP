@@ -5,7 +5,6 @@ class_name Player
 @export var collider: CollisionShape3D
 @export var camera: Camera3D
 
-@export var sensitivityDesired: float
 @export var moveSpeedDesired: float
 @export var sprintSpeedDesired: float
 
@@ -27,7 +26,7 @@ func _ready() -> void:
 	GlobalPlayerVariables.player = self
 	
 	moveSpeed = moveSpeedDesired
-	sensitivity = sensitivityDesired
+	sensitivity = GlobalPlayerVariables.sensitivity
 	
 	$AnimationPlayer.play("walking_Bob")
 	$AnimationPlayer.pause()
@@ -137,6 +136,6 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 func on_death():
 	collider.disabled = true
 	print(str(self) + " is dead")
-	GlobalPlayerVariables.spectatorManager.switch_spectator()
+	GlobalPlayerVariables.spectatorManager.switch_spectator(multiplayerAuthorityID)
 	queue_free()
 	pass

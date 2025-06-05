@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://danhs6c1qv82j"]
+
+[ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="1_s83p1"]
+
+[resource]
+font = ExtResource("1_s83p1")
+font_size = 25
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)

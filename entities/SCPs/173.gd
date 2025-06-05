@@ -109,10 +109,10 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 		relocate()
 
 
-func _on_neck_snap_area_body_entered(body: Player) -> void:
+func _on_neck_snap_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playerInKillRange = body
 		try_kill_player(body)
-func _on_neck_snap_area_body_exited(body: Player) -> void:
+func _on_neck_snap_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playerInKillRange = null

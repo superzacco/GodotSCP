@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://wymqic7fdd0x"]
 
-[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://scenes/multiplayer_spawner.gd" id="1_608ji"]
+[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="1_608ji"]
 [ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="1_vpqra"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="2_y4g5o"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="5_oaqns"]

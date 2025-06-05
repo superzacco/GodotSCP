@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 			"quit":
 				Commands.quit()
 			"disconnect":
-				Commands.goto_mainmenu()
+				GameManager.quit_to_menu()
 			"noblink":
 				Commands.no_blink()
 			"fog":

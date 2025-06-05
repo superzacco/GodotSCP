@@ -142,9 +142,11 @@ func _on_knob_area_body_exited(body: Node3D) -> void:
 
 
 func _on_input_body_entered(body: Node3D) -> void:
-	itemsInInput.append(body)
+	if body.is_class("Item"):
+		itemsInInput.append(body)
 func _on_input_body_exited(body: Node3D) -> void:
-	itemsInInput.erase(body)
+	if body.is_class("Item"):
+		itemsInInput.erase(body)
 
 
 func _on_knob_area_area_entered(area: Area3D) -> void:
@@ -158,7 +160,7 @@ func _on_knob_area_area_exited(area: Area3D) -> void:
 
 
 func _on_key_area_area_entered(area: Area3D) -> void:
-	if area.is_in_group("grabbypoint"):
+	if area.is_in_group("grabbypoint"): 
 		nearKey = true
 		show_interaction_sprite(key)
 func _on_key_area_area_exited(area: Area3D) -> void:

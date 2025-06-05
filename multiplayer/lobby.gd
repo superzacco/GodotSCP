@@ -12,7 +12,7 @@ var peer = SteamMultiplayerPeer.new()
 
 
 
-func _ready() -> void:
+func _init() -> void:
 	peer.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
@@ -29,6 +29,7 @@ func _ready() -> void:
 
 func create_lobby():
 	if lobby_ID == 0:
+		peer = SteamMultiplayerPeer.new()
 		peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 		multiplayer.multiplayer_peer = peer
 	else:
@@ -170,9 +171,10 @@ func leave_lobby() -> void:
 		# Send leave request to Steam
 		Steam.leaveLobby(lobby_ID)
 		peer.close()
-		
+		peer = OfflineMultiplayerPeer.new()
 		# Wipe the Steam lobby ID then display the default lobby ID and player list title
 		lobby_ID = 0
+		#multiplayer.multiplayer_peer = null
 		
 		# Close session with all users
 	for this_member in lobby_members:
@@ -181,9 +183,9 @@ func leave_lobby() -> void:
 			
 			# Close the P2P session using the Networking class
 			Steam.closeP2PSessionWithUser(this_member['steam_id'])
-			
-			# Clear the local lobby list
-			lobby_members.clear()
+		
+		# Clear the local lobby list
+		lobby_members.clear()
 		
 		print("Left Lobby!")
 

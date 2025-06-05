@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci25vwa1xs255"]
+
+[ext_resource type="Script" uid="uid://b50xqjlacin40" path="res://entities/player/spectator_camera.gd" id="1_c7tb8"]
+[ext_resource type="PackedScene" uid="uid://bx6y1jh26qdcl" path="res://entities/ui/spectator_ui.tscn" id="2_id4ph"]
+
+[node name="SpectatorCamera" type="Node3D" node_paths=PackedStringArray("associatedUI", "camera", "horizontalPivot", "verticalPivot")]
+script = ExtResource("1_c7tb8")
+associatedUI = NodePath("SpectatorUI")
+camera = NodePath("HorizontalPivot/Vertical Pivot/SpringArm3D/Camera3D")
+horizontalPivot = NodePath("HorizontalPivot")
+verticalPivot = NodePath("HorizontalPivot/Vertical Pivot")
+
+[node name="HorizontalPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Vertical Pivot" type="Node3D" parent="HorizontalPivot"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/Vertical Pivot"]
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="HorizontalPivot/Vertical Pivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="SpectatorUI" parent="." instance=ExtResource("2_id4ph")]
