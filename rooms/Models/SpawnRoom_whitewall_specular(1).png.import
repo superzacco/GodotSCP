@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyb805ie5cnto"
-path.s3tc="res://.godot/imported/SpawnRoom_whitewall_specular(1).png-a33bc559a953085607edd421f99fe548.s3tc.ctex"
+path.s3tc="res://.godot/imported/SpawnRoom_whitewall_specular(1).png-41fa71d055b3070d130fc134f2673395.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://rooms/models/SpawnRoom_whitewall_specular(1).png"
-dest_files=["res://.godot/imported/SpawnRoom_whitewall_specular(1).png-a33bc559a953085607edd421f99fe548.s3tc.ctex"]
+source_file="res://rooms/Models/SpawnRoom_whitewall_specular(1).png"
+dest_files=["res://.godot/imported/SpawnRoom_whitewall_specular(1).png-41fa71d055b3070d130fc134f2673395.s3tc.ctex"]
 
 [params]
 

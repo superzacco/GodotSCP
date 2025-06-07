@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1cb452sqd8c3"
-path.s3tc="res://.godot/imported/whitewall1.png-1b26396ecbc399de52f023970a0386bd.s3tc.ctex"
+path.s3tc="res://.godot/imported/whitewall1.png-58b57db30d850247dd54771aa014601a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rooms/textures/whitewall1.png"
-dest_files=["res://.godot/imported/whitewall1.png-1b26396ecbc399de52f023970a0386bd.s3tc.ctex"]
+source_file="res://rooms/Textures/whitewall1.png"
+dest_files=["res://.godot/imported/whitewall1.png-58b57db30d850247dd54771aa014601a.s3tc.ctex"]
 
 [params]
 

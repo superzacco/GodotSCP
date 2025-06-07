@@ -131,7 +131,7 @@
 					}
 				}
 			],
-			"name":"CloseDoor",
+			"name":"close",
 			"samplers":[
 				{
 					"input":15,
@@ -210,7 +210,7 @@
 					}
 				}
 			],
-			"name":"CloseDoor-DoorClose",
+			"name":"close-Close",
 			"samplers":[
 				{
 					"input":15,
@@ -289,7 +289,7 @@
 					}
 				}
 			],
-			"name":"OpenDoor",
+			"name":"open",
 			"samplers":[
 				{
 					"input":15,

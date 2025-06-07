@@ -1,11 +1,13 @@
+OmniLight3D
+SpotLight3D
+Node3D
+Node
 Button
 Control
 Panel
 Label
 RichTextLabel
 SpringArm3D
-Node3D
 Camera3D
-Node
 AudioStreamPlayer3D
 MultiplayerSynchronizer

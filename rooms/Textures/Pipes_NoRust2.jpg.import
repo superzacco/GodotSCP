@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3u6vqewdx8xv"
-path="res://.godot/imported/Pipes_NoRust2.jpg-726aac5c71f2f6f2144313b937dec7ff.ctex"
+path="res://.godot/imported/Pipes_NoRust2.jpg-bbc65d3f84a24a1ca342ccdf881f9934.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/textures/Pipes_NoRust2.jpg"
-dest_files=["res://.godot/imported/Pipes_NoRust2.jpg-726aac5c71f2f6f2144313b937dec7ff.ctex"]
+source_file="res://rooms/Textures/Pipes_NoRust2.jpg"
+dest_files=["res://.godot/imported/Pipes_NoRust2.jpg-bbc65d3f84a24a1ca342ccdf881f9934.ctex"]
 
 [params]
 

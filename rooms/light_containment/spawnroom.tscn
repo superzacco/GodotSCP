@@ -87,28 +87,29 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Door2/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Door2" node_paths=PackedStringArray("doorToControl") instance=ExtResource("6_lcceb")]
+[node name="Button2" parent="Door2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
 collision_layer = 256
 collision_mask = 256
-doorToControl = NodePath("..")
+doorsToControl = [NodePath("..")]
 rejectionText = "The door won't open."
 wontOpen = true
 
 [node name="Door6" parent="." instance=ExtResource("4_aslt0")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9809, 3.01868, 8.2)
 
-[node name="door" parent="." instance=ExtResource("5_7k8ml")]
+[node name="door2" parent="." instance=ExtResource("5_7k8ml")]
 transform = Transform3D(1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, -22.5, 3.02831, 0.700003)
 
-[node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
+[node name="doorside2_col" parent="door2/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 
-[node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
+[node name="doorside1_col" parent="door2/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="door" instance=ExtResource("6_lcceb")]
+[node name="Button2" parent="door2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.200001)
+doorsToControl = [NodePath("../../Door2")]
 rejectionText = "The door won't open."
 wontOpen = true
 
@@ -125,9 +126,9 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Door4/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Door4" node_paths=PackedStringArray("doorToControl") instance=ExtResource("6_lcceb")]
+[node name="Button2" parent="Door4" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
-doorToControl = NodePath("..")
+doorsToControl = [NodePath("..")]
 rejectionText = "The door won't open."
 wontOpen = true
 
@@ -144,15 +145,15 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Door5/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Door5" node_paths=PackedStringArray("doorToControl") instance=ExtResource("6_lcceb")]
+[node name="Button2" parent="Door5" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
-doorToControl = NodePath("..")
+doorsToControl = [NodePath("..")]
 rejectionText = "The door won't open."
 wontOpen = true
 
 [node name="RoomArea" parent="." instance=ExtResource("8_7k8ml")]
 
 [editable path="Door2/door"]
-[editable path="door"]
+[editable path="door2"]
 [editable path="Door4/door"]
 [editable path="Door5/door"]

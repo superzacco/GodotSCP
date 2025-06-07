@@ -30,11 +30,12 @@ Commands="*res://util/commands.gd"
 Items="*res://entities/items/items.gd"
 SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
-GameManager="*res://game_manager.gd"
+GameManager="*res://util/game_manager.tscn"
 
 [debug]
 
 file_logging/enable_file_logging=true
+gdscript/warnings/unused_parameter=0
 
 [display]
 
@@ -57,7 +58,6 @@ folder_colors={
 [global_group]
 
 roomconnectionpoints=""
-console=""
 player=""
 interactables=""
 item=""
@@ -66,7 +66,7 @@ teslashockable=""
 door=""
 room=""
 grabbypoint=""
-scp=""
+spectatable=""
 
 [input]
 

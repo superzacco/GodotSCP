@@ -1,0 +1,132 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0ltomxgby0du"]
+
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_s063j"]
+[ext_resource type="PackedScene" uid="uid://bk6r6ajo4iybs" path="res://rooms/Models/LConToHconCheckpoint.blend" id="3_udisy"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_jncuf"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/rooms/DoorOpen0.ogg" id="5_syih6"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/rooms/DoorOpen1.ogg" id="6_0ck42"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/rooms/DoorOpen2.ogg" id="7_uwl8n"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/rooms/DoorClose0.ogg" id="8_rg4l3"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/rooms/DoorClose1.ogg" id="9_x7s1x"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="10_76pbh"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="11_adrke"]
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="12_syih6"]
+
+[node name="LCon4Way001" type="Node3D" groups=["room"]]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.00622366, 3.47747, -3.37167e-05)
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="RoomArea" parent="." instance=ExtResource("3_s063j")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00622366, 0, -3.37167e-05)
+
+[node name="LConToHconCheckpoint" parent="." instance=ExtResource("3_udisy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00622366, 0.0318909, -3.37167e-05)
+
+[node name="Door" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.989, 0.0591639, -0.0186034)
+script = ExtResource("4_jncuf")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_syih6"), ExtResource("6_0ck42"), ExtResource("7_uwl8n")])
+closeSounds = Array[AudioStream]([ExtResource("8_rg4l3"), ExtResource("9_x7s1x"), ExtResource("10_76pbh")])
+
+[node name="door" parent="Door" instance=ExtResource("11_adrke")]
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="StaticBody3D" parent="Door/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="Door/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Door"]
+stream = ExtResource("5_syih6")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Door"]
+stream = ExtResource("8_rg4l3")
+
+[node name="Door2" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.011, 0.0591639, -0.0186036)
+script = ExtResource("4_jncuf")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_syih6"), ExtResource("6_0ck42"), ExtResource("7_uwl8n")])
+closeSounds = Array[AudioStream]([ExtResource("8_rg4l3"), ExtResource("9_x7s1x"), ExtResource("10_76pbh")])
+
+[node name="door" parent="Door2" instance=ExtResource("11_adrke")]
+
+[node name="doorside2_col" parent="Door2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="StaticBody3D" parent="Door2/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="doorside1_col" parent="Door2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="Door2/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Door2"]
+stream = ExtResource("5_syih6")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Door2"]
+stream = ExtResource("8_rg4l3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.5, -3.20003)
+light_color = Color(0.99992, 0.443445, 0.377872, 1)
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 75.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.5, 3.19997)
+light_color = Color(0.99992, 0.443445, 0.377872, 1)
+light_energy = 0.5
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 75.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.5, -3.20003)
+light_color = Color(0.99992, 0.443445, 0.377872, 1)
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 75.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.5, 3.19997)
+light_color = Color(0.99992, 0.443445, 0.377872, 1)
+light_energy = 0.5
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 75.0
+
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_syih6")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0173287, 0.178191, -1.50003)
+doorsToControl = [NodePath("../Door"), NodePath("../Door2")]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_syih6")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.0173285, 0.178191, 1.49997)
+doorsToControl = [NodePath("../Door"), NodePath("../Door2")]
+keycardLevel = 3
+
+[editable path="Door/door"]
+[editable path="Door2/door"]

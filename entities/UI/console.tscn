@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/ui/console.gd" id="1_1wmyx"]
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="3_dn7sy"]
 
-[node name="Console" type="Control" node_paths=PackedStringArray("inputField", "consoleTextWindow") groups=["console"]]
+[node name="Console" type="Control" node_paths=PackedStringArray("inputField", "consoleTextWindow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

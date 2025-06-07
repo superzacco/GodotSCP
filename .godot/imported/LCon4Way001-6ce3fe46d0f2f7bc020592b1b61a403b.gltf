@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -16,6 +17,10 @@
 		{
 			"mesh":0,
 			"name":"Cube-col"
+		},
+		{
+			"mesh":1,
+			"name":"checkpoint-col"
 		}
 	],
 	"materials":[
@@ -94,6 +99,20 @@
 					"material":2
 				}
 			]
+		},
+		{
+			"name":"Cube",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":15,
+						"NORMAL":16,
+						"TEXCOORD_0":17,
+						"TANGENT":18
+					},
+					"indices":19
+				}
+			]
 		}
 	],
 	"textures":[
@@ -158,213 +177,283 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":56,
+			"count":40,
 			"max":[
 				7.5,
 				4.827272891998291,
-				7.49545431137085
+				6.295454502105713
 			],
 			"min":[
 				-7.5,
 				-1.1727274656295776,
-				-7.50454568862915
+				-6.304545879364014
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":56,
+			"count":40,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":56,
+			"count":40,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5126,
-			"count":56,
+			"count":40,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":4,
 			"componentType":5123,
-			"count":180,
+			"count":114,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":136,
+			"count":84,
 			"max":[
 				7.5,
-				1.8272725343704224,
-				7.49545431137085
+				4.827272891998291,
+				6.295454502105713
 			],
 			"min":[
 				-7.5,
 				-1.1727274656295776,
-				-7.50454568862915
+				-6.304545879364014
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":136,
+			"count":84,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":7,
 			"componentType":5126,
-			"count":136,
+			"count":84,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":8,
 			"componentType":5126,
-			"count":136,
+			"count":84,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":9,
 			"componentType":5123,
-			"count":216,
+			"count":132,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":10,
 			"componentType":5126,
-			"count":64,
+			"count":44,
 			"max":[
 				7.300000190734863,
 				4.827272891998291,
-				7.295454502105713
+				6.295454502105713
 			],
 			"min":[
 				-7.300000190734863,
-				1.8272720575332642,
-				-7.304545879364014
+				1.8272725343704224,
+				-6.304545879364014
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":11,
 			"componentType":5126,
-			"count":64,
+			"count":44,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":12,
 			"componentType":5126,
-			"count":64,
+			"count":44,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":13,
 			"componentType":5126,
-			"count":64,
+			"count":44,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":14,
 			"componentType":5123,
-			"count":96,
+			"count":66,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":15,
+			"componentType":5126,
+			"count":380,
+			"max":[
+				1.5000004768371582,
+				4.878671646118164,
+				6.300000190734863
+			],
+			"min":[
+				-1.5,
+				-1.2231979370117188,
+				-6.300000190734863
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":16,
+			"componentType":5126,
+			"count":380,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":17,
+			"componentType":5126,
+			"count":380,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":18,
+			"componentType":5126,
+			"count":380,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":19,
+			"componentType":5123,
+			"count":732,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":672,
+			"byteLength":480,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
+			"byteLength":480,
+			"byteOffset":480,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":320,
+			"byteOffset":960,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":640,
+			"byteOffset":1280,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":228,
+			"byteOffset":1920,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1008,
+			"byteOffset":2148,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1008,
+			"byteOffset":3156,
+			"target":34962
+		},
+		{
+			"buffer":0,
 			"byteLength":672,
-			"byteOffset":672,
+			"byteOffset":4164,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":448,
-			"byteOffset":1344,
+			"byteLength":1344,
+			"byteOffset":4836,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":896,
-			"byteOffset":1792,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":360,
-			"byteOffset":2688,
+			"byteLength":264,
+			"byteOffset":6180,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":1632,
-			"byteOffset":3048,
+			"byteLength":528,
+			"byteOffset":6444,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1632,
-			"byteOffset":4680,
+			"byteLength":528,
+			"byteOffset":6972,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1088,
-			"byteOffset":6312,
+			"byteLength":352,
+			"byteOffset":7500,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2176,
-			"byteOffset":7400,
+			"byteLength":704,
+			"byteOffset":7852,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":432,
-			"byteOffset":9576,
+			"byteLength":132,
+			"byteOffset":8556,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":768,
-			"byteOffset":10008,
+			"byteLength":4560,
+			"byteOffset":8688,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":768,
-			"byteOffset":10776,
+			"byteLength":4560,
+			"byteOffset":13248,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":512,
-			"byteOffset":11544,
+			"byteLength":3040,
+			"byteOffset":17808,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1024,
-			"byteOffset":12056,
+			"byteLength":6080,
+			"byteOffset":20848,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":192,
-			"byteOffset":13080,
+			"byteLength":1464,
+			"byteOffset":26928,
 			"target":34963
 		}
 	],
@@ -376,7 +465,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":13272,
+			"byteLength":28392,
 			"uri":"LCon4Way001-6ce3fe46d0f2f7bc020592b1b61a403b.bin"
 		}
 	]

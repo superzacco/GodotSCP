@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ckpahc334cthm"
-path="res://.godot/imported/button.blend-af6756000c1404b426e417a43525f113.scn"
+path="res://.godot/imported/button.blend-af2d2d638d6ec7b5a5916b304c12506a.scn"
 
 [deps]
 
-source_file="res://rooms/models/button.blend"
-dest_files=["res://.godot/imported/button.blend-af6756000c1404b426e417a43525f113.scn"]
+source_file="res://rooms/Models/button.blend"
+dest_files=["res://.godot/imported/button.blend-af2d2d638d6ec7b5a5916b304c12506a.scn"]
 
 [params]
 

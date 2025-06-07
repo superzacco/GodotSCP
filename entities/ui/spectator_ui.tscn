@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx6y1jh26qdcl"]
+[gd_scene load_steps=4 format=3 uid="uid://bx6y1jh26qdcl"]
 
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="1_lb5o3"]
 [ext_resource type="Script" uid="uid://bhbhfpvy8sx6i" path="res://entities/ui/spectator_ui.gd" id="1_lbpap"]
-[ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="2_lbpap"]
 [ext_resource type="PackedScene" uid="uid://byhqb7aruaxym" path="res://entities/ui/pause_menu.tscn" id="4_axs33"]
 
 [node name="SpectatorUI" type="Control" node_paths=PackedStringArray("spectatingLabel")]
@@ -26,7 +25,6 @@ offset_bottom = 100.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_lb5o3")
 theme_override_font_sizes/font_size = 25
-label_settings = ExtResource("2_lbpap")
 horizontal_alignment = 1
 vertical_alignment = 1
 

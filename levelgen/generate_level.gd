@@ -7,6 +7,8 @@ extends Node
 
 @export_group("Necessary Rooms")
 @export var spawnRoom: PackedScene
+@export var LContoHConCheckpoint: PackedScene
+@export var HContoENTCheckpoint: PackedScene
 @export_subgroup("Light Containment")
 @export var necessaryLConEndRooms: Array[PackedScene]
 @export var necessaryLConTwoWayHalls: Array[PackedScene]
@@ -59,6 +61,8 @@ var HContoEntranceCheckpointLine: int = 11
 var temporaryRooms = []
 var finishedRooms = []
 
+var finishedRoomGrid = []
+
 var xSize: int
 var zSize: int
 
@@ -70,6 +74,11 @@ func _ready() -> void:
 		temporaryRooms.append([])
 		for j in mapHeight:
 			temporaryRooms[i].append(null)
+	
+	for i in mapWidth:
+		finishedRoomGrid.append([])
+		for j in mapHeight:
+			finishedRoomGrid[i].append(null)
 	
 	xSize = temporaryRooms.size() - 1
 	zSize = temporaryRooms[0].size() - 1
@@ -271,6 +280,7 @@ func place_filler_room_in_containment(fillerRoomArray: Array, replacableRoomArra
 	var fillerRoom = spawn_room(fillerRoomArray[randi_range(0, fillerRoomArray.size()-1)], x, z)
 	replacableRoomArray.append(fillerRoom)
 	finishedRooms.append(fillerRoom)
+	finishedRoomGrid[x][z] = fillerRoom
 	
 	return fillerRoom
 #endregion // TEMPORARY ROOM REPLACMENT
@@ -283,6 +293,8 @@ func replace_filler_rooms():
 	room_replacer(necessaryLConThreeWayHalls, replacableLConThreeWayHalls)
 	room_replacer(necessaryLConFourWayHalls, replacableLConFourWayHalls)
 	room_replacer(necessaryLConBends, replacableLConBends)
+	
+	spawn_checkpoint_room(5, LContoHConCheckpoint)
 	
 	room_replacer(necessaryHConEndRooms, replacableHConEndRooms)
 	room_replacer(necessaryHConTwoWayHalls, replacableHConTwoWayHalls)
@@ -306,6 +318,7 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 		replacableRoomArray[roomToReplace].queue_free()
 		replacableRoomArray.remove_at(roomToReplace)
 		finishedRooms.append(r)
+		finishedRoomGrid[roomToReplacePos.x/15][roomToReplacePos.z/15] = r
 		finishedRooms.erase(roomToReplace)
 #endregion
 
@@ -326,6 +339,14 @@ func place_doors():
 			spawnedDoor.global_basis = point.global_basis
 			spawnedDoor.global_position.y += 1.2
 			doorLocations.append(point.global_position)
+
+
+func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
+	for x in mapWidth:
+		for z in mapHeight:
+			if z == zDepth and finishedRoomGrid[x][z] != null:
+				spawn_room(checkpointRoom, x, z)
+				finishedRoomGrid[x][z].queue_free()
 
 
 func generate_nav_mesh():

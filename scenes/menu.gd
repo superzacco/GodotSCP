@@ -1,11 +1,7 @@
 extends Node
 
 @export var multiplayerSpawner: MultiplayerSpawner
-
 @export var menuNode: Control
-
-@export var devScene: PackedScene
-@export var mainScene: PackedScene
 
 
 func _ready() -> void:
@@ -15,12 +11,12 @@ func _ready() -> void:
 
 #region // SINGLEPLAYER
 func _on_play_dev_pressed() -> void:
-	get_tree().change_scene_to_packed(devScene)
+	get_tree().change_scene_to_packed(GameManager.devScene)
 	pass 
 
 
 func _on_play_map_gen_test_pressed() -> void:
-	get_tree().change_scene_to_packed(mainScene)
+	get_tree().change_scene_to_packed(GameManager.facilityScene)
 	pass
 #endregion // SINGLEPLAYER
 

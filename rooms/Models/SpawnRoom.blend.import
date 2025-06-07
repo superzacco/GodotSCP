@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bxxnvxr1if2hq"
-path="res://.godot/imported/SpawnRoom.blend-6a1339fb6048b480c558ed5d1e7c92ae.scn"
+path="res://.godot/imported/SpawnRoom.blend-77e585b2d4414c567acc3731301eb823.scn"
 
 [deps]
 
-source_file="res://rooms/models/SpawnRoom.blend"
-dest_files=["res://.godot/imported/SpawnRoom.blend-6a1339fb6048b480c558ed5d1e7c92ae.scn"]
+source_file="res://rooms/Models/SpawnRoom.blend"
+dest_files=["res://.godot/imported/SpawnRoom.blend-77e585b2d4414c567acc3731301eb823.scn"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://beqdoovxg7l76"
-path="res://.godot/imported/crtbev.jpg-50ab3c5dcea99f36b4740d0435ead668.ctex"
+path="res://.godot/imported/crtbev.jpg-ed750fab231dd499ac06a491e1638e0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooms/textures/crtbev.jpg"
-dest_files=["res://.godot/imported/crtbev.jpg-50ab3c5dcea99f36b4740d0435ead668.ctex"]
+source_file="res://rooms/Textures/crtbev.jpg"
+dest_files=["res://.godot/imported/crtbev.jpg-ed750fab231dd499ac06a491e1638e0a.ctex"]
 
 [params]
 

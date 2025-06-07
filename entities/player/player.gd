@@ -135,7 +135,6 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 
 func on_death():
 	collider.disabled = true
-	print(str(self) + " is dead")
-	GlobalPlayerVariables.spectatorManager.switch_spectator(multiplayerAuthorityID)
+	GlobalPlayerVariables.spectatorManager.switch_player_to_spectator(multiplayerAuthorityID)
 	queue_free()
 	pass

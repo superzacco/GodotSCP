@@ -128,8 +128,7 @@ _data = {
 &"walking_Bob": SubResource("Animation_akv28")
 }
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "teslashockable"]]
-physics_interpolation_mode = 1
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0

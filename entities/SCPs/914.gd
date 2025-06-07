@@ -91,7 +91,6 @@ func activate():
 	
 	for inputItem in itemsInInput:
 		var outputItem: PackedScene = null
-		var nonAffectedItem = null
 		
 		match knobSetting:
 			0:
@@ -110,6 +109,7 @@ func activate():
 				if veryFineDict.has(inputItem.itemName):
 					outputItem = veryFineDict[inputItem.itemName]
 		
+		print(outputItem)
 		if outputItem != null:
 			var spawnedItem = outputItem.instantiate()
 			get_tree().root.add_child(spawnedItem)
@@ -141,12 +141,10 @@ func _on_knob_area_body_exited(body: Node3D) -> void:
 		nearControls = false
 
 
-func _on_input_body_entered(body: Node3D) -> void:
-	if body.is_class("Item"):
-		itemsInInput.append(body)
-func _on_input_body_exited(body: Node3D) -> void:
-	if body.is_class("Item"):
-		itemsInInput.erase(body)
+func _on_input_body_entered(body: Item) -> void:
+	itemsInInput.append(body)
+func _on_input_body_exited(body: Item) -> void:
+	itemsInInput.erase(body)
 
 
 func _on_knob_area_area_entered(area: Area3D) -> void:

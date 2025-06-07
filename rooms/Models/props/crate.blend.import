@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://vgrsv5rqwfkg"
-path="res://.godot/imported/crate.blend-49a799dda3bdb5bc5f8c2a141a719126.scn"
+path="res://.godot/imported/crate.blend-79da4978bb7bb00cb0fa0f25f452bdec.scn"
 
 [deps]
 
-source_file="res://rooms/models/props/crate.blend"
-dest_files=["res://.godot/imported/crate.blend-49a799dda3bdb5bc5f8c2a141a719126.scn"]
+source_file="res://rooms/Models/props/crate.blend"
+dest_files=["res://.godot/imported/crate.blend-79da4978bb7bb00cb0fa0f25f452bdec.scn"]
 
 [params]
 

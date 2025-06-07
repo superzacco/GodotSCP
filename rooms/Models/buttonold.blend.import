@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b20u655cpjb6"
-path="res://.godot/imported/buttonold.blend-211ff39bf2ec6f85e7704ba2232bd4c8.scn"
+path="res://.godot/imported/buttonold.blend-a3d23e2f6aeb961c32250b89e8e6e386.scn"
 
 [deps]
 
-source_file="res://rooms/models/buttonold.blend"
-dest_files=["res://.godot/imported/buttonold.blend-211ff39bf2ec6f85e7704ba2232bd4c8.scn"]
+source_file="res://rooms/Models/buttonold.blend"
+dest_files=["res://.godot/imported/buttonold.blend-a3d23e2f6aeb961c32250b89e8e6e386.scn"]
 
 [params]
 

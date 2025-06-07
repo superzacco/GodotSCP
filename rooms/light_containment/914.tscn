@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dw3hwsiih5tal"]
 
-[ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/models/chamber914.blend" id="1_lb7g5"]
+[ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
 [ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="2_kyeim"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_0gwk4"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="4_kyeim"]
@@ -44,33 +44,35 @@ shadow_enabled = true
 spot_range = 12.0
 spot_angle = 80.0
 
-[node name="big_door" parent="." instance=ExtResource("2_kyeim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175171, 0.338732, -2.1857)
-
-[node name="Keycardbutton" parent="big_door" node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_0gwk4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.47861, 0, -2.8)
-doorToControl = NodePath("..")
-keycardLevel = 3
-
-[node name="Keycardbutton2" parent="big_door" node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_0gwk4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.76027, -0.0583544, 0.819256)
-doorToControl = NodePath("..")
-keycardLevel = 3
-
 [node name="Door" parent="." instance=ExtResource("4_kyeim")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.7, 0.0422479, -4.8)
 
-[node name="Keycardbutton" parent="Door" index="1"]
-keycardLevel = 3
+[node name="Keycardbutton" parent="Door" index="1" node_paths=PackedStringArray("doorsToControl")]
+doorsToControl = [NodePath("..")]
+keycardLevel = 2
 
-[node name="Keycardbutton2" parent="Door" index="2"]
-keycardLevel = 3
+[node name="Keycardbutton2" parent="Door" index="2" node_paths=PackedStringArray("doorsToControl")]
+doorsToControl = [NodePath("..")]
+keycardLevel = 2
 
 [node name="scp914" parent="." instance=ExtResource("5_0gwk4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71232, 1.11663, 7)
 
 [node name="RoomArea" parent="." instance=ExtResource("6_f0hjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0.142248, 0)
+
+[node name="big_door" parent="." instance=ExtResource("2_kyeim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227918, 0.349546, -2.09141)
+
+[node name="Keycardbutton" parent="big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_0gwk4")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.81831, -0.296154, 0.697454)
+doorsToControl = [null]
+keycardLevel = 2
+
+[node name="Keycardbutton2" parent="big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_0gwk4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.43537, -0.196154, -2.80255)
+doorsToControl = [null]
+keycardLevel = 2
 
 [editable path="Door"]
 [editable path="Door/door"]

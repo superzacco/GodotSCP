@@ -6,6 +6,7 @@ var fading: bool = false
 func _ready() -> void:
 	GlobalPlayerVariables.interactionText = self
 
+@warning_ignore("shadowed_variable_base_class")
 func display(text: String):
 	fading = false
 	self.modulate.a = 1.0

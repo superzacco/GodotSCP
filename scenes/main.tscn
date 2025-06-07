@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=32 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="3_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/light_containment/LConToHconCheckpoint.tscn" id="4_fv21b"]
 [ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914.tscn" id="4_og1vs"]
 [ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
@@ -22,7 +23,7 @@
 [ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="18_og1vs"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
 [ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://util/music_ambiance_manager.gd" id="18_pm3ni"]
-[ext_resource type="Script" uid="uid://dd4rvwmhcar75" path="res://multiplayer/spectator_screen.gd" id="19_2f3dj"]
+[ext_resource type="Script" uid="uid://dd4rvwmhcar75" path="res://multiplayer/spectator_manager.gd" id="19_2f3dj"]
 [ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
 [ext_resource type="AudioStream" uid="uid://bs5rf6svm0df2" path="res://audio/ambient/LCZmusic.ogg" id="19_y6deb"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="20_5he1u"]
@@ -39,6 +40,7 @@ navigationRegion = NodePath("Facility/FacilityRegion")
 doorsNode = NodePath("Facility/Doors")
 door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
+LContoHConCheckpoint = ExtResource("4_fv21b")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])

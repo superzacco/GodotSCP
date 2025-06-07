@@ -1,6 +1,6 @@
 extends Node
 
-var console: Console
+var console 
 
 var errorColor: String = "FF0000"
 

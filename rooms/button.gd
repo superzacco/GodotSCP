@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var doorToControl: Node3D
+@export var doorsToControl: Array[Door]
 @export var rejectionText: String
 @export var wontOpen: bool
 
@@ -10,7 +10,7 @@ extends Node3D
 
 func on_pressed():
 	
-	if doorToControl == null:
+	if doorsToControl.size() <= 0:
 		return
 	
 	if wontOpen:
@@ -19,9 +19,8 @@ func on_pressed():
 		return
 	
 	if buttonType == 0:
-		if doorToControl != null:
-			doorToControl.toggle_door()
-			$Sound.play()
+		open_door()
+		$Sound.play()
 	elif buttonType == 1:
 		var equippedKeycard: Keycard
 		
@@ -37,7 +36,12 @@ func on_pressed():
 				$Fail.play()
 				
 			else:
-				doorToControl.toggle_door()
+				open_door()
 				$Sound.play()
 			
 			GlobalPlayerVariables.inventory.clear_equip()
+
+
+func open_door():
+	for door in doorsToControl:
+		door.toggle_door()

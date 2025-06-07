@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dlpir7u7sfxhv"]
 
-[ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/models/big_door.blend" id="1_ol6ec"]
-[ext_resource type="Script" uid="uid://nmki5prdfxxp" path="res://rooms/big_door.gd" id="2_xpv6d"]
+[ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="1_ol6ec"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="2_xee4u"]
 [ext_resource type="AudioStream" uid="uid://cxwqfxlhtk2nt" path="res://audio/rooms/BigDoorOpen0.ogg" id="3_xee4u"]
 [ext_resource type="AudioStream" uid="uid://c57fjv4406o4m" path="res://audio/rooms/BigDoorOpen1.ogg" id="4_eb36k"]
 [ext_resource type="AudioStream" uid="uid://dhl6nvhuq6raa" path="res://audio/rooms/BigDoorOpen2.ogg" id="5_o7dva"]
@@ -21,20 +21,16 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="big_door" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_ol6ec")]
-script = ExtResource("2_xpv6d")
+script = ExtResource("2_xee4u")
 animationPlayer = NodePath("AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("3_xee4u"), ExtResource("4_eb36k"), ExtResource("5_o7dva")])
 closeSounds = Array[AudioStream]([ExtResource("6_73gmf"), ExtResource("7_j54al"), ExtResource("8_gdwp7")])
 
-[node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 2.1, 0)
-bones/2/position = Vector3(-1.58546e-07, -2.1, 0)
-
 [node name="DoorR-col" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 4.35, 0)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
 
 [node name="DoorL-col" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -2.1, 0)
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
 
 [node name="Open" type="AudioStreamPlayer3D" parent="." index="3"]
 

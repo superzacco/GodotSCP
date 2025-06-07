@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ucv3eab8c7gn" path="res://entities/ui/invoutline.png" id="3_aow1a"]
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="4_642a2"]
 
+
 [sub_resource type="LabelSettings" id="LabelSettings_aow1a"]
 font = ExtResource("4_642a2")
 font_size = 12

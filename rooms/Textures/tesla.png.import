@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddgk7tlgtfo5o"
-path.s3tc="res://.godot/imported/tesla.png-6e9a3b45dcda48c8c0357294bf58af12.s3tc.ctex"
+path.s3tc="res://.godot/imported/tesla.png-b5d6dd3e3feeed6af0fb3f04126fb27f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rooms/textures/tesla.png"
-dest_files=["res://.godot/imported/tesla.png-6e9a3b45dcda48c8c0357294bf58af12.s3tc.ctex"]
+source_file="res://rooms/Textures/tesla.png"
+dest_files=["res://.godot/imported/tesla.png-b5d6dd3e3feeed6af0fb3f04126fb27f.s3tc.ctex"]
 
 [params]
 

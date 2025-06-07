@@ -1,5 +1,4 @@
 extends Control
-class_name Console
 
 var commandHistoryIdx: int
 var commandHistory: Array[PackedStringArray]
