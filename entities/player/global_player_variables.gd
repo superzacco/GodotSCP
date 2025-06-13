@@ -6,6 +6,7 @@ var interactionText: InteractionText
 var facilityManager: FacilityManager
 var interactionScript: Interaction
 var spectatorManager: SpectatorManager
+var ambienceManager: AmbienceManager
 
 
 # EXPLICITLY player related
@@ -17,7 +18,9 @@ var lookingEnabled: bool = true
 var sprintJuice: float = 100
 var blinkJuice: float = 100
 var sensitivity: float = 0.5
+var blinkQuickened: bool = false
 
+var nearbyRoomLights: Array[RoomLight]
 
 
 

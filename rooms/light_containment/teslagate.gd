@@ -54,8 +54,8 @@ func shock():
 	$AnimationPlayer.play("teslafire")
 	
 	if thingsInKillBox.size() > 0:
-		for item in thingsInKillBox:
-			print("shocking " + str(item.name))
+		for item: Player in thingsInKillBox:
+			item.on_death()
 
 
 func reset():

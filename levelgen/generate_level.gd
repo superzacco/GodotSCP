@@ -103,7 +103,6 @@ func generate_map():
 	generate_nav_mesh()
 	
 	GlobalPlayerVariables.facilityManager.rooms = finishedRooms
-	GlobalPlayerVariables.facilityManager.hiderooms()
 
 
 func generate_long_hall(zOffset):
@@ -135,7 +134,7 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	
 	for i in amountOfConnectingHalls:
 		var distanceAddedBetween: int = randi_range(1,3) + randi_range(1,3)
-		if i == 0: distanceAddedBetween = randi_range(1,3)
+		if i == 0: distanceAddedBetween = randi_range(0,3)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
@@ -317,9 +316,10 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 		
 		replacableRoomArray[roomToReplace].queue_free()
 		replacableRoomArray.remove_at(roomToReplace)
+		
 		finishedRooms.append(r)
-		finishedRoomGrid[roomToReplacePos.x/15][roomToReplacePos.z/15] = r
 		finishedRooms.erase(roomToReplace)
+		finishedRoomGrid[roomToReplacePos.x/15][roomToReplacePos.z/15] = r
 #endregion
 
 

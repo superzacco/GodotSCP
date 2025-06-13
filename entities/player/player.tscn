@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=33 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
+[ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="2_we0b7"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" uid="uid://c7mscsdfl6h54" path="res://entities/player/player_step_sounds.gd" id="9_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://iihneek57gsf" path="res://audio/steps/Step7.ogg" id="9_ghoj8"]
 [ext_resource type="Script" uid="uid://bvakpwqlgmmly" path="res://entities/player/nearby_rooms.gd" id="18_b2kln"]
+[ext_resource type="Script" uid="uid://bwqlwuy5t4jhx" path="res://entities/player/nearby_lights.gd" id="18_mtric"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -34,6 +36,10 @@ properties/1/replication_mode = 1
 radial_segments = 8
 rings = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtric"]
+albedo_texture = ExtResource("2_we0b7")
+uv1_scale = Vector3(2, 2, 2)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ckrbs"]
 height = 2.2
 
@@ -43,6 +49,10 @@ radius = 0.1
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_smri4"]
 height = 3.0
 radius = 1.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_we0b7"]
+height = 15.0
+radius = 15.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3wlsy"]
 height = 10.0
@@ -128,7 +138,7 @@ _data = {
 &"walking_Bob": SubResource("Animation_akv28")
 }
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera") groups=["player", "spectatable", "teslashockable"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator") groups=["player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -145,6 +155,7 @@ moveSpeedDesired = 25.0
 sprintSpeedDesired = 50.0
 sprintDepletionRate = 20.0
 sprintReplenishRate = 15.0
+blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_b2kln")
@@ -154,6 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cast_shadow = 0
 gi_mode = 0
 mesh = SubResource("CapsuleMesh_3mim6")
+material = SubResource("StandardMaterial3D_mtric")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -205,7 +217,9 @@ stepSounds = Array[AudioStream]([ExtResource("2_yqrof"), ExtResource("3_3wlsy"),
 [node name="RayCast3D" type="RayCast3D" parent="PlayerStepSounds"]
 
 [node name="Steps" type="AudioStreamPlayer3D" parent="PlayerStepSounds"]
-volume_db = -3.0
+volume_db = -20.0
+bus = &"Sound Effects"
+attenuation_filter_db = 0.0
 
 [node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("inventoryNode", "player", "interactionSprite", "spriteEndPoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -224,8 +238,18 @@ shape = SubResource("CylinderShape3D_smri4")
 [node name="PickItem" type="AudioStreamPlayer3D" parent="InteractionZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = ExtResource("8_26q78")
+attenuation_model = 3
 volume_db = -6.0
 max_polyphony = 3
+bus = &"Sound Effects"
+attenuation_filter_db = 0.0
+
+[node name="NearbyLights" type="Area3D" parent="."]
+script = ExtResource("18_mtric")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_we0b7")
 
 [node name="NearbyRooms" type="Area3D" parent="."]
 script = ExtResource("18_b2kln")
@@ -242,5 +266,7 @@ libraries = {
 
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]
+[connection signal="area_entered" from="NearbyLights" to="NearbyLights" method="_on_area_entered"]
+[connection signal="area_exited" from="NearbyLights" to="NearbyLights" method="_on_area_exited"]
 [connection signal="area_entered" from="NearbyRooms" to="NearbyRooms" method="_on_area_entered"]
 [connection signal="area_exited" from="NearbyRooms" to="NearbyRooms" method="_on_area_exited"]

@@ -16,6 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="Vertical Pivot" type="Node3D" parent="HorizontalPivot"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/Vertical Pivot"]
+collision_mask = 513
 spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="HorizontalPivot/Vertical Pivot/SpringArm3D"]

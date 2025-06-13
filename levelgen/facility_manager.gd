@@ -10,12 +10,23 @@ var scp173: CharacterBody3D
 
 func _ready() -> void:
 	GlobalPlayerVariables.facilityManager = self 
+	flicker_nearby_lights()
 
-func hiderooms():
-	pass
-	#var selectedRooms
-	#for i in 5:
-		#selectedRooms = rooms[randi_range(0, rooms.size()-1)]
-	#
-	#for room in selectedRooms:
-		#room.hide()
+
+func flicker_nearby_lights():
+	$LightTimer.start(randf_range(30, 50))
+	await $LightTimer.timeout
+	
+	var playerNearbyLights = GlobalPlayerVariables.nearbyRoomLights
+	if playerNearbyLights.size() != 0:
+		playerNearbyLights[randi_range(0, playerNearbyLights.size()-1)].start_flicker()
+		if ZFunc.randInPercent(50):
+			playerNearbyLights[randi_range(0, playerNearbyLights.size()-1)].start_flicker()
+		
+		flicker_nearby_lights()
+
+
+func flicker_all_nearby_lights():
+	for light: RoomLight in GlobalPlayerVariables.nearbyRoomLights:
+		if light != null:
+			light.start_flicker()

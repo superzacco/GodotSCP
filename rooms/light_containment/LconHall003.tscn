@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuqrl2w7xfb23"]
+[gd_scene load_steps=7 format=3 uid="uid://cuqrl2w7xfb23"]
 
-[ext_resource type="PackedScene" uid="uid://cnw814awf5v3a" path="res://rooms/models/LConHall003.blend" id="1_siogi"]
+[ext_resource type="PackedScene" uid="uid://cnw814awf5v3a" path="res://rooms/Models/LConHall003.blend" id="1_siogi"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_oqvsy"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="3_rkwrc"]
-[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="4_rm72h"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="5_xbm6k"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="6_oqvsy"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="6_rkwrc"]
 
 [node name="LConHall003" type="Node3D"]
 
@@ -13,30 +14,6 @@
 [node name="StaticBody3D" parent="LConHall003/Concrete floor" index="0"]
 collision_layer = 3
 collision_mask = 3
-
-[node name="OmniLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.6, 3.6)
-light_specular = 0.0
-spot_range = 22.346
-spot_angle = 75.0
-
-[node name="OmniLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.6, -3.6)
-light_specular = 0.0
-spot_range = 22.346
-spot_angle = 75.0
-
-[node name="OmniLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.7, 2.2, -3.6)
-light_specular = 0.0
-spot_range = 22.346
-spot_angle = 70.0
-
-[node name="OmniLight3D4" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.7, 2.2, 3.6)
-light_specular = 0.0
-spot_range = 22.346
-spot_angle = 70.0
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
@@ -49,24 +26,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
 [node name="point2" parent="Points" instance=ExtResource("2_oqvsy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
+[node name="RoomArea" parent="." instance=ExtResource("5_xbm6k")]
+
+[node name="shelf01" parent="." instance=ExtResource("6_oqvsy")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.85199, 0.474241, 4.88127)
+
+[node name="shelf02" parent="." instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, 2.05555)
+
+[node name="shelf03" parent="." instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, -5.25743)
+
+[node name="shelf04" parent="." instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -3.0835, 0.474241, -2.0483)
+
 [node name="keycard00" parent="." instance=ExtResource("3_rkwrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 4)
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.38368, -0.0650055, -5.13172)
+chanceToSpawn = 60.0
 
 [node name="keycard01" parent="." instance=ExtResource("3_rkwrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 3)
+transform = Transform3D(0.972598, 0, 0.232495, 0, 1, 0, -0.232495, 0, 0.972598, -4.67776, -0.660448, 4.52471)
+chanceToSpawn = 60.0
 
-[node name="keycard02" parent="." instance=ExtResource("3_rkwrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 2)
+[node name="Light2" parent="." instance=ExtResource("6_rkwrc")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 4.84813, 4)
+brightness = 0.35
 
-[node name="keycard001" parent="." instance=ExtResource("4_rm72h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+[node name="Light3" parent="." instance=ExtResource("6_rkwrc")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 4.84813, -4)
+brightness = 0.35
 
-[node name="keycard002" parent="." instance=ExtResource("4_rm72h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.6, 1)
+[node name="Light4" parent="." instance=ExtResource("6_rkwrc")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -3.7, 2.34874, 4)
 
-[node name="keycard003" parent="." instance=ExtResource("4_rm72h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 1)
-
-[node name="RoomArea" parent="." instance=ExtResource("5_xbm6k")]
+[node name="Light5" parent="." instance=ExtResource("6_rkwrc")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -3.7, 2.34874, -4)
 
 [editable path="LConHall003"]

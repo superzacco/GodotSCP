@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqr438jun6j8w"]
+[gd_scene load_steps=5 format=3 uid="uid://cqr438jun6j8w"]
 
 [ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_0nrx4"]
 
@@ -7,6 +7,11 @@ friction = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
 radius = 1.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gdl2c"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Item" type="RigidBody3D" groups=["item"]]
 collision_layer = 2
@@ -19,3 +24,6 @@ script = ExtResource("1_0nrx4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_2htau")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_gdl2c")

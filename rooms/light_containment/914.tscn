@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw3hwsiih5tal"]
+[gd_scene load_steps=8 format=3 uid="uid://dw3hwsiih5tal"]
 
 [ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
 [ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="2_kyeim"]
@@ -6,46 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="4_kyeim"]
 [ext_resource type="PackedScene" uid="uid://ckpckhl646a40" path="res://entities/SCPs/scp_914.tscn" id="5_0gwk4"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="6_f0hjl"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="7_dch4f"]
 
 [node name="914" type="StaticBody3D" groups=["room"]]
 
 [node name="chamber914" parent="." instance=ExtResource("1_lb7g5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142248, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, -5)
-light_indirect_energy = 3.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 12.0
-spot_angle = 80.0
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 3)
-light_indirect_energy = 3.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 12.0
-spot_angle = 80.0
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8, 3, 3)
-light_indirect_energy = 3.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 12.0
-spot_angle = 80.0
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7, 1.5, -4.4)
-light_indirect_energy = 3.0
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 12.0
-spot_angle = 80.0
-
 [node name="Door" parent="." instance=ExtResource("4_kyeim")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.7, 0.0422479, -4.8)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Keycardbutton" parent="Door" index="1" node_paths=PackedStringArray("doorsToControl")]
 doorsToControl = [NodePath("..")]
@@ -66,13 +41,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0227918, 0.349546, -2.0914
 
 [node name="Keycardbutton" parent="big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_0gwk4")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.81831, -0.296154, 0.697454)
-doorsToControl = [null]
+doorsToControl = [NodePath("..")]
 keycardLevel = 2
 
 [node name="Keycardbutton2" parent="big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_0gwk4")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.43537, -0.196154, -2.80255)
-doorsToControl = [null]
+doorsToControl = [NodePath("..")]
 keycardLevel = 2
+
+[node name="Light" parent="." instance=ExtResource("7_dch4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46903, 1.85138, -4.53339)
+canFlicker = false
+brightness = 0.5
+
+[node name="Light2" parent="." instance=ExtResource("7_dch4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00334692, 2.35849, -5)
+canFlicker = false
+brightness = 0.5
+
+[node name="Light3" parent="." instance=ExtResource("7_dch4f")]
+transform = Transform3D(0.971961, -0.235142, 0, 0.235142, 0.971961, 0, 0, 0, 1, 0.000952677, 4.6571, 2)
+canFlicker = false
+brightness = 0.6
+
+[node name="Light4" parent="." instance=ExtResource("7_dch4f")]
+transform = Transform3D(0.981403, 0.191957, 0, -0.191957, 0.981403, 0, 0, 0, 1, 7.00335, 4.64985, 2)
+canFlicker = false
+brightness = 0.6
 
 [editable path="Door"]
 [editable path="Door/door"]

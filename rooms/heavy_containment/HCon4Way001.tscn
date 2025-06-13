@@ -1,33 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjfp5f2ovtgme"]
+[gd_scene load_steps=5 format=3 uid="uid://cjfp5f2ovtgme"]
 
-[ext_resource type="PackedScene" uid="uid://b7r2j3asvavg0" path="res://rooms/models/HCon4Way001.blend" id="1_m68ag"]
+[ext_resource type="PackedScene" uid="uid://b7r2j3asvavg0" path="res://rooms/Models/HCon4Way001.blend" id="1_m68ag"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_a6naf"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_g01h6"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_knqes"]
 
 [node name="HCon4Way001" type="Node3D"]
 
 [node name="HCon4Way001" parent="." instance=ExtResource("1_m68ag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
-light_energy = 0.5
-light_specular = 0.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
-light_energy = 0.5
-light_specular = 0.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 1, -1.74846e-07)
-light_energy = 0.5
-light_specular = 0.0
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 1, 1.74846e-07)
-light_energy = 0.5
-light_specular = 0.0
 
 [node name="Points" type="Node3D" parent="."]
 
@@ -44,3 +25,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.5, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, -1.14512, 3.27835e-07)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_g01h6")]
+
+[node name="Light" parent="." instance=ExtResource("4_knqes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84334, 4.5)
+
+[node name="Light2" parent="." instance=ExtResource("4_knqes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84334, -4.5)
+
+[node name="Light3" parent="." instance=ExtResource("4_knqes")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.5, 1.84334, -1.96701e-07)
+
+[node name="Light4" parent="." instance=ExtResource("4_knqes")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 1.84334, 1.96701e-07)

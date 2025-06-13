@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxnhftdwber4s"]
+
+[ext_resource type="PackedScene" uid="uid://dukyu6qamdkkx" path="res://rooms/Models/LConHallTestingOffice001.blend" id="1_kh10s"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="2_xaxhs"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="3_xaxhs"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_t6k5v"]
+[ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="5_rl33a"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="6_ywymj"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="7_71gor"]
+[ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="8_ywymj"]
+[ext_resource type="PackedScene" uid="uid://dyg2xivtl3e7y" path="res://entities/items/tools/gas_mask.tscn" id="9_71gor"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="10_i5yya"]
+
+[node name="LConTestingRoom" type="Node3D" groups=["room"]]
+
+[node name="LConHallTestingOffice001" parent="." instance=ExtResource("1_kh10s")]
+
+[node name="Door" parent="." instance=ExtResource("2_xaxhs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.70635, 0.0519332, 4.50022)
+
+[node name="Keycardbutton" parent="Door" index="1"]
+keycardLevel = 1
+
+[node name="Keycardbutton2" parent="Door" index="2"]
+keycardLevel = 1
+
+[node name="Door" parent="Door" instance=ExtResource("3_xaxhs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.91068, -0.00561923, -2.0932)
+
+[node name="Light" parent="." instance=ExtResource("4_t6k5v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.40891, 1.85463, 4.1678)
+
+[node name="Light4" parent="." instance=ExtResource("4_t6k5v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.40891, 1.85463, 0.385399)
+
+[node name="Light5" parent="." instance=ExtResource("4_t6k5v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.43611, 1.85463, -4.533)
+
+[node name="Light2" parent="." instance=ExtResource("4_t6k5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00159264, 1.85463, 4.1678)
+
+[node name="Light3" parent="." instance=ExtResource("4_t6k5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49397, 1.85463, -3.76875)
+
+[node name="bench" parent="." instance=ExtResource("5_rl33a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.01437, -0.637891, -4.26905)
+
+[node name="shelf01" parent="." instance=ExtResource("6_ywymj")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 5.9925, 0.788387, 1.91277)
+
+[node name="table" parent="." instance=ExtResource("7_71gor")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 3.89911, -0.659134, -0.905554)
+
+[node name="keycard002" parent="." instance=ExtResource("8_ywymj")]
+transform = Transform3D(-0.433171, 0, 0.901312, 0, 1, 0, -0.901312, 0, -0.433171, 2.76172, -0.263169, -0.645106)
+
+[node name="GasMask" parent="." instance=ExtResource("9_71gor")]
+transform = Transform3D(-0.436723, 0, 0.899596, 0, 1, 0, -0.899596, 0, -0.436723, 5.90275, 0.273182, 1.57008)
+chanceToSpawn = 70.0
+
+[node name="keycard00" parent="." instance=ExtResource("10_i5yya")]
+transform = Transform3D(-0.945411, 0, -0.325882, 0, 1, 0, 0.325882, 0, -0.945411, -3.64642, -0.587569, -4.11084)
+chanceToSpawn = 25.0
+
+[editable path="Door"]
+[editable path="Door/door"]

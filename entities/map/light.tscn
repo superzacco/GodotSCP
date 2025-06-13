@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfpkrpoexgo65"]
+
+[ext_resource type="Script" uid="uid://cb7v26egokpp2" path="res://entities/map/light.gd" id="1_gghi3"]
+[ext_resource type="AudioStream" uid="uid://c0j61fvejxs66" path="res://audio/rooms/Light0.ogg" id="2_hxvnp"]
+[ext_resource type="AudioStream" uid="uid://deryhtky2s77l" path="res://audio/rooms/Light1.ogg" id="3_a1pd1"]
+[ext_resource type="AudioStream" uid="uid://cbnuxtx4nx5yn" path="res://audio/rooms/Light2.ogg" id="4_hr5o2"]
+[ext_resource type="PackedScene" uid="uid://dj80x648oqo2y" path="res://rooms/Models/props/emergencylight.blend" id="5_a1pd1"]
+
+[sub_resource type="Animation" id="Animation_gghi3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D/OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.02]
+}
+
+[sub_resource type="Animation" id="Animation_wx7td"]
+resource_name = "flicker001"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.197975, 0.259414, 0.333333, 0.433333, 0.466667, 0.59595, 0.939498, 0.988577, 1.2, 1.23333, 1.5673, 1.60063, 1.76667, 1.8, 1.8828, 1.91613, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.25, 0.02, 0.25, 0.02, 0.02, 0.1, 0.2, 0.01, 0.01, 0.1, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.2, 0.1, 0.25]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.433333, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spark"
+}, {
+"args": [],
+"method": &"spark"
+}, {
+"args": [],
+"method": &"spark"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0251858, 0.0666667, 0.162798, 0.196128, 0.259414, 0.427925, 0.461255, 0.59595, 1.19307, 1.2264, 1.55821, 1.59154, 1.76519, 1.79852, 1.87682, 1.91015, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.02, 0.5, 0.02, 0.02, 0.0, 0.02, 0.02, 0.0, 0.01, 0.02, 0.0, 0.02, 0.0, 0.02, 0.0, 0.02, 0.0, 0.02]
+}
+
+[sub_resource type="Animation" id="Animation_hxvnp"]
+resource_name = "flicker002"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.185786, 0.270602, 0.3, 0.892582, 1.3, 1.3472, 1.5, 1.56667, 2.1, 2.49196, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.25, 0.2, 0.3, 0.05, 0.1, 0.12, 0.1, 0.1, 0.05, 0.1, 0.2, 0.25]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spark"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.267453, 0.300783, 1.2954, 1.32873, 2.09776),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.02, 0.5, 0.02, 0.02, 0.0, 0.02, 0.0, 0.02]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3vq8"]
+_data = {
+&"RESET": SubResource("Animation_gghi3"),
+&"flicker001": SubResource("Animation_wx7td"),
+&"flicker002": SubResource("Animation_hxvnp")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1pd1"]
+
+[node name="Light" type="Node3D" groups=["roomlight"]]
+script = ExtResource("1_gghi3")
+flickerSounds = Array[AudioStream]([ExtResource("2_hxvnp"), ExtResource("3_a1pd1"), ExtResource("4_hr5o2")])
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.450872, 0)
+light_energy = 0.1
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.2
+spot_range = 15.0
+spot_angle = 80.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.50076e-10, -0.0194474)
+light_energy = 0.02
+light_specular = 0.1
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s3vq8")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -6.0
+max_polyphony = 2
+
+[node name="emergencylight" parent="." instance=ExtResource("5_a1pd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_a1pd1")

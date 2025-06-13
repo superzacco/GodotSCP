@@ -1,22 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2ubs0d7q4xbr"]
+[gd_scene load_steps=6 format=3 uid="uid://b2ubs0d7q4xbr"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_frg2d"]
 [ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_ee4n3"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_ee4n3"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_3bxvg"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_1nm3e"]
 
 [node name="LCon3Way001" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_frg2d")
 
 [node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]
-
-[node name="Light" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 8.74228e-08, 8.74228e-08, -8.74228e-08, -4.37114e-08, 1, 8.74228e-08, -1, -4.37114e-08, 8.74232e-08, 3.99916, -1)
-light_specular = 0.0
-shadow_enabled = true
-spot_range = 12.0
-spot_angle = 85.0
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -31,3 +25,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("4_3bxvg")]
+
+[node name="Light2" parent="." instance=ExtResource("5_1nm3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74232e-08, 4.85731, -1)
+brightness = 0.5

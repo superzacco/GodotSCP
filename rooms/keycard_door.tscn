@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://7l4nci6wjc8r"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_ofwoi"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/models/door.blend" id="2_a3yfc"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="2_a3yfc"]
 [ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/rooms/DoorOpen1.ogg" id="3_ds5uy"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_g8fdx"]
 [ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/rooms/DoorOpen2.ogg" id="4_1p44s"]
@@ -32,13 +32,13 @@ transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-
 collision_layer = 256
 collision_mask = 256
 
-[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_g8fdx")]
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_g8fdx")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1, 0, 0.2)
-doorToControl = NodePath("..")
+doorsToControl = [NodePath("..")]
 
-[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorToControl") instance=ExtResource("3_g8fdx")]
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_g8fdx")]
 transform = Transform3D(1, 3.82137e-15, -1.74846e-07, 1.14641e-14, 1, 8.74228e-08, 1.74846e-07, -8.74228e-08, 1, -1.1, 0, -0.2)
-doorToControl = NodePath("..")
+doorsToControl = [NodePath("..")]
 
 [node name="Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_g8fdx")

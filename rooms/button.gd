@@ -4,13 +4,18 @@ extends Node3D
 @export var rejectionText: String
 @export var wontOpen: bool
 
+@export var extraToControl: Node3D
+
 # button 0, keycardbutton 1
 @export_enum("Button", "KeycardButton") var buttonType: int = 0
 @export var keycardLevel: int = 0
 
 func on_pressed():
+	if extraToControl != null:
+		extraToControl.activate()
 	
-	if doorsToControl.size() <= 0:
+	if doorsToControl.size() <= 0 or doorsToControl[0] == null:
+		$Sound.play()
 		return
 	
 	if wontOpen:

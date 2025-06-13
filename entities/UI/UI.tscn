@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=16 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/ui/inventory_screen.tscn" id="2_suasf"]
@@ -7,8 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cnmyvh6rwbwrl" path="res://entities/ui/heldItem.png" id="3_rqao8"]
 [ext_resource type="Script" uid="uid://csco5m1d83kxb" path="res://entities/ui/sprintandblinkmeters.gd" id="4_3l1o5"]
 [ext_resource type="Texture2D" uid="uid://cwtnu1jfg1yq2" path="res://entities/ui/barssmall.png" id="8_ssjkm"]
+[ext_resource type="Texture2D" uid="uid://2krnocco57xw" path="res://entities/ui/blinkicon.png" id="8_u7ke3"]
 [ext_resource type="Texture2D" uid="uid://dgbidklhovw1r" path="res://entities/ui/outlinesmall.png" id="9_bkcom"]
+[ext_resource type="Texture2D" uid="uid://c3dq2bagvoda4" path="res://entities/ui/blinkiconred.png" id="9_lpd0h"]
 [ext_resource type="Texture2D" uid="uid://bdh3xaxpbh8i2" path="res://entities/player/vignette.png" id="9_rqao8"]
+[ext_resource type="Texture2D" uid="uid://r4xwr1jt8e56" path="res://entities/ui/runicon.png" id="10_c6tuf"]
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="10_t3by6"]
 [ext_resource type="Texture2D" uid="uid://b23heykbvlrkx" path="res://entities/ui/brightbarssmall.png" id="10_txpl5"]
 [ext_resource type="Script" uid="uid://df3nr6nsrp5kn" path="res://entities/ui/screen_text.gd" id="11_uwlwq"]
@@ -93,7 +96,7 @@ offset_bottom = 26.0
 grow_horizontal = 0
 horizontal_alignment = 2
 
-[node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter")]
+[node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter", "blinkIcon")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -102,44 +105,39 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 script = ExtResource("4_3l1o5")
-blinkMeter = NodePath("Outline2/Blink Meter")
-sprintMeter = NodePath("Outline/Sprint Meter")
+blinkMeter = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Outline2/Blink Meter")
+sprintMeter = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Outline/Sprint Meter")
+blinkIcon = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect")
+normalBlinkIcon = ExtResource("8_u7ke3")
+quickenedBlinkIcon = ExtResource("9_lpd0h")
 
-[node name="Outline" type="TextureRect" parent="Meters"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = -2.0
-offset_right = 302.0
-offset_bottom = 28.0
-texture = ExtResource("9_bkcom")
-
-[node name="Sprint Meter" type="TextureProgressBar" parent="Meters/Outline"]
+[node name="MarginContainer" type="MarginContainer" parent="Meters"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -139.265
-offset_top = -11.21
-offset_right = 138.735
-offset_bottom = 10.79
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(192, 20)
-step = 5.0
-value = 100.0
-texture_progress = ExtResource("8_ssjkm")
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 320.0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="Outline2" type="TextureRect" parent="Meters"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = -40.0
-offset_right = 302.0
-offset_bottom = -10.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Meters/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Meters/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("8_u7ke3")
+expand_mode = 2
+
+[node name="Outline2" type="TextureRect" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
 texture = ExtResource("9_bkcom")
 
-[node name="Blink Meter" type="TextureProgressBar" parent="Meters/Outline2"]
+[node name="Blink Meter" type="TextureProgressBar" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer2/Outline2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -156,6 +154,36 @@ pivot_offset = Vector2(192, 20)
 step = 5.0
 value = 100.0
 texture_progress = ExtResource("10_txpl5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Meters/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_c6tuf")
+expand_mode = 2
+
+[node name="Outline" type="TextureRect" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_bkcom")
+
+[node name="Sprint Meter" type="TextureProgressBar" parent="Meters/MarginContainer/VBoxContainer/HBoxContainer/Outline"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.265
+offset_top = -11.21
+offset_right = 138.735
+offset_bottom = 10.79
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(192, 20)
+step = 5.0
+value = 100.0
+texture_progress = ExtResource("8_ssjkm")
 
 [node name="ScreenText" type="Label" parent="."]
 layout_mode = 1

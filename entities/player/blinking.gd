@@ -1,4 +1,5 @@
 extends Sprite3D
+class_name PlayerBlinking
 
 @export var eyeDrynessPerSecond: float
 var blinkHeld: bool
@@ -11,7 +12,10 @@ func _process(delta: float) -> void:
 	if !GlobalPlayerVariables.blinkingEnabled:
 		return
 	
-	GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
+	if GlobalPlayerVariables.blinkQuickened:
+		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta * 3
+	else:
+		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
 	
 	if GlobalPlayerVariables.blinkJuice <= 0:
 		if GlobalPlayerVariables.blinkSpriteEnabled:

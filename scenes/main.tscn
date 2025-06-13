@@ -1,9 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=46 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
-[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="3_pm3ni"]
-[ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/light_containment/LConToHconCheckpoint.tscn" id="4_fv21b"]
+[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://entities/map/spawnroom.tscn" id="3_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/LConToHconCheckpoint.tscn" id="4_fv21b"]
 [ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914.tscn" id="4_og1vs"]
 [ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bckxtfpowonvq" path="res://rooms/light_containment/LConBendGas001.tscn" id="7_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="7_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="8_2f3dj"]
+[ext_resource type="PackedScene" uid="uid://dxnhftdwber4s" path="res://rooms/light_containment/LConTestingChamber001.tscn" id="8_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="9_yq6so"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="10_fv21b"]
 [ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="11_tel4y"]
@@ -30,6 +31,19 @@
 [ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
 [ext_resource type="PackedScene" uid="uid://ci25vwa1xs255" path="res://entities/player/spectatorCamera.tscn" id="20_yq6so"]
 [ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
+[ext_resource type="AudioStream" uid="uid://b124ybbn0bjvr" path="res://audio/ambient/general/Ambient0.ogg" id="26_cjqg0"]
+[ext_resource type="AudioStream" uid="uid://bc2vehp2j6lys" path="res://audio/ambient/fullsitelockdown.ogg" id="27_tel4y"]
+[ext_resource type="AudioStream" uid="uid://boomnik4hkl8" path="res://audio/ambient/general/Ambient2.ogg" id="28_txyw0"]
+[ext_resource type="AudioStream" uid="uid://du1viwv50yw06" path="res://audio/ambient/general/Ambient3.ogg" id="29_vc5cj"]
+[ext_resource type="AudioStream" uid="uid://bj4nahfvgd5bm" path="res://audio/ambient/general/Ambient4.ogg" id="30_nvyfr"]
+[ext_resource type="AudioStream" uid="uid://b6p3tjnxsh4ji" path="res://audio/ambient/general/Ambient6.ogg" id="31_ty1g6"]
+[ext_resource type="AudioStream" uid="uid://csds7k22y3o6e" path="res://audio/ambient/general/Ambient7.ogg" id="32_j2jfr"]
+[ext_resource type="AudioStream" uid="uid://uqkjms4xaosg" path="res://audio/ambient/general/Ambient8.ogg" id="33_bjg73"]
+[ext_resource type="AudioStream" uid="uid://clbr6345jrfgm" path="res://audio/ambient/general/Ambient9.ogg" id="34_bu4jf"]
+[ext_resource type="AudioStream" uid="uid://dnjktgqqin8ai" path="res://audio/ambient/general/Ambient10.ogg" id="35_o7ddy"]
+[ext_resource type="AudioStream" uid="uid://beh0bjchplonr" path="res://audio/ambient/general/Ambient11.ogg" id="36_0loja"]
+[ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
+[ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
@@ -42,7 +56,7 @@ door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
 LContoHConCheckpoint = ExtResource("4_fv21b")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
-necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs")])
+necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
 fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
@@ -72,20 +86,46 @@ script = ExtResource("17_fuf3a")
 
 [node name="OtherPlayer" type="AudioStreamPlayer" parent="Facility Manager"]
 
-[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayer", "soundsPlayer")]
+[node name="LightTimer" type="Timer" parent="Facility Manager"]
+
+[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayer", "soundsPlayerA", "soundsPlayerB", "ambiencePlayerA", "ambiencePlayerB", "ambiencePlayerC")]
 script = ExtResource("18_pm3ni")
 musicPlayer = NodePath("AmbienceMusic")
-soundsPlayer = NodePath("AmbienceSounds")
+soundsPlayerA = NodePath("AmbienceSoundsA")
+soundsPlayerB = NodePath("AmbienceSoundsB")
+ambiencePlayerA = NodePath("AmbienceA")
+ambiencePlayerB = NodePath("AmbienceB")
+ambiencePlayerC = NodePath("AmbienceC")
+randomAmbience = Array[AudioStream]([ExtResource("26_cjqg0"), ExtResource("28_txyw0"), ExtResource("29_vc5cj"), ExtResource("30_nvyfr"), ExtResource("31_ty1g6"), ExtResource("32_j2jfr"), ExtResource("33_bjg73"), ExtResource("34_bu4jf"), ExtResource("35_o7ddy"), ExtResource("36_0loja"), ExtResource("37_ids8r"), ExtResource("38_dnhof")])
 LConMusic = ExtResource("19_y6deb")
+fullSiteLockdown = ExtResource("27_tel4y")
 spawnInSound = ExtResource("20_y6deb")
+
+[node name="AmbienceA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Music"
+
+[node name="AmbienceB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Music"
+
+[node name="AmbienceC" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -16.0
+bus = &"Music"
 
 [node name="AmbienceMusic" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 stream = ExtResource("19_y6deb")
-volume_db = -9.0
+volume_db = -16.0
 bus = &"Music"
 parameters/looping = true
 
-[node name="AmbienceSounds" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+[node name="AmbienceSoundsA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+bus = &"Sound Effects"
+
+[node name="AmbienceSoundsB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+bus = &"Sound Effects"
+
+[node name="AmbienceTimer" type="Timer" parent="MusicAmbienceManager"]
 
 [node name="Facility" type="Node3D" parent="."]
 

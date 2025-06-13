@@ -1,17 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnv1cjjk013a"]
+[gd_scene load_steps=5 format=3 uid="uid://bnv1cjjk013a"]
 
-[ext_resource type="PackedScene" uid="uid://c6opp0f1oxrmu" path="res://rooms/models/HConBend001.blend" id="1_le3ru"]
+[ext_resource type="PackedScene" uid="uid://c6opp0f1oxrmu" path="res://rooms/Models/HConBend001.blend" id="1_le3ru"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_03w7c"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_kl62i"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_0blqf"]
 
 [node name="HConBend001" type="Node3D"]
 
 [node name="HConBend001" parent="." instance=ExtResource("1_le3ru")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -5)
-light_specular = 0.0
-omni_range = 10.0
 
 [node name="Points" type="Node3D" parent="."]
 
@@ -22,3 +18,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_kl62i")]
+
+[node name="Light" parent="." instance=ExtResource("4_0blqf")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4.9, 1.6215, -4.9)

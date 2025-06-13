@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var agent: NavigationAgent3D
 
 @export var neckSnapSounds: Array[AudioStream]
+@export var relocationSounds: Array[AudioStream]
 
 var onScreen: bool = false
 var nearPlayer: bool = false
@@ -106,6 +107,7 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 		
 		$"3sRelocateTimer".start()
 		await $"3sRelocateTimer".timeout
+		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
 		relocate()
 
 

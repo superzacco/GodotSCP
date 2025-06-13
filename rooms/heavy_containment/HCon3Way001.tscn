@@ -1,23 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1awy2dnjptsq"]
+[gd_scene load_steps=5 format=3 uid="uid://d1awy2dnjptsq"]
 
-[ext_resource type="PackedScene" uid="uid://c702vc2iycdlw" path="res://rooms/models/HCon3Way001.blend" id="1_2xvbw"]
+[ext_resource type="PackedScene" uid="uid://c702vc2iycdlw" path="res://rooms/Models/HCon3Way001.blend" id="1_2xvbw"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_h1whc"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_sn0nm"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_wgigo"]
 
 [node name="HCon3Way001" type="Node3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="HCon3Way001" parent="." instance=ExtResource("1_2xvbw")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2.5)
-light_specular = 0.0
-omni_range = 7.5
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2.5)
-light_specular = 0.0
-omni_range = 7.5
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -32,3 +23,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, -1.14512, 9.83506e-07)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_sn0nm")]
+
+[node name="Light" parent="." instance=ExtResource("4_wgigo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00419335, 1.87211, -4.94381)
+
+[node name="Light2" parent="." instance=ExtResource("4_wgigo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50419, 1.87211, -0.0438151)
+
+[node name="Light3" parent="." instance=ExtResource("4_wgigo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.49581, 1.87211, -0.0438143)

@@ -11,6 +11,8 @@ class_name Player
 @export var sprintDepletionRate: float
 @export var sprintReplenishRate: float
 
+@export var blinkinator: PlayerBlinking
+
 var sensitivity: float
 var moveSpeed: float
 

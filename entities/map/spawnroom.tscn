@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx1ergchu2j1f"]
+[gd_scene load_steps=11 format=3 uid="uid://cx1ergchu2j1f"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_njtbk"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_xaeff"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="5_7k8ml"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="6_lcceb"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="8_7k8ml"]
+[ext_resource type="AudioStream" uid="uid://c8qr46gac7r6u" path="res://audio/ambient/Alarm0.ogg" id="9_lcceb"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="10_88tpj"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
@@ -17,62 +19,6 @@ script = ExtResource("1_njtbk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.179, -7.5)
 
 [node name="SpawnRoom" parent="." instance=ExtResource("3_xaeff")]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14, 4.19659, -2)
-light_energy = 4.0
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 80.0
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.56363e-08, 4.19659, -2)
-light_energy = 4.0
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 80.0
-
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.59659, 5)
-light_energy = 4.0
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 80.0
-
-[node name="SpotLight3D4" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 7.59659, 0.8)
-light_energy = 7.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.069
-distance_fade_enabled = true
-spot_range = 15.0
-spot_angle = 65.0
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, -1.2)
-light_energy = 0.25
-light_specular = 0.0
-shadow_enabled = true
-omni_range = 12.142
-
-[node name="SpotLight3D5" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 15.1)
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 70.0
-
-[node name="SpotLight3D6" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 25.5)
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 70.0
-
-[node name="SpotLight3D7" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 4.29659, 35.7)
-shadow_enabled = true
-spot_range = 15.0
-spot_angle = 70.0
 
 [node name="Door2" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -15, 3.02831, -6.8)
@@ -152,6 +98,29 @@ rejectionText = "The door won't open."
 wontOpen = true
 
 [node name="RoomArea" parent="." instance=ExtResource("8_7k8ml")]
+
+[node name="Alarm" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118162, 8.25008, 10.3965)
+stream = ExtResource("9_lcceb")
+attenuation_model = 3
+volume_db = 3.0
+autoplay = true
+max_distance = 36.24
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("10_88tpj")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9747, 4.82074, 25.4842)
+
+[node name="Light2" parent="Lights" instance=ExtResource("10_88tpj")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9747, 4.82074, 35.4842)
+
+[node name="Light3" parent="Lights" instance=ExtResource("10_88tpj")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9747, 4.82074, 15.4842)
+
+[node name="Light4" parent="Lights" instance=ExtResource("10_88tpj")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9747, 7.83173, 0.484202)
+brightness = 0.5
 
 [editable path="Door2/door"]
 [editable path="door2"]

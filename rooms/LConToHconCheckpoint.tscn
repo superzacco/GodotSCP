@@ -14,12 +14,6 @@
 
 [node name="LCon4Way001" type="Node3D" groups=["room"]]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.00622366, 3.47747, -3.37167e-05)
-light_specular = 0.0
-shadow_enabled = true
-omni_range = 10.0
-
 [node name="RoomArea" parent="." instance=ExtResource("3_s063j")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00622366, 0, -3.37167e-05)
 
@@ -85,37 +79,39 @@ stream = ExtResource("5_syih6")
 stream = ExtResource("8_rg4l3")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.5, -3.20003)
-light_color = Color(0.99992, 0.443445, 0.377872, 1)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, -3.20003)
+light_color = Color(0.999822, 0.323918, 0.263062, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
-spot_range = 8.0
+spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.5, 3.19997)
-light_color = Color(0.99992, 0.443445, 0.377872, 1)
-light_energy = 0.5
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, 3.19997)
+light_color = Color(0.999899, 0.434591, 0.368979, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
-spot_range = 8.0
+spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.5, -3.20003)
-light_color = Color(0.99992, 0.443445, 0.377872, 1)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, -3.20003)
+light_color = Color(0.999822, 0.323918, 0.263062, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
-spot_range = 8.0
+spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.5, 3.19997)
-light_color = Color(0.99992, 0.443445, 0.377872, 1)
-light_energy = 0.5
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, 3.19997)
+light_color = Color(0.999899, 0.434591, 0.368979, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
-spot_range = 8.0
+spot_range = 12.0
 spot_angle = 75.0
 
 [node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_syih6")]

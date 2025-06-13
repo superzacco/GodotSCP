@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=15 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="AudioStream" uid="uid://btbq6q6uw7u4t" path="res://audio/scps/173/NeckSnap0.ogg" id="2_l0rpv"]
@@ -6,13 +6,15 @@
 [ext_resource type="AudioStream" uid="uid://dtjj5b71cgmtr" path="res://audio/scps/173/NeckSnap1.ogg" id="3_l2l7v"]
 [ext_resource type="AudioStream" uid="uid://65psgc6dw2ah" path="res://audio/scps/173/StoneDrag.ogg" id="3_u3wo6"]
 [ext_resource type="AudioStream" uid="uid://1crfkgm2bowy" path="res://audio/scps/173/NeckSnap2.ogg" id="4_p8ad7"]
+[ext_resource type="AudioStream" uid="uid://8aurybjrnikg" path="res://audio/scps/173/scrapeambient1.ogg" id="5_p8ad7"]
+[ext_resource type="AudioStream" uid="uid://py81n6rg6r0q" path="res://audio/scps/173/scrapeambient2.ogg" id="6_aqo5w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2xb13"]
 radius = 0.179896
 height = 1.92174
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
-size = Vector3(1.25, 2, 0.75)
+size = Vector3(1.1, 2, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3wo6"]
 size = Vector3(1.5, 3, 1.5)
@@ -42,6 +44,7 @@ script = ExtResource("1_clhkt")
 speed = 35.0
 agent = NodePath("NavigationAgent3D")
 neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
+relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)

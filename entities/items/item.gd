@@ -11,5 +11,7 @@ class_name Item
 
 
 func _ready() -> void:
+	self.rotation_degrees.y = randi_range(0, 360)
+	
 	if !ZFunc.randInPercent(chanceToSpawn):
 		queue_free()

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ci4tjr8gfmvrd" path="res://entities/ui/inventory_screen.gd" id="1_molo7"]
 [ext_resource type="PackedScene" uid="uid://coiiycrsxeol7" path="res://entities/ui/inventoryslot.tscn" id="2_molo7"]
 
-
 [node name="InventoryScreen" type="Control" node_paths=PackedStringArray("slotsNode")]
 layout_mode = 3
 anchors_preset = 15
