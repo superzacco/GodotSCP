@@ -125,7 +125,7 @@ func generate_long_hall(zOffset):
 
 
 func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
-	var amountOfConnectingHalls: int = 4
+	var amountOfConnectingHalls: int = 5
 	
 	var startingPoint = hallMinExtent.x / spaceMultiplier
 	var endingPoint = hallMaxExtent.x / spaceMultiplier

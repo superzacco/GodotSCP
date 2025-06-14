@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bckxtfpowonvq"]
+[gd_scene load_steps=22 format=3 uid="uid://bckxtfpowonvq"]
 
 [ext_resource type="Script" uid="uid://dvckw1oge0tu" path="res://rooms/light_containment/gas_chamber_room.gd" id="1_x8qef"]
 [ext_resource type="PackedScene" uid="uid://4cvr143oel6j" path="res://rooms/Models/LConBendGas001.blend" id="2_nsxgj"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="15_l30ap"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="16_ps7mm"]
 [ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/LockroomSiren.ogg" id="16_q8o8c"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="18_clspc"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="19_u6j3f"]
+[ext_resource type="PackedScene" uid="uid://dyg2xivtl3e7y" path="res://entities/items/tools/gas_mask.tscn" id="20_u6j3f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_diou6"]
 size = Vector3(9.8, 3, 9.8)
@@ -42,6 +45,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 [node name="Door" parent="." instance=ExtResource("5_s7ko5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7, 0.0221875, -5.8)
 
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 3
 
@@ -50,6 +59,12 @@ keycardLevel = 3
 
 [node name="Door2" parent="." instance=ExtResource("5_s7ko5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0.0244782, -1.7)
+
+[node name="doorside2_col" parent="Door2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Keycardbutton" parent="Door2" index="1"]
 keycardLevel = 3
@@ -150,6 +165,15 @@ extraToControl = NodePath("..")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
 stream = ExtResource("16_q8o8c")
+
+[node name="table" parent="." instance=ExtResource("18_clspc")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.74006, -0.622834, -5.66977)
+
+[node name="shelf01" parent="." instance=ExtResource("19_u6j3f")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -2.82376, 0.511979, -2.34283)
+
+[node name="GasMask" parent="." instance=ExtResource("20_u6j3f")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -2.76953, 0.0439878, -2.4507)
 
 [connection signal="body_entered" from="GasArea" to="GasArea" method="_on_body_entered"]
 [connection signal="body_exited" from="GasArea" to="GasArea" method="_on_body_exited"]

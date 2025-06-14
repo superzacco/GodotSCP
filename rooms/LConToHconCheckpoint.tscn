@@ -80,8 +80,8 @@ stream = ExtResource("8_rg4l3")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, -3.20003)
-light_color = Color(0.999822, 0.323918, 0.263062, 1)
-light_energy = 2.0
+light_color = Color(0.999913, 0.460798, 0.395356, 1)
+light_energy = 0.2
 light_specular = 0.0
 shadow_enabled = true
 spot_range = 12.0
@@ -90,7 +90,7 @@ spot_angle = 75.0
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, 3.19997)
 light_color = Color(0.999899, 0.434591, 0.368979, 1)
-light_energy = 2.0
+light_energy = 0.5
 light_specular = 0.0
 shadow_enabled = true
 spot_range = 12.0
@@ -98,8 +98,8 @@ spot_angle = 75.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, -3.20003)
-light_color = Color(0.999822, 0.323918, 0.263062, 1)
-light_energy = 2.0
+light_color = Color(0.999913, 0.460798, 0.395356, 1)
+light_energy = 0.2
 light_specular = 0.0
 shadow_enabled = true
 spot_range = 12.0
@@ -108,7 +108,7 @@ spot_angle = 75.0
 [node name="SpotLight3D4" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, 3.19997)
 light_color = Color(0.999899, 0.434591, 0.368979, 1)
-light_energy = 2.0
+light_energy = 0.5
 light_specular = 0.0
 shadow_enabled = true
 spot_range = 12.0

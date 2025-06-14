@@ -23,6 +23,8 @@ func _ready() -> void:
 func start_flicker():
 	if canFlicker:
 		$Animations.play(animationNames[randi_range(0, animationNames.size()-1)])
+		await $Animations.animation_finished
+		$SpotLight3D.light_energy = brightness
 
 
 func spark():

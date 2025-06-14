@@ -1,4 +1,6 @@
 res://rooms/light_containment
+res://rooms/tesla
+res://entities/SCPs/106
 res://entities/map
 res://scenes
 res://util

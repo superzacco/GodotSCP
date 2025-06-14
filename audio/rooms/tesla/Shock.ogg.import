@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Shock.ogg-49e2751cb2413b53810129ee2006e24c.og
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

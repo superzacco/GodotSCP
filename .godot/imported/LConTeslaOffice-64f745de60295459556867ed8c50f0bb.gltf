@@ -10,7 +10,9 @@
 			"nodes":[
 				0,
 				1,
-				2
+				2,
+				3,
+				4
 			]
 		}
 	],
@@ -26,6 +28,41 @@
 		{
 			"mesh":2,
 			"name":"plate-col"
+		},
+		{
+			"mesh":3,
+			"name":"Panel",
+			"rotation":[
+				0,
+				0.7071067094802856,
+				0,
+				0.7071068286895752
+			],
+			"scale":[
+				0.19999998807907104,
+				1,
+				1
+			],
+			"translation":[
+				2.9170989990234375,
+				0.4583192765712738,
+				-3.2113842964172363
+			]
+		},
+		{
+			"mesh":4,
+			"name":"PowerLines",
+			"rotation":[
+				0,
+				0.7071067094802856,
+				0,
+				0.7071068286895752
+			],
+			"translation":[
+				-0.8577638268470764,
+				-0.010473489761352539,
+				-1.5692638158798218
+			]
 		}
 	],
 	"materials":[
@@ -111,6 +148,27 @@
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":9
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Material.009",
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":10
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"name":"Material.010",
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":11
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -212,6 +270,36 @@
 					"material":6
 				}
 			]
+		},
+		{
+			"name":"Cube.005",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":40,
+						"NORMAL":41,
+						"TEXCOORD_0":42,
+						"TANGENT":43
+					},
+					"indices":44,
+					"material":7
+				}
+			]
+		},
+		{
+			"name":"Cube.006",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":45,
+						"NORMAL":46,
+						"TEXCOORD_0":47,
+						"TANGENT":48
+					},
+					"indices":49,
+					"material":8
+				}
+			]
 		}
 	],
 	"textures":[
@@ -254,6 +342,14 @@
 		{
 			"sampler":0,
 			"source":9
+		},
+		{
+			"sampler":0,
+			"source":10
+		},
+		{
+			"sampler":0,
+			"source":11
 		}
 	],
 	"images":[
@@ -306,6 +402,16 @@
 			"mimeType":"image/png",
 			"name":"misc_signs(0).png",
 			"uri":"../../rooms/Textures/misc_signs%280%29.png"
+		},
+		{
+			"mimeType":"image/jpeg",
+			"name":"ElecBox.jpg.001",
+			"uri":"../../rooms/Textures/ElecBox.jpg"
+		},
+		{
+			"mimeType":"image/png",
+			"name":"Pipes_NoRust.png.001",
+			"uri":"../../rooms/Textures/Pipes_NoRust.png"
 		}
 	],
 	"accessors":[
@@ -628,6 +734,86 @@
 			"componentType":5123,
 			"count":12,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":40,
+			"componentType":5126,
+			"count":146,
+			"max":[
+				1.79994535446167,
+				1.1462593078613281,
+				1.029148817062378
+			],
+			"min":[
+				-1.8169832229614258,
+				-1,
+				-1.0028915405273438
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":41,
+			"componentType":5126,
+			"count":146,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":42,
+			"componentType":5126,
+			"count":146,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":43,
+			"componentType":5126,
+			"count":146,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":44,
+			"componentType":5123,
+			"count":360,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":45,
+			"componentType":5126,
+			"count":144,
+			"max":[
+				1.715484857559204,
+				1.1611301898956299,
+				3.1435184478759766
+			],
+			"min":[
+				0.09069495648145676,
+				0.4842093288898468,
+				0.5885839462280273
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":46,
+			"componentType":5126,
+			"count":144,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":47,
+			"componentType":5126,
+			"count":144,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":48,
+			"componentType":5126,
+			"count":144,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":49,
+			"componentType":5123,
+			"count":252,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -870,6 +1056,66 @@
 			"byteLength":24,
 			"byteOffset":19728,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1752,
+			"byteOffset":19752,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1752,
+			"byteOffset":21504,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1168,
+			"byteOffset":23256,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2336,
+			"byteOffset":24424,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":720,
+			"byteOffset":26760,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1728,
+			"byteOffset":27480,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1728,
+			"byteOffset":29208,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1152,
+			"byteOffset":30936,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2304,
+			"byteOffset":32088,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":504,
+			"byteOffset":34392,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -880,7 +1126,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":19752,
+			"byteLength":34896,
 			"uri":"LConTeslaOffice-64f745de60295459556867ed8c50f0bb.bin"
 		}
 	]
