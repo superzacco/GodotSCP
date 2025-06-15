@@ -1,22 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ywd465j3m17b"]
+[gd_scene load_steps=2 format=3 uid="uid://ywd465j3m17b"]
 
-[ext_resource type="Script" uid="uid://c0rs5knrg21t2" path="res://rooms/connection_point.gd" id="1_2a32u"]
+[sub_resource type="GDScript" id="GDScript_ct1fg"]
+script/source = "extends Node3D
+"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2a32u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qawwk"]
-
-[node name="point1" type="StaticBody3D" groups=["roomconnectionpoints"]]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("1_2a32u")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_2a32u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_qawwk")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="point1" type="Node3D" groups=["roomconnectionpoints"]]
+script = SubResource("GDScript_ct1fg")

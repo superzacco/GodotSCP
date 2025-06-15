@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c51e2qcf67eci"]
+[gd_scene load_steps=6 format=3 uid="uid://c51e2qcf67eci"]
 
 [ext_resource type="PackedScene" uid="uid://dfnmav06kfguh" path="res://rooms/Models/LCon4Way001.blend" id="1_g0x0b"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_yrufp"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_rkp52"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_yis8k"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_2yaiw"]
 
 [node name="LCon4Way001" type="Node3D" groups=["room"]]
+script = ExtResource("1_yrufp")
 
 [node name="LCon4Way001" parent="." instance=ExtResource("1_g0x0b")]
 

@@ -17,10 +17,10 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	onScreen = false
 
 
+var nextPathPos: Vector3
 func _physics_process(delta: float) -> void:
 	if (!onScreen or GlobalPlayerVariables.blinking) and nearPlayer:
 		try_kill_player(playerInKillRange)
-		var nextPathPos: Vector3
 		
 		agent.target_position = GlobalPlayerVariables.playerPosition
 		nextPathPos = agent.get_next_path_position() - position
@@ -58,17 +58,23 @@ func try_break_door():
 			print("Broke through door!")
 
 
-func relocate():
-	print("relocating!")
-	
+func relocate(firstTime: bool = false):
 	var rooms = GlobalPlayerVariables.facilityManager.playerNearbyRooms
 	if !rooms.size() > 0:
+		print("no nearby rooms")
 		return
+	
+	print("relocating!")
 	
 	var room = rooms[randi_range(0, rooms.size()-1)]
 	
 	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 17:
-		self.global_position = room.global_position + Vector3(0, 0.25, 0)
+		if room.spawnPosFor173 == null:
+			self.global_position = room.global_position + Vector3(0, 0.25, 0)
+		else:
+			self.global_position = room.spawnPosFor173.global_position + Vector3(0, 0.25, 0)
+	if firstTime:
+		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
 	
 	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
 		print("close to player")
@@ -107,8 +113,7 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 		
 		$"3sRelocateTimer".start()
 		await $"3sRelocateTimer".timeout
-		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
-		relocate()
+		relocate(true)
 
 
 func _on_neck_snap_area_body_entered(body: Node3D) -> void:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw3hwsiih5tal"]
+[gd_scene load_steps=9 format=3 uid="uid://dw3hwsiih5tal"]
 
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_g5wda"]
 [ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
 [ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="2_kyeim"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_0gwk4"]
@@ -8,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="6_f0hjl"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="7_dch4f"]
 
-[node name="914" type="StaticBody3D" groups=["room"]]
+[node name="914" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
+script = ExtResource("1_g5wda")
+spawnPosFor173 = NodePath("173Pos")
 
 [node name="chamber914" parent="." instance=ExtResource("1_lb7g5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142248, 0)
@@ -22,12 +25,10 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Keycardbutton" parent="Door" index="1" node_paths=PackedStringArray("doorsToControl")]
-doorsToControl = [NodePath("..")]
+[node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 2
 
-[node name="Keycardbutton2" parent="Door" index="2" node_paths=PackedStringArray("doorsToControl")]
-doorsToControl = [NodePath("..")]
+[node name="Keycardbutton2" parent="Door" index="2"]
 keycardLevel = 2
 
 [node name="scp914" parent="." instance=ExtResource("5_0gwk4")]
@@ -68,6 +69,9 @@ brightness = 0.6
 transform = Transform3D(0.981403, 0.191957, 0, -0.191957, 0.981403, 0, 0, 0, 1, 7.00335, 4.64985, 2)
 canFlicker = false
 brightness = 0.6
+
+[node name="173Pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 
 [editable path="Door"]
 [editable path="Door/door"]

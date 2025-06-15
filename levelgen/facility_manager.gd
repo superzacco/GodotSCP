@@ -2,7 +2,7 @@ extends Node
 class_name FacilityManager
 
 var rooms: Array
-var playerNearbyRooms: Array
+var playerNearbyRooms: Array[Room]
 
 
 var scp173: CharacterBody3D

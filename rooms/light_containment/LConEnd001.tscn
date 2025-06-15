@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkggfnfyoup03"]
+[gd_scene load_steps=6 format=3 uid="uid://bkggfnfyoup03"]
 
 [ext_resource type="PackedScene" uid="uid://dp32xwnaqdtm1" path="res://rooms/Models/LConEnd001.blend" id="1_2lr0b"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_f27xb"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_3mq42"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_81jdv"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_lteed"]
 
 [node name="LConEnd001" type="Node3D" groups=["room"]]
+script = ExtResource("1_f27xb")
 
 [node name="LConEnd001" parent="." instance=ExtResource("1_2lr0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)

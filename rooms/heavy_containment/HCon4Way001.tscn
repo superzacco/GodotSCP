@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjfp5f2ovtgme"]
+[gd_scene load_steps=6 format=3 uid="uid://cjfp5f2ovtgme"]
 
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_ial4u"]
 [ext_resource type="PackedScene" uid="uid://b7r2j3asvavg0" path="res://rooms/Models/HCon4Way001.blend" id="1_m68ag"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_a6naf"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_g01h6"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_knqes"]
 
 [node name="HCon4Way001" type="Node3D"]
+script = ExtResource("1_ial4u")
 
 [node name="HCon4Way001" parent="." instance=ExtResource("1_m68ag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)

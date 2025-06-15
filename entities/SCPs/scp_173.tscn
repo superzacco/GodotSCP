@@ -61,6 +61,8 @@ shape = SubResource("CapsuleShape3D_2xb13")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.4
 path_height_offset = -0.5
+path_metadata_flags = 0
+simplify_path = true
 debug_enabled = true
 
 [node name="NeckSnapArea" type="Area3D" parent="."]

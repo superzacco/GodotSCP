@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnv1cjjk013a"]
+[gd_scene load_steps=6 format=3 uid="uid://bnv1cjjk013a"]
 
 [ext_resource type="PackedScene" uid="uid://c6opp0f1oxrmu" path="res://rooms/Models/HConBend001.blend" id="1_le3ru"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_v5p33"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_03w7c"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_kl62i"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_0blqf"]
 
 [node name="HConBend001" type="Node3D"]
+script = ExtResource("1_v5p33")
 
 [node name="HConBend001" parent="." instance=ExtResource("1_le3ru")]
 

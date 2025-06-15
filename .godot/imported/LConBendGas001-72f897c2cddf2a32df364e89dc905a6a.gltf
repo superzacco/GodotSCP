@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -20,6 +21,15 @@
 				0,
 				0.27662336826324463,
 				0
+			]
+		},
+		{
+			"mesh":1,
+			"name":"vents",
+			"translation":[
+				1,
+				0,
+				1
 			]
 		}
 	],
@@ -55,6 +65,28 @@
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":4
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Material.003",
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":5
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Material.004",
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":6
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -96,6 +128,31 @@
 					"material":2
 				}
 			]
+		},
+		{
+			"name":"Cube",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":15,
+						"NORMAL":16,
+						"TEXCOORD_0":17,
+						"TANGENT":18
+					},
+					"indices":19,
+					"material":3
+				},
+				{
+					"attributes":{
+						"POSITION":20,
+						"NORMAL":21,
+						"TEXCOORD_0":22,
+						"TANGENT":23
+					},
+					"indices":24,
+					"material":4
+				}
+			]
 		}
 	],
 	"textures":[
@@ -114,6 +171,14 @@
 		{
 			"sampler":0,
 			"source":3
+		},
+		{
+			"sampler":0,
+			"source":4
+		},
+		{
+			"sampler":0,
+			"source":5
 		},
 		{
 			"sampler":0,
@@ -145,6 +210,11 @@
 			"mimeType":"image/jpeg",
 			"name":"dirtymetal.jpg",
 			"uri":"../../rooms/Textures/dirtymetal.jpg"
+		},
+		{
+			"mimeType":"image/jpeg",
+			"name":"vent.jpg",
+			"uri":"../../rooms/Textures/vent.jpg"
 		}
 	],
 	"accessors":[
@@ -267,6 +337,86 @@
 			"componentType":5123,
 			"count":204,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":15,
+			"componentType":5126,
+			"count":16,
+			"max":[
+				5,
+				1.4634360074996948,
+				5.099999904632568
+			],
+			"min":[
+				-1,
+				1.4634360074996948,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":16,
+			"componentType":5126,
+			"count":16,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":17,
+			"componentType":5126,
+			"count":16,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":18,
+			"componentType":5126,
+			"count":16,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":19,
+			"componentType":5123,
+			"count":24,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":20,
+			"componentType":5126,
+			"count":64,
+			"max":[
+				5,
+				1.7634360790252686,
+				5.099999904632568
+			],
+			"min":[
+				-1,
+				1.4634360074996948,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":21,
+			"componentType":5126,
+			"count":64,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":22,
+			"componentType":5126,
+			"count":64,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":23,
+			"componentType":5126,
+			"count":64,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":24,
+			"componentType":5123,
+			"count":96,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -359,6 +509,66 @@
 			"byteLength":408,
 			"byteOffset":18384,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":18792,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":18984,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":128,
+			"byteOffset":19176,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":256,
+			"byteOffset":19304,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":48,
+			"byteOffset":19560,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":768,
+			"byteOffset":19608,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":768,
+			"byteOffset":20376,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":512,
+			"byteOffset":21144,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1024,
+			"byteOffset":21656,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":22680,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -369,7 +579,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":18792,
+			"byteLength":22872,
 			"uri":"LConBendGas001-72f897c2cddf2a32df364e89dc905a6a.bin"
 		}
 	]

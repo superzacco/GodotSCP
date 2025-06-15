@@ -120,7 +120,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.97
 
 [node name="Light4" parent="Lights" instance=ExtResource("10_88tpj")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9747, 7.83173, 0.484202)
-brightness = 0.5
+brightness = 2.0
 
 [editable path="Door2/door"]
 [editable path="door2"]

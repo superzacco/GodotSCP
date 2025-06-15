@@ -1,5 +1,6 @@
-extends Node3D
+extends Room
 
+@export var gasEmitters: Array[GPUParticles3D]
 @export var doors: Array[Door]
 var running: bool = false
 
@@ -24,3 +25,14 @@ func activate():
 func reset():
 	for door in doors:
 		door.close()
+
+
+
+func _on_room_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		for emitter: GPUParticles3D in gasEmitters:
+			emitter.emitting = true
+func _on_room_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		for emitter: GPUParticles3D in gasEmitters:
+			emitter.emitting = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bckxtfpowonvq"]
+[gd_scene load_steps=26 format=3 uid="uid://bckxtfpowonvq"]
 
 [ext_resource type="Script" uid="uid://dvckw1oge0tu" path="res://rooms/light_containment/gas_chamber_room.gd" id="1_x8qef"]
 [ext_resource type="PackedScene" uid="uid://4cvr143oel6j" path="res://rooms/Models/LConBendGas001.blend" id="2_nsxgj"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="5_s7ko5"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="6_diou6"]
 [ext_resource type="Script" uid="uid://cqdxpnyaufsuy" path="res://rooms/light_containment/gas_area.gd" id="7_p6u35"]
+[ext_resource type="AudioStream" uid="uid://br54nn7we8st2" path="res://audio/rooms/gaslock/Hiss0.ogg" id="8_3o8j2"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="8_q8o8c"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/rooms/DoorOpen0.ogg" id="9_x8qef"]
+[ext_resource type="Material" uid="uid://fgd23wb2x4tx" path="res://rooms/Textures/gas_sprite.tres" id="9_xytxk"]
 [ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/rooms/DoorOpen1.ogg" id="10_8kvgl"]
 [ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/rooms/DoorOpen2.ogg" id="11_clspc"]
 [ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/rooms/DoorClose0.ogg" id="12_u6j3f"]
@@ -16,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="14_3o8j2"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="15_l30ap"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="16_ps7mm"]
-[ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/LockroomSiren.ogg" id="16_q8o8c"]
+[ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="16_q8o8c"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="18_clspc"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="19_u6j3f"]
 [ext_resource type="PackedScene" uid="uid://dyg2xivtl3e7y" path="res://entities/items/tools/gas_mask.tscn" id="20_u6j3f"]
@@ -24,9 +26,30 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_diou6"]
 size = Vector3(9.8, 3, 9.8)
 
-[node name="LConBend001" type="Node3D" node_paths=PackedStringArray("doors") groups=["room"]]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3o8j2"]
+angular_velocity_min = -30.32
+angular_velocity_max = 98.53
+radial_velocity_min = 2.99998
+radial_velocity_max = 2.99998
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 10.0
+turbulence_noise_speed_random = 2.14
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.505
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_l30ap"]
+material = ExtResource("9_xytxk")
+size = Vector2(3, 3)
+
+[node name="LConBend001" type="Node3D" node_paths=PackedStringArray("gasEmitters", "doors") groups=["room"]]
 script = ExtResource("1_x8qef")
-doors = [NodePath("Door3"), NodePath("Door4")]
+gasEmitters = [NodePath("Gas Emitters/GPUParticles3D"), NodePath("Gas Emitters/GPUParticles3D2"), NodePath("Gas Emitters/GPUParticles3D3"), NodePath("Gas Emitters/GPUParticles3D4")]
+doors = [NodePath("Doors/Door3"), NodePath("Doors/Door4")]
 
 [node name="LConBendGas001" parent="." instance=ExtResource("2_nsxgj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -42,52 +65,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 [node name="RoomArea" parent="." instance=ExtResource("4_p6u35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
-[node name="Door" parent="." instance=ExtResource("5_s7ko5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7, 0.0221875, -5.8)
-
-[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Keycardbutton" parent="Door" index="1"]
-keycardLevel = 3
-
-[node name="Keycardbutton2" parent="Door" index="2"]
-keycardLevel = 3
-
-[node name="Door2" parent="." instance=ExtResource("5_s7ko5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0.0244782, -1.7)
-
-[node name="doorside2_col" parent="Door2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Door2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Keycardbutton" parent="Door2" index="1"]
-keycardLevel = 3
-
-[node name="Keycardbutton2" parent="Door2" index="2"]
-keycardLevel = 3
-
-[node name="Light" parent="." instance=ExtResource("6_diou6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.044, 1.81995, 3.07)
-brightness = 0.5
-
-[node name="Light2" parent="." instance=ExtResource("6_diou6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.756, 1.81995, 3.07)
-brightness = 0.5
-
-[node name="Light3" parent="." instance=ExtResource("6_diou6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.656, 1.81995, -4.63)
-brightness = 0.5
-
-[node name="Light4" parent="." instance=ExtResource("6_diou6")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.944, 1.81995, -5.73)
-brightness = 0.5
-
 [node name="GasArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 script = ExtResource("7_p6u35")
@@ -95,64 +72,6 @@ enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GasArea"]
 shape = SubResource("BoxShape3D_diou6")
-
-[node name="Door3" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.20032, 0.0158886, 5.93442)
-script = ExtResource("8_q8o8c")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("9_x8qef"), ExtResource("10_8kvgl"), ExtResource("11_clspc")])
-closeSounds = Array[AudioStream]([ExtResource("12_u6j3f"), ExtResource("13_xytxk"), ExtResource("14_3o8j2")])
-
-[node name="door" parent="Door3" instance=ExtResource("15_l30ap")]
-
-[node name="doorside2_col" parent="Door3/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="StaticBody3D" parent="Door3/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
-collision_layer = 256
-collision_mask = 256
-
-[node name="doorside1_col" parent="Door3/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="StaticBody3D" parent="Door3/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
-collision_layer = 256
-collision_mask = 256
-
-[node name="Open" type="AudioStreamPlayer3D" parent="Door3"]
-stream = ExtResource("9_x8qef")
-
-[node name="Close" type="AudioStreamPlayer3D" parent="Door3"]
-stream = ExtResource("12_u6j3f")
-
-[node name="Door4" type="Node3D" parent="." node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.08273, 0.0158886, -2.06558)
-script = ExtResource("8_q8o8c")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("9_x8qef"), ExtResource("10_8kvgl"), ExtResource("11_clspc")])
-closeSounds = Array[AudioStream]([ExtResource("12_u6j3f"), ExtResource("13_xytxk"), ExtResource("14_3o8j2")])
-
-[node name="door" parent="Door4" instance=ExtResource("15_l30ap")]
-
-[node name="doorside2_col" parent="Door4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="StaticBody3D" parent="Door4/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
-collision_layer = 256
-collision_mask = 256
-
-[node name="doorside1_col" parent="Door4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="StaticBody3D" parent="Door4/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
-collision_layer = 256
-collision_mask = 256
-
-[node name="Open" type="AudioStreamPlayer3D" parent="Door4"]
-stream = ExtResource("9_x8qef")
-
-[node name="Close" type="AudioStreamPlayer3D" parent="Door4"]
-stream = ExtResource("12_u6j3f")
 
 [node name="Button" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("16_ps7mm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62393, 0.0881014, -4.33935)
@@ -162,25 +81,185 @@ extraToControl = NodePath("..")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.35974, 0.0881014, 1.52791)
 extraToControl = NodePath("..")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AlarmPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
 stream = ExtResource("16_q8o8c")
+bus = &"Sound Effects"
 
-[node name="table" parent="." instance=ExtResource("18_clspc")]
-transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.74006, -0.622834, -5.66977)
-
-[node name="shelf01" parent="." instance=ExtResource("19_u6j3f")]
-transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -2.82376, 0.511979, -2.34283)
+[node name="GasPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3, 3)
+stream = ExtResource("8_3o8j2")
+autoplay = true
+max_distance = 12.0
+panning_strength = 0.0
+bus = &"Sound Effects"
 
 [node name="GasMask" parent="." instance=ExtResource("20_u6j3f")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -2.76953, 0.0439878, -2.4507)
 
+[node name="Gas Emitters" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Gas Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.952902, 1)
+transparency = 0.35
+cast_shadow = 0
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3o8j2")
+draw_pass_1 = SubResource("QuadMesh_l30ap")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Gas Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.952902, 5)
+transparency = 0.35
+cast_shadow = 0
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3o8j2")
+draw_pass_1 = SubResource("QuadMesh_l30ap")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="Gas Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.952902, 1)
+transparency = 0.35
+cast_shadow = 0
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3o8j2")
+draw_pass_1 = SubResource("QuadMesh_l30ap")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="Gas Emitters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.952902, 5)
+transparency = 0.35
+cast_shadow = 0
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3o8j2")
+draw_pass_1 = SubResource("QuadMesh_l30ap")
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("5_s7ko5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7, 0.0221875, -5.8)
+
+[node name="doorside2_col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="Doors/Door" index="1"]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="Doors/Door" index="2"]
+keycardLevel = 3
+
+[node name="Door2" parent="Doors" instance=ExtResource("5_s7ko5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0.0244782, -1.7)
+
+[node name="doorside2_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="Doors/Door2" index="1"]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="Doors/Door2" index="2"]
+keycardLevel = 3
+
+[node name="Door3" type="Node3D" parent="Doors" node_paths=PackedStringArray("animationPlayer")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.20032, 0.0158886, 5.93442)
+script = ExtResource("8_q8o8c")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("9_x8qef"), ExtResource("10_8kvgl"), ExtResource("11_clspc")])
+closeSounds = Array[AudioStream]([ExtResource("12_u6j3f"), ExtResource("13_xytxk"), ExtResource("14_3o8j2")])
+
+[node name="door" parent="Doors/Door3" instance=ExtResource("15_l30ap")]
+
+[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="StaticBody3D" parent="Doors/Door3/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="Doors/Door3/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/Door3"]
+stream = ExtResource("9_x8qef")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/Door3"]
+stream = ExtResource("12_u6j3f")
+
+[node name="Door4" type="Node3D" parent="Doors" node_paths=PackedStringArray("animationPlayer")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.08273, 0.0158886, -2.06558)
+script = ExtResource("8_q8o8c")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("9_x8qef"), ExtResource("10_8kvgl"), ExtResource("11_clspc")])
+closeSounds = Array[AudioStream]([ExtResource("12_u6j3f"), ExtResource("13_xytxk"), ExtResource("14_3o8j2")])
+
+[node name="door" parent="Doors/Door4" instance=ExtResource("15_l30ap")]
+
+[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="StaticBody3D" parent="Doors/Door4/door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="Doors/Door4/door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/Door4"]
+stream = ExtResource("9_x8qef")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/Door4"]
+stream = ExtResource("12_u6j3f")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("6_diou6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.044, 1.81995, 3.07)
+brightness = 1.0
+omniBrightness = 0.5
+
+[node name="Light2" parent="Lights" instance=ExtResource("6_diou6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.756, 1.81995, 3.07)
+brightness = 0.5
+
+[node name="Light3" parent="Lights" instance=ExtResource("6_diou6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.656, 1.81995, -4.63)
+brightness = 0.5
+
+[node name="Light4" parent="Lights" instance=ExtResource("6_diou6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.944, 1.81995, -5.73)
+brightness = 0.5
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="table" parent="Props" instance=ExtResource("18_clspc")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -6.74006, -0.622834, -5.66977)
+
+[node name="shelf01" parent="Props" instance=ExtResource("19_u6j3f")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -2.82376, 0.511979, -2.34283)
+
+[connection signal="body_entered" from="RoomArea" to="." method="_on_room_area_body_entered"]
+[connection signal="body_exited" from="RoomArea" to="." method="_on_room_area_body_exited"]
 [connection signal="body_entered" from="GasArea" to="GasArea" method="_on_body_entered"]
 [connection signal="body_exited" from="GasArea" to="GasArea" method="_on_body_exited"]
 
-[editable path="Door"]
-[editable path="Door/door"]
-[editable path="Door2"]
-[editable path="Door2/door"]
-[editable path="Door3/door"]
-[editable path="Door4/door"]
+[editable path="Doors/Door"]
+[editable path="Doors/Door/door"]
+[editable path="Doors/Door2"]
+[editable path="Doors/Door2/door"]
+[editable path="Doors/Door3/door"]
+[editable path="Doors/Door4/door"]

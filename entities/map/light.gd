@@ -1,10 +1,22 @@
 extends Node3D
 class_name RoomLight
 
+@export var spotlight: SpotLight3D
+@export var omnilight: OmniLight3D
+
 @export var canFlicker: bool = true
+
 @export var brightness: float = 0.25: 
 	set(value):
-		$SpotLight3D.light_energy = value
+		brightness = value
+		if spotlight == null: return
+		spotlight.light_energy = value
+
+@export var omniBrightness: float = 0.1:
+	set(value):
+		omniBrightness = value
+		if spotlight:
+			omnilight.light_energy = value
 
 @export var flickerSounds: Array[AudioStream]
 @export var animationNames = ["flicker001", "flicker002"]
@@ -17,14 +29,16 @@ class_name RoomLight
 
 
 func _ready() -> void:
-	$SpotLight3D.light_energy = brightness
+	spotlight.light_energy = brightness
+	omnilight.light_energy = omniBrightness
 
 
 func start_flicker():
 	if canFlicker:
 		$Animations.play(animationNames[randi_range(0, animationNames.size()-1)])
 		await $Animations.animation_finished
-		$SpotLight3D.light_energy = brightness
+		spotlight.light_energy = brightness
+		omnilight.light_energy = omniBrightness
 
 
 func spark():

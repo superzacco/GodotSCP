@@ -307,8 +307,9 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
 		var roomToReplace: int = randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
+			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
+			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
 			break
-			printerr("Missing some necessary rooms!")
 		var roomToReplacePos: Vector3 = replacableRoomArray[roomToReplace].global_position
 		
 		var r: Node3D = spawn_room(necessaryRoomArray[i], roomToReplacePos.x / 15, roomToReplacePos.z /15)
