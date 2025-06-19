@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://wp2hdd66ssek"]
+[gd_scene load_steps=4 format=3 uid="uid://wp2hdd66ssek"]
 
 [ext_resource type="Script" uid="uid://djinj426fl2aq" path="res://entities/ui/console.gd" id="1_1wmyx"]
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="3_dn7sy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsde8"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 0.87451)
 
 [node name="Console" type="Control" node_paths=PackedStringArray("inputField", "consoleTextWindow")]
 layout_mode = 3
@@ -23,6 +26,7 @@ anchor_bottom = 1.0
 offset_left = -400.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qsde8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -45,9 +49,15 @@ theme_override_constants/margin_bottom = 5
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Container2"]
 clip_contents = false
 layout_mode = 2
+theme_override_constants/line_separation = -5
 theme_override_fonts/normal_font = ExtResource("3_dn7sy")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "
+text = "]test
+]test
+]test
+]test
+]test
 "
 scroll_active = false
 scroll_following = true

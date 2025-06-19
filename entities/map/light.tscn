@@ -157,22 +157,25 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a1pd1"]
 
-[node name="Light" type="Node3D" node_paths=PackedStringArray("spotlight", "omnilight") groups=["roomlight"]]
+[node name="Light" type="Node3D" node_paths=PackedStringArray("spotlight", "omnilight", "sprite") groups=["roomlight"]]
 script = ExtResource("1_gghi3")
 spotlight = NodePath("SpotLight3D")
 omnilight = NodePath("SpotLight3D/OmniLight3D")
+sprite = NodePath("Sprite3D")
 flickerSounds = Array[AudioStream]([ExtResource("2_hxvnp"), ExtResource("3_a1pd1"), ExtResource("4_hr5o2")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0836751, 0)
-sorting_offset = 15.0
 cast_shadow = 0
-pixel_size = 0.005
+modulate = Color(1, 1, 1, 0.784314)
+pixel_size = 0.004
 billboard = 1
 double_sided = false
 texture_filter = 0
-render_priority = -1
 texture = ExtResource("6_hr5o2")
+
+[node name="emergencylight" parent="." instance=ExtResource("5_a1pd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.450872, 0)
@@ -198,9 +201,6 @@ libraries = {
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 volume_db = -6.0
 max_polyphony = 2
-
-[node name="emergencylight" parent="." instance=ExtResource("5_a1pd1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 

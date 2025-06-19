@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhbhaindio14i"]
+
+[ext_resource type="PackedScene" uid="uid://dwgp30usep7hm" path="res://rooms/Models/EntHall001.blend" id="1_gjsya"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_levr5"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="2_levr5"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_o3gon"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="5_2v7hv"]
+
+[node name="EntHall001" type="Node3D"]
+script = ExtResource("1_levr5")
+
+[node name="EntHall001" parent="." instance=ExtResource("1_gjsya")]
+
+[node name="Light" parent="." instance=ExtResource("2_levr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, 4)
+
+[node name="Light2" parent="." instance=ExtResource("2_levr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, -4)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_o3gon")]
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("5_2v7hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("5_2v7hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)

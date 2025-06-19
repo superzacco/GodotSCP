@@ -20,3 +20,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
 [node name="Light" parent="." instance=ExtResource("4_1w3h6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69896, 0)
+brightness = 1.0
+omniBrightness = 0.25

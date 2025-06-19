@@ -8,12 +8,14 @@ var errorColor: String = "FF0000"
 func help():
 	console.println("
 	help - Displays this text.
-	noclip - Allows the player to fly without world collision.
+	noclip - fly + no world collision.
 	quit - Exits the game immediately.
 	disconnect - Exits to the main menu.
-	noblink - Toggles player blinking on or off.
+	noblink - Toggles player blinking.
 	fog - Toggles fog.
 	getpos - Returns player position.
+	spawn <item> - Spawns named item.
+	dist - toggles distance culling of rooms.
 	")
 
 func quit():
@@ -42,8 +44,6 @@ func get_pos():
 	console.println(str(GlobalPlayerVariables.playerPosition))
 	print(GlobalPlayerVariables.playerPosition)
 
-
-
 func spawn_item(item: String):
 	var itemToSpawn
 	
@@ -71,3 +71,23 @@ func spawn_item(item: String):
 		var spawnedItem: Node = itemToSpawn.instantiate()
 		get_tree().root.add_child(spawnedItem)
 		spawnedItem.global_position = GlobalPlayerVariables.playerPosition + Vector3(0, 1, 0)
+
+var enabled: bool = true
+func toggle_room_culling():
+	var facilityManager = GlobalPlayerVariables.facilityManager
+	
+	if enabled:
+		GlobalPlayerVariables.roomCullingEnabled = false
+		enabled = false
+		for room in facilityManager.rooms:
+			if room != null:
+				room.show()
+	else:
+		GlobalPlayerVariables.roomCullingEnabled = true
+		enabled = true
+		for room in facilityManager.rooms:
+			if room != null:
+				room.hide()
+		for room in facilityManager.playerNearbyRooms:
+			if room != null:
+				room.show()

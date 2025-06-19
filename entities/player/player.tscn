@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=34 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://iihneek57gsf" path="res://audio/steps/Step7.ogg" id="9_ghoj8"]
 [ext_resource type="Script" uid="uid://bvakpwqlgmmly" path="res://entities/player/nearby_rooms.gd" id="18_b2kln"]
 [ext_resource type="Script" uid="uid://bwqlwuy5t4jhx" path="res://entities/player/nearby_lights.gd" id="18_mtric"]
+[ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="21_eyb6c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -54,8 +55,7 @@ radius = 1.25
 height = 15.0
 radius = 15.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_3wlsy"]
-height = 10.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_mtric"]
 radius = 40.0
 
 [sub_resource type="Animation" id="Animation_4jd7t"]
@@ -255,7 +255,7 @@ shape = SubResource("CylinderShape3D_we0b7")
 script = ExtResource("18_b2kln")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyRooms"]
-shape = SubResource("CylinderShape3D_3wlsy")
+shape = SubResource("SphereShape3D_mtric")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -263,6 +263,8 @@ libraries = {
 }
 
 [node name="UI" parent="." instance=ExtResource("8_8n5i1")]
+
+[node name="RoomCuller" parent="." instance=ExtResource("21_eyb6c")]
 
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]

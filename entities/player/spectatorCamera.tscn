@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci25vwa1xs255"]
+[gd_scene load_steps=4 format=3 uid="uid://ci25vwa1xs255"]
 
 [ext_resource type="Script" uid="uid://b50xqjlacin40" path="res://entities/player/spectator_camera.gd" id="1_c7tb8"]
 [ext_resource type="PackedScene" uid="uid://bx6y1jh26qdcl" path="res://entities/ui/spectator_ui.tscn" id="2_id4ph"]
+[ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="3_06ddl"]
 
 [node name="SpectatorCamera" type="Node3D" node_paths=PackedStringArray("associatedUI", "camera", "horizontalPivot", "verticalPivot")]
 script = ExtResource("1_c7tb8")
@@ -23,3 +24,5 @@ spring_length = 3.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="SpectatorUI" parent="." instance=ExtResource("2_id4ph")]
+
+[node name="RoomCuller" parent="." instance=ExtResource("3_06ddl")]

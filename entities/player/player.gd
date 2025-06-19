@@ -34,7 +34,6 @@ func _ready() -> void:
 	$AnimationPlayer.pause()
 	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	pass
 
 
 func _physics_process(delta: float) -> void:
@@ -78,7 +77,6 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.speed_scale = 1.35
 	else:
 		$AnimationPlayer.speed_scale = 1 
-	pass
 	#endregion
 	
 	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
@@ -123,7 +121,6 @@ func toggle_noclip():
 		GlobalPlayerVariables.blinkingEnabled = false
 		Commands.console.println("noclip ON")
 		print("noclip ON")
-	pass
 
 
 func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET 
@@ -139,4 +136,3 @@ func on_death():
 	collider.disabled = true
 	GlobalPlayerVariables.spectatorManager.switch_player_to_spectator(multiplayerAuthorityID)
 	queue_free()
-	pass

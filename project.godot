@@ -177,7 +177,6 @@ lightmapping/bake_quality/low_quality_probe_ray_count=128
 lightmapping/bake_quality/medium_quality_probe_ray_count=512
 lightmapping/bake_quality/high_quality_probe_ray_count=1024
 lightmapping/bake_quality/ultra_quality_probe_ray_count=4096
-occlusion_culling/use_occlusion_culling=true
 lights_and_shadows/positional_shadow/atlas_size=8192
 lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=3
 lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=3

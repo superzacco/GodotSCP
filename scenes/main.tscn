@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=56 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/LConToHconCheckpoint.tscn" id="4_fv21b"]
 [ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914.tscn" id="4_og1vs"]
 [ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
+[ext_resource type="PackedScene" uid="uid://2tmrt17xnndd" path="res://rooms/HConToEntCheckpoint.tscn" id="5_bu4jf"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
 [ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="6_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://bckxtfpowonvq" path="res://rooms/light_containment/LConBendGas001.tscn" id="7_2f3dj"]
@@ -19,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="11_tel4y"]
 [ext_resource type="PackedScene" uid="uid://c6ao02qwvnt4g" path="res://rooms/heavy_containment/HConEnd001.tscn" id="12_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://7ro1b7portdx" path="res://rooms/heavy_containment/HConHall001.tscn" id="13_5q0nq"]
+[ext_resource type="PackedScene" uid="uid://bgye3c3incbt3" path="res://rooms/light_containment/HConTesla001.tscn" id="13_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
@@ -33,7 +35,13 @@
 [ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
 [ext_resource type="PackedScene" uid="uid://ci25vwa1xs255" path="res://entities/player/spectatorCamera.tscn" id="20_yq6so"]
 [ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
+[ext_resource type="PackedScene" uid="uid://clegh7vjl7vod" path="res://rooms/heavy_containment/HConHall002.tscn" id="22_0loja"]
+[ext_resource type="PackedScene" uid="uid://dasm70153x3ph" path="res://rooms/entrance_zone/EntEnd001.tscn" id="23_nvyfr"]
+[ext_resource type="PackedScene" uid="uid://bhbhaindio14i" path="res://rooms/entrance_zone/EntHall001.tscn" id="24_ty1g6"]
+[ext_resource type="PackedScene" uid="uid://cipmn1xaonh7y" path="res://rooms/entrance_zone/Ent3Way001.tscn" id="25_bjg73"]
+[ext_resource type="PackedScene" uid="uid://2m7c1q81nxo7" path="res://rooms/entrance_zone/Ent4Way001.tscn" id="26_bu4jf"]
 [ext_resource type="AudioStream" uid="uid://b124ybbn0bjvr" path="res://audio/ambient/general/Ambient0.ogg" id="26_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://c27fnwp1k4213" path="res://rooms/entrance_zone/EntBend001.tscn" id="27_o7ddy"]
 [ext_resource type="AudioStream" uid="uid://bc2vehp2j6lys" path="res://audio/ambient/fullsitelockdown.ogg" id="27_tel4y"]
 [ext_resource type="AudioStream" uid="uid://boomnik4hkl8" path="res://audio/ambient/general/Ambient2.ogg" id="28_txyw0"]
 [ext_resource type="AudioStream" uid="uid://du1viwv50yw06" path="res://audio/ambient/general/Ambient3.ogg" id="29_vc5cj"]
@@ -49,7 +57,7 @@
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
-[node name="Facility" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
 top_level = true
 script = ExtResource("1_yc10j")
 navigationRegion = NodePath("Facility/FacilityRegion")
@@ -57,19 +65,26 @@ doorsNode = NodePath("Facility/Doors")
 door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
 LContoHConCheckpoint = ExtResource("4_fv21b")
+HContoENTCheckpoint = ExtResource("5_bu4jf")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
+necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy")])
 fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
 fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
 fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so")])
 fillerLConFourWayHalls = Array[PackedScene]([ExtResource("10_fv21b")])
 fillerLConBends = Array[PackedScene]([ExtResource("11_tel4y")])
 fillerHConEndRooms = Array[PackedScene]([ExtResource("12_qkpxi")])
-fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq")])
+fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq"), ExtResource("22_0loja")])
 fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k")])
 fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
 fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
+fillerEntEndRooms = Array[PackedScene]([ExtResource("23_nvyfr")])
+fillerEntTwoWayHalls = Array[PackedScene]([ExtResource("24_ty1g6")])
+fillerEntThreeWayHalls = Array[PackedScene]([ExtResource("25_bjg73")])
+fillerEntFourWayHalls = Array[PackedScene]([ExtResource("26_bu4jf")])
+fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
 
 [node name="SpectatorScreenManager" type="Node" parent="."]
 script = ExtResource("19_2f3dj")

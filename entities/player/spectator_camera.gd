@@ -27,14 +27,18 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if specManager.spectatableThings.size() > 0:
-		self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.1)
-
+		if specManager.spectatableThings[specIdx] == null:
+			specManager.get_spectatable_objects()
+			switch_spectating()
+		else:
+			self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.1)
 
 func switch_spectating():
 	specManager.get_spectatable_objects()
+	if specManager.spectatableThings.size() > 0:
+		self.global_position = specManager.spectatableThings[specIdx].global_position
 	
-	specIdx += 1
-	if specIdx > specManager.spectatableThings.size()-1:
+	if specIdx == specManager.spectatableThings.size()-1:
 		specIdx = 0
 	
 	associatedUI.set_label("Spectating: %s" % specManager.spectatableThings[specIdx].name)

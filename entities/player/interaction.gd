@@ -33,6 +33,9 @@ func _on_area_entered(area: Area3D) -> void:
 		interactablesInRange.append(area.get_parent())
 		
 		find_nearest_interactable()
+		await get_tree().process_frame
+		await get_tree().process_frame
+		await get_tree().process_frame
 		interactionSprite.show()
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("interactables"):

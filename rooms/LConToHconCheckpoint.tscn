@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0ltomxgby0du"]
+[gd_scene load_steps=16 format=3 uid="uid://c0ltomxgby0du"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_sw30i"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_s063j"]
@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="10_76pbh"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="11_adrke"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="12_syih6"]
+[ext_resource type="Script" uid="uid://cphyc6nao2p6s" path="res://rooms/checkpointalarm.gd" id="13_xwgg2"]
+[ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/rooms/DoorCheckpoint.ogg" id="14_1302b"]
+[ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="15_6tl35"]
 
 [node name="LCon4Way001" type="Node3D" groups=["room"]]
 script = ExtResource("1_sw30i")
@@ -83,48 +86,58 @@ stream = ExtResource("8_rg4l3")
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, -3.20003)
 light_color = Color(0.999913, 0.460798, 0.395356, 1)
-light_energy = 0.2
 light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 0.1
 spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, 3.19997)
-light_color = Color(0.999899, 0.434591, 0.368979, 1)
-light_energy = 0.5
+light_color = Color(0.999904, 0.443464, 0.377857, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 0.1
 spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, -3.20003)
 light_color = Color(0.999913, 0.460798, 0.395356, 1)
-light_energy = 0.2
 light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 0.1
 spot_range = 12.0
 spot_angle = 75.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, 3.19997)
-light_color = Color(0.999899, 0.434591, 0.368979, 1)
-light_energy = 0.5
+light_color = Color(0.999904, 0.443464, 0.377857, 1)
+light_energy = 2.0
 light_specular = 0.0
 shadow_enabled = true
+shadow_bias = 0.1
 spot_range = 12.0
 spot_angle = 75.0
 
-[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_syih6")]
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("12_syih6")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0173287, 0.178191, -1.50003)
-doorsToControl = [NodePath("../Door"), NodePath("../Door2")]
+extraToControl = NodePath("../CheckpointAlarm")
 keycardLevel = 3
 
-[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_syih6")]
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("12_syih6")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.0173285, 0.178191, 1.49997)
-doorsToControl = [NodePath("../Door"), NodePath("../Door2")]
+extraToControl = NodePath("../CheckpointAlarm")
 keycardLevel = 3
+
+[node name="CheckpointAlarm" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("doors")]
+script = ExtResource("13_xwgg2")
+checkpointSound = ExtResource("14_1302b")
+checkpointAlarm = ExtResource("15_6tl35")
+doors = [NodePath("../Door"), NodePath("../Door2")]
+
+[node name="Extra" type="AudioStreamPlayer3D" parent="CheckpointAlarm"]
 
 [editable path="Door/door"]
 [editable path="Door2/door"]

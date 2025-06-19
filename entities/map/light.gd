@@ -3,6 +3,7 @@ class_name RoomLight
 
 @export var spotlight: SpotLight3D
 @export var omnilight: OmniLight3D
+@export var sprite: Sprite3D
 
 @export var canFlicker: bool = true
 

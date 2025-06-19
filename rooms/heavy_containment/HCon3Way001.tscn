@@ -28,9 +28,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 
 [node name="Light" parent="." instance=ExtResource("4_wgigo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00419335, 1.87211, -4.94381)
+brightness = 1.0
 
 [node name="Light2" parent="." instance=ExtResource("4_wgigo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50419, 1.87211, -0.0438151)
+brightness = 1.0
 
 [node name="Light3" parent="." instance=ExtResource("4_wgigo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.49581, 1.87211, -0.0438143)
+brightness = 1.0

@@ -86,12 +86,14 @@ func relocate(firstTime: bool = false):
 
 
 func try_kill_player(player: Player):
-	if playerInKillRange != null:
-		if GlobalPlayerVariables.blinking or !onScreen:
-			$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
-			$NeckSnap.play()
-			player.on_death()
-			playerInKillRange = null
+	if playerInKillRange == null:
+		return
+	
+	if GlobalPlayerVariables.blinking or !onScreen:
+		$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
+		$NeckSnap.play()
+		player.on_death()
+		playerInKillRange = null
 
 
 func _on_door_detection_area_body_entered(body: Node3D) -> void:

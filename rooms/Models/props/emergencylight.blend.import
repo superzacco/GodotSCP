@@ -36,8 +36,7 @@ _subresources={
 "nodes": {
 "PATH:Cube": {
 "generate/occluder": 1,
-"mesh_instance/cast_shadow": 0,
-"mesh_instance/layers": 2
+"mesh_instance/cast_shadow": 0
 }
 }
 }

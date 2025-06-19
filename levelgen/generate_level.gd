@@ -23,6 +23,13 @@ extends Node
 @export var necessaryHConFourWayHalls: Array[PackedScene]
 @export var necessaryHConBends: Array[PackedScene]
 
+@export_subgroup("Entrance Zone")
+@export var necessaryEntEndRooms: Array[PackedScene]
+@export var necessaryEntTwoWayHalls: Array[PackedScene]
+@export var necessaryEntThreeWayHalls: Array[PackedScene]
+@export var necessaryEntFourWayHalls: Array[PackedScene]
+@export var necessaryEntBends: Array[PackedScene]
+
 @export_group("Filler Rooms")
 @export_subgroup("Light Containment")
 @export var fillerLConEndRooms: Array[PackedScene]
@@ -38,6 +45,13 @@ extends Node
 @export var fillerHConFourWayHalls: Array[PackedScene]
 @export var fillerHConBends: Array[PackedScene]
 
+@export_subgroup("Entrance Zone")
+@export var fillerEntEndRooms: Array[PackedScene]
+@export var fillerEntTwoWayHalls: Array[PackedScene]
+@export var fillerEntThreeWayHalls: Array[PackedScene]
+@export var fillerEntFourWayHalls: Array[PackedScene]
+@export var fillerEntBends: Array[PackedScene]
+
 var replacableLConEndRooms: Array
 var replacableLConTwoWayHalls: Array
 var replacableLConThreeWayHalls: Array
@@ -49,6 +63,12 @@ var replacableHConTwoWayHalls: Array
 var replacableHConThreeWayHalls: Array
 var replacableHConFourWayHalls: Array
 var replacableHConBends: Array
+
+var replacableEntEndRooms: Array
+var replacableEntTwoWayHalls: Array
+var replacableEntThreeWayHalls: Array
+var replacableEntFourWayHalls: Array
+var replacableEntBends: Array
 #endregion
 
 var spaceMultiplier: float = 15
@@ -56,7 +76,7 @@ var mapWidth: int = 15
 var mapHeight: int = 25
 
 var LContoHConCheckpointLine: int = 5
-var HContoEntranceCheckpointLine: int = 11
+var HContoEntranceCheckpointLine: int = 10
 
 var temporaryRooms = []
 var finishedRooms = []
@@ -92,7 +112,7 @@ func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0, false)
 	
 	var zOffset = 1
-	for i in 4:
+	for i in 5:
 		generate_long_hall(zOffset)
 		zOffset += 3
 	
@@ -102,11 +122,16 @@ func generate_map():
 	place_doors()
 	generate_nav_mesh()
 	
-	GlobalPlayerVariables.facilityManager.rooms = finishedRooms
+	for room in finishedRooms:
+		if room != null:
+			GlobalPlayerVariables.facilityManager.rooms.append(room)
+		room.hide()
+	
+	print(GlobalPlayerVariables.facilityManager.rooms)
 
 
 func generate_long_hall(zOffset):
-	var hallLength: int = randi_range(mapWidth, mapWidth-5)
+	var hallLength: int = randi_range(mapWidth, mapWidth-4)
 	var hallOffset: int = randi_range(0, abs(mapWidth-hallLength)) 
 	
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
@@ -209,8 +234,10 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 			
 			if z < LContoHConCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerLConEndRooms, replacableLConEndRooms, x, z)
-			else:
+			elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerHConEndRooms, replacableHConEndRooms, x, z)
+			elif z >= HContoEntranceCheckpointLine:
+				fillerRoom = place_filler_room_in_containment(fillerEntEndRooms, replacableEntEndRooms, x, z)
 			
 			if ((!x+1 > xSize) and (temporaryRooms[x+1][z] != null)):
 				timesToRotate = 1
@@ -223,22 +250,28 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 			if ((!x+1 > xSize and !x-1 < 0) and (temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null)):
 				if z < LContoHConCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerLConTwoWayHalls, replacableLConTwoWayHalls, x, z)
-				else:
+				elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerHConTwoWayHalls, replacableHConTwoWayHalls, x, z)
+				elif z >= HContoEntranceCheckpointLine:
+					fillerRoom = place_filler_room_in_containment(fillerEntTwoWayHalls, replacableEntTwoWayHalls, x, z)
 				timesToRotate = 1
 				
 				# THIS ELIF BULLSHIT IS STUPID!!!!
 			elif ((!z+1 > zSize and !z-1 < 0) and (temporaryRooms[x][z+1] != null and temporaryRooms[x][z-1] != null)):
 				if z < LContoHConCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerLConTwoWayHalls, replacableLConTwoWayHalls, x, z)
-				else:
+				elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerHConTwoWayHalls, replacableHConTwoWayHalls, x, z)
+				elif z >= HContoEntranceCheckpointLine:
+					fillerRoom = place_filler_room_in_containment(fillerEntTwoWayHalls, replacableEntTwoWayHalls, x, z)
 				
 			else:
 				if z < LContoHConCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerLConBends, replacableLConBends, x, z)
-				else:
+				elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerHConBends, replacableHConBends, x, z)
+				elif z >= HContoEntranceCheckpointLine:
+					fillerRoom = place_filler_room_in_containment(fillerEntBends, replacableEntBends, x, z)
 				
 				if (!z+1 > zSize and temporaryRooms[x][z+1] != null):
 					if (!x+1 > xSize and temporaryRooms[x+1][z]):
@@ -254,8 +287,10 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 		3:
 			if z < LContoHConCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerLConThreeWayHalls, replacableLConThreeWayHalls, x, z)
-			else:
+			elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerHConThreeWayHalls, replacableHConThreeWayHalls, x, z)
+			elif z >= HContoEntranceCheckpointLine:
+				fillerRoom = place_filler_room_in_containment(fillerEntThreeWayHalls, replacableEntThreeWayHalls, x, z)
 				
 			
 			if (!x-1 < 0 and temporaryRooms[x-1][z] == null):
@@ -267,8 +302,10 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 		4:
 			if z < LContoHConCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerLConFourWayHalls, replacableLConFourWayHalls, x, z)
-			else:
+			elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerHConFourWayHalls, replacableHConFourWayHalls, x, z)
+			elif z >= HContoEntranceCheckpointLine:
+				fillerRoom = place_filler_room_in_containment(fillerEntFourWayHalls, replacableEntFourWayHalls, x, z)
 	
 	temporaryRoom.queue_free()
 	if timesToRotate > 0:
@@ -300,7 +337,13 @@ func replace_filler_rooms():
 	room_replacer(necessaryHConThreeWayHalls, replacableHConThreeWayHalls)
 	room_replacer(necessaryHConFourWayHalls, replacableHConFourWayHalls)
 	room_replacer(necessaryHConBends, replacableHConBends)
-	pass
+	
+	spawn_checkpoint_room(11, HContoENTCheckpoint)
+	
+	room_replacer(necessaryEntEndRooms, replacableEntEndRooms)
+	room_replacer(necessaryEntTwoWayHalls, replacableEntTwoWayHalls)
+	room_replacer(necessaryEntThreeWayHalls, replacableEntThreeWayHalls)
+	room_replacer(necessaryEntFourWayHalls, replacableEntFourWayHalls)
 
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
@@ -346,8 +389,14 @@ func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
 	for x in mapWidth:
 		for z in mapHeight:
 			if z == zDepth and finishedRoomGrid[x][z] != null:
-				spawn_room(checkpointRoom, x, z)
+				var r = spawn_room(checkpointRoom, x, z)
+				
 				finishedRoomGrid[x][z].queue_free()
+				finishedRooms.erase(finishedRoomGrid[x][z])
+				finishedRoomGrid[x][z] = null
+				
+				finishedRooms.append(r)
+				finishedRoomGrid[x][z] = r
 
 
 func generate_nav_mesh():

@@ -6,7 +6,8 @@ var running: bool = false
 
 func activate():
 	if running:
-		reset()
+		for door in doors:
+			door.close()
 		return
 	
 	for door in doors:
@@ -14,18 +15,12 @@ func activate():
 	running = true
 	
 	await get_tree().create_timer(4).timeout
-	$AudioStreamPlayer3D.play()
+	$AlarmPlayer.play()
 	await get_tree().create_timer(1.8).timeout
 	
 	for door in doors:
 		door.close()
 	running = false
-
-
-func reset():
-	for door in doors:
-		door.close()
-
 
 
 func _on_room_area_body_entered(body: Node3D) -> void:

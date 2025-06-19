@@ -1,9 +1,10 @@
+Area3D
+AudioStreamPlayer3D
+Panel
 Node3D
 GPUParticles3D
 Sprite3D
-AudioStreamPlayer3D
 CollisionShape3D
-Area3D
 MarginContainer
 VBoxContainer
 TextureRect
@@ -11,4 +12,3 @@ HBoxContainer
 MultiplayerSynchronizer
 OmniLight3D
 Timer
-RoomLight

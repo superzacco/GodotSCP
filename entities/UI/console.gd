@@ -70,6 +70,8 @@ func _input(event: InputEvent) -> void:
 					println("missing <item>", Commands.errorColor)
 				else:
 					Commands.spawn_item(commandStringArray[1])
+			"dist":
+				Commands.toggle_room_culling()
 		
 		inputField.clear()
 	
@@ -94,6 +96,6 @@ func _input(event: InputEvent) -> void:
 
 
 func println(text: String, color: String = "#FFFFFF"):
-			consoleOutput = consoleOutput + "[color="+color+"]" + "\n"+"] " + text + "[/color]"
+			consoleOutput = consoleOutput + "[color="+color+"]" + "\n"+"]" + text + "[/color]"
 			consoleTextWindow.text = consoleOutput
 	

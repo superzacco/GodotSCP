@@ -22,12 +22,6 @@ spawnPosFor173 = NodePath("173Pos")
 [node name="Door" parent="." instance=ExtResource("2_a7uwg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.29803, 0.0519333, 0.00818944)
 
-[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Points" type="Node3D" parent="."]
 
 [node name="point1" parent="Points" instance=ExtResource("10_jgo1u")]

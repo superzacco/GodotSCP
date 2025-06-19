@@ -11,11 +11,9 @@ extends Node3D
 @export var keycardLevel: int = 0
 
 func on_pressed():
-	if extraToControl != null:
-		extraToControl.activate()
 	
-	if doorsToControl.size() <= 0 or doorsToControl[0] == null:
-		$Sound.play()
+	if extraToControl == null and doorsToControl.size() <= 0:
+		push_error("Button with unassigned things")
 		return
 	
 	if wontOpen:
@@ -24,8 +22,8 @@ func on_pressed():
 		return
 	
 	if buttonType == 0:
-		open_door()
-		$Sound.play()
+		activate_things()
+		
 	elif buttonType == 1:
 		var equippedKeycard: Keycard
 		
@@ -41,12 +39,15 @@ func on_pressed():
 				$Fail.play()
 				
 			else:
-				open_door()
-				$Sound.play()
+				activate_things()
 			
 			GlobalPlayerVariables.inventory.clear_equip()
 
 
-func open_door():
+func activate_things():
+	$Sound.play()
+	if extraToControl != null:
+		extraToControl.activate()
+	
 	for door in doorsToControl:
 		door.toggle_door()

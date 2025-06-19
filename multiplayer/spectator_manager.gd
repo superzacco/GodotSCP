@@ -2,7 +2,6 @@ extends Node
 class_name SpectatorManager
 
 var spectatableThings: Array
-var amtSpectatableThings: int
 
 @export var spectatorScene: PackedScene
 
@@ -30,5 +29,3 @@ func get_spectatable_objects():
 	for spectatable in spectatables:
 		if spectatable != null:
 			spectatableThings.append(spectatable)
-	
-	amtSpectatableThings = spectatableThings.size()

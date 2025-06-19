@@ -30,12 +30,16 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, -
 
 [node name="Light" parent="." instance=ExtResource("4_knqes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84334, 4.5)
+brightness = 0.75
 
 [node name="Light2" parent="." instance=ExtResource("4_knqes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84334, -4.5)
+brightness = 0.75
 
 [node name="Light3" parent="." instance=ExtResource("4_knqes")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.5, 1.84334, -1.96701e-07)
+brightness = 0.75
 
 [node name="Light4" parent="." instance=ExtResource("4_knqes")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5, 1.84334, 1.96701e-07)
+brightness = 0.75
