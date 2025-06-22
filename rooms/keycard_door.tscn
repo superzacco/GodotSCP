@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_ofwoi"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="2_a3yfc"]
-[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/rooms/DoorOpen1.ogg" id="3_ds5uy"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="3_ds5uy"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_g8fdx"]
-[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/rooms/DoorOpen2.ogg" id="4_1p44s"]
-[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/rooms/DoorOpen0.ogg" id="4_g8fdx"]
-[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/rooms/DoorClose0.ogg" id="5_vqlka"]
-[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/rooms/DoorClose1.ogg" id="6_xcrkh"]
-[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="7_vbm6u"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="4_1p44s"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="4_g8fdx"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="5_vqlka"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="6_xcrkh"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_vbm6u"]
 
 [node name="Door" type="Node3D" node_paths=PackedStringArray("animationPlayer")]
 script = ExtResource("1_ofwoi")

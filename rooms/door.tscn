@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_i3vr1"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="1_w23wf"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="3_4wl2e"]
-[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/rooms/DoorOpen1.ogg" id="3_r0iwn"]
-[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/rooms/DoorOpen0.ogg" id="4_1nf8s"]
-[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/rooms/DoorOpen2.ogg" id="4_ivvos"]
-[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/rooms/DoorClose0.ogg" id="5_pgugy"]
-[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/rooms/DoorClose1.ogg" id="6_i7sdm"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="3_r0iwn"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="4_1nf8s"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="4_ivvos"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="5_pgugy"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="6_i7sdm"]
 [ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="6_pgugy"]
-[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/rooms/DoorClose2.ogg" id="7_w5vcm"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_w5vcm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
 
@@ -35,16 +35,8 @@ closeSounds = Array[AudioStream]([ExtResource("5_pgugy"), ExtResource("6_i7sdm")
 [node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 
-[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
-collision_layer = 256
-collision_mask = 256
-
 [node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
-collision_layer = 768
-collision_mask = 256
 
 [node name="Button" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_4wl2e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.22)

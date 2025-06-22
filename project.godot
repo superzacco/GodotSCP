@@ -31,6 +31,7 @@ Items="*res://entities/items/items.gd"
 SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
 GameManager="*res://util/game_manager.tscn"
+SignalBus="*res://util/signal_bus.gd"
 
 [debug]
 

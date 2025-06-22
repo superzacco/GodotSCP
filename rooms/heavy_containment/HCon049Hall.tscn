@@ -1,0 +1,173 @@
+[gd_scene load_steps=20 format=3 uid="uid://dmrarvt6khysl"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_aj3ed"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_pcm3b"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_6g1yh"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_4l6kl"]
+[ext_resource type="PackedScene" uid="uid://bx83gcgcd87r3" path="res://rooms/Models/HCon049Elevators.blend" id="5_aj3ed"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="6_wx20m"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="7_eqt2g"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="8_h1kf2"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="9_vwvg7"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="10_ri1id"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="11_oxrr0"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="12_tqgsk"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="13_a0im0"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="14_bhoxe"]
+[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="15_8g8lh"]
+[ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="16_5u68l"]
+[ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="17_eqt2g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
+properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("door/Armature/Skeleton3D/doorside1_col:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("door/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="HCon" type="Node3D"]
+script = ExtResource("1_aj3ed")
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("2_pcm3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("2_pcm3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("3_6g1yh")]
+
+[node name="Light" parent="." instance=ExtResource("4_4l6kl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84131, 4)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light3" parent="." instance=ExtResource("4_4l6kl")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, -4.7, 1.84131, 3.7)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light4" parent="." instance=ExtResource("4_4l6kl")]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 4.7, 1.84131, -3.8)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light2" parent="." instance=ExtResource("4_4l6kl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84131, -4)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="HCon049Elevators" parent="." instance=ExtResource("5_aj3ed")]
+
+[node name="Door" parent="." instance=ExtResource("6_wx20m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0498235, 0)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="Door" index="1"]
+keycardLevel = 4
+
+[node name="Keycardbutton2" parent="Door" index="2"]
+keycardLevel = 4
+
+[node name="Door2" type="StaticBody3D" parent="." node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.9, 0.0434538, 3.74924)
+script = ExtResource("7_eqt2g")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("8_h1kf2"), ExtResource("9_vwvg7"), ExtResource("10_ri1id")])
+closeSounds = Array[AudioStream]([ExtResource("11_oxrr0"), ExtResource("12_tqgsk"), ExtResource("13_a0im0")])
+
+[node name="door" parent="Door2" instance=ExtResource("14_bhoxe")]
+
+[node name="doorside2_col" parent="Door2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button" parent="Door2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("15_8g8lh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "You pressed the button, but nothing happened."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Door2"]
+stream = ExtResource("8_h1kf2")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Door2"]
+stream = ExtResource("11_oxrr0")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Door2"]
+stream = ExtResource("16_5u68l")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Door2"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="Door3" type="StaticBody3D" parent="." node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6.88782, 0.0347551, -3.74361)
+script = ExtResource("7_eqt2g")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("8_h1kf2"), ExtResource("9_vwvg7"), ExtResource("10_ri1id")])
+closeSounds = Array[AudioStream]([ExtResource("11_oxrr0"), ExtResource("12_tqgsk"), ExtResource("13_a0im0")])
+
+[node name="door" parent="Door3" instance=ExtResource("14_bhoxe")]
+
+[node name="doorside2_col" parent="Door3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button" parent="Door3" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("15_8g8lh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "You pressed the button, but nothing happened."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Door3"]
+stream = ExtResource("8_h1kf2")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Door3"]
+stream = ExtResource("11_oxrr0")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Door3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Door3"]
+stream = ExtResource("16_5u68l")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Door3"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="elevator" parent="." instance=ExtResource("17_eqt2g")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.03226, 0.0353699, -1.02418)
+id = "049A"
+
+[node name="elevator2" parent="." instance=ExtResource("17_eqt2g")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -5.02919, 0.0353699, 0.963874)
+id = "049A"
+
+[editable path="Door"]
+[editable path="Door/door"]
+[editable path="Door2/door"]
+[editable path="Door3/door"]

@@ -127,7 +127,7 @@ func generate_map():
 			GlobalPlayerVariables.facilityManager.rooms.append(room)
 		room.hide()
 	
-	print(GlobalPlayerVariables.facilityManager.rooms)
+	SignalBus.emit_signal("level_generation_finished")
 
 
 func generate_long_hall(zOffset):
@@ -394,6 +394,7 @@ func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
 				finishedRoomGrid[x][z].queue_free()
 				finishedRooms.erase(finishedRoomGrid[x][z])
 				finishedRoomGrid[x][z] = null
+				replacableHConTwoWayHalls.erase(finishedRoomGrid[x][z])
 				
 				finishedRooms.append(r)
 				finishedRoomGrid[x][z] = r
@@ -411,4 +412,3 @@ func generate_nav_mesh():
 	await get_tree().create_timer(0.5).timeout
 	
 	navigationRegion.bake_navigation_mesh()
-	

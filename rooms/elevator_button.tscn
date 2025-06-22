@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://3fj6oi00l83"]
+
+[ext_resource type="Script" uid="uid://bim4xj0veqqml" path="res://rooms/button.gd" id="1_4wua4"]
+[ext_resource type="AudioStream" uid="uid://bubr0tua8g3a1" path="res://audio/interaction/button.ogg" id="3_h4xn0"]
+[ext_resource type="PackedScene" uid="uid://dghy1hisubq7k" path="res://rooms/Models/elevator_button.blend" id="4_4wua4"]
+[ext_resource type="AudioStream" uid="uid://c680a7ghpgxq5" path="res://audio/interaction/button_fail.ogg" id="4_mqbrn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_msn48"]
+size = Vector3(0.25, 0.25, 0.03)
+
+[node name="Button" type="StaticBody3D" groups=["button"]]
+script = ExtResource("1_4wua4")
+
+[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -5.96046e-08)
+shape = SubResource("BoxShape3D_msn48")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_h4xn0")
+volume_db = -6.0
+max_polyphony = 3
+
+[node name="Fail" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_mqbrn")
+volume_db = -6.0
+max_polyphony = 3
+
+[node name="elevator_button" parent="." instance=ExtResource("4_4wua4")]

@@ -6,11 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_3bxvg"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_1nm3e"]
 
-[node name="LCon3Way001" type="Node3D" groups=["room"]]
+[node name="LCon3Way002" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_frg2d")
-
-[node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -30,3 +28,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31135e-07, 4.85731, -1.5)
 brightness = 1.0
 omniBrightness = 0.25
+
+[node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]

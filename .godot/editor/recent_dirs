@@ -1,7 +1,8 @@
-res://entities/player
-res://rooms/heavy_containment
 res://rooms/light_containment
+res://rooms/heavy_containment
+res://
 res://rooms
+res://entities/player
 res://rooms/entrance_zone
 res://rooms/Textures
 res://rooms/tesla
