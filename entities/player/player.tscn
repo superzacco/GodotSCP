@@ -1,8 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
-[ext_resource type="Texture2D" uid="uid://cvn7fhs4uxt2n" path="res://entities/player/front.png" id="2_u5ofe"]
-[ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="2_we0b7"]
+[ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
@@ -20,7 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://iihneek57gsf" path="res://audio/steps/Step7.ogg" id="9_ghoj8"]
 [ext_resource type="Script" uid="uid://bvakpwqlgmmly" path="res://entities/player/nearby_rooms.gd" id="18_b2kln"]
 [ext_resource type="Script" uid="uid://bwqlwuy5t4jhx" path="res://entities/player/nearby_lights.gd" id="18_mtric"]
+[ext_resource type="Script" uid="uid://da4jis578yhi0" path="res://entities/player/overhead_username.gd" id="21_221hk"]
 [ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="21_eyb6c"]
+[ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="22_221hk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -32,17 +33,16 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("StuffToRotate:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3mim6"]
-radial_segments = 8
-rings = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtric"]
-albedo_texture = ExtResource("2_we0b7")
-uv1_scale = Vector3(2, 2, 2)
+properties/2/path = NodePath("StuffToRotate/classd001/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("StuffToRotate/classd001/Armature/Skeleton3D/class_d:skeleton")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ckrbs"]
-height = 2.2
+radius = 0.3
+height = 1.6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b2kln"]
 radius = 0.1
@@ -89,7 +89,6 @@ tracks/1/keys = {
 resource_name = "walking_Bob"
 length = 1.2
 loop_mode = 1
-step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,7 +96,7 @@ tracks/0/path = NodePath("StuffToRotate/CameraBobPivot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"times": PackedFloat32Array(0, 0.266667, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1.2, 1, 1.2, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0)]
@@ -109,7 +108,7 @@ tracks/1/path = NodePath("StuffToRotate/CameraBobPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"times": PackedFloat32Array(0, 0.266667, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1.2, 0.8, 1.2, 0.8, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
@@ -121,7 +120,7 @@ tracks/2/path = NodePath("PlayerStepSounds")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.9),
+"times": PackedFloat32Array(0.266667, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -138,7 +137,10 @@ _data = {
 &"walking_Bob": SubResource("Animation_akv28")
 }
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator") groups=["player", "spectatable", "teslashockable"]]
+[sub_resource type="ViewportTexture" id="ViewportTexture_eyb6c"]
+viewport_path = NodePath("OverheadUsername/SubViewport")
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations") groups=["player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -156,33 +158,24 @@ sprintSpeedDesired = 50.0
 sprintDepletionRate = 20.0
 sprintReplenishRate = 15.0
 blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
+playerModel = NodePath("StuffToRotate/classd001")
+modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_b2kln")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-cast_shadow = 0
-gi_mode = 0
-mesh = SubResource("CapsuleMesh_3mim6")
-material = SubResource("StandardMaterial3D_mtric")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_ckrbs")
 
 [node name="StuffToRotate" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.54386e-08, 0, 1, 0, 8.54386e-08, 0, -1, 0, 0, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="StuffToRotate"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.37114e-08, 1, -0.5)
-double_sided = false
-texture = ExtResource("2_u5ofe")
-
 [node name="CameraBobPivot" type="Node3D" parent="StuffToRotate"]
 
 [node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+cull_mask = 1048063
 fov = 90.0
 
 [node name="GrabbySprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
@@ -206,6 +199,15 @@ no_depth_test = true
 texture = ExtResource("4_ma6qb")
 script = ExtResource("5_lyn41")
 eyeDrynessPerSecond = 7.5
+
+[node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
+transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
+
+[node name="class_d" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
+layers = 513
+
+[node name="AnimationPlayer" parent="StuffToRotate/classd001" index="1"]
+blend_times = [&"idle", &"idle", 0.15, &"idle", &"run", 0.15, &"idle", &"walk", 0.15, &"run", &"idle", 0.15, &"run", &"run", 0.15, &"run", &"walk", 0.15, &"walk", &"idle", 0.15, &"walk", &"run", 0.15, &"walk", &"walk", 0.15]
 
 [node name="Inventory" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
@@ -257,6 +259,8 @@ script = ExtResource("18_b2kln")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyRooms"]
 shape = SubResource("SphereShape3D_mtric")
 
+[node name="RoomCuller" parent="." instance=ExtResource("21_eyb6c")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_git2y")
@@ -264,7 +268,29 @@ libraries = {
 
 [node name="UI" parent="." instance=ExtResource("8_8n5i1")]
 
-[node name="RoomCuller" parent="." instance=ExtResource("21_eyb6c")]
+[node name="OverheadUsername" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+billboard = 2
+texture = SubResource("ViewportTexture_eyb6c")
+
+[node name="SubViewport" type="SubViewport" parent="OverheadUsername"]
+transparent_bg = true
+script = ExtResource("21_221hk")
+
+[node name="Label" type="Label" parent="OverheadUsername/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "mlgcatwiththepenjamin"
+label_settings = ExtResource("22_221hk")
 
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]
@@ -272,3 +298,5 @@ libraries = {
 [connection signal="area_exited" from="NearbyLights" to="NearbyLights" method="_on_area_exited"]
 [connection signal="area_entered" from="NearbyRooms" to="NearbyRooms" method="_on_area_entered"]
 [connection signal="area_exited" from="NearbyRooms" to="NearbyRooms" method="_on_area_exited"]
+
+[editable path="StuffToRotate/classd001"]

@@ -79,10 +79,14 @@ func send_elevator():
 		var playerRelativePos: Vector3
 		var playerRelativeRotation: Vector3
 		
+		playerRelativeRotation = player.stuffToRotate.global_rotation - ownDestination.global_rotation
 		playerRelativePos = player.global_position - ownDestination.global_position
-		playerRelativeRotation = player.global_rotation - ownDestination.global_rotation
-		player.global_position = destination.global_position + playerRelativePos
-		player.global_rotation = destination.global_rotation + playerRelativeRotation
+		
+		#print(playerRelativeRotation)
+		print(playerRelativePos)
+		
+		player.stuffToRotate.global_rotation = destination.global_rotation - playerRelativeRotation
+		player.global_position = destination.global_position - playerRelativePos
 		
 		player.blinkinator.blink()
 	

@@ -35,8 +35,6 @@ func _process(delta: float) -> void:
 
 func switch_spectating():
 	specManager.get_spectatable_objects()
-	if specManager.spectatableThings.size() > 0:
-		self.global_position = specManager.spectatableThings[specIdx].global_position
 	
 	if specIdx == specManager.spectatableThings.size()-1:
 		specIdx = 0

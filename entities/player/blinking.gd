@@ -18,8 +18,7 @@ func _process(delta: float) -> void:
 		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
 	
 	if GlobalPlayerVariables.blinkJuice <= 0:
-		if GlobalPlayerVariables.blinkSpriteEnabled:
-			self.show()
+		self.show()
 		
 		GlobalPlayerVariables.blinking = true
 		
@@ -28,13 +27,16 @@ func _process(delta: float) -> void:
 
 
 func blink():
-		self.show()
-		GlobalPlayerVariables.blinking = true
-		await get_tree().create_timer(0.2).timeout
-		GlobalPlayerVariables.blinking = false
-		self.hide()
-		
-		GlobalPlayerVariables.blinkJuice = 100
+	if !GlobalPlayerVariables.blinkingEnabled:
+		return
+	
+	self.show()
+	GlobalPlayerVariables.blinking = true
+	await get_tree().create_timer(0.2).timeout
+	GlobalPlayerVariables.blinking = false
+	self.hide()
+	
+	GlobalPlayerVariables.blinkJuice = 100
 
 
 func _input(event: InputEvent) -> void:

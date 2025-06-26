@@ -24,7 +24,7 @@ buses/default_bus_layout="res://entities/default_bus_layout.tres"
 
 GlobalPlayerVariables="*res://entities/player/global_player_variables.gd"
 ZFunc="*res://util/ZFunc.gd"
-VersionController="*res://version_controller.gd"
+VersionController="*res://util/version_controller.gd"
 AudioManager="*res://util/audio_manager.gd"
 Commands="*res://util/commands.gd"
 Items="*res://entities/items/items.gd"

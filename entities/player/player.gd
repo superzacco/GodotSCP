@@ -13,6 +13,9 @@ class_name Player
 
 @export var blinkinator: PlayerBlinking
 
+@export var playerModel: Node3D
+@export var modelAnimations: AnimationPlayer
+
 var sensitivity: float
 var moveSpeed: float
 
@@ -24,6 +27,7 @@ var multiplayerAuthorityID: int
 func _ready() -> void:
 	print(multiplayerAuthorityID)
 	camera.current = is_multiplayer_authority()
+	playerModel.visible = !is_multiplayer_authority()
 	
 	GlobalPlayerVariables.player = self
 	
@@ -81,8 +85,14 @@ func _physics_process(delta: float) -> void:
 	
 	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
 		$AnimationPlayer.play()
+		
+		if sprinting and GlobalPlayerVariables.sprintJuice > 0:
+			modelAnimations.play("run")
+		else:
+			modelAnimations.play("walk")
 	else:
 		$AnimationPlayer.pause()
+		modelAnimations.play("idle")
 
 
 #region CAMERA MOVEMENT

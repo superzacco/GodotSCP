@@ -1,5 +1,9 @@
-Timer
+Label
+SubViewport
+Sprite3D
 Node3D
+MultiplayerSynchronizer
+Timer
 AudioStreamPlayer
 CollisionShape3D
 Area3D
@@ -7,9 +11,5 @@ AudioStreamPlayer3D
 Control
 Panel
 GPUParticles3D
-Sprite3D
 MarginContainer
 VBoxContainer
-TextureRect
-HBoxContainer
-MultiplayerSynchronizer

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5u47f2nm250v"]
+[gd_scene load_steps=14 format=3 uid="uid://c5u47f2nm250v"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_k0b0q"]
 [ext_resource type="AudioStream" uid="uid://sel20olb4ej" path="res://audio/door/ElevatorOpen0.ogg" id="2_32xy4"]
@@ -12,8 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="11_8w5a3"]
 [ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="12_48vdd"]
 [ext_resource type="PackedScene" uid="uid://3fj6oi00l83" path="res://rooms/elevator_button.tscn" id="12_k0b0q"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
 properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
@@ -34,15 +32,11 @@ closeSounds = Array[AudioStream]([ExtResource("5_351km"), ExtResource("6_shu0q")
 
 [node name="elevator_door" parent="." instance=ExtResource("8_ql406")]
 
-[node name="Skeleton3D" parent="elevator_door/Armature" index="0"]
-bones/0/position = Vector3(0, 0.75, 0)
-bones/2/position = Vector3(-5.66234e-08, -0.75, 0)
-
 [node name="doorside2-col" parent="elevator_door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, 0.75, 0)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
 
 [node name="doorside1-col" parent="elevator_door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, -0.7394, 0)
+transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
 
 [node name="Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_lhu1w")
@@ -55,10 +49,6 @@ stream = ExtResource("11_8w5a3")
 attenuation_model = 3
 volume_db = -6.0
 attenuation_filter_db = 0.0
-
-[node name="DoorArea" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
 
 [node name="173 Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_48vdd")

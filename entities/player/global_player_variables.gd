@@ -37,7 +37,6 @@ var consoleOpen: bool = false
 
 var noclipEnabled: bool = false
 var blinkingEnabled: bool = true
-var blinkSpriteEnabled: bool = true
 var roomCullingEnabled: bool = true
 
 var blinking: bool = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tph0uqe2gh5r"]
+[gd_scene load_steps=8 format=3 uid="uid://tph0uqe2gh5r"]
 
 [ext_resource type="Script" uid="uid://ct7di6l642pov" path="res://rooms/elevator.gd" id="1_1x1si"]
 [ext_resource type="PackedScene" uid="uid://b0rcj7g0kr06u" path="res://rooms/Models/elevator.blend" id="1_wg4in"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://cik7f01ysnkka" path="res://audio/rooms/elevator/Beep.ogg" id="2_jdirr"]
 [ext_resource type="AudioStream" uid="uid://dphoe5gy2ucy3" path="res://audio/rooms/elevator/Moving.ogg" id="3_tl7px"]
 [ext_resource type="PackedScene" uid="uid://c5u47f2nm250v" path="res://rooms/elevator_door.tscn" id="6_tl7px"]
-[ext_resource type="Script" uid="uid://dlqdioxarecyy" path="res://rooms/elevator_destination.gd" id="7_r3h82"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3h82"]
 size = Vector3(3.5, 3.5, 3.5)
@@ -45,15 +44,14 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
 [node name="doorside1-col" parent="Door/elevator_door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
 
-[node name="Button" parent="Door" index="6" node_paths=PackedStringArray("extraToControl")]
+[node name="Button" parent="Door" index="5" node_paths=PackedStringArray("extraToControl")]
 extraToControl = NodePath("../..")
 
-[node name="Button2" parent="Door" index="7" node_paths=PackedStringArray("extraToControl")]
+[node name="Button2" parent="Door" index="6" node_paths=PackedStringArray("extraToControl")]
 extraToControl = NodePath("../..")
 
 [node name="Destination" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
-script = ExtResource("7_r3h82")
 
 [node name="InsideArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.9)
