@@ -29,14 +29,15 @@ func elevator_setup(passedElevator: Elevator):
 		if otherElevator.ownDestination != ownDestination:
 			destination = otherElevator.ownDestination
 	
-	print("")
-	print("Elevator: %s" % self)
-	print("Own Destination: %s" % ownDestination)
-	print("Destination: %s" % destination)
-	print("")
+	#print("")
+	#print("Elevator: %s" % self)
+	#print("Own Destination: %s" % ownDestination)
+	#print("Destination: %s" % destination)
+	#print("")
 
 
 func activate():
+	
 	if moving:
 		GlobalPlayerVariables.interactionText.display("You pressed the button, but the elevator was already moving.")
 		
@@ -49,6 +50,12 @@ func activate():
 	elif atCurrentFloor and !door.doorOpen:
 		door.open()
 	elif atCurrentFloor and door.doorOpen:
+		if id == "":
+			door.close()
+			await get_tree().create_timer(1.5).timeout
+			movingPlayer.play()
+			GameManager.game_win()
+			return
 		send_elevator()
 
 

@@ -44,11 +44,11 @@ transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -3
 
 [node name="keycard00" parent="." instance=ExtResource("3_rkwrc")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.38368, -0.0650055, -5.13172)
-chanceToSpawn = 60.0
+chanceToSpawn = 80.0
 
 [node name="keycard01" parent="." instance=ExtResource("3_rkwrc")]
 transform = Transform3D(0.972598, 0, 0.232495, 0, 1, 0, -0.232495, 0, 0.972598, -4.67776, -0.660448, 4.52471)
-chanceToSpawn = 60.0
+chanceToSpawn = 80.0
 
 [node name="Light2" parent="." instance=ExtResource("6_rkwrc")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 4.84813, 4)

@@ -39,6 +39,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("StuffToRotate/classd001/Armature/Skeleton3D/class_d:skeleton")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("OverheadUsername/SubViewport/Label:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ckrbs"]
 radius = 0.3
@@ -146,7 +149,7 @@ collision_mask = 257
 collision_priority = 5.0
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_uuhg5")
-gravity_scale = 4.0
+gravity_scale = 10.0
 can_sleep = false
 lock_rotation = true
 script = ExtResource("1_qccfk")
@@ -202,6 +205,33 @@ eyeDrynessPerSecond = 7.5
 
 [node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
 transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
+bones/0/position = Vector3(-0.000392899, 0.85, 1.38909e-09)
+bones/0/rotation = Quaternion(-0.0116533, 0, 0, 0.999932)
+bones/2/rotation = Quaternion(0.0265452, 0.0972024, 0.978736, 0.178669)
+bones/3/rotation = Quaternion(-0.251597, -0.00254429, 0.185572, 0.949871)
+bones/4/rotation = Quaternion(0.165581, -0.0571952, 0.117438, 0.977507)
+bones/5/rotation = Quaternion(-0.0209184, -0.00150574, 0.999566, 0.0206666)
+bones/5/scale = Vector3(0.999967, 1, 0.999999)
+bones/6/rotation = Quaternion(0.0802807, 0.00152674, 0.0114318, 0.996706)
+bones/7/rotation = Quaternion(-0.700607, 0.00955928, -0.0369276, 0.712528)
+bones/7/scale = Vector3(0.999989, 0.999999, 1)
+bones/8/rotation = Quaternion(-0.0265451, 0.0972024, 0.978736, -0.178669)
+bones/9/rotation = Quaternion(-0.251597, 0.00254432, -0.185572, 0.949871)
+bones/10/rotation = Quaternion(0.166125, 0.040686, -0.0773327, 0.982225)
+bones/11/rotation = Quaternion(0.0283778, 0.000627697, 0.999448, -0.017286)
+bones/11/scale = Vector3(0.999967, 1, 0.999999)
+bones/12/rotation = Quaternion(0.0761375, -0.00152724, -0.0108419, 0.997037)
+bones/13/rotation = Quaternion(-0.69879, -0.00515252, 0.0436028, 0.713978)
+bones/13/scale = Vector3(0.999989, 0.999999, 1)
+bones/14/position = Vector3(-0.106556, 0.467222, -0.497362)
+bones/14/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
+bones/15/position = Vector3(-0.143188, 0.053142, 0.0829738)
+bones/15/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
+bones/16/position = Vector3(0.0957707, 0.467222, -0.497362)
+bones/17/position = Vector3(0.138318, 0.0527456, 0.0829738)
+bones/17/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
 
 [node name="class_d" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
 layers = 513

@@ -1,0 +1,309 @@
+[gd_scene load_steps=21 format=3 uid="uid://bbs8e406nn8yo"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_d04yi"]
+[ext_resource type="PackedScene" uid="uid://dovtpxtu5vygy" path="res://rooms/Models/HCon049Chamber.blend" id="1_eeosu"]
+[ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="2_7pyr0"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="3_7pyr0"]
+[ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="4_p17to"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_ruo7p"]
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="5_a5ggg"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="5_d04yi"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="6_nx7sk"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="7_3lyrw"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="8_a5ggg"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="9_k602m"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="10_qjqyu"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="11_5ua2h"]
+[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="12_pw0e5"]
+[ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="13_ndaxt"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="16_3lyrw"]
+[ext_resource type="PackedScene" uid="uid://dowuwffank011" path="res://entities/items/cards/keycard04.tscn" id="17_a5ggg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
+properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("door/Armature/Skeleton3D/doorside1_col:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("door/AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="049Chamber" type="Node3D"]
+script = ExtResource("1_d04yi")
+can173Spawn = false
+
+[node name="HCon049Chamber" parent="." instance=ExtResource("1_eeosu")]
+
+[node name="Elevators" type="Node3D" parent="."]
+
+[node name="elevator" parent="Elevators" instance=ExtResource("2_7pyr0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.97067, 0, -15.9618)
+id = "049A"
+
+[node name="elevator2" parent="Elevators" instance=ExtResource("2_7pyr0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.97081, 0, 15.9465)
+id = "049B"
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="big_door" parent="Doors" instance=ExtResource("4_p17to")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00408077, 0.343907, -2.24503)
+
+[node name="Keycardbutton" parent="Doors/big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("5_a5ggg")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, -0.163986, 0.777012)
+doorsToControl = [NodePath("..")]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="Doors/big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("5_a5ggg")]
+transform = Transform3D(1, 0, 1.7683e-07, 0, 1, 0, -1.7683e-07, 0, 1, -4, -0.163986, -0.780636)
+doorsToControl = [NodePath("..")]
+keycardLevel = 3
+
+[node name="unopenable1" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.001, 0.0360688, 22.4801)
+script = ExtResource("4_ruo7p")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
+closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
+
+[node name="door" parent="Doors/unopenable1" instance=ExtResource("11_5ua2h")]
+
+[node name="doorside2_col" parent="Doors/unopenable1/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable1/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button2" parent="Doors/unopenable1" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "The door wont open."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
+stream = ExtResource("5_d04yi")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
+stream = ExtResource("8_a5ggg")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
+stream = ExtResource("13_ndaxt")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable1"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="unopenable2" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.07524, 0.0360688, 18.7231)
+script = ExtResource("4_ruo7p")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
+closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
+
+[node name="door" parent="Doors/unopenable2" instance=ExtResource("11_5ua2h")]
+
+[node name="doorside2_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button2" parent="Doors/unopenable2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "The door wont open."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
+stream = ExtResource("5_d04yi")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
+stream = ExtResource("8_a5ggg")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
+stream = ExtResource("13_ndaxt")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable2"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="unopenable3" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.0011, 0.0360688, -22.4694)
+script = ExtResource("4_ruo7p")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
+closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
+
+[node name="door" parent="Doors/unopenable3" instance=ExtResource("11_5ua2h")]
+
+[node name="doorside2_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button2" parent="Doors/unopenable3" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "The door wont open."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
+stream = ExtResource("5_d04yi")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
+stream = ExtResource("8_a5ggg")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
+stream = ExtResource("13_ndaxt")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable3"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="unopenable4" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.05881, 0.0360688, -18.7232)
+script = ExtResource("4_ruo7p")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
+closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
+
+[node name="door" parent="Doors/unopenable4" instance=ExtResource("11_5ua2h")]
+
+[node name="doorside2_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button2" parent="Doors/unopenable4" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
+doorsToControl = [NodePath("..")]
+rejectionText = "The door wont open."
+wontOpen = true
+
+[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
+stream = ExtResource("5_d04yi")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
+stream = ExtResource("8_a5ggg")
+
+[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
+stream = ExtResource("13_ndaxt")
+unit_size = 5.0
+max_distance = 64.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable4"]
+replication_config = SubResource("SceneReplicationConfig_r0iwn")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 10.2976, 1.84837, 18.7286)
+
+[node name="Light2" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, 1, 14.9991, 1.84837, 18.6842)
+brightness = 0.5
+
+[node name="Light3" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, 1, 14.9976, 1.84837, 5.40903)
+brightness = 0.5
+
+[node name="Light5" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, 1, 14.9976, 2.36815, 0.000647783)
+brightness = 0.5
+
+[node name="Light6" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-1.60937e-07, 0, -1, 0, 1, 0, 1, 0, -1.60937e-07, 7.99756, 1.84837, 0.000647783)
+brightness = 1.0
+
+[node name="Light4" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, 1, 14.9976, 1.84837, 12.1382)
+brightness = 0.5
+
+[node name="Light7" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.277, 1.84837, -18.7426)
+
+[node name="Light8" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, -14.977, 1.84837, -18.7426)
+brightness = 0.5
+
+[node name="Light9" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, -14.977, 1.84837, -4.95738)
+brightness = 0.5
+
+[node name="Light10" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, -14.977, 2.36815, -0.0147127)
+brightness = 0.5
+
+[node name="Light11" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, -7.97696, 1.84837, -0.0147127)
+brightness = 1.0
+
+[node name="Light13" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, 0.0230408, 1.84837, -0.0147127)
+brightness = 1.0
+
+[node name="Light14" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, 3.20223, 1.84837, -8.8362)
+brightness = 0.5
+
+[node name="Light17" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, -3.39777, 1.84837, -11.3362)
+
+[node name="Light15" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, 3.20223, 1.84837, -5.5362)
+brightness = 0.5
+
+[node name="Light16" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(7.35137e-08, 0, 1, 0, 1, 0, -1, 0, 7.35137e-08, -3.49777, 1.84837, -5.5362)
+brightness = 0.5
+
+[node name="Light12" parent="Lights" instance=ExtResource("3_7pyr0")]
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, -14.977, 1.84837, -11.6865)
+brightness = 0.5
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="table" parent="Props" instance=ExtResource("16_3lyrw")]
+transform = Transform3D(-0.7, 0, 6.11959e-08, 0, 0.7, 0, -6.11959e-08, 0, -0.7, 5.04624, -0.76271, -10.5284)
+
+[node name="table2" parent="Props" instance=ExtResource("16_3lyrw")]
+transform = Transform3D(-0.7, 0, 6.11959e-08, 0, 0.7, 0, -6.11959e-08, 0, -0.7, 1.44624, -0.76271, -10.5284)
+
+[node name="table3" parent="Props" instance=ExtResource("16_3lyrw")]
+transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, 6.00889, -0.76271, -4.4398)
+
+[node name="table4" parent="Props" instance=ExtResource("16_3lyrw")]
+transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, -5.99111, -0.76271, -6.53979)
+
+[node name="keycard004" parent="." instance=ExtResource("17_a5ggg")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.66621, -0.414663, -10.1761)
+
+[editable path="Doors/unopenable1/door"]
+[editable path="Doors/unopenable2/door"]
+[editable path="Doors/unopenable3/door"]
+[editable path="Doors/unopenable4/door"]

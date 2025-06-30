@@ -1,10 +1,10 @@
-[gd_scene load_steps=60 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=65 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://entities/map/spawnroom.tscn" id="3_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/LConToHconCheckpoint.tscn" id="4_fv21b"]
-[ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914.tscn" id="4_og1vs"]
+[ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914_chamber.tscn" id="4_og1vs"]
 [ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/Models/LConTeslaOffice.tscn" id="4_y6deb"]
 [ext_resource type="PackedScene" uid="uid://2tmrt17xnndd" path="res://rooms/HConToEntCheckpoint.tscn" id="5_bu4jf"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
@@ -25,7 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://dmrarvt6khysl" path="res://rooms/heavy_containment/HCon049Hall.tscn" id="15_dnhof"]
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
+[ext_resource type="PackedScene" uid="uid://bv2x1o14vua8t" path="res://rooms/entrance_zone/EntHallOffice001.tscn" id="16_kf5aa"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
+[ext_resource type="PackedScene" uid="uid://cqulx25h6s2au" path="res://rooms/entrance_zone/EntGateA.tscn" id="16_t5ykj"]
+[ext_resource type="PackedScene" uid="uid://kpr4ocxg4x8d" path="res://rooms/entrance_zone/EntGateB.tscn" id="17_e755i"]
 [ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
 [ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="18_og1vs"]
 [ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
@@ -58,12 +61,17 @@
 [ext_resource type="AudioStream" uid="uid://beh0bjchplonr" path="res://audio/ambient/general/Ambient11.ogg" id="36_0loja"]
 [ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
 [ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
+[ext_resource type="PackedScene" uid="uid://bbs8e406nn8yo" path="res://rooms/heavy_containment/049_chamber.tscn" id="59_tm6hj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("navigationRegion", "doorsNode")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kf5aa"]
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("facilityMultiplayerSpawner", "doorMultiplayerSpawner", "navigationRegion", "doorsNode")]
 top_level = true
 script = ExtResource("1_yc10j")
+facilityMultiplayerSpawner = NodePath("Facility/FacilityRegion/FacilitySpawner")
+doorMultiplayerSpawner = NodePath("Facility/Doors/DoorSpawner")
 navigationRegion = NodePath("Facility/FacilityRegion")
 doorsNode = NodePath("Facility/Doors")
 door = ExtResource("2_jscy8")
@@ -74,6 +82,8 @@ necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof")])
+necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
+necessaryEntTwoWayHalls = Array[PackedScene]([ExtResource("16_kf5aa")])
 fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
 fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
 fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so"), ExtResource("20_augu2")])
@@ -94,13 +104,10 @@ fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
 script = ExtResource("19_2f3dj")
 spectatorScene = ExtResource("20_yq6so")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../PlayerSpawn")
 script = ExtResource("18_og1vs")
 playerScene = ExtResource("20_5he1u")
-
-[node name="PlayerSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.15, -41.5)
 
 [node name="Facility Manager" type="Node" parent="."]
 script = ExtResource("17_fuf3a")
@@ -152,15 +159,30 @@ bus = &"Sound Effects"
 
 [node name="Doors" type="Node3D" parent="Facility"]
 
+[node name="DoorSpawner" type="MultiplayerSpawner" parent="Facility/Doors"]
+spawn_path = NodePath("..")
+
 [node name="FacilityRegion" type="NavigationRegion3D" parent="Facility"]
 navigation_mesh = SubResource("NavigationMesh_doq7x")
+
+[node name="FacilitySpawner" type="MultiplayerSpawner" parent="Facility/FacilityRegion"]
+spawn_path = NodePath("..")
+
+[node name="LConHall003" parent="Facility/FacilityRegion" instance=ExtResource("12_ids8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
+
+[node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("18_pibwh")
 script = ExtResource("19_c6pm6")
 
 [node name="Scp173" parent="." instance=ExtResource("21_5poiv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 2.58247, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 32.5825, 0)
 
-[node name="LConHall003" parent="." instance=ExtResource("12_ids8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_kf5aa")

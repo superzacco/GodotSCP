@@ -91,3 +91,9 @@ func toggle_room_culling():
 		for room in facilityManager.playerNearbyRooms:
 			if room != null:
 				room.show()
+
+func set_seed(seed: int):
+	GameManager.seed = seed
+	GameManager.rng.seed = GameManager.seed
+	
+	print(GameManager.rng.seed)

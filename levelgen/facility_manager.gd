@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func flicker_nearby_lights():
-	$LightTimer.start(randf_range(30, 50))
+	$LightTimer.start(randf_range(30, 90))
 	await $LightTimer.timeout
 	
 	var playerNearbyLights = GlobalPlayerVariables.nearbyRoomLights

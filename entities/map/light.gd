@@ -5,18 +5,29 @@ class_name RoomLight
 @export var omnilight: OmniLight3D
 @export var sprite: Sprite3D
 
+@export var lightColor: Color = Color(255, 255, 255):
+	set(value):
+		lightColor = value
+		
+		if spotlight != null:
+			spotlight.light_color = value
+		if omnilight != null:
+			omnilight.light_color = value
+
 @export var canFlicker: bool = true
 
 @export var brightness: float = 0.25: 
 	set(value):
 		brightness = value
-		if spotlight == null: return
-		spotlight.light_energy = value
+		
+		if spotlight != null:
+			spotlight.light_energy = value
 
 @export var omniBrightness: float = 0.1:
 	set(value):
 		omniBrightness = value
-		if spotlight:
+		
+		if omnilight != null:
 			omnilight.light_energy = value
 
 @export var flickerSounds: Array[AudioStream]
@@ -32,6 +43,9 @@ class_name RoomLight
 func _ready() -> void:
 	spotlight.light_energy = brightness
 	omnilight.light_energy = omniBrightness
+	
+	spotlight.light_color = lightColor
+	omnilight.light_color = lightColor
 
 
 func start_flicker():

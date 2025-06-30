@@ -1,4 +1,6 @@
 extends Node
+@export var facilityMultiplayerSpawner: MultiplayerSpawner
+@export var doorMultiplayerSpawner: MultiplayerSpawner
 
 @export var navigationRegion: NavigationRegion3D 
 @export var doorsNode: Node3D
@@ -85,11 +87,10 @@ var finishedRoomGrid = []
 
 var xSize: int
 var zSize: int
+var rng: RandomNumberGenerator
 
 
 func _ready() -> void:
-	GlobalPlayerVariables.consoleOpen = false
-	
 	for i in mapWidth:
 		temporaryRooms.append([])
 		for j in mapHeight:
@@ -108,8 +109,18 @@ func _ready() -> void:
 
 #region // SHAPE
 func generate_map():
-	@warning_ignore("integer_division")
-	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0, false)
+	
+	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
+	await SignalBus.generate_level
+	
+	rng = GameManager.rng
+	rng.seed = GameManager.rng.seed
+	print(rng.seed)
+	print("Generating with Seed: %s" % rng.seed)
+	
+	print(rng.randi_range(1,100))
+	print(rng.randi_range(1,100))
+	print(rng.randi_range(1,100))
 	
 	var zOffset = 1
 	for i in 5:
@@ -127,12 +138,13 @@ func generate_map():
 			GlobalPlayerVariables.facilityManager.rooms.append(room)
 		room.hide()
 	
+	GameManager.game_start()
 	SignalBus.emit_signal("level_generation_finished")
 
 
 func generate_long_hall(zOffset):
-	var hallLength: int = randi_range(mapWidth, mapWidth-4)
-	var hallOffset: int = randi_range(0, abs(mapWidth-hallLength)) 
+	var hallLength: int = rng.randi_range(mapWidth, mapWidth-4)
+	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)) 
 	
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
 	var hallMaxExtent: Vector3 = Vector3(0, 0, 0)
@@ -158,8 +170,8 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	var zPosition = hallMinExtent.z / spaceMultiplier
 	
 	for i in amountOfConnectingHalls:
-		var distanceAddedBetween: int = randi_range(1,3) + randi_range(1,3)
-		if i == 0: distanceAddedBetween = randi_range(0,3)
+		var distanceAddedBetween: int = rng.randi_range(1,3) + rng.randi_range(1,3)
+		if i == 0: distanceAddedBetween = rng.randi_range(0,3)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
@@ -170,6 +182,7 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 #endregion // SHAPE
 
 
+@rpc("call_local", "any_peer")
 func spawn_room(room, x, z, temp: bool = false):
 	var spawnedRoom: Node3D = null
 	spawnedRoom = room.instantiate()
@@ -182,6 +195,7 @@ func spawn_room(room, x, z, temp: bool = false):
 	return spawnedRoom
 
 
+@rpc("call_local", "any_peer")
 func rotate_room(room: Node3D, timesToRotate):
 	for i in timesToRotate:
 		room.rotate(Vector3.UP, deg_to_rad(-90))
@@ -313,8 +327,9 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 
 
 func place_filler_room_in_containment(fillerRoomArray: Array, replacableRoomArray: Array, x, z):
-	var fillerRoom = spawn_room(fillerRoomArray[randi_range(0, fillerRoomArray.size()-1)], x, z)
-	replacableRoomArray.append(fillerRoom)
+	var fillerRoom = spawn_room(fillerRoomArray[rng.randi_range(0, fillerRoomArray.size()-1)], x, z)
+	if !(z == LContoHConCheckpointLine or z == HContoEntranceCheckpointLine):
+		replacableRoomArray.append(fillerRoom)
 	finishedRooms.append(fillerRoom)
 	finishedRoomGrid[x][z] = fillerRoom
 	
@@ -348,7 +363,7 @@ func replace_filler_rooms():
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
-		var roomToReplace: int = randi_range(0, replacableRoomArray.size()-1)
+		var roomToReplace: int = rng.randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
 			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
 			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
@@ -394,7 +409,8 @@ func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
 				finishedRoomGrid[x][z].queue_free()
 				finishedRooms.erase(finishedRoomGrid[x][z])
 				finishedRoomGrid[x][z] = null
-				replacableHConTwoWayHalls.erase(finishedRoomGrid[x][z])
+				#replacableHConTwoWayHalls.erase(finishedRoomGrid[x][z])
+				#replacableEntTwoWayHalls.erase(finishedRoomGrid[x][z])
 				
 				finishedRooms.append(r)
 				finishedRoomGrid[x][z] = r

@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact") and inventoryOpen:
 		clicki += 1
-		await  get_tree().create_timer(0.2).timeout
+		await  get_tree().create_timer(0.25).timeout
 		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
 			var item = GlobalPlayerVariables.hoveredSlot.heldItem
 			if item != null:

@@ -10,6 +10,8 @@ extends Node3D
 @export_enum("Button", "KeycardButton") var buttonType: int = 0
 @export var keycardLevel: int = 0
 
+
+@rpc("call_local", "any_peer")
 func on_pressed():
 	
 	if extraToControl == null and doorsToControl.size() <= 0:
@@ -44,6 +46,7 @@ func on_pressed():
 			GlobalPlayerVariables.inventory.clear_equip()
 
 
+@rpc("call_local", "any_peer")
 func activate_things():
 	$Sound.play()
 	if extraToControl != null:

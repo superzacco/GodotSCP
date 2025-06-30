@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv2x1o14vua8t"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_348og"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="2_nstg6"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_rynue"]
+[ext_resource type="PackedScene" uid="uid://cogjrn6tefkbm" path="res://rooms/Models/EntOffice001.blend" id="4_nwb02"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_shwmr"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="6_x5x77"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="7_okp0a"]
+[ext_resource type="PackedScene" uid="uid://c8lv7q65uttuj" path="res://entities/items/cards/keycard05.tscn" id="8_nstg6"]
+
+[node name="EntHall001" type="Node3D"]
+script = ExtResource("1_348og")
+
+[node name="RoomArea" parent="." instance=ExtResource("2_nstg6")]
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("3_rynue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("3_rynue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="EntOffice001" parent="." instance=ExtResource("4_nwb02")]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("5_shwmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, 4)
+
+[node name="Light2" parent="Lights" instance=ExtResource("5_shwmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, -4)
+
+[node name="Light3" parent="Lights" instance=ExtResource("5_shwmr")]
+transform = Transform3D(0.838309, 0.545195, 0, -0.545195, 0.838309, 0, 0, 0, 1, -4.4, 2.86409, 0)
+
+[node name="Light4" parent="Lights" instance=ExtResource("5_shwmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7564, 3.85904, -0.0872068)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="table" parent="Props" instance=ExtResource("6_x5x77")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -10.149, 1.22693, -1.00703)
+
+[node name="shelf01" parent="Props" instance=ExtResource("7_okp0a")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -8.10807, 2.53492, 2.0614)
+
+[node name="shelf02" parent="Props" instance=ExtResource("7_okp0a")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -11.8829, 2.53492, 1.70425)
+
+[node name="keycard005" parent="." instance=ExtResource("8_nstg6")]
+transform = Transform3D(0.911604, 0, 0.411069, 0, 1, 0, -0.411069, 0, 0.911604, -10.2806, 1.51736, -0.331461)

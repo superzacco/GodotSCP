@@ -5,25 +5,25 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdl2c"]
 friction = 0.5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
-radius = 1.0
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gdl2c"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
+radius = 1.0
+
 [node name="Item" type="RigidBody3D" groups=["item"]]
-collision_layer = 2
-collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
 can_sleep = false
 script = ExtResource("1_0nrx4")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_gdl2c")
+
 [node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_2htau")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_gdl2c")

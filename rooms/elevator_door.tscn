@@ -14,15 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://3fj6oi00l83" path="res://rooms/elevator_button.tscn" id="12_k0b0q"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
-properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
+properties/0/path = NodePath("elevator_door/AnimationPlayer:current_animation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("door/Armature/Skeleton3D/doorside1_col:position")
+properties/1/path = NodePath("elevator_door/Armature/Skeleton3D:animate_physical_bones")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("door/AnimationPlayer:current_animation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
 [node name="ElevatorDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 script = ExtResource("1_k0b0q")
@@ -42,12 +39,14 @@ transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996
 stream = ExtResource("10_lhu1w")
 attenuation_model = 3
 volume_db = -6.0
+bus = &"Sound Effects"
 attenuation_filter_db = 0.0
 
 [node name="Close" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("11_8w5a3")
 attenuation_model = 3
 volume_db = -6.0
+bus = &"Sound Effects"
 attenuation_filter_db = 0.0
 
 [node name="173 Open" type="AudioStreamPlayer3D" parent="."]

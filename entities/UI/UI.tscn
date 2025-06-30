@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=19 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/ui/inventory_screen.tscn" id="2_suasf"]
@@ -15,6 +15,9 @@
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="10_t3by6"]
 [ext_resource type="Texture2D" uid="uid://b23heykbvlrkx" path="res://entities/ui/brightbarssmall.png" id="10_txpl5"]
 [ext_resource type="Script" uid="uid://df3nr6nsrp5kn" path="res://entities/ui/screen_text.gd" id="11_uwlwq"]
+[ext_resource type="Texture2D" uid="uid://bxggraj21k2dq" path="res://entities/ui/320px-Bigrigsovertheroadracing-yourewinner.png" id="16_2jsk5"]
+[ext_resource type="Script" uid="uid://dd05lm145jayr" path="res://entities/ui/win_screen.gd" id="16_ks708"]
+[ext_resource type="LabelSettings" uid="uid://c34uqg2lfcw6k" path="res://entities/ui/label_bigger.tres" id="18_xuvmb"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -83,7 +86,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 script = ExtResource("3_pg7nq")
 versionString = NodePath("Label")
-version = "0.0.1"
+version = "v0.1.0"
 
 [node name="Label" type="Label" parent="VersionInfo"]
 layout_mode = 1
@@ -204,3 +207,46 @@ label_settings = ExtResource("10_t3by6")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_uwlwq")
+
+[node name="WinScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_ks708")
+
+[node name="TextureRect" type="TextureRect" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_2jsk5")
+
+[node name="Time" type="Label" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 145.0
+offset_right = 106.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Time: 24.24"
+label_settings = ExtResource("18_xuvmb")
+horizontal_alignment = 1
+vertical_alignment = 1

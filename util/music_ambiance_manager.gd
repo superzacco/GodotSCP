@@ -19,6 +19,8 @@ class_name AmbienceManager
 func _ready() -> void:
 	GlobalPlayerVariables.ambienceManager = self
 	
+	await SignalBus.generate_level
+	
 	musicPlayer.stream = LConMusic
 	musicPlayer.play()
 	

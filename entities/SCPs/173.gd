@@ -6,7 +6,8 @@ extends CharacterBody3D
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
-var onScreen: bool = false
+@export var onScreen: bool = false
+@export var blinking: bool = false
 var nearPlayer: bool = false
 var playerInKillRange: Player = null
 var nearDoor: StaticBody3D 
@@ -17,9 +18,15 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	onScreen = false
 
 
+func _ready() -> void:
+	SignalBus.connect("activate_173", relocate)
+
+
 var nextPathPos: Vector3
 func _physics_process(delta: float) -> void:
-	if (!onScreen or GlobalPlayerVariables.blinking) and nearPlayer:
+	blinking = GlobalPlayerVariables.blinking
+	
+	if (!onScreen or blinking) and nearPlayer:
 		try_kill_player(playerInKillRange)
 		
 		agent.target_position = GlobalPlayerVariables.playerPosition
@@ -60,19 +67,24 @@ func try_break_door():
 
 func relocate(firstTime: bool = false):
 	var rooms = GlobalPlayerVariables.facilityManager.playerNearbyRooms
-	if !rooms.size() > 0:
+	if rooms.size() <= 0:
 		print("no nearby rooms")
+		try_relocate()
 		return
 	
 	print("relocating!")
 	
-	var room = rooms[randi_range(0, rooms.size()-1)]
+	var room: Room = rooms[randi_range(0, rooms.size()-1)]
 	
 	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 17:
+		if !room.can173Spawn:
+			try_relocate()
+		
 		if room.spawnPosFor173 == null:
 			self.global_position = room.global_position + Vector3(0, 0.25, 0)
 		else:
 			self.global_position = room.spawnPosFor173.global_position + Vector3(0, 0.25, 0)
+	
 	if firstTime:
 		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
 	
@@ -80,9 +92,13 @@ func relocate(firstTime: bool = false):
 		print("close to player")
 		
 	else:
-		$"3sRelocateTimer".start()
-		await $"3sRelocateTimer".timeout
-		relocate()
+		try_relocate()
+
+
+func try_relocate():
+	$"3sRelocateTimer".start()
+	await $"3sRelocateTimer".timeout
+	relocate()
 
 
 func try_kill_player(player: Player):

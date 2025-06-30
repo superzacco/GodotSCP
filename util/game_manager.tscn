@@ -4,3 +4,5 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_33i0i")
+
+[node name="GameTimer" type="Timer" parent="."]

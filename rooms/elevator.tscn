@@ -34,10 +34,6 @@ volume_db = -6.0
 [node name="Door" parent="." instance=ExtResource("6_tl7px")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
 
-[node name="Skeleton3D" parent="Door/elevator_door/Armature" index="0"]
-bones/0/position = Vector3(0, 0, 0)
-bones/2/position = Vector3(0, 0, 0)
-
 [node name="doorside2-col" parent="Door/elevator_door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
 

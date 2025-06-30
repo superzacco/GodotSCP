@@ -63,7 +63,7 @@ func on_click_interactable():
 		return
 	
 	if nearestInteractable.is_in_group("item"):
-		pick_up_item(nearestInteractable)
+		pick_up_item.rpc(nearestInteractable)
 		return
 	
 	if nearestInteractable.is_in_group("button"):
@@ -72,9 +72,10 @@ func on_click_interactable():
 
 
 func interact(interactable):
-	interactable.on_pressed()
+	interactable.on_pressed.rpc()
 
 
+@rpc("call_local", "any_peer")
 func pick_up_item(item):
 	if inventoryNode.get_children().size() > 5:
 		GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")

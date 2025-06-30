@@ -11,11 +11,16 @@ var specIdx: int
 
 
 func _ready() -> void:
+	camera.current = is_multiplayer_authority()
+	
 	specManager = GlobalPlayerVariables.spectatorManager
 	switch_spectating()
 
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if event is InputEventMouseMotion:
 		horizontalPivot.rotate_y(deg_to_rad(-event.relative.x * GlobalPlayerVariables.sensitivity * 0.05))
 		verticalPivot.rotate_x(deg_to_rad(-event.relative.y * GlobalPlayerVariables.sensitivity * 0.05))

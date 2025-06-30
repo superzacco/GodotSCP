@@ -162,6 +162,7 @@ script = ExtResource("1_gghi3")
 spotlight = NodePath("SpotLight3D")
 omnilight = NodePath("SpotLight3D/OmniLight3D")
 sprite = NodePath("Sprite3D")
+lightColor = Color(1, 1, 1, 1)
 flickerSounds = Array[AudioStream]([ExtResource("2_hxvnp"), ExtResource("3_a1pd1"), ExtResource("4_hr5o2")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -189,7 +190,7 @@ spot_angle = 80.0
 [node name="OmniLight3D" type="OmniLight3D" parent="SpotLight3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.50076e-10, -0.0194474)
 light_energy = 0.02
-light_specular = 0.05
+light_specular = 0.01
 omni_range = 3.5
 
 [node name="Animations" type="AnimationPlayer" parent="."]

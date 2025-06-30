@@ -10,6 +10,7 @@ var doorOpen: bool = false
 var opening: bool = false
 
 
+@rpc("call_local", "any_peer")
 func toggle_door():
 	if !animationPlayer.is_playing():
 		if doorOpen:
@@ -18,6 +19,7 @@ func toggle_door():
 			open()
 
 
+@rpc("call_local", "any_peer")
 func open():
 	if doorOpen:
 		return
@@ -29,6 +31,7 @@ func open():
 	doorOpen = true
 
 
+@rpc("call_local", "any_peer")
 func close():
 	if !doorOpen:
 		return
@@ -40,6 +43,7 @@ func close():
 	doorOpen = false
 
 
+@rpc("call_local", "any_peer")
 func one_seven_three_open():
 	$"173 Open".play()
 	animationPlayer.play("open")

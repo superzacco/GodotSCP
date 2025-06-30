@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 		inputField.editable = false
 		inputField.grab_focus()
-		visible = true
+		self.visible = true
 	
 	
 	if Input.is_action_just_released("console"):
@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 		GlobalPlayerVariables.consoleOpen = false
 		
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-		visible = false
+		self.visible = false
 	
 	
 	if Input.is_action_just_pressed("enter"):
@@ -65,6 +65,11 @@ func _input(event: InputEvent) -> void:
 				Commands.toggle_fog()
 			"getpos":
 				Commands.get_pos()
+			"seed":
+				if commandStringArray.size() == 1:
+					println(str(GameManager.rng.seed))
+				else:
+					Commands.set_seed(commandStringArray[1].to_int())
 			"spawn":
 				if commandStringArray.size() == 1:
 					println("missing <item>", Commands.errorColor)
@@ -72,6 +77,8 @@ func _input(event: InputEvent) -> void:
 					Commands.spawn_item(commandStringArray[1])
 			"dist":
 				Commands.toggle_room_culling()
+			"lvl":
+				GameManager.game_start.rpc()
 		
 		inputField.clear()
 	

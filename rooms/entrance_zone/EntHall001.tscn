@@ -9,14 +9,6 @@
 [node name="EntHall001" type="Node3D"]
 script = ExtResource("1_levr5")
 
-[node name="EntHall001" parent="." instance=ExtResource("1_gjsya")]
-
-[node name="Light" parent="." instance=ExtResource("2_levr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, 4)
-
-[node name="Light2" parent="." instance=ExtResource("2_levr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, -4)
-
 [node name="RoomArea" parent="." instance=ExtResource("4_o3gon")]
 
 [node name="Points" type="Node3D" parent="."]
@@ -26,3 +18,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
 
 [node name="point2" parent="Points" instance=ExtResource("5_2v7hv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("2_levr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, 4)
+
+[node name="Light2" parent="Lights" instance=ExtResource("2_levr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84302, -4)
+
+[node name="EntHall001" parent="." instance=ExtResource("1_gjsya")]

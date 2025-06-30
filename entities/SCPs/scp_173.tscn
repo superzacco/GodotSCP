@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=14 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="AudioStream" uid="uid://btbq6q6uw7u4t" path="res://audio/scps/173/NeckSnap0.ogg" id="2_l0rpv"]
@@ -9,12 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://8aurybjrnikg" path="res://audio/scps/173/scrapeambient1.ogg" id="5_p8ad7"]
 [ext_resource type="AudioStream" uid="uid://py81n6rg6r0q" path="res://audio/scps/173/scrapeambient2.ogg" id="6_aqo5w"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2xb13"]
-radius = 0.179896
-height = 1.92174
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_16wn7"]
-size = Vector3(0.473389, 1.54469, 0.349854)
+size = Vector3(0.934097, 2.12656, 0.349854)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
 size = Vector3(1.1, 2, 0.6)
@@ -33,6 +29,12 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:onScreen")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:blinking")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent") groups=["spectatable"]]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
@@ -47,19 +49,11 @@ neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.653244, 0.843666)
-aabb = AABB(-0.801, -1.427, -1, 0.831, 1.9, 0.29)
-
-[node name="Body" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, -0.224243, 0.202585, 0.0196213)
-shape = SubResource("CapsuleShape3D_2xb13")
-
-[node name="Body2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 8.52651e-15, 0, -8.52651e-15, 1, 0, 0, 0, 1, 0.24947, 0.202585, 0.0196213)
-shape = SubResource("CapsuleShape3D_2xb13")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.838354, 0.885156)
+aabb = AABB(-0.846248, -1.53184, -1.01123, 0.921496, 2.10968, 0.312465)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0142822, 0.201638, 0.019165)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0179825, 0.358179, 0.019165)
 shape = SubResource("BoxShape3D_16wn7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -83,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_u3wo6")
 
 [node name="173" parent="." instance=ExtResource("2_tmptw")]
-transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.16011, 0)
 
 [node name="ChaseRadius" type="Area3D" parent="."]
 

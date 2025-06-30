@@ -1,7 +1,5 @@
 extends Node
 
-const PACKET_READ_LIMIT: int = 32
-
 var lobby_data
 var lobby_ID: int = 0
 var lobby_members: Array = []
@@ -73,6 +71,7 @@ func on_open_lobby_list_pressed() -> void:
 	# Set distance to worldwide
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
 	
+	
 	print("Requesting a lobby list")
 	Steam.requestLobbyList()
 
@@ -142,6 +141,8 @@ func _on_lobby_joined(this_lobby_id: int, _permissions: int, _locked: bool, resp
 		
 		print("Successfully Joined Lobby! " + str(lobby_ID))
 		print(lobby_members)
+		
+		SignalBus.emit_signal("hide_main_menu")
 		# Else it failed for some reason
 	else:
 		# Get the failure reason

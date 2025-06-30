@@ -1,45 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcowoxl70jkxy"]
+[gd_scene load_steps=6 format=3 uid="uid://dcowoxl70jkxy"]
 
-[ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_wxrup"]
+[ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_7ev56"]
 [ext_resource type="Texture2D" uid="uid://rak7j1ngi4dr" path="res://entities/items/cards/card1itemicon.png" id="2_6akv6"]
 [ext_resource type="PackedScene" uid="uid://cwkcg3xhgrc20" path="res://entities/items/cards/models/keycard1.blend" id="2_qhhfs"]
 [ext_resource type="Script" uid="uid://db44vl6v1ousg" path="res://entities/items/cards/keycard.gd" id="3_rgpj3"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gdl2c"]
-friction = 0.5
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
-radius = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_r8321"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6akv6"]
 size = Vector3(0.3, 0.05, 0.4)
 
-[node name="keycard001" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["item"]]
-collision_layer = 3
-collision_mask = 3
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-physics_material_override = SubResource("PhysicsMaterial_gdl2c")
-can_sleep = false
-continuous_cd = true
-script = ExtResource("1_wxrup")
+[node name="keycard01" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_7ev56")]
 inventorySprite = ExtResource("2_6akv6")
 inventoryName = "Level 1 Keycard"
 itemName = "keycard1"
 functionItem = NodePath("keycard")
 
-[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_2htau")
-
-[node name="keycard" type="Node3D" parent="."]
+[node name="keycard" type="Node3D" parent="." index="2"]
 script = ExtResource("3_rgpj3")
 keycardLevel = 1
 
-[node name="keycard1" parent="keycard" instance=ExtResource("2_qhhfs")]
+[node name="keycard1" parent="keycard" index="0" instance=ExtResource("2_qhhfs")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_r8321")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("BoxShape3D_6akv6")

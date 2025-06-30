@@ -25,11 +25,13 @@ var sprinting: bool = false
 var multiplayerAuthorityID: int 
 
 func _ready() -> void:
-	print(multiplayerAuthorityID)
 	camera.current = is_multiplayer_authority()
 	playerModel.visible = !is_multiplayer_authority()
+	if !is_multiplayer_authority():
+		$UI.queue_free()
 	
 	GlobalPlayerVariables.player = self
+	GameManager.clear_state()
 	
 	moveSpeed = moveSpeedDesired
 	sensitivity = GlobalPlayerVariables.sensitivity
@@ -118,7 +120,7 @@ func _input(event):
 
 func toggle_noclip():
 	if GlobalPlayerVariables.noclipEnabled:
-		gravity_scale = 1
+		gravity_scale = 10
 		collider.disabled = false
 		GlobalPlayerVariables.noclipEnabled = false
 		GlobalPlayerVariables.blinkingEnabled = true
