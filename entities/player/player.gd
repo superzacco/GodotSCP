@@ -16,7 +16,6 @@ class_name Player
 @export var playerModel: Node3D
 @export var modelAnimations: AnimationPlayer
 
-var sensitivity: float
 var moveSpeed: float
 
 var wishDir: Vector3
@@ -34,7 +33,6 @@ func _ready() -> void:
 	GameManager.clear_state()
 	
 	moveSpeed = moveSpeedDesired
-	sensitivity = GlobalPlayerVariables.sensitivity
 	
 	$AnimationPlayer.play("walking_Bob")
 	$AnimationPlayer.pause()
@@ -103,8 +101,8 @@ func _input(event):
 		return
 	
 	if event is InputEventMouseMotion and GlobalPlayerVariables.lookingEnabled:
-		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * sensitivity * 0.1))
-		camera.rotate_x(deg_to_rad(-event.relative.y * sensitivity * 0.1))
+		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * GlobalPlayerVariables.sensitivity * 0.1))
+		camera.rotate_x(deg_to_rad(-event.relative.y * GlobalPlayerVariables.sensitivity * 0.1))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	
 	if Input.is_action_just_pressed("noclip"):

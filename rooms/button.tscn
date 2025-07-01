@@ -27,8 +27,10 @@ shape = SubResource("BoxShape3D_msn48")
 stream = ExtResource("3_aeum8")
 volume_db = -6.0
 max_polyphony = 3
+bus = &"Sound Effects"
 
 [node name="Fail" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_s73s8")
 volume_db = -6.0
 max_polyphony = 3
+bus = &"Sound Effects"

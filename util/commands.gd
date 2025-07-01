@@ -72,19 +72,16 @@ func spawn_item(item: String):
 		get_tree().root.add_child(spawnedItem)
 		spawnedItem.global_position = GlobalPlayerVariables.playerPosition + Vector3(0, 1, 0)
 
-var enabled: bool = true
 func toggle_room_culling():
 	var facilityManager = GlobalPlayerVariables.facilityManager
 	
-	if enabled:
+	if GlobalPlayerVariables.roomCullingEnabled == true:
 		GlobalPlayerVariables.roomCullingEnabled = false
-		enabled = false
 		for room in facilityManager.rooms:
 			if room != null:
 				room.show()
 	else:
 		GlobalPlayerVariables.roomCullingEnabled = true
-		enabled = true
 		for room in facilityManager.rooms:
 			if room != null:
 				room.hide()

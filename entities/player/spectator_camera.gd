@@ -31,6 +31,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if specManager.spectatableThings.size() > 0:
 		if specManager.spectatableThings[specIdx] == null:
 			specManager.get_spectatable_objects()

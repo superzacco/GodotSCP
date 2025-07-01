@@ -131,15 +131,15 @@ spawnInSound = ExtResource("20_y6deb")
 
 [node name="AmbienceA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 volume_db = -6.0
-bus = &"Music"
+bus = &"Sound Effects"
 
 [node name="AmbienceB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 volume_db = -6.0
-bus = &"Music"
+bus = &"Sound Effects"
 
 [node name="AmbienceC" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 volume_db = -16.0
-bus = &"Music"
+bus = &"Sound Effects"
 
 [node name="AmbienceMusic" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 stream = ExtResource("19_y6deb")
@@ -148,10 +148,10 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="AmbienceSoundsA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
-bus = &"Sound Effects"
+bus = &"Music"
 
 [node name="AmbienceSoundsB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
-bus = &"Sound Effects"
+bus = &"Music"
 
 [node name="AmbienceTimer" type="Timer" parent="MusicAmbienceManager"]
 

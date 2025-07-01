@@ -18,8 +18,10 @@ func switch_player_to_spectator(data):
 	self.add_child(spectatorPivot)
 	
 	camera = spectatorPivot.camera
-	camera.set_multiplayer_authority(data)
-	camera.call_deferred("make_current") 
+	spectatorPivot.set_multiplayer_authority(data, true)
+	
+	if camera.is_multiplayer_authority():
+		camera.call_deferred("make_current") 
 
 
 func get_spectatable_objects():

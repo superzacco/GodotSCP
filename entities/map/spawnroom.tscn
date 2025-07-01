@@ -43,6 +43,7 @@ attenuation_model = 3
 volume_db = 3.0
 autoplay = true
 max_distance = 36.24
+bus = &"Sound Effects"
 
 [node name="Lights" type="Node3D" parent="."]
 

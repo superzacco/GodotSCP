@@ -40,7 +40,6 @@ func play_random_ambience():
 	ambiencePlayerB.stream = randomAmbience[randi_range(0, randomAmbience.size()-1)]
 	ambiencePlayerB.play()
 	play_random_ambience()
-	pass
 
 
 func play_ambience(clip: AudioStream):

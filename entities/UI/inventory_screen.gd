@@ -31,12 +31,18 @@ func _ready() -> void:
 var clicki: int = 0
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if Input.is_action_just_pressed("inventory"):
 		if inventoryOpen:
 			close_inventory()
 		else:
+			if GlobalPlayerVariables.immutableMenuOpen: return
 			open_inventory()
 	
+	if Input.is_action_just_released("quit") and inventoryOpen :
+		close_inventory()
 	
 	if Input.is_action_just_pressed("interact") and inventoryOpen:
 		if GlobalPlayerVariables.hoveredSlot != null:
@@ -64,7 +70,6 @@ func _input(event: InputEvent) -> void:
 		currentSlot = null
 		currentSlotIcon = null
 		heldItem = null
-	
 	
 	if event.is_action_pressed("interact") and inventoryOpen:
 		clicki += 1

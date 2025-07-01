@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 		inputField.edit()
 	
 	
-	if Input.is_action_just_pressed("quit"):
+	if Input.is_action_just_released("quit") and GlobalPlayerVariables.lookingEnabled != false:
 		inputField.clear()
 		GlobalPlayerVariables.consoleOpen = false
 		
