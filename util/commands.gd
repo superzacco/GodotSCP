@@ -6,17 +6,16 @@ var errorColor: String = "FF0000"
 
 
 func help():
-	console.println("
-	help - Displays this text.
-	noclip - fly + no world collision.
-	quit - Exits the game immediately.
-	disconnect - Exits to the main menu.
-	noblink - Toggles player blinking.
-	fog - Toggles fog.
-	getpos - Returns player position.
-	spawn <item> - Spawns named item.
-	dist - toggles distance culling of rooms.
-	")
+	console.println("help - Displays this text.")
+	console.println("noclip - fly + no world collision.")
+	console.println("quit - Exits the game immediately.")
+	console.println("disconnect - Exits to the main menu.")
+	console.println("noblink - Toggles player blinking.")
+	console.println("fog - Toggles fog.")
+	console.println("getpos - Returns player position.")
+	console.println("spawn <item> - Spawns named item.")
+	console.println("dist - toggles distance culling of rooms.")
+
 
 func quit():
 	get_tree().quit()

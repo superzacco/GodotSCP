@@ -28,5 +28,5 @@ func flicker_nearby_lights():
 
 func flicker_all_nearby_lights():
 	for light: RoomLight in GlobalPlayerVariables.nearbyRoomLights:
-		if light != null:
+		if light != null and light.canFlicker:
 			light.start_flicker()

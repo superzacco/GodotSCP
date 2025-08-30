@@ -8,6 +8,9 @@ func _ready() -> void:
 
 @warning_ignore("shadowed_variable_base_class")
 func display(text: String):
+	if !is_multiplayer_authority():
+		return
+	
 	fading = false
 	self.modulate.a = 1.0
 	self.text = text

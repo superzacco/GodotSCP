@@ -293,7 +293,7 @@ layers = 513
 blend_times = [&"idle", &"idle", 0.15, &"idle", &"run", 0.15, &"idle", &"walk", 0.15, &"run", &"idle", 0.15, &"run", &"run", 0.15, &"run", &"walk", 0.15, &"walk", &"idle", 0.15, &"walk", &"run", 0.15, &"walk", &"walk", 0.15]
 
 [node name="Inventory" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
 [node name="PlayerStepSounds" type="Node3D" parent="."]
 script = ExtResource("9_3wlsy")

@@ -49,11 +49,10 @@ func _ready() -> void:
 
 
 func start_flicker():
-	if canFlicker:
-		$Animations.play(animationNames[randi_range(0, animationNames.size()-1)])
-		await $Animations.animation_finished
-		spotlight.light_energy = brightness
-		omnilight.light_energy = omniBrightness
+	$Animations.play(animationNames[randi_range(0, animationNames.size()-1)])
+	await $Animations.animation_finished
+	spotlight.light_energy = brightness
+	omnilight.light_energy = omniBrightness
 
 
 func spark():

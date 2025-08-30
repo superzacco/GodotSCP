@@ -13,6 +13,7 @@ var nearestInteractable = null
 
 func _ready() -> void:
 	GlobalPlayerVariables.interactionScript = self
+	GlobalPlayerVariables.interactionSprite = interactionSprite
 
 
 func _input(event: InputEvent) -> void:
@@ -58,10 +59,10 @@ func find_nearest_interactable():
 
 
 func on_click_interactable():
-	find_nearest_interactable()
-	
 	if GlobalPlayerVariables.inventory.inventoryOpen:
 		return
+	
+	find_nearest_interactable()
 	
 	if nearestInteractable.is_in_group("item"):
 		pick_up_item.rpc(nearestInteractable)
@@ -89,4 +90,3 @@ func pick_up_item(item):
 		
 		GlobalPlayerVariables.inventory.on_pickup_item(item)
 		$PickItem.play()
-		interactionSprite.hide()

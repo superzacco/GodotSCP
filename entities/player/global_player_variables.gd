@@ -25,6 +25,7 @@ var nearbyRoomLights: Array[RoomLight]
 
 
 # INVENTORY
+var interactionSprite: Sprite3D
 var inventory: Inventory
 var hoveredSlot: InventorySlot
 
@@ -44,7 +45,6 @@ var blinking: bool = false
 
 
 # MULTIPLAYER
-
 var ID: int
 var playersBlinkingIDs: Array[int]
 

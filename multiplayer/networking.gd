@@ -3,7 +3,6 @@ extends Node
 var player = preload("res://entities/player/player.tscn")
 var peer := ENetMultiplayerPeer.new()
 
-
 func host_lan_server(port: int):
 	
 	if port == 0:
