@@ -31,3 +31,5 @@ func get_spectatable_objects():
 	for spectatable in spectatables:
 		if spectatable != null:
 			spectatableThings.append(spectatable)
+	
+	return spectatableThings

@@ -24,7 +24,6 @@ func _process(delta: float) -> void:
 
 func initialize_steam():
 	var initialize_response: Dictionary = Steam.steamInitEx()
-	print("Did Steam initialize?: %s" % initialize_response)
 	
 	if initialize_response['status'] > 0:
 		print("Failed to initialize to Steam :( ... %s" % initialize_response)

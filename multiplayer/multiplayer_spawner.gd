@@ -15,9 +15,10 @@ func _ready() -> void:
 var players = {}
 func spawn_player(data):
 	var p: Player = playerScene.instantiate()
-	p.set_multiplayer_authority(data)
 	players[data] = p
+	p.set_multiplayer_authority(data)
 	p.multiplayerAuthorityID = data
+	print("Player has connected with data ID: %s" % data)
 	return p
 
 

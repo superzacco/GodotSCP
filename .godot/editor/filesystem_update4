@@ -1,0 +1,14 @@
+res://scenes/main.tscn
+res://entities/ui/defaultlabel.tres
+res://entities/ui/label_bigger.tres
+res://rooms/Textures/gas_sprite.tres
+res://entities/graphics.tres
+res://entities/items/item.tscn
+res://entities/ui/console.tscn
+res://entities/player/player.tscn
+res://entities/ui/UI.tscn
+res://util/global_player_variables.tscn
+res://scenes/menu.tscn
+res://entities/SCPs/scp_173.tscn
+res://versioninfo.txt
+res://entities/player/blinking.gd

@@ -6,7 +6,9 @@ extends Control
 var mainMenu: PackedScene = load("res://scenes/menu.tscn")
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quit") and !GlobalPlayerVariables.consoleOpen and !GlobalPlayerVariables.inventory.inventoryOpen:
+	if Input.is_action_just_pressed("quit") and !GlobalPlayerVariables.consoleOpen:
+		if GlobalPlayerVariables.inventory != null and GlobalPlayerVariables.inventory.inventoryOpen:
+			return
 		
 		if !self.visible:
 			DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)

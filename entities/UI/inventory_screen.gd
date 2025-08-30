@@ -23,7 +23,9 @@ func _ready() -> void:
 	for i in slotsNode.get_children().size():
 		slots.append(slotsNode.get_child(i))
 	
-	GlobalPlayerVariables.inventory = self
+	if is_multiplayer_authority():
+		GlobalPlayerVariables.inventory = self
+	
 	equippedItemFrame = $"../HeldItemFrame"
 	equippedItemIcon = $"../HeldItemFrame/Item"
 
@@ -82,7 +84,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if !clickHeld:
+	if !clickHeld or !is_multiplayer_authority():
 		return
 	
 	var mousePosition: Vector2 = get_global_mouse_position()

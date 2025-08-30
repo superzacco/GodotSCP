@@ -20,7 +20,8 @@ func on_pressed():
 	
 	if wontOpen:
 		$Fail.play()
-		GlobalPlayerVariables.interactionText.display(rejectionText)
+		if GlobalPlayerVariables.interactionText != null:
+			GlobalPlayerVariables.interactionText.display(rejectionText)
 		return
 	
 	if buttonType == 0:

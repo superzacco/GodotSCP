@@ -94,3 +94,6 @@ func set_seed(seed: int):
 	GameManager.rng.seed = GameManager.seed
 	
 	print(GameManager.rng.seed)
+
+func kill_player():
+	GlobalPlayerVariables.player.on_death()

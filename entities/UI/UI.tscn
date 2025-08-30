@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/ui/inventory_screen.tscn" id="2_suasf"]
 [ext_resource type="PackedScene" uid="uid://byhqb7aruaxym" path="res://entities/ui/pause_menu.tscn" id="3_djdyh"]
-[ext_resource type="Script" uid="uid://colmln52eakep" path="res://util/version_info.gd" id="3_pg7nq"]
 [ext_resource type="Texture2D" uid="uid://cnmyvh6rwbwrl" path="res://entities/ui/heldItem.png" id="3_rqao8"]
 [ext_resource type="Script" uid="uid://csco5m1d83kxb" path="res://entities/ui/sprintandblinkmeters.gd" id="4_3l1o5"]
+[ext_resource type="PackedScene" uid="uid://bjfo7losv4148" path="res://entities/ui/version_info.tscn" id="6_xuvmb"]
 [ext_resource type="Texture2D" uid="uid://cwtnu1jfg1yq2" path="res://entities/ui/barssmall.png" id="8_ssjkm"]
 [ext_resource type="Texture2D" uid="uid://2krnocco57xw" path="res://entities/ui/blinkicon.png" id="8_u7ke3"]
 [ext_resource type="Texture2D" uid="uid://dgbidklhovw1r" path="res://entities/ui/outlinesmall.png" id="9_bkcom"]
@@ -46,9 +46,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="InventoryScreen" parent="." instance=ExtResource("2_suasf")]
+[node name="InventoryScreen" parent="." node_paths=PackedStringArray("equippedItemFrame") instance=ExtResource("2_suasf")]
 visible = false
 layout_mode = 1
+equippedItemFrame = NodePath("../HeldItemFrame")
 
 [node name="HeldItemFrame" type="TextureRect" parent="."]
 visible = false
@@ -76,28 +77,8 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 2
 
-[node name="VersionInfo" type="Control" parent="." node_paths=PackedStringArray("versionString")]
+[node name="VersionInfo" parent="." instance=ExtResource("6_xuvmb")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-script = ExtResource("3_pg7nq")
-versionString = NodePath("Label")
-version = "v0.1.0"
-
-[node name="Label" type="Label" parent="VersionInfo"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -227.0
-offset_right = -5.0
-offset_bottom = 26.0
-grow_horizontal = 0
-horizontal_alignment = 2
 
 [node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter", "blinkIcon")]
 layout_mode = 1

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjfo7losv4148"]
+
+[ext_resource type="Script" uid="uid://colmln52eakep" path="res://util/version_info.gd" id="1_cj8ex"]
+
+[node name="VersionInfo" type="Control" node_paths=PackedStringArray("versionString")]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+script = ExtResource("1_cj8ex")
+versionString = NodePath("Label")
+version = "v0.1.0"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -227.0
+offset_right = -5.0
+offset_bottom = 26.0
+grow_horizontal = 0
+horizontal_alignment = 2

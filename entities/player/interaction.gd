@@ -16,6 +16,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if event.is_action_pressed("interact") and interactablesInRange.size() != 0:
 		on_click_interactable()
 
@@ -31,11 +34,9 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
 		interactablesInRange.append(area.get_parent())
-		
 		find_nearest_interactable()
-		await get_tree().process_frame
-		await get_tree().process_frame
-		await get_tree().process_frame
+		for i in 3:
+			await get_tree().process_frame
 		interactionSprite.show()
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
@@ -88,3 +89,4 @@ func pick_up_item(item):
 		
 		GlobalPlayerVariables.inventory.on_pickup_item(item)
 		$PickItem.play()
+		interactionSprite.hide()

@@ -1,11 +1,13 @@
-C:/Users/zkmuf/Desktop/Game
+res://multiplayer
+E:/Desktop/games or whatever/Game
+res://entities/ui
+res://util
 res://rooms
 res://rooms/light_containment
 res://
 E:/Desktop/games or whatever
 res://entities/items/cards
 E:/Desktop/games or whatever/templates
-res://entities/ui
 res://rooms/entrance_zone
 res://rooms/heavy_containment
 res://entities/player
@@ -14,4 +16,3 @@ res://rooms/tesla
 res://entities/SCPs/106
 res://entities/map
 res://scenes
-res://util

@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or GlobalPlayerVariables.consoleOpen or GlobalPlayerVariables.immutableMenuOpen:
 		return
 	
 	if event is InputEventMouseMotion:

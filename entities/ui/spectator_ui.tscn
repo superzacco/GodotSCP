@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx6y1jh26qdcl"]
+[gd_scene load_steps=6 format=3 uid="uid://bx6y1jh26qdcl"]
 
 [ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="1_lb5o3"]
 [ext_resource type="Script" uid="uid://bhbhfpvy8sx6i" path="res://entities/ui/spectator_ui.gd" id="1_lbpap"]
 [ext_resource type="PackedScene" uid="uid://byhqb7aruaxym" path="res://entities/ui/pause_menu.tscn" id="4_axs33"]
+[ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="4_qajvr"]
+[ext_resource type="PackedScene" uid="uid://bjfo7losv4148" path="res://entities/ui/version_info.tscn" id="5_qajvr"]
 
 [node name="SpectatorUI" type="Control" node_paths=PackedStringArray("spectatingLabel")]
 layout_mode = 3
@@ -30,4 +32,10 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_axs33")]
 visible = false
+layout_mode = 1
+
+[node name="Console" parent="." instance=ExtResource("4_qajvr")]
+layout_mode = 1
+
+[node name="VersionInfo" parent="." instance=ExtResource("5_qajvr")]
 layout_mode = 1

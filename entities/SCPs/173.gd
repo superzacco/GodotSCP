@@ -6,16 +6,14 @@ extends CharacterBody3D
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
-@export var onScreen: bool = false
-@export var blinking: bool = false
 var nearPlayer: bool = false
 var playerInKillRange: Player = null
 var nearDoor: StaticBody3D 
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
-	onScreen = true
+	pass
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
-	onScreen = false
+	pass
 
 
 func _ready() -> void:
@@ -24,9 +22,7 @@ func _ready() -> void:
 
 var nextPathPos: Vector3
 func _physics_process(delta: float) -> void:
-	blinking = GlobalPlayerVariables.blinking
-	
-	if (!onScreen or blinking) and nearPlayer:
+	if (!GlobalPlayerVariables.OnScreen173.has(true) or !GlobalPlayerVariables.playersBlinking.has(false)) and nearPlayer:
 		try_kill_player(playerInKillRange)
 		
 		agent.target_position = GlobalPlayerVariables.playerPosition
@@ -105,7 +101,7 @@ func try_kill_player(player: Player):
 	if playerInKillRange == null:
 		return
 	
-	if GlobalPlayerVariables.blinking or !onScreen:
+	if !GlobalPlayerVariables.playersBlinking.has(false) or !GlobalPlayerVariables.OnScreen173.has(true):
 		$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
 		$NeckSnap.play()
 		player.on_death()

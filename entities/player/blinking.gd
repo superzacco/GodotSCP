@@ -5,11 +5,14 @@ class_name PlayerBlinking
 var blinkHeld: bool
 
 func _ready() -> void:
+	GlobalPlayerVariables.add_blinking.bind(multiplayer.get_unique_id()).rpc()
+	GlobalPlayerVariables.ID = multiplayer.get_unique_id()
+	
 	self.hide()
 
 
 func _process(delta: float) -> void:
-	if !GlobalPlayerVariables.blinkingEnabled:
+	if !GlobalPlayerVariables.blinkingEnabled or !is_multiplayer_authority():
 		return
 	
 	if GlobalPlayerVariables.blinkQuickened:
@@ -21,6 +24,7 @@ func _process(delta: float) -> void:
 		self.show()
 		
 		GlobalPlayerVariables.blinking = true
+		GlobalPlayerVariables.update_blinking.bind(multiplayer.get_unique_id(), true).rpc()
 		
 		if !blinkHeld:
 			blink()
@@ -32,8 +36,10 @@ func blink():
 	
 	self.show()
 	GlobalPlayerVariables.blinking = true
+	GlobalPlayerVariables.update_blinking.bind(multiplayer.get_unique_id(), true).rpc()
 	await get_tree().create_timer(0.2).timeout
 	GlobalPlayerVariables.blinking = false
+	GlobalPlayerVariables.update_blinking.bind(multiplayer.get_unique_id(), false).rpc()
 	self.hide()
 	
 	GlobalPlayerVariables.blinkJuice = 100

@@ -20,6 +20,7 @@ var moveSpeed: float
 
 var wishDir: Vector3
 var sprinting: bool = false
+var dead: bool = false
 
 var multiplayerAuthorityID: int 
 
@@ -41,7 +42,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or dead:
 		return
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
@@ -97,7 +98,7 @@ func _physics_process(delta: float) -> void:
 
 #region CAMERA MOVEMENT
 func _input(event):
-	if GlobalPlayerVariables.consoleOpen or !is_multiplayer_authority():
+	if GlobalPlayerVariables.consoleOpen or !is_multiplayer_authority() or dead:
 		return
 	
 	if event is InputEventMouseMotion and GlobalPlayerVariables.lookingEnabled:
@@ -143,6 +144,9 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 
 
 func on_death():
-	collider.disabled = true
+	dead = true
+	$AnimationPlayer.play("death")
+	
+	await get_tree().create_timer(1.5).timeout
 	GlobalPlayerVariables.spectatorManager.switch_player_to_spectator(multiplayerAuthorityID)
 	queue_free()

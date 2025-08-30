@@ -9,12 +9,13 @@ var consoleOutput: String
 
 
 func _ready() -> void:
-	Commands.console = self
+	if is_multiplayer_authority():
+		Commands.console = self
 	visible = false
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("console"):
+	if Input.is_action_just_pressed("console") and !GlobalPlayerVariables.immutableMenuOpen:
 		
 		GlobalPlayerVariables.consoleOpen = true
 		
@@ -79,6 +80,8 @@ func _input(event: InputEvent) -> void:
 				Commands.toggle_room_culling()
 			"lvl":
 				GameManager.game_start.rpc()
+			"kill":
+				Commands.kill_player()
 		
 		inputField.clear()
 	

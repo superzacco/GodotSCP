@@ -21,7 +21,6 @@ buses/default_bus_layout="res://entities/default_bus_layout.tres"
 
 [autoload]
 
-GlobalPlayerVariables="*res://entities/player/global_player_variables.gd"
 ZFunc="*res://util/ZFunc.gd"
 VersionController="*res://util/version_controller.gd"
 Commands="*res://util/commands.gd"
@@ -30,6 +29,8 @@ SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
 GameManager="*res://util/game_manager.tscn"
 SignalBus="*res://util/signal_bus.gd"
+GlobalPlayerVariables="*res://util/global_player_variables.tscn"
+Networking="*res://multiplayer/networking.gd"
 
 [debug]
 

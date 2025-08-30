@@ -22,10 +22,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -200.0
-offset_right = 150.0
-offset_bottom = 200.0
+offset_left = -200.0
+offset_top = -225.0
+offset_right = 200.0
+offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -91,7 +91,7 @@ layout_mode = 2
 [node name="Window" type="HBoxContainer" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ResolutionText" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window"]
+[node name="WindowText" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_mhw3w")
@@ -100,23 +100,27 @@ text = "Window Mode"
 
 [node name="Container" type="HBoxContainer" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window"]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="GoBackOption" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
+[node name="WinBack" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 text = "<"
 
-[node name="Resolutions" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
+[node name="WinText" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
+unique_name_in_owner = true
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 theme_override_fonts/font = ExtResource("2_mhw3w")
 theme_override_font_sizes/font_size = 16
 text = "Window"
 horizontal_alignment = 1
 
-[node name="AvdanceOption" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
+[node name="WinAdvance" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
@@ -134,23 +138,27 @@ text = "Resolution"
 
 [node name="Container" type="HBoxContainer" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution"]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 size_flags_vertical = 0
+size_flags_stretch_ratio = 2.0
 
-[node name="GoBackOption" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
+[node name="ResBack" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 text = "<"
 
-[node name="Resolutions" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
+[node name="ResText" type="Label" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
 theme_override_fonts/font = ExtResource("2_mhw3w")
 theme_override_font_sizes/font_size = 16
 text = "Resolution"
 horizontal_alignment = 1
 
-[node name="AvdanceOption" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
+[node name="ResAdvance" type="Button" parent="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
@@ -201,7 +209,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 6
 step = 5.0
-value = 21.0
+value = 20.0
 
 [node name="AudioContainer" type="MarginContainer" parent="Panel/OptionsContainer"]
 layout_mode = 2
@@ -326,6 +334,10 @@ ticks_on_borders = true
 
 [connection signal="pressed" from="Panel/PrimaryMenu/OptionsContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Panel/PrimaryMenu/QuitContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container/WinBack" to="Panel/OptionsContainer" method="_on_win_back_pressed"]
+[connection signal="pressed" from="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Window/Container/WinAdvance" to="Panel/OptionsContainer" method="_on_win_advance_pressed"]
+[connection signal="pressed" from="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container/ResBack" to="Panel/OptionsContainer" method="_on_res_advance_pressed"]
+[connection signal="pressed" from="Panel/OptionsContainer/ResolutionContainer/MarginContainer/VBoxContainer/Resolution/Container/ResAdvance" to="Panel/OptionsContainer" method="_on_res_back_pressed"]
 [connection signal="value_changed" from="Panel/OptionsContainer/SensContainer/MarginContainer/VBoxContainer/SensSlider" to="Panel/OptionsContainer" method="_on_sens_slider_value_changed"]
 [connection signal="value_changed" from="Panel/OptionsContainer/AudioContainer/VBoxContainer/MasterVolume/VBoxContainer/MasterSlider" to="Panel/OptionsContainer" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="Panel/OptionsContainer/AudioContainer/VBoxContainer/SFXVolume/VBoxContainer/SFXSlider" to="Panel/OptionsContainer" method="_on_sfx_slider_value_changed"]
