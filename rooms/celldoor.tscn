@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://hbsdij7dutfn"]
 
-[ext_resource type="Script" uid="uid://dowyqsvnp45hg" path="res://celldoor.gd" id="1_3rw1a"]
+[ext_resource type="Script" uid="uid://dowyqsvnp45hg" path="res://entities/map/celldoor.gd" id="1_3rw1a"]
 [ext_resource type="PackedScene" uid="uid://bxmgyck0wts7g" path="res://rooms/Models/celldoor.blend" id="2_mtcmh"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="3_mtcmh"]
 

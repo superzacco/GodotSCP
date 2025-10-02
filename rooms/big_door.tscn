@@ -23,11 +23,15 @@ animationPlayer = NodePath("AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("3_xee4u"), ExtResource("4_eb36k"), ExtResource("5_o7dva")])
 closeSounds = Array[AudioStream]([ExtResource("6_73gmf"), ExtResource("7_j54al"), ExtResource("8_gdwp7")])
 
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, 1.37768, 0)
+bones/2/position = Vector3(-1.04012e-07, -1.37768, 6.11316e-23)
+
 [node name="DoorR-col" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 3.62768, 0)
 
 [node name="DoorL-col" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.37768, 6.11316e-23)
 
 [node name="Open" type="AudioStreamPlayer3D" parent="." index="3"]
 

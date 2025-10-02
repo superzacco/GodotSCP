@@ -37,6 +37,7 @@ func clear_state():
 	GlobalPlayerVariables.consoleOpen = false
 	GlobalPlayerVariables.lookingEnabled = true
 	GlobalPlayerVariables.roomCullingEnabled = true
+	GlobalPlayerVariables.immutableMenuOpen = false
 	
 	if GlobalPlayerVariables.noclipEnabled:
 		Commands.noclip()

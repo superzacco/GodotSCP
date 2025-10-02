@@ -52,7 +52,10 @@ project/assembly_name="SCP"
 
 folder_colors={
 "res://entities/": "pink",
+"res://fonts/": "orange",
+"res://levelgen/": "green",
 "res://multiplayer/": "purple",
+"res://rooms/": "blue",
 "res://util/": "gray"
 }
 

@@ -7,7 +7,7 @@ class_name Interaction
 @export var interactionSprite: Sprite3D
 @export var spriteEndPoint: Node3D
 
-var interactablesInRange: Array
+var interactablesInRange := []
 var nearestInteractable = null
 
 
@@ -65,7 +65,7 @@ func on_click_interactable():
 	find_nearest_interactable()
 	
 	if nearestInteractable.is_in_group("item"):
-		pick_up_item.rpc(nearestInteractable)
+		pick_up_item.rpc(nearestInteractable.get_path())
 		return
 	
 	if nearestInteractable.is_in_group("button"):
@@ -78,11 +78,12 @@ func interact(interactable):
 
 
 @rpc("call_local", "any_peer")
-func pick_up_item(item):
+func pick_up_item(itemPath):
 	if inventoryNode.get_children().size() > 5:
 		GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")
 		return
 	
+	var item = get_node_or_null(itemPath)
 	if item != null:
 		item.reparent(inventoryNode)
 		item.global_position = inventoryNode.global_position

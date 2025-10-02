@@ -1,6 +1,6 @@
 {
 	"asset":{
-		"generator":"Khronos glTF Blender I/O v4.4.56",
+		"generator":"Khronos glTF Blender I/O v4.3.47",
 		"version":"2.0"
 	},
 	"scene":0,
@@ -210,7 +210,7 @@
 					}
 				}
 			],
-			"name":"close-Close",
+			"name":"open",
 			"samplers":[
 				{
 					"input":15,
@@ -241,85 +241,6 @@
 					"input":17,
 					"interpolation":"STEP",
 					"output":28
-				}
-			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":2,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":2,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":2,
-						"path":"scale"
-					}
-				},
-				{
-					"sampler":3,
-					"target":{
-						"node":4,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":4,
-					"target":{
-						"node":4,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":5,
-					"target":{
-						"node":4,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"open",
-			"samplers":[
-				{
-					"input":15,
-					"interpolation":"LINEAR",
-					"output":29
-				},
-				{
-					"input":17,
-					"interpolation":"STEP",
-					"output":30
-				},
-				{
-					"input":17,
-					"interpolation":"STEP",
-					"output":31
-				},
-				{
-					"input":15,
-					"interpolation":"LINEAR",
-					"output":32
-				},
-				{
-					"input":17,
-					"interpolation":"STEP",
-					"output":33
-				},
-				{
-					"input":17,
-					"interpolation":"STEP",
-					"output":34
 				}
 			]
 		}
@@ -452,7 +373,7 @@
 	],
 	"skins":[
 		{
-			"inverseBindMatrices":35,
+			"inverseBindMatrices":29,
 			"joints":[
 				2,
 				4
@@ -680,42 +601,6 @@
 		{
 			"bufferView":29,
 			"componentType":5126,
-			"count":71,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":30,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":31,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":32,
-			"componentType":5126,
-			"count":71,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":33,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":34,
-			"componentType":5126,
-			"count":2,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":35,
-			"componentType":5126,
 			"count":2,
 			"type":"MAT4"
 		}
@@ -883,38 +768,8 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":852,
-			"byteOffset":20952
-		},
-		{
-			"buffer":0,
-			"byteLength":32,
-			"byteOffset":21804
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":21836
-		},
-		{
-			"buffer":0,
-			"byteLength":852,
-			"byteOffset":21860
-		},
-		{
-			"buffer":0,
-			"byteLength":32,
-			"byteOffset":22712
-		},
-		{
-			"buffer":0,
-			"byteLength":24,
-			"byteOffset":22744
-		},
-		{
-			"buffer":0,
 			"byteLength":128,
-			"byteOffset":22768
+			"byteOffset":20952
 		}
 	],
 	"samplers":[
@@ -925,7 +780,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":22896,
+			"byteLength":21080,
 			"uri":"big_door-b69e99f20aef21693fe8dd1db9174ed0.bin"
 		}
 	]
