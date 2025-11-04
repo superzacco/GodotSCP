@@ -8,10 +8,13 @@ class_name Interaction
 @export var spriteEndPoint: Node3D
 
 var interactablesInRange := []
-var nearestInteractable = null
+var nearestInteractable: Node3D = null
 
 
 func _ready() -> void:
+	if !is_multiplayer_authority():
+		interactionSprite.set_process(false)
+	
 	GlobalPlayerVariables.interactionScript = self
 	GlobalPlayerVariables.interactionSprite = interactionSprite
 
@@ -25,6 +28,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if nearestInteractable != null:
 		interactionSprite.global_position = spriteEndPoint.global_position.lerp(nearestInteractable.global_position, 0.5)
 	
@@ -65,7 +71,7 @@ func on_click_interactable():
 	find_nearest_interactable()
 	
 	if nearestInteractable.is_in_group("item"):
-		pick_up_item.rpc(nearestInteractable.get_path())
+		request_item_pickup.rpc(nearestInteractable.name)
 		return
 	
 	if nearestInteractable.is_in_group("button"):
@@ -77,17 +83,28 @@ func interact(interactable):
 	interactable.on_pressed.rpc()
 
 
-@rpc("call_local", "any_peer")
-func pick_up_item(itemPath):
-	if inventoryNode.get_children().size() > 5:
-		GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")
+@rpc("reliable", "call_local", "any_peer")
+func request_item_pickup(itemName):
+	
+	var item: Item = get_tree().root.find_child(itemName, true, false)
+	if item == null:
+		push_error("item was found to be null!")
 		return
 	
-	var item = get_node_or_null(itemPath)
-	if item != null:
-		item.reparent(inventoryNode)
-		item.global_position = inventoryNode.global_position
-		item.freeze = true
-		
-		GlobalPlayerVariables.inventory.on_pickup_item(item)
-		$PickItem.play()
+	##if inventoryNode.get_children().size() > 5:
+		##GlobalPlayerVariables.interactionText.display.rpc_id(multiplayer.get_remote_sender_id(), "You cannot hold any more items.")
+		##return
+	
+	var syncNode: MultiplayerSynchronizer = item.multiplayerSyncrhonizer
+	syncNode.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	
+	#push_warning("Item: "+str(item))
+	#push_warning(itemName)
+	
+	item.set_process_mode(Node.PROCESS_MODE_DISABLED)
+	item.hide()
+	
+	if is_multiplayer_authority():
+		if item != null:
+			GlobalPlayerVariables.inventory.on_pickup_item(item)
+			$PickItem.play()

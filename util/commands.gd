@@ -43,6 +43,8 @@ func get_pos():
 	console.println(str(GlobalPlayerVariables.playerPosition))
 	print(GlobalPlayerVariables.playerPosition)
 
+
+@rpc("call_local", "any_peer")
 func spawn_item(item: String):
 	var itemToSpawn
 	

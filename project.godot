@@ -31,6 +31,7 @@ GameManager="*res://util/game_manager.tscn"
 SignalBus="*res://util/signal_bus.gd"
 GlobalPlayerVariables="*res://util/global_player_variables.tscn"
 Networking="*res://multiplayer/networking.gd"
+ItemManager="*res://util/item_manager.gd"
 
 [debug]
 

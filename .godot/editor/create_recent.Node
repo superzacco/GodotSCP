@@ -1,3 +1,6 @@
+MultiplayerSpawner
+Node3D
+MultiplayerSynchronizer
 CollisionShape3D
 VoxelGI
 LightmapProbe
@@ -9,6 +12,3 @@ VBoxContainer
 Control
 MarginContainer
 Container
-Panel
-Label
-HSlider

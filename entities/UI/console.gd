@@ -75,7 +75,7 @@ func _input(event: InputEvent) -> void:
 				if commandStringArray.size() == 1:
 					println("missing <item>", Commands.errorColor)
 				else:
-					Commands.spawn_item(commandStringArray[1])
+					Commands.spawn_item.rpc(commandStringArray[1])
 			"dist":
 				Commands.toggle_room_culling()
 			"lvl":

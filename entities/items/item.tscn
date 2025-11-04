@@ -9,17 +9,21 @@ friction = 0.5
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2htau"]
 radius = 1.0
 
-[node name="Item" type="RigidBody3D" groups=["item"]]
+[node name="Item" type="RigidBody3D" node_paths=PackedStringArray("multiplayerSyncrhonizer") groups=["item"]]
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_gdl2c")
 can_sleep = false
 continuous_cd = true
 script = ExtResource("1_0nrx4")
+multiplayerSyncrhonizer = NodePath("MultiplayerSynchronizer")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_gdl2c")
@@ -29,4 +33,5 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+visible = false
 shape = SubResource("SphereShape3D_2htau")

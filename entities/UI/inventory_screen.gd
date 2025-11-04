@@ -20,6 +20,8 @@ var currentSlotIcon: TextureRect
 var iconOriginPoint: Vector2
 
 func _ready() -> void:
+	ItemManager.connect("update_slot_ui", clear_slot_ui)
+	
 	for i in slotsNode.get_children().size():
 		slots.append(slotsNode.get_child(i))
 	
@@ -43,7 +45,7 @@ func _input(event: InputEvent) -> void:
 			if GlobalPlayerVariables.immutableMenuOpen: return
 			open_inventory()
 	
-	if Input.is_action_just_released("quit") and inventoryOpen :
+	if Input.is_action_just_released("quit") and inventoryOpen:
 		close_inventory()
 	
 	if Input.is_action_just_pressed("interact") and inventoryOpen:
@@ -63,7 +65,7 @@ func _input(event: InputEvent) -> void:
 			currentSlotIcon.global_position = iconOriginPoint
 		
 		if heldItem != null and overDropArea and inventoryOpen:
-			on_drop_item(currentSlot)
+			ItemManager.request_item_drop.rpc(heldItem.name, hoveredSlotIdx)
 		
 		if GlobalPlayerVariables.hoveredSlot != null and heldItem != null:
 			swap_item(currentSlot, GlobalPlayerVariables.hoveredSlot)
@@ -75,11 +77,12 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("interact") and inventoryOpen:
 		clicki += 1
-		await  get_tree().create_timer(0.25).timeout
 		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
 			var item = GlobalPlayerVariables.hoveredSlot.heldItem
 			if item != null:
 				equip_item(item)
+		
+		await  get_tree().create_timer(0.25).timeout
 		clicki = 0
 
 
@@ -120,15 +123,13 @@ func on_pickup_item(item: Item):
 			break
 
 
-func on_drop_item(slot: InventorySlot):
-	var randomPos = Vector3(randf_range(-0.25, 0.25), 1, randf_range(-0.25, 0.25))
-	var randomRotation = randi_range(0, 360)
+
+@rpc("reliable", "call_local")
+func clear_slot_ui(slotIdx: int):
+	if slotIdx < 0 or slotIdx >= slots.size():
+		return
 	
-	slot.heldItem.global_position = GlobalPlayerVariables.playerPosition + randomPos
-	slot.heldItem.global_rotation.y = randomRotation
-	slot.heldItem.reparent(get_tree().root)
-	slot.heldItem.freeze = false
-	
+	var slot: InventorySlot = slots[slotIdx]
 	slot.heldItem = null
 	slot.slotIcon.texture = null
 	slot.slotText.text = ""

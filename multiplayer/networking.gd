@@ -1,10 +1,14 @@
 extends Node
 
-var player = preload("res://entities/player/player.tscn")
 var peer := ENetMultiplayerPeer.new()
 
+
+func _ready() -> void:
+	peer.peer_connected.connect(on_player_connected)
+
+
 func host_lan_server(port: int):
-	
+	DisplayServer.window_set_title("SCP - HOST") 
 	if port == 0:
 		port = 25565
 	
@@ -22,10 +26,13 @@ func host_lan_server(port: int):
 
 
 func join_lan_server(address: String, port: int):
-	print(address)
-	print(port)
+	DisplayServer.window_set_title("SCP - CLIENT") 
 	
 	peer.create_client(address, port)
 	multiplayer.multiplayer_peer = peer
 	
 	SignalBus.hide_main_menu.emit()
+
+
+func on_player_connected():
+	pass

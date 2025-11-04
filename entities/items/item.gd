@@ -8,10 +8,11 @@ class_name Item
 @export var chanceToSpawn: float = 100
 
 @export var functionItem: Node3D
-
+@export var multiplayerSyncrhonizer: MultiplayerSynchronizer
 
 func _ready() -> void:
-	self.rotation_degrees.y = randi_range(0, 360)
-	
 	if !ZFunc.randInPercent(chanceToSpawn):
 		queue_free()
+	
+	self.rotation_degrees.y = randi_range(0, 360)
+	

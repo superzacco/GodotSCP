@@ -54,8 +54,7 @@ radius = 0.1
 height = 3.0
 radius = 1.25
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_we0b7"]
-height = 15.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_221hk"]
 radius = 15.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mtric"]
@@ -334,7 +333,7 @@ script = ExtResource("18_mtric")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-shape = SubResource("CylinderShape3D_we0b7")
+shape = SubResource("SphereShape3D_221hk")
 
 [node name="NearbyRooms" type="Area3D" parent="."]
 script = ExtResource("18_b2kln")

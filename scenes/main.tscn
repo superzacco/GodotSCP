@@ -104,11 +104,6 @@ fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
 script = ExtResource("19_2f3dj")
 spectatorScene = ExtResource("20_yq6so")
 
-[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../PlayerSpawn")
-script = ExtResource("18_og1vs")
-playerScene = ExtResource("20_5he1u")
-
 [node name="Facility Manager" type="Node" parent="."]
 script = ExtResource("17_fuf3a")
 
@@ -155,6 +150,14 @@ bus = &"Music"
 
 [node name="AmbienceTimer" type="Timer" parent="MusicAmbienceManager"]
 
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../PlayerSpawn")
+script = ExtResource("18_og1vs")
+playerScene = ExtResource("20_5he1u")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
+
 [node name="Facility" type="Node3D" parent="."]
 
 [node name="Doors" type="Node3D" parent="Facility"]
@@ -174,15 +177,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
 
+[node name="Items" type="Node3D" parent="Facility"]
+
+[node name="ItemSpawner" type="MultiplayerSpawner" parent="Facility/Items"]
+spawn_path = NodePath("..")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("18_pibwh")
 script = ExtResource("19_c6pm6")
 
 [node name="Scp173" parent="." instance=ExtResource("21_5poiv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 32.5825, 0)
-
-[node name="PlayerSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kf5aa")
