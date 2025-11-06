@@ -14,6 +14,7 @@ var player: Player
 var playerPosition: Vector3 
 
 var lookingEnabled: bool = true
+var wearingGasMask: bool = false
 
 var sprintJuice: float = 100
 var blinkJuice: float = 100

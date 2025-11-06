@@ -1,33 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyg2xivtl3e7y"]
+[gd_scene load_steps=8 format=3 uid="uid://bsj3727s0ov5a"]
 
-[ext_resource type="Script" uid="uid://crhxs3iye0yff" path="res://entities/items/item.gd" id="1_1oli7"]
 [ext_resource type="Script" uid="uid://cckne1anqoi7u" path="res://entities/items/tools/gas_mask.gd" id="1_a6wn5"]
+[ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_xbdxb"]
+[ext_resource type="Texture2D" uid="uid://cnw24ijiobckv" path="res://entities/items/tools/gasmaskicon.png" id="2_2ye86"]
+[ext_resource type="PackedScene" uid="uid://c2thf6xs7eiym" path="res://entities/items/tools/gasmask.blend" id="3_xbdxb"]
+[ext_resource type="AudioStream" uid="uid://cnbgyyjeoubke" path="res://audio/interaction/PickItemBig.ogg" id="5_kaxvi"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hxulm"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_jibb8"]
 radius = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1oli7"]
-size = Vector3(0.3, 0.1, 0.4)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tj05h"]
+size = Vector3(0.3, 0.194373, 0.4)
 
-[node name="GasMask" type="RigidBody3D" node_paths=PackedStringArray("functionItem") groups=["item"]]
-script = ExtResource("1_1oli7")
+[node name="GasMask" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_xbdxb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00639802, 0.00012511, -0.0071961)
+inventorySprite = ExtResource("2_2ye86")
 inventoryName = "Gas Mask"
 itemName = "gasmask"
+equippable = true
 functionItem = NodePath("gasmask")
 
-[node name="PickupArea" type="Area3D" parent="." groups=["interactables"]]
+[node name="PickupArea" type="Area3D" parent="." index="2" groups=["interactables"]]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
-shape = SubResource("SphereShape3D_hxulm")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" index="0"]
+shape = SubResource("SphereShape3D_jibb8")
 
-[node name="gasmask" type="Node3D" parent="."]
+[node name="gasmask" type="Node3D" parent="." index="3"]
 script = ExtResource("1_a6wn5")
 
-[node name="model" type="CSGBox3D" parent="gasmask"]
-size = Vector3(0.3, 0.1, 0.4)
+[node name="gasmask2" parent="gasmask" index="0" instance=ExtResource("3_xbdxb")]
+transform = Transform3D(1.93, 0, 0, 0, -0.549118, 1.85023, 0, -1.85023, -0.549118, 0, 0.035615, 0.00809796)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00131624, -0.00207929, -1.49012e-08)
-shape = SubResource("BoxShape3D_1oli7")
+[node name="straps-ON" parent="gasmask/gasmask2" index="1"]
+visible = false
+
+[node name="equipsound" type="AudioStreamPlayer" parent="gasmask" index="1"]
+stream = ExtResource("5_kaxvi")
+volume_db = -6.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00131624, 0.045107, -1.49012e-08)
+shape = SubResource("BoxShape3D_tj05h")
+
+[editable path="gasmask/gasmask2"]

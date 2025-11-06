@@ -11,7 +11,7 @@ extends Node3D
 @export var keycardLevel: int = 0
 
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func on_pressed():
 	
 	if extraToControl == null and doorsToControl.size() <= 0:
@@ -42,16 +42,16 @@ func on_pressed():
 				$Fail.play()
 				
 			else:
-				activate_things()
+				activate_things.rpc()
 			
 			GlobalPlayerVariables.inventory.clear_equip()
 
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func activate_things():
 	$Sound.play()
 	if extraToControl != null:
 		extraToControl.activate()
 	
-	for door in doorsToControl:
-		door.toggle_door()
+	for door: Door in doorsToControl:
+		door.toggle_door.rpc()

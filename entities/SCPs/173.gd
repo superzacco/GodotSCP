@@ -86,14 +86,16 @@ func relocate(firstTime: bool = false):
 	
 	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
 		print("close to player")
+		$"3sRelocateTimer".stop()
 		
 	else:
 		try_relocate()
 
 
 func try_relocate():
-	$"3sRelocateTimer".start()
 	await $"3sRelocateTimer".timeout
+	if $"3sRelocateTimer".is_stopped():
+		$"3sRelocateTimer".start()
 	relocate()
 
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=21 format=3 uid="uid://xrdd7v6d2fs"]
 
+[ext_resource type="Texture2D" uid="uid://ltthbch67w2c" path="res://entities/items/tools/gasmaskoverlay.png" id="1_1viem"]
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/ui/inventory_screen.tscn" id="2_suasf"]
 [ext_resource type="PackedScene" uid="uid://byhqb7aruaxym" path="res://entities/ui/pause_menu.tscn" id="3_djdyh"]
 [ext_resource type="Texture2D" uid="uid://cnmyvh6rwbwrl" path="res://entities/ui/heldItem.png" id="3_rqao8"]
+[ext_resource type="Script" uid="uid://bn30dqa22rgfe" path="res://entities/ui/gas_mask_overlay.gd" id="3_xfjp2"]
 [ext_resource type="Script" uid="uid://csco5m1d83kxb" path="res://entities/ui/sprintandblinkmeters.gd" id="4_3l1o5"]
 [ext_resource type="PackedScene" uid="uid://bjfo7losv4148" path="res://entities/ui/version_info.tscn" id="6_xuvmb"]
 [ext_resource type="Texture2D" uid="uid://cwtnu1jfg1yq2" path="res://entities/ui/barssmall.png" id="8_ssjkm"]
@@ -27,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Vignette" type="TextureRect" parent="."]
 z_index = -1
 z_as_relative = false
 layout_mode = 1
@@ -39,46 +41,17 @@ grow_vertical = 2
 texture = ExtResource("9_rqao8")
 expand_mode = 1
 
-[node name="Console" parent="." instance=ExtResource("1_oefnm")]
-layout_mode = 1
-
-[node name="PauseMenu" parent="." instance=ExtResource("3_djdyh")]
+[node name="GasMaskOverlay" type="TextureRect" parent="."]
 visible = false
-layout_mode = 1
-
-[node name="InventoryScreen" parent="." node_paths=PackedStringArray("equippedItemFrame") instance=ExtResource("2_suasf")]
-visible = false
-layout_mode = 1
-equippedItemFrame = NodePath("../HeldItemFrame")
-
-[node name="HeldItemFrame" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_rqao8")
-expand_mode = 1
-
-[node name="Item" type="TextureRect" parent="HeldItemFrame"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_1viem")
 expand_mode = 2
-
-[node name="VersionInfo" parent="." instance=ExtResource("6_xuvmb")]
-layout_mode = 1
+script = ExtResource("3_xfjp2")
 
 [node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter", "blinkIcon")]
 layout_mode = 1
@@ -189,6 +162,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_uwlwq")
 
+[node name="HeldItemFrame" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rqao8")
+expand_mode = 1
+
+[node name="Item" type="TextureRect" parent="HeldItemFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="InventoryScreen" parent="." node_paths=PackedStringArray("equippedItemFrame") instance=ExtResource("2_suasf")]
+visible = false
+layout_mode = 1
+equippedItemFrame = NodePath("../HeldItemFrame")
+
 [node name="WinScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -231,3 +235,13 @@ text = "Time: 24.24"
 label_settings = ExtResource("18_xuvmb")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_djdyh")]
+visible = false
+layout_mode = 1
+
+[node name="Console" parent="." instance=ExtResource("1_oefnm")]
+layout_mode = 1
+
+[node name="VersionInfo" parent="." instance=ExtResource("6_xuvmb")]
+layout_mode = 1

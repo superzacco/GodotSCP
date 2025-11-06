@@ -1,6 +1,8 @@
 extends Node3D
 class_name Elevator
 
+var rng: RandomNumberGenerator
+
 var destination: Node3D
 var otherElevator: Elevator
 
@@ -12,11 +14,14 @@ var otherElevator: Elevator
 @export var movingPlayer: AudioStreamPlayer
 
 var moving: bool = false
-var atCurrentFloor: bool = randi_range(0, 1)
+@export var atCurrentFloor := false
 var playersInElevator: Array[Player]
 
 
 func _ready() -> void:
+	rng = GameManager.rng
+	rng.seed = GameManager.rng.seed
+	
 	SignalBus.connect("connect_elevator", elevator_setup)
 	
 	await SignalBus.level_generation_finished
@@ -28,6 +33,9 @@ func elevator_setup(passedElevator: Elevator):
 		otherElevator = passedElevator
 		if otherElevator.ownDestination != ownDestination:
 			destination = otherElevator.ownDestination
+			
+			if atCurrentFloor == false:
+				atCurrentFloor = rng.randi_range(0, 1)
 	
 	#print("")
 	#print("Elevator: %s" % self)
@@ -35,15 +43,13 @@ func elevator_setup(passedElevator: Elevator):
 	#print("Destination: %s" % destination)
 	#print("")
 
-
+@rpc("reliable", "call_local", "any_peer")
 func activate():
-	
 	if moving:
-		GlobalPlayerVariables.interactionText.display("You pressed the button, but the elevator was already moving.")
-		
 		if randi_range(1, 10) == 10:
 			GlobalPlayerVariables.interactionText.display("Pressing the button more wont make the elevator come any faster.")
-		return
+		else:
+			GlobalPlayerVariables.interactionText.display("You pressed the button, but the elevator was already moving.")
 	
 	if !atCurrentFloor:
 		move_elevator_to_floor()
@@ -56,16 +62,20 @@ func activate():
 			movingPlayer.play()
 			GameManager.game_win()
 			return
+		
 		send_elevator()
 
 
 func move_elevator_to_floor():
 	GlobalPlayerVariables.interactionText.display("You called the elevator.")
+	
 	moving = true
+	
 	movingPlayer.play()
 	await get_tree().create_timer(8).timeout
 	beepPlayer.play()
 	door.open()
+	
 	atCurrentFloor = true
 	moving = false
 
@@ -83,17 +93,11 @@ func send_elevator():
 	await get_tree().create_timer(6).timeout
 	
 	for player in playersInElevator:
-		var playerRelativePos: Vector3
-		var playerRelativeRotation: Vector3
+		var fromTransform := ownDestination.global_transform
+		var toTransform := destination.global_transform
 		
-		playerRelativeRotation = player.stuffToRotate.global_rotation - ownDestination.global_rotation
-		playerRelativePos = player.global_position - ownDestination.global_position
-		
-		#print(playerRelativeRotation)
-		print(playerRelativePos)
-		
-		player.stuffToRotate.global_rotation = destination.global_rotation - playerRelativeRotation
-		player.global_position = destination.global_position - playerRelativePos
+		var playerOffset := fromTransform.affine_inverse() * player.global_transform
+		player.global_transform = toTransform * playerOffset
 		
 		player.blinkinator.blink()
 	

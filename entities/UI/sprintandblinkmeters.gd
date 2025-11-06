@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	blinkMeter.value = snapped(GlobalPlayerVariables.blinkJuice, 5)
 	sprintMeter.value = snapped(GlobalPlayerVariables.sprintJuice, 5)
 	
-	if GlobalPlayerVariables.blinkQuickened:
+	if GlobalPlayerVariables.blinkQuickened and !GlobalPlayerVariables.wearingGasMask:
 		blinkIcon.texture = quickenedBlinkIcon
 	else:
 		blinkIcon.texture = normalBlinkIcon

@@ -20,6 +20,7 @@ var currentSlotIcon: TextureRect
 var iconOriginPoint: Vector2
 
 func _ready() -> void:
+	SignalBus.connect("toggle_gas_mask", close_inventory)
 	ItemManager.connect("update_slot_ui", clear_slot_ui)
 	
 	for i in slotsNode.get_children().size():
@@ -159,6 +160,10 @@ func swap_item(prevSlot: InventorySlot, newSlot: InventorySlot):
 
 
 func equip_item(item: Item):
+	if item.equippable == true:
+		item.functionItem.equip()
+		return
+	
 	equippedItemFrame.show()
 	
 	equippedItem = item

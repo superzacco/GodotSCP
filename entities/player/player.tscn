@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=36 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://da4jis578yhi0" path="res://entities/player/overhead_username.gd" id="21_221hk"]
 [ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="21_eyb6c"]
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="22_221hk"]
+[ext_resource type="PackedScene" uid="uid://c2thf6xs7eiym" path="res://entities/items/tools/gasmask.blend" id="23_ghoj8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -291,9 +292,6 @@ layers = 513
 [node name="AnimationPlayer" parent="StuffToRotate/classd001" index="1"]
 blend_times = [&"idle", &"idle", 0.15, &"idle", &"run", 0.15, &"idle", &"walk", 0.15, &"run", &"idle", 0.15, &"run", &"run", 0.15, &"run", &"walk", 0.15, &"walk", &"idle", 0.15, &"walk", &"run", 0.15, &"walk", &"walk", 0.15]
 
-[node name="Inventory" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
-
 [node name="PlayerStepSounds" type="Node3D" parent="."]
 script = ExtResource("9_3wlsy")
 stepSounds = Array[AudioStream]([ExtResource("2_yqrof"), ExtResource("3_3wlsy"), ExtResource("4_b2kln"), ExtResource("5_we0b7"), ExtResource("6_mtric"), ExtResource("7_eyb6c"), ExtResource("8_221hk"), ExtResource("9_ghoj8")])
@@ -305,12 +303,11 @@ volume_db = -20.0
 bus = &"Sound Effects"
 attenuation_filter_db = 0.0
 
-[node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("inventoryNode", "player", "interactionSprite", "spriteEndPoint")]
+[node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("player", "interactionSprite", "spriteEndPoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("4_jnjp4")
-inventoryNode = NodePath("../Inventory")
 player = NodePath("..")
 interactionSprite = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySprite")
 spriteEndPoint = NodePath("../StuffToRotate/CameraBobPivot/Camera3D/GrabbySpriteEndPoint")
@@ -350,6 +347,13 @@ libraries = {
 
 [node name="UI" parent="." instance=ExtResource("8_8n5i1")]
 
+[node name="GasMaskModel" parent="." instance=ExtResource("23_ghoj8")]
+transform = Transform3D(-1.02362, 0, 8.86068e-08, 0, 1, 0, -8.94881e-08, 0, -1.01354, 0.00406925, 1.72155, 0.150723)
+visible = false
+
+[node name="straps-OFF" parent="GasMaskModel" index="3"]
+visible = false
+
 [node name="OverheadUsername" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 billboard = 2
@@ -382,3 +386,4 @@ label_settings = ExtResource("22_221hk")
 [connection signal="area_exited" from="NearbyRooms" to="NearbyRooms" method="_on_area_exited"]
 
 [editable path="StuffToRotate/classd001"]
+[editable path="GasMaskModel"]

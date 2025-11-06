@@ -1,6 +1,10 @@
-MultiplayerSpawner
+AudioStreamPlayer
+TextureRect
+MeshInstance3D
 Node3D
 MultiplayerSynchronizer
+MultiplayerSpawner
+MarginContainer
 CollisionShape3D
 VoxelGI
 LightmapProbe
@@ -9,6 +13,3 @@ TextEdit
 HBoxContainer
 Button
 VBoxContainer
-Control
-MarginContainer
-Container

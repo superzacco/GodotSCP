@@ -91,9 +91,9 @@ func request_item_pickup(itemName):
 		push_error("item was found to be null!")
 		return
 	
-	##if inventoryNode.get_children().size() > 5:
-		##GlobalPlayerVariables.interactionText.display.rpc_id(multiplayer.get_remote_sender_id(), "You cannot hold any more items.")
-		##return
+	#if inventoryNode.get_children().size() > 5:
+		#GlobalPlayerVariables.interactionText.display.rpc_id(multiplayer.get_remote_sender_id(), "You cannot hold any more items.")
+		#return
 	
 	var syncNode: MultiplayerSynchronizer = item.multiplayerSyncrhonizer
 	syncNode.set_process_mode(Node.PROCESS_MODE_DISABLED)

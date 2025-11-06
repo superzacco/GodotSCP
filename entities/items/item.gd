@@ -6,6 +6,7 @@ class_name Item
 @export var itemName: String
 
 @export var chanceToSpawn: float = 100
+@export var equippable: bool = false
 
 @export var functionItem: Node3D
 @export var multiplayerSyncrhonizer: MultiplayerSynchronizer

@@ -34,16 +34,10 @@ volume_db = -6.0
 [node name="Door" parent="." instance=ExtResource("6_tl7px")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
 
-[node name="doorside2-col" parent="Door/elevator_door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
-
-[node name="doorside1-col" parent="Door/elevator_door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
-
-[node name="Button" parent="Door" index="5" node_paths=PackedStringArray("extraToControl")]
+[node name="Button" parent="Door" index="4" node_paths=PackedStringArray("extraToControl")]
 extraToControl = NodePath("../..")
 
-[node name="Button2" parent="Door" index="6" node_paths=PackedStringArray("extraToControl")]
+[node name="Button2" parent="Door" index="5" node_paths=PackedStringArray("extraToControl")]
 extraToControl = NodePath("../..")
 
 [node name="Destination" type="Node3D" parent="."]

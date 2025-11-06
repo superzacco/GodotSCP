@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 	if !GlobalPlayerVariables.blinkingEnabled or !is_multiplayer_authority():
 		return
 	
-	if GlobalPlayerVariables.blinkQuickened:
-		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta * 3
+	if GlobalPlayerVariables.blinkQuickened and !GlobalPlayerVariables.wearingGasMask:
+		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta * 4
 	else:
 		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
 	

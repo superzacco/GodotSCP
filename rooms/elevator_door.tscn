@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5u47f2nm250v"]
+[gd_scene load_steps=13 format=3 uid="uid://c5u47f2nm250v"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_k0b0q"]
 [ext_resource type="AudioStream" uid="uid://sel20olb4ej" path="res://audio/door/ElevatorOpen0.ogg" id="2_32xy4"]
@@ -12,14 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="11_8w5a3"]
 [ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="12_48vdd"]
 [ext_resource type="PackedScene" uid="uid://3fj6oi00l83" path="res://rooms/elevator_button.tscn" id="12_k0b0q"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
-properties/0/path = NodePath("elevator_door/AnimationPlayer:current_animation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("elevator_door/Armature/Skeleton3D:animate_physical_bones")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [node name="ElevatorDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 script = ExtResource("1_k0b0q")
@@ -53,9 +45,6 @@ attenuation_filter_db = 0.0
 stream = ExtResource("12_48vdd")
 unit_size = 5.0
 max_distance = 64.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_r0iwn")
 
 [node name="Button" parent="." instance=ExtResource("12_k0b0q")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1, 0, 0.22)

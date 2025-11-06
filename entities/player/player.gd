@@ -28,7 +28,8 @@ func _ready() -> void:
 	camera.current = is_multiplayer_authority()
 	playerModel.visible = !is_multiplayer_authority()
 	if !is_multiplayer_authority():
-		$UI.queue_free()
+		$UI.hide()
+		$UI.set_process(false)
 	
 	GlobalPlayerVariables.player = self
 	GameManager.clear_state()
