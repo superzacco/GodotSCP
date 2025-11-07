@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw3hwsiih5tal"]
+[gd_scene load_steps=13 format=3 uid="uid://dw3hwsiih5tal"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_g5wda"]
 [ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://ckpckhl646a40" path="res://entities/SCPs/scp_914.tscn" id="5_0gwk4"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="6_f0hjl"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="7_dch4f"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="8_jxgko"]
+[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="9_25f8e"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="10_ya2lh"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="12_l7v6k"]
 
 [node name="914" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
 script = ExtResource("1_g5wda")
@@ -19,6 +23,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142248, 0)
 
 [node name="Door" parent="." instance=ExtResource("4_kyeim")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.7, 0.0422479, -4.8)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 2
@@ -45,28 +55,65 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.435
 doorsToControl = [NodePath("..")]
 keycardLevel = 2
 
-[node name="Light" parent="." instance=ExtResource("7_dch4f")]
+[node name="173Pos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="table" parent="props" instance=ExtResource("8_jxgko")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 5.95937, -0.598838, -2.32717)
+
+[node name="table3" parent="props" instance=ExtResource("8_jxgko")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 9.28279, -0.598838, -0.86727)
+
+[node name="table5" parent="props" instance=ExtResource("8_jxgko")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 9.28279, -0.598838, 8.03695)
+
+[node name="table4" parent="props" instance=ExtResource("8_jxgko")]
+transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 10.3608, -0.598838, 1.2727)
+
+[node name="table2" parent="props" instance=ExtResource("8_jxgko")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 9.22926, -0.598838, -2.32717)
+
+[node name="shelf01" parent="props" instance=ExtResource("10_ya2lh")]
+transform = Transform3D(-0.8, 0, -6.99382e-08, 0, 0.8, 0, 6.99382e-08, 0, -0.8, 10.3768, 0.797425, 3.87626)
+
+[node name="shelf03" parent="props" instance=ExtResource("10_ya2lh")]
+transform = Transform3D(-0.8, 0, -6.99382e-08, 0, 0.8, 0, 6.99382e-08, 0, -0.8, 10.3768, 0.797425, 5.70797)
+
+[node name="shelf02" parent="props" instance=ExtResource("10_ya2lh")]
+transform = Transform3D(0.8, 0, 1.39876e-07, 0, 0.8, 0, -1.39876e-07, 0, 0.8, 8.1349, 0.797425, 4.90396)
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="Light" parent="lights" instance=ExtResource("7_dch4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46903, 1.85138, -4.53339)
 canFlicker = false
 brightness = 0.5
 
-[node name="Light2" parent="." instance=ExtResource("7_dch4f")]
+[node name="Light2" parent="lights" instance=ExtResource("7_dch4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00334692, 2.35849, -5)
 canFlicker = false
 brightness = 0.5
 
-[node name="Light3" parent="." instance=ExtResource("7_dch4f")]
+[node name="Light3" parent="lights" instance=ExtResource("7_dch4f")]
 transform = Transform3D(0.971961, -0.235142, 0, 0.235142, 0.971961, 0, 0, 0, 1, 0.000952677, 4.6571, 2)
 canFlicker = false
 brightness = 0.6
 
-[node name="Light4" parent="." instance=ExtResource("7_dch4f")]
+[node name="Light4" parent="lights" instance=ExtResource("7_dch4f")]
 transform = Transform3D(0.981403, 0.191957, 0, -0.191957, 0.981403, 0, 0, 0, 1, 7.00335, 4.64985, 2)
 canFlicker = false
 brightness = 0.6
 
-[node name="173Pos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+[node name="items" type="Node3D" parent="."]
+
+[node name="GasMask" parent="items" instance=ExtResource("12_l7v6k")]
+transform = Transform3D(0.535797, 0, -0.844347, 0, 1, 0, 0.844347, 0, 0.535797, 10.2713, 0.909149, 3.41588)
+chanceToSpawn = 10.0
+
+[node name="keycard01" parent="items" instance=ExtResource("9_25f8e")]
+transform = Transform3D(-0.371416, 0, -0.928466, 0, 1, 0, 0.928466, 0, -0.371416, 7.92069, -0.244473, -2.5801)
 
 [editable path="Door"]
 [editable path="Door/door"]

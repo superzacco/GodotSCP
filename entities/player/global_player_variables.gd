@@ -18,7 +18,7 @@ var wearingGasMask: bool = false
 
 var sprintJuice: float = 100
 var blinkJuice: float = 100
-var sensitivity: float = 0.5
+var sensitivity: float = 0.67
 var blinkQuickened: bool = false
 
 var nearbyRoomLights: Array[RoomLight]

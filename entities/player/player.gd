@@ -89,7 +89,8 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.play()
 		
 		if sprinting and GlobalPlayerVariables.sprintJuice > 0:
-			modelAnimations.play("run")
+			#modelAnimations.play("run")
+			pass
 		else:
 			modelAnimations.play("walk")
 	else:

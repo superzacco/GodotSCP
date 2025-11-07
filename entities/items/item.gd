@@ -7,6 +7,7 @@ class_name Item
 
 @export var chanceToSpawn: float = 100
 @export var equippable: bool = false
+var equipped: bool = false
 
 @export var functionItem: Node3D
 @export var multiplayerSyncrhonizer: MultiplayerSynchronizer
@@ -14,6 +15,3 @@ class_name Item
 func _ready() -> void:
 	if !ZFunc.randInPercent(chanceToSpawn):
 		queue_free()
-	
-	self.rotation_degrees.y = randi_range(0, 360)
-	

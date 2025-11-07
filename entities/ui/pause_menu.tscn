@@ -201,7 +201,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_mhw3w")
 theme_override_font_sizes/font_size = 16
-text = "0.5"
+text = "0.67"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -209,7 +209,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 6
 step = 5.0
-value = 20.0
+value = 30.0
 
 [node name="AudioContainer" type="MarginContainer" parent="Panel/OptionsContainer"]
 layout_mode = 2

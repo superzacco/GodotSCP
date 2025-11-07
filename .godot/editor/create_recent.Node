@@ -1,7 +1,7 @@
+Node3D
 AudioStreamPlayer
 TextureRect
 MeshInstance3D
-Node3D
 MultiplayerSynchronizer
 MultiplayerSpawner
 MarginContainer
@@ -12,4 +12,3 @@ LightmapGI
 TextEdit
 HBoxContainer
 Button
-VBoxContainer

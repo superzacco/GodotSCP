@@ -74,7 +74,7 @@ var replacableEntBends: Array
 #endregion
 
 var spaceMultiplier: float = 15
-var mapWidth: int = 15
+var mapWidth: int = 11
 var mapHeight: int = 25
 
 var LContoHConCheckpointLine: int = 5
@@ -113,6 +113,7 @@ func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
 	await SignalBus.generate_level
 	
+	GameManager.rng.seed = randi_range(-999999999, 999999999)
 	rng = GameManager.rng
 	rng.seed = GameManager.rng.seed
 	print(rng.seed)
@@ -143,8 +144,8 @@ func generate_map():
 
 
 func generate_long_hall(zOffset):
-	var hallLength: int = rng.randi_range(mapWidth, mapWidth-4)
-	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)) 
+	var hallLength: int = rng.randi_range(mapWidth, mapWidth-3)
+	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)-1) 
 	
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
 	var hallMaxExtent: Vector3 = Vector3(0, 0, 0)
@@ -162,7 +163,7 @@ func generate_long_hall(zOffset):
 
 
 func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
-	var amountOfConnectingHalls: int = 5
+	var amountOfConnectingHalls: int = 3
 	
 	var startingPoint = hallMinExtent.x / spaceMultiplier
 	var endingPoint = hallMaxExtent.x / spaceMultiplier
@@ -170,8 +171,8 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	var zPosition = hallMinExtent.z / spaceMultiplier
 	
 	for i in amountOfConnectingHalls:
-		var distanceAddedBetween: int = rng.randi_range(1,3) + rng.randi_range(1,3)
-		if i == 0: distanceAddedBetween = rng.randi_range(0,3)
+		var distanceAddedBetween: int = rng.randi_range(1,3) + rng.randi_range(1,2)
+		if i == 0: distanceAddedBetween = rng.randi_range(0,2)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:

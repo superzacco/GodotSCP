@@ -22,6 +22,10 @@ func request_item_drop(itemName: String, slotIdx: int):
 	item.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	item.show()
 	
+	if item.equipped:
+		item.functionItem.equip()
+		item.equipped = false
+	
 	if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
 		update_item_position.rpc(item.name, GlobalPlayerVariables.playerPosition + randomPos)
 	

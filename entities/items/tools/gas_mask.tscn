@@ -13,7 +13,6 @@ radius = 1.0
 size = Vector3(0.3, 0.194373, 0.4)
 
 [node name="GasMask" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_xbdxb")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00639802, 0.00012511, -0.0071961)
 inventorySprite = ExtResource("2_2ye86")
 inventoryName = "Gas Mask"
 itemName = "gasmask"

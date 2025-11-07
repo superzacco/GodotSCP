@@ -6,7 +6,6 @@ func _ready() -> void:
 
 
 func toggle_model():
-	print("hi")
 	if self.visible:
 		self.hide()
 	else:

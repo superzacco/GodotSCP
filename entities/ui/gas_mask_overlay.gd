@@ -6,7 +6,6 @@ func  _ready() -> void:
 
 func toggle_overlay():
 	toggle_model_for_others.rpc()
-	print("here")
 	
 	if !self.visible:
 		self.show()
