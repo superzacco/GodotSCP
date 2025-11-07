@@ -28,6 +28,7 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_jibb8")
 
 [node name="gasmask" type="Node3D" parent="." index="3"]
+transform = Transform3D(-1, -7.85775e-08, 1.74397e-07, 9.58194e-08, -0.994868, 0.101178, 1.65552e-07, 0.101178, 0.994868, 0, 0.0812488, 0)
 script = ExtResource("1_a6wn5")
 
 [node name="gasmask2" parent="gasmask" index="0" instance=ExtResource("3_xbdxb")]
