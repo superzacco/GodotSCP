@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cut7dojaypgd5"]
+[gd_scene load_steps=15 format=3 uid="uid://cut7dojaypgd5"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_i3vr1"]
 [ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="1_w23wf"]
@@ -10,8 +10,13 @@
 [ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="6_i7sdm"]
 [ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="6_pgugy"]
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_w5vcm"]
+[ext_resource type="AudioStream" uid="uid://dajso7k31f8h2" path="res://audio/scps/079/079DoorClose.ogg" id="11_i7sdm"]
+[ext_resource type="Script" uid="uid://be7jc5jhm5co0" path="res://rooms/079_close_area.gd" id="11_ivvos"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7sdm"]
+radius = 3.5
 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 collision_layer = 3
@@ -53,5 +58,17 @@ shape = SubResource("BoxShape3D_pgugy")
 stream = ExtResource("6_pgugy")
 unit_size = 5.0
 max_distance = 64.0
+
+[node name="079Close" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_i7sdm")
+
+[node name="079 Close Area" type="Area3D" parent="."]
+script = ExtResource("11_ivvos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="079 Close Area"]
+shape = SubResource("SphereShape3D_i7sdm")
+
+[connection signal="body_entered" from="079 Close Area" to="079 Close Area" method="_on_body_entered"]
+[connection signal="body_exited" from="079 Close Area" to="079 Close Area" method="_on_body_exited"]
 
 [editable path="door"]

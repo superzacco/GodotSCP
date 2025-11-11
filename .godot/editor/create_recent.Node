@@ -1,4 +1,8 @@
+RigidBody3D
+AudioStreamPlayer3D
+AudioListener3D
 CollisionShape3D
+Area3D
 Node3D
 AudioStreamPlayer
 TextureRect
@@ -9,6 +13,3 @@ MarginContainer
 VoxelGI
 LightmapProbe
 LightmapGI
-TextEdit
-HBoxContainer
-Button

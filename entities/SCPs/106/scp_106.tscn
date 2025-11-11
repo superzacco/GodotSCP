@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bclsa0mrujt1x"]
+
+[ext_resource type="Script" uid="uid://bjl6a80c4rqvc" path="res://entities/SCPs/106/scp_106.gd" id="1_breko"]
+[ext_resource type="PackedScene" uid="uid://b2uxfcpo61s0o" path="res://entities/SCPs/106/106.blend" id="2_i88jd"]
+
+[node name="scp106" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_breko")
+
+[node name="106" parent="." instance=ExtResource("2_i88jd")]
+
+[node name="Skeleton3D" parent="106/Armature" index="0"]
+bones/0/position = Vector3(-3.30872e-24, -1.97363, 2.98023e-08)
+bones/1/rotation = Quaternion(0.976143, 0.0536855, 0.0602685, 0.201568)
+bones/2/rotation = Quaternion(0.467737, 0.0247649, 0.108494, 0.876834)
+bones/3/rotation = Quaternion(0.140072, -0.614677, 0.747946, -0.207674)
+bones/4/rotation = Quaternion(0.976143, -0.0536855, -0.0602685, 0.201568)
+bones/5/rotation = Quaternion(0.0682997, -0.0107829, -0.0541005, 0.996139)
+bones/6/rotation = Quaternion(-0.21851, -0.582146, 0.736364, 0.266699)
+bones/7/rotation = Quaternion(0.0663856, -0.0307922, -0.00210614, 0.997317)
+bones/8/rotation = Quaternion(0.876724, -0.0220072, 0.428963, -0.216475)
+bones/9/rotation = Quaternion(0.0723478, 0.263896, -0.342619, 0.898742)
+bones/10/rotation = Quaternion(-0.265398, -0.0946092, -0.311442, 0.907534)
+bones/11/rotation = Quaternion(0.779123, -0.0343492, -0.603792, -0.164994)
+bones/12/rotation = Quaternion(-0.292753, 0.00417764, 0.675477, 0.676764)
+bones/13/rotation = Quaternion(-0.118236, 0.111298, -0.426029, 0.890018)
+bones/14/rotation = Quaternion(-0.131435, 0.0305886, 0.00411443, 0.990844)
+
+[connection signal="animation_finished" from="106/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="106"]

@@ -9,6 +9,7 @@ class_name AmbienceManager
 @export var ambiencePlayerC: AudioStreamPlayer
 
 @export var randomAmbience: Array[AudioStream]
+@export var Intercom079Ambiance: Array[AudioStream]
 
 @export var LConMusic: AudioStream
 @export var fullSiteLockdown: AudioStream
@@ -33,12 +34,22 @@ func _ready() -> void:
 	play_random_ambience()
 
 
-func play_random_ambience():
-	$AmbienceTimer.start(randi_range(30, 60))
+func play_random_ambience(quicker: bool = false):
+	if !quicker:
+		$AmbienceTimer.start(randi_range(30, 60))
+	else:
+		$AmbienceTimer.start(randi_range(15, 30))
 	await $AmbienceTimer.timeout
 	
-	ambiencePlayerB.stream = randomAmbience[randi_range(0, randomAmbience.size()-1)]
+	quicker = false
+	
+	if ZFunc.randInPercent(15):
+		quicker = true
+		ambiencePlayerB.stream = Intercom079Ambiance[randi_range(0, Intercom079Ambiance.size()-1)]
+	else:
+		ambiencePlayerB.stream = randomAmbience[randi_range(0, randomAmbience.size()-1)]
 	ambiencePlayerB.play()
+	
 	play_random_ambience()
 
 

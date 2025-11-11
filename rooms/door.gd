@@ -49,3 +49,14 @@ func one_seven_three_open():
 	animationPlayer.play("open")
 	doorOpen = true
 	
+
+
+@rpc("reliable", "call_local", "any_peer")
+func scp_079_close():
+	animationPlayer.speed_scale = 1.5
+	animationPlayer.play("close")
+	doorOpen = false
+	$"079Close".play()
+	await animationPlayer.animation_finished
+	animationPlayer.speed_scale = 1
+	

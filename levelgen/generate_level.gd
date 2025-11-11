@@ -402,12 +402,15 @@ func place_doors():
 		point.position.y = -1.145
 		
 		if !doorLocations.has(point.global_position):
-			var spawnedDoor = door.instantiate()
+			var spawnedDoor: Door = door.instantiate()
 			doorsNode.add_child(spawnedDoor)
 			spawnedDoor.global_position = point.global_position
 			spawnedDoor.global_basis = point.global_basis
 			spawnedDoor.global_position.y += 1.2
 			doorLocations.append(point.global_position)
+			
+			if ZFunc.randInPercent(10):
+				spawnedDoor.open.rpc()
 
 
 func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
