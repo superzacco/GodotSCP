@@ -44,7 +44,7 @@ func get_pos():
 	print(GlobalPlayerVariables.playerPosition)
 
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func spawn_item(item: String):
 	var itemToSpawn
 	
@@ -90,6 +90,7 @@ func toggle_room_culling():
 			if room != null:
 				room.show()
 
+@rpc("reliable", "call_local", "any_peer")
 func set_seed(seed: int):
 	GameManager.seed = seed
 	GameManager.rng.seed = GameManager.seed

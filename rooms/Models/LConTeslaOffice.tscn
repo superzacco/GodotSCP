@@ -84,14 +84,14 @@ transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, 
 collision_layer = 1
 collision_mask = 1
 
-[node name="GasMask" parent="." instance=ExtResource("12_ddjgi")]
+[node name="GasMask" parent="Items" instance=ExtResource("12_ddjgi")]
 transform = Transform3D(0.849073, 0, -0.528275, 0, 1, 0, 0.528275, 0, 0.849073, 5.12236, 0.0464843, 0.225999)
 
-[node name="keycard03" parent="." instance=ExtResource("13_di8sc")]
+[node name="keycard03" parent="Items" instance=ExtResource("13_di8sc")]
 transform = Transform3D(-0.419309, 0, 0.907843, 0, 1, 0, -0.907843, 0, -0.419309, 3.1085, -0.246251, -2.3144)
 chanceToSpawn = 75.0
 
-[node name="keycard02" parent="." instance=ExtResource("14_di8sc")]
+[node name="keycard02" parent="Items" instance=ExtResource("14_di8sc")]
 transform = Transform3D(0.931323, 0, -0.364194, 0, 1, 0, 0.364194, 0, 0.931323, 5.2109, 0.0397775, 0.94293)
 
 [editable path="Door"]

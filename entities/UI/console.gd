@@ -70,7 +70,7 @@ func _input(event: InputEvent) -> void:
 				if commandStringArray.size() == 1:
 					println(str(GameManager.rng.seed))
 				else:
-					Commands.set_seed(commandStringArray[1].to_int())
+					Commands.set_seed.rpc(commandStringArray[1].to_int())
 			"spawn":
 				if commandStringArray.size() == 1:
 					println("missing <item>", Commands.errorColor)

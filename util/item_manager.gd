@@ -1,15 +1,10 @@
 extends Node
 
+#endregion
 signal update_slot_ui
-
-
+#region // DROPPING 
 @rpc("reliable", "call_local", "any_peer")
 func request_item_drop(itemName: String, slotIdx: int):
-	#if !multiplayer.is_server():
-		#return
-	#if slotIdx < 0 or slotIdx >= slots.size():
-		#return
-	
 	var item: Item = get_tree().root.find_child(itemName, true, false)
 	if item == null: return
 	
@@ -39,3 +34,4 @@ func request_item_drop(itemName: String, slotIdx: int):
 func update_item_position(itemName: String, position: Vector3):
 	var item: Item = get_tree().root.find_child(itemName, true, false)
 	item.global_position = position
+#endregion

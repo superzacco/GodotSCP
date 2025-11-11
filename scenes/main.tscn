@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=66 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -62,6 +62,7 @@
 [ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
 [ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
 [ext_resource type="PackedScene" uid="uid://bbs8e406nn8yo" path="res://rooms/heavy_containment/049_chamber.tscn" id="59_tm6hj"]
+[ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
@@ -143,10 +144,12 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="AmbienceSoundsA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
-bus = &"Music"
+volume_db = -6.0
+bus = &"Sound Effects"
 
 [node name="AmbienceSoundsB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
-bus = &"Music"
+volume_db = -6.0
+bus = &"Sound Effects"
 
 [node name="AmbienceTimer" type="Timer" parent="MusicAmbienceManager"]
 
@@ -156,7 +159,7 @@ script = ExtResource("18_og1vs")
 playerScene = ExtResource("20_5he1u")
 
 [node name="PlayerSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 2.15, -41)
 
 [node name="Facility" type="Node3D" parent="."]
 
@@ -191,3 +194,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 32.5825, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kf5aa")
+
+[node name="keycard03" parent="." instance=ExtResource("63_ro3en")]
+transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, 37.6763, 0.0472804)

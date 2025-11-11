@@ -43,7 +43,7 @@ func clear_state():
 		Commands.noclip()
 
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func game_start():
 	if gameStarted:
 		return

@@ -166,6 +166,7 @@ func equip_item(item: Item):
 			item.equipped = false
 		else:
 			item.equipped = true
+		close_inventory()
 		return
 	
 	equippedItemFrame.show()
@@ -174,7 +175,6 @@ func equip_item(item: Item):
 	equippedItemIcon.texture = item.inventorySprite
 	
 	close_inventory()
-	pass
 
 
 func clear_equip():

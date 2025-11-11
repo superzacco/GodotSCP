@@ -1,0 +1,28 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8ym5kkq63x8p"]
+
+[ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_bisa4"]
+[ext_resource type="Texture2D" uid="uid://chchd7lkljr7u" path="res://entities/SCPs/485/485_invsprite.png" id="2_rfcwx"]
+[ext_resource type="PackedScene" uid="uid://mltuukui1sdu" path="res://entities/SCPs/485/485.blend" id="2_xgiph"]
+[ext_resource type="Script" uid="uid://cimq0g6cdyhhk" path="res://entities/SCPs/485/scp_485.gd" id="4_ykb0r"]
+[ext_resource type="AudioStream" uid="uid://dlifw6qir0crr" path="res://audio/scps/485/485click-01.ogg" id="5_bxhxy"]
+[ext_resource type="AudioStream" uid="uid://bwv2wddjg5mct" path="res://audio/scps/485/485click-02.ogg" id="6_7cprn"]
+[ext_resource type="AudioStream" uid="uid://cp3mtlj3jdtiy" path="res://audio/scps/485/485click-03.ogg" id="7_8fxqa"]
+[ext_resource type="AudioStream" uid="uid://4j227ciloy5h" path="res://audio/scps/485/485click-04.ogg" id="8_vucjd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfcwx"]
+size = Vector3(0.355, 0.1, 0.1)
+
+[node name="Item" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_bisa4")]
+inventorySprite = ExtResource("2_rfcwx")
+inventoryName = "SCP-485"
+itemName = "scp485"
+equippable = true
+functionItem = NodePath("485")
+
+[node name="485" parent="." index="2" instance=ExtResource("2_xgiph")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("4_ykb0r")
+clickSounds = Array[AudioStream]([ExtResource("5_bxhxy"), ExtResource("6_7cprn"), ExtResource("7_8fxqa"), ExtResource("8_vucjd")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("BoxShape3D_rfcwx")

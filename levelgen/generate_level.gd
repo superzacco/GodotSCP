@@ -74,7 +74,7 @@ var replacableEntBends: Array
 #endregion
 
 var spaceMultiplier: float = 15
-var mapWidth: int = 11
+var mapWidth: int = 12
 var mapHeight: int = 25
 
 var LContoHConCheckpointLine: int = 5
@@ -91,6 +91,10 @@ var rng: RandomNumberGenerator
 
 
 func _ready() -> void:
+	GameManager.rng.seed = randi_range(-999999999, 999999999)
+	rng = GameManager.rng
+	rng.seed = GameManager.rng.seed
+	
 	for i in mapWidth:
 		temporaryRooms.append([])
 		for j in mapHeight:
@@ -109,14 +113,9 @@ func _ready() -> void:
 
 #region // SHAPE
 func generate_map():
-	
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
 	await SignalBus.generate_level
 	
-	GameManager.rng.seed = randi_range(-999999999, 999999999)
-	rng = GameManager.rng
-	rng.seed = GameManager.rng.seed
-	print(rng.seed)
 	print("Generating with Seed: %s" % rng.seed)
 	
 	print(rng.randi_range(1,100))
@@ -144,7 +143,7 @@ func generate_map():
 
 
 func generate_long_hall(zOffset):
-	var hallLength: int = rng.randi_range(mapWidth, mapWidth-3)
+	var hallLength: int = rng.randi_range(mapWidth-3, mapWidth)
 	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)-1) 
 	
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
@@ -232,7 +231,7 @@ func check_surrounding_rooms(temporaryRoom, x, z):
 		push_error(temporaryRoom.name + " has no surrounding rooms!")
 
 
-func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):	
+func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int):
 	var fillerRoom = null
 	var timesToRotate: int = 0
 	
@@ -254,15 +253,15 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 			elif z >= HContoEntranceCheckpointLine:
 				fillerRoom = place_filler_room_in_containment(fillerEntEndRooms, replacableEntEndRooms, x, z)
 			
-			if ((!x+1 > xSize) and (temporaryRooms[x+1][z] != null)):
+			if (!(x+1 > xSize) and (temporaryRooms[x+1][z] != null)):
 				timesToRotate = 1
-			if ((!z+1 > zSize) and (temporaryRooms[x][z+1] != null)):
+			if (!(z+1 > zSize) and (temporaryRooms[x][z+1] != null)):
 				timesToRotate = 2
-			if ((!x-1 < 0) and (temporaryRooms[x-1][z] != null)):
+			if (!(x-1 < 0) and (temporaryRooms[x-1][z] != null)):
 				timesToRotate = 3
 		2:
 			# if up & down spawn default hall, if side to side hall once, if not it's a corner hall
-			if ((!x+1 > xSize and !x-1 < 0) and (temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null)):
+			if (!(x+1 > xSize) and !(x-1 < 0) and (temporaryRooms[x+1][z] != null and temporaryRooms[x-1][z] != null)):
 				if z < LContoHConCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerLConTwoWayHalls, replacableLConTwoWayHalls, x, z)
 				elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
@@ -272,7 +271,7 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 				timesToRotate = 1
 				
 				# THIS ELIF BULLSHIT IS STUPID!!!!
-			elif ((!z+1 > zSize and !z-1 < 0) and (temporaryRooms[x][z+1] != null and temporaryRooms[x][z-1] != null)):
+			elif (!(z+1 > zSize) and !(z-1 < 0) and (temporaryRooms[x][z+1] != null and temporaryRooms[x][z-1] != null)):
 				if z < LContoHConCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerLConTwoWayHalls, replacableLConTwoWayHalls, x, z)
 				elif z >= LContoHConCheckpointLine and z <= HContoEntranceCheckpointLine:
@@ -288,16 +287,16 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 				elif z >= HContoEntranceCheckpointLine:
 					fillerRoom = place_filler_room_in_containment(fillerEntBends, replacableEntBends, x, z)
 				
-				if (!z+1 > zSize and temporaryRooms[x][z+1] != null):
-					if (!x+1 > xSize and temporaryRooms[x+1][z]):
+				if (!(z+1 > zSize) and temporaryRooms[x][z+1] != null):
+					if (!(x+1 > xSize) and temporaryRooms[x+1][z]):
 						timesToRotate = 2
-					if (!x-1 < 0 and temporaryRooms[x-1][z]):
+					if (!(x-1 < 0) and temporaryRooms[x-1][z]):
 						timesToRotate = 3
 				
-				if (!z-1 < 0 and temporaryRooms[x][z-1] != null):
-					if (!x+1 > xSize and temporaryRooms[x+1][z]):
+				if (!(z-1 < 0) and temporaryRooms[x][z-1] != null):
+					if (!(x+1 > xSize) and temporaryRooms[x+1][z]):
 						timesToRotate = 1
-					if (!x-1 < 0 and temporaryRooms[x-1][z]):
+					if (!(x-1 < 0) and temporaryRooms[x-1][z]):
 						timesToRotate = 0
 		3:
 			if z < LContoHConCheckpointLine:
@@ -308,11 +307,11 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 				fillerRoom = place_filler_room_in_containment(fillerEntThreeWayHalls, replacableEntThreeWayHalls, x, z)
 				
 			
-			if (!x-1 < 0 and temporaryRooms[x-1][z] == null):
+			if (!(x-1 < 0) and temporaryRooms[x-1][z] == null):
 				timesToRotate = 3
-			if (!z+1 > zSize and temporaryRooms[x][z+1] == null):
+			if (!(z+1 > zSize) and temporaryRooms[x][z+1] == null):
 				timesToRotate = 2
-			if (!x+1 > xSize and temporaryRooms[x+1][z] == null):
+			if (!(x+1 > xSize) and temporaryRooms[x+1][z] == null):
 				timesToRotate = 1
 		4:
 			if z < LContoHConCheckpointLine:
@@ -363,22 +362,32 @@ func replace_filler_rooms():
 
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
+	#var avalibleIndices: Array = range(replacableRoomArray.size())
+	#avalibleIndices.shuffle()
+	#
+	#print(str(multiplayer.get_unique_id()) + str(avalibleIndices))
+	
 	for i in necessaryRoomArray.size():
 		var roomToReplace: int = rng.randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
 			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
 			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
 			break
+		
+		var replacedRoom: Node3D = replacableRoomArray[roomToReplace]
+		var roomGettingPlaced = necessaryRoomArray[i]
+		
 		var roomToReplacePos: Vector3 = replacableRoomArray[roomToReplace].global_position
+		var r: Node3D = spawn_room(roomGettingPlaced, roomToReplacePos.x / 15, roomToReplacePos.z /15)
+		r.rotation.y = replacedRoom.rotation.y
 		
-		var r: Node3D = spawn_room(necessaryRoomArray[i], roomToReplacePos.x / 15, roomToReplacePos.z /15)
-		r.rotation.y = replacableRoomArray[roomToReplace].rotation.y
+		print(str(multiplayer.get_unique_id()) + " - "  + str(roomToReplace) + ": " + r.name)
 		
-		replacableRoomArray[roomToReplace].queue_free()
 		replacableRoomArray.remove_at(roomToReplace)
+		finishedRooms.erase(replacedRoom)
+		replacedRoom.queue_free()
 		
 		finishedRooms.append(r)
-		finishedRooms.erase(roomToReplace)
 		finishedRoomGrid[roomToReplacePos.x/15][roomToReplacePos.z/15] = r
 #endregion
 
@@ -411,7 +420,7 @@ func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
 				finishedRooms.erase(finishedRoomGrid[x][z])
 				finishedRoomGrid[x][z] = null
 				#replacableHConTwoWayHalls.erase(finishedRoomGrid[x][z])
-				#replacableEntTwoWayHalls.erase(finishedRoomGrid[x][z])
+				replacableEntTwoWayHalls.erase(finishedRoomGrid[x][z])
 				
 				finishedRooms.append(r)
 				finishedRoomGrid[x][z] = r

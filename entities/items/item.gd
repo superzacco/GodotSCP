@@ -13,5 +13,16 @@ var equipped: bool = false
 @export var multiplayerSyncrhonizer: MultiplayerSynchronizer
 
 func _ready() -> void:
-	if !ZFunc.randInPercent(chanceToSpawn):
-		queue_free()
+	await SignalBus.level_generation_finished
+	if multiplayer.is_server():
+		var id: int = GameManager.rng.randi_range(000000, 999999)
+		set_name_id.rpc(id)
+	
+	#if !ZFunc.randInPercent(chanceToSpawn):
+		#queue_free()
+
+
+@rpc("authority", "call_local", "reliable")
+func set_name_id(id: int):
+	self.name = self.name + "_" + str(id)
+	

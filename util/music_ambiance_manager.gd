@@ -42,6 +42,11 @@ func play_random_ambience():
 	play_random_ambience()
 
 
+func play_sound(clip: AudioStream):
+	soundsPlayerA.stream = clip
+	soundsPlayerA.play()
+
+
 func play_ambience(clip: AudioStream):
 	ambiencePlayerC.stream = clip
 	ambiencePlayerC.play()
