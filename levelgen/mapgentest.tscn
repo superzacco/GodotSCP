@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="2_6ms83"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_doq7x"]
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="3_hpg4u"]
-[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/Models/LConTeslaOffice.tscn" id="3_muv7y"]
+[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="3_muv7y"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="4_fsxhi"]
 [ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="4_jclkl"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="4_o5aq6"]

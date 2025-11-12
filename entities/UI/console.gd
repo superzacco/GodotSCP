@@ -82,6 +82,8 @@ func _input(event: InputEvent) -> void:
 				GameManager.game_start.rpc()
 			"kill":
 				Commands.kill_player()
+			"106":
+				Commands.summon_106()
 		
 		inputField.clear()
 	

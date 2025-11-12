@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qac6s3tor7ar"
-path.s3tc="res://.godot/imported/tile_ceiling.png-315f4184171c05dad1b34f294511bfbe.s3tc.ctex"
+uid="uid://b6ngusmx0xko8"
+path.s3tc="res://.godot/imported/tile_ceiling.png-75f111e22f0abc835bf67ede92da72b6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://rooms/Textures/normals/tile_ceiling.png"
-dest_files=["res://.godot/imported/tile_ceiling.png-315f4184171c05dad1b34f294511bfbe.s3tc.ctex"]
+source_file="res://rooms/textures/normals/tile_ceiling.png"
+dest_files=["res://.godot/imported/tile_ceiling.png-75f111e22f0abc835bf67ede92da72b6.s3tc.ctex"]
 
 [params]
 
@@ -26,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://rooms/Textures/normals/tile_ceiling.png"
+roughness/src_normal="res://rooms/textures/normals/tile_ceiling.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

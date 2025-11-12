@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://cq36u66dwnw6w"]
+
+[ext_resource type="PackedScene" uid="uid://1nmpwywfcgb8" path="res://rooms/Models/LConTeslaOffice.blend" id="1_bexi0"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_cyh60"]
+[ext_resource type="PackedScene" uid="uid://di7vm63q2wksv" path="res://rooms/tesla/tesla_gate.tscn" id="4_kr22m"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="9_4e5mo"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="9_hdn66"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="10_kr22m"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="11_ec4ct"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="11_sa46t"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="12_ddjgi"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="12_sa46t"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="13_7nkp7"]
+[ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="13_di8sc"]
+[ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="14_57xbc"]
+[ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="14_di8sc"]
+
+[node name="LConTeslaOffice" type="Node3D" groups=["room"]]
+script = ExtResource("1_cyh60")
+
+[node name="LConTeslaOffice" parent="." instance=ExtResource("1_bexi0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.05, 0)
+
+[node name="TeslaGate" parent="." instance=ExtResource("4_kr22m")]
+transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.637, 0, 2, 0)
+
+[node name="Door" parent="." instance=ExtResource("9_4e5mo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.95, 0.07, 3.8)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="Door" index="1"]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="Door" index="2"]
+keycardLevel = 3
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("10_kr22m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("10_kr22m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("11_ec4ct")]
+
+[node name="Light" parent="." instance=ExtResource("12_sa46t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.85901, -4)
+brightness = 0.35
+
+[node name="Light2" parent="." instance=ExtResource("12_sa46t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.85901, 4)
+brightness = 0.35
+
+[node name="Light3" parent="." instance=ExtResource("12_sa46t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 2.36867, 2.9)
+brightness = 0.15
+
+[node name="Light4" parent="." instance=ExtResource("12_sa46t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 2.36867, -3.9)
+brightness = 0.15
+
+[node name="table" parent="." instance=ExtResource("13_7nkp7")]
+transform = Transform3D(-3.91217e-08, 0, -0.895, 0, 0.895, 0, 0.895, 0, -3.91217e-08, 2.81785, -0.656164, -3.86434)
+
+[node name="bench" parent="." instance=ExtResource("14_57xbc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.40136, -0.629619, -4.60425)
+
+[node name="shelf01" parent="." instance=ExtResource("11_sa46t")]
+transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 5.21698, 0.56305, 0.598747)
+
+[node name="shelf02" parent="." instance=ExtResource("11_sa46t")]
+transform = Transform3D(-0.7, 0, -6.11959e-08, 0, 0.7, 0, 6.11959e-08, 0, -0.7, 5.21698, 0.56305, 2.16227)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="keycard" parent="Items" instance=ExtResource("9_hdn66")]
+transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, -1.97881, -0.50333, -3.89824)
+collision_layer = 1
+collision_mask = 1
+
+[node name="GasMask" parent="Items" instance=ExtResource("12_ddjgi")]
+transform = Transform3D(0.849073, 0, -0.528275, 0, 1, 0, 0.528275, 0, 0.849073, 5.12236, 0.0464843, 0.225999)
+
+[node name="keycard03" parent="Items" instance=ExtResource("13_di8sc")]
+transform = Transform3D(-0.419309, 0, 0.907843, 0, 1, 0, -0.907843, 0, -0.419309, 3.1085, -0.246251, -2.3144)
+chanceToSpawn = 75.0
+
+[node name="keycard02" parent="Items" instance=ExtResource("14_di8sc")]
+transform = Transform3D(0.931323, 0, -0.364194, 0, 1, 0, 0.364194, 0, 0.931323, 5.2109, 0.0397775, 0.94293)
+
+[editable path="Door"]
+[editable path="Door/door"]

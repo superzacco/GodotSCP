@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://db44vl6v1ousg" path="res://entities/items/cards/keycard.gd" id="3_rgpj3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6akv6"]
-size = Vector3(0.3, 0.05, 0.4)
+size = Vector3(0.3, 0.1, 0.4)
 
 [node name="keycard01" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_7ev56")]
 inventorySprite = ExtResource("2_6akv6")

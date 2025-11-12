@@ -99,3 +99,6 @@ func set_seed(seed: int):
 
 func kill_player():
 	GlobalPlayerVariables.player.on_death()
+
+func summon_106():
+	SignalBus.activate_106.emit()

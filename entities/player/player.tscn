@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=41 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -17,8 +17,11 @@
 [ext_resource type="AudioStream" uid="uid://dmu3yyhkn0dqj" path="res://audio/steps/Step6.ogg" id="8_221hk"]
 [ext_resource type="Script" uid="uid://c7mscsdfl6h54" path="res://entities/player/player_step_sounds.gd" id="9_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://iihneek57gsf" path="res://audio/steps/Step7.ogg" id="9_ghoj8"]
+[ext_resource type="AudioStream" uid="uid://du5cr2cf4rarx" path="res://audio/steps/StepPD0.ogg" id="16_wuv6x"]
+[ext_resource type="AudioStream" uid="uid://b1x4i7l276gwn" path="res://audio/steps/StepPD1.ogg" id="17_qpopc"]
 [ext_resource type="Script" uid="uid://bvakpwqlgmmly" path="res://entities/player/nearby_rooms.gd" id="18_b2kln"]
 [ext_resource type="Script" uid="uid://bwqlwuy5t4jhx" path="res://entities/player/nearby_lights.gd" id="18_mtric"]
+[ext_resource type="AudioStream" uid="uid://bdonxt4exxue4" path="res://audio/steps/StepPD2.ogg" id="18_wq0jh"]
 [ext_resource type="Script" uid="uid://da4jis578yhi0" path="res://entities/player/overhead_username.gd" id="21_221hk"]
 [ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="21_eyb6c"]
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="22_221hk"]
@@ -50,6 +53,11 @@ height = 1.87171
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b2kln"]
 radius = 0.1
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_wuv6x"]
+polyphony = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ghoj8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_smri4"]
 height = 3.0
@@ -249,6 +257,7 @@ shape = SubResource("SphereShape3D_b2kln")
 [node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
 transform = Transform3D(7.5, 0, 0, 0, 5, 0, 0, 0, 5.465, 8.74228e-08, 0, -1)
 visible = false
+layers = 2
 modulate = Color(0, 0, 0, 1)
 double_sided = false
 no_depth_test = true
@@ -273,16 +282,21 @@ layers = 513
 [node name="AnimationPlayer" parent="StuffToRotate/classd001" index="1"]
 blend_times = [&"walk", &"walk", 0.15]
 
-[node name="PlayerStepSounds" type="Node3D" parent="."]
+[node name="PlayerStepSounds" type="Area3D" parent="."]
 script = ExtResource("9_3wlsy")
 stepSounds = Array[AudioStream]([ExtResource("2_yqrof"), ExtResource("3_3wlsy"), ExtResource("4_b2kln"), ExtResource("5_we0b7"), ExtResource("6_mtric"), ExtResource("7_eyb6c"), ExtResource("8_221hk"), ExtResource("9_ghoj8")])
-
-[node name="RayCast3D" type="RayCast3D" parent="PlayerStepSounds"]
+corrosiveStepSounds = Array[AudioStream]([ExtResource("16_wuv6x"), ExtResource("17_qpopc"), ExtResource("18_wq0jh")])
 
 [node name="Steps" type="AudioStreamPlayer3D" parent="PlayerStepSounds"]
+stream = SubResource("AudioStreamPolyphonic_wuv6x")
 volume_db = -20.0
+autoplay = true
+max_polyphony = 3
 bus = &"Sound Effects"
 attenuation_filter_db = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerStepSounds"]
+shape = SubResource("SphereShape3D_ghoj8")
 
 [node name="InteractionZone" type="Area3D" parent="." node_paths=PackedStringArray("player", "interactionSprite", "spriteEndPoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -352,6 +366,8 @@ grow_vertical = 2
 text = "mlgcatwiththepenjamin"
 label_settings = ExtResource("22_221hk")
 
+[connection signal="area_entered" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_exited"]
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
 [connection signal="area_exited" from="InteractionZone" to="InteractionZone" method="_on_area_exited"]
 [connection signal="area_entered" from="NearbyLights" to="NearbyLights" method="_on_area_entered"]

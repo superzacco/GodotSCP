@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	GlobalPlayerVariables.playerPosition = self.global_position
 	#endregion
 	
-
+	
 	#region SPRINTING
 	if GlobalPlayerVariables.sprintJuice > 0 and sprinting and moveDir != Vector3(0, 0, 0):
 		moveSpeed = sprintSpeedDesired

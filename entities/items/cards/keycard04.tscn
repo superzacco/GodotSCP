@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cchdpnnh8sygi" path="res://entities/items/cards/models/keycard4.blend" id="4_2elp2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2elp2"]
-size = Vector3(0.3, 0.05, 0.4)
+size = Vector3(0.3, 0.1, 0.4)
 
 [node name="keycard04" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_uir1r")]
 inventorySprite = ExtResource("2_2elp2")

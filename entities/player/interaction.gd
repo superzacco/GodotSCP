@@ -1,7 +1,6 @@
 extends Area3D
 class_name Interaction
 
-@export var inventoryNode: Node3D
 @export var player: RigidBody3D
 
 @export var interactionSprite: Sprite3D
@@ -71,8 +70,12 @@ func on_click_interactable():
 	find_nearest_interactable()
 	
 	if nearestInteractable.is_in_group("item"):
-		request_item_pickup.rpc(nearestInteractable.name)
-		return
+		if GlobalPlayerVariables.inventory.return_empty_slots() <= 0:
+			GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")
+			return
+		else:
+			request_item_pickup.rpc(nearestInteractable.name)
+			return
 	
 	if nearestInteractable.is_in_group("button"):
 		interact(nearestInteractable)
@@ -91,15 +94,8 @@ func request_item_pickup(itemName):
 		push_error("item was found to be null!")
 		return
 	
-	#if inventoryNode.get_children().size() > 5:
-		#GlobalPlayerVariables.interactionText.display.rpc_id(multiplayer.get_remote_sender_id(), "You cannot hold any more items.")
-		#return
-	
 	var syncNode: MultiplayerSynchronizer = item.multiplayerSyncrhonizer
 	syncNode.set_process_mode(Node.PROCESS_MODE_DISABLED)
-	
-	#push_warning("Item: "+str(item))
-	#push_warning(itemName)
 	
 	item.set_process_mode(Node.PROCESS_MODE_DISABLED)
 	item.hide()

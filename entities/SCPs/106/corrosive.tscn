@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy0ygrxxdim7s"]
+
+[ext_resource type="Texture2D" uid="uid://d2e7875nxg01x" path="res://entities/SCPs/106/corrosive_decal.png" id="1_g8idx"]
+[ext_resource type="Script" uid="uid://c7sc57h74wj8h" path="res://entities/SCPs/106/corrosive_decal.gd" id="2_32nep"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_32nep"]
+
+[node name="corrosive" type="Area3D" groups=["corrosive"]]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("2_32nep")
+
+[node name="Decal" type="Decal" parent="."]
+texture_albedo = ExtResource("1_g8idx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_32nep")

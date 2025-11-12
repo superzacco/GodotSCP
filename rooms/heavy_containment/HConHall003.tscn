@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dop2o8hoak366"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_qmt1i"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_j8rvq"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_4a23l"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_mommy"]
+[ext_resource type="PackedScene" uid="uid://cli63pyplwky1" path="res://rooms/Models/HConHall002.blend" id="5_qmt1i"]
+
+[node name="HConHall001" type="Node3D"]
+script = ExtResource("1_qmt1i")
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("2_j8rvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("2_j8rvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("3_4a23l")]
+
+[node name="Light" parent="." instance=ExtResource("4_mommy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85263, 4)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light2" parent="." instance=ExtResource("4_mommy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85263, -4)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="HConHall002" parent="." instance=ExtResource("5_qmt1i")]

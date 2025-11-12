@@ -24,7 +24,7 @@ func request_item_drop(itemName: String, slotIdx: int):
 	if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
 		update_item_position.rpc(item.name, GlobalPlayerVariables.playerPosition + randomPos)
 	
-	item.global_rotation.y = randomRotation
+	item.global_rotation = Vector3(0, randomRotation, 0)
 	item.freeze = false
 	
 	update_slot_ui.emit(slotIdx)

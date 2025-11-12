@@ -10,6 +10,7 @@ signal hide_main_menu
 
 signal connect_elevator(elevator: Elevator)
 signal activate_173
+signal activate_106
 
 signal toggle_gas_mask
 signal toggle_gasmask_model

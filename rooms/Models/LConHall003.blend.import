@@ -35,7 +35,10 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Concrete floor": {
-"mesh_instance/layers": 2
+"generate/physics": true,
+"mesh_instance/layers": 2,
+"physics/layer": 3,
+"physics/mask": 3
 }
 }
 }

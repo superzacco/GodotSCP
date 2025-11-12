@@ -1,11 +1,11 @@
-[gd_scene load_steps=74 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=76 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="3_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/checkpoint/LConToHconCheckpoint.tscn" id="4_fv21b"]
 [ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914_chamber.tscn" id="4_og1vs"]
-[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/Models/LConTeslaOffice.tscn" id="4_y6deb"]
+[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
 [ext_resource type="PackedScene" uid="uid://2tmrt17xnndd" path="res://rooms/checkpoint/HConToEntCheckpoint.tscn" id="5_bu4jf"]
 [ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
 [ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="6_2wyq8"]
@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="7_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="8_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://dxnhftdwber4s" path="res://rooms/light_containment/LConTestingChamber001.tscn" id="8_cjqg0"]
-[ext_resource type="PackedScene" uid="uid://6evvbgv0kbkg" path="res://rooms/Models/LConHallStorage.tscn" id="9_vchkt"]
+[ext_resource type="PackedScene" uid="uid://6evvbgv0kbkg" path="res://rooms/light_containment/LConHallStorage.tscn" id="9_vchkt"]
 [ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="9_yq6so"]
 [ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="10_fv21b"]
-[ext_resource type="PackedScene" uid="uid://dcydi3hgkvmsu" path="res://rooms/Models/LConTesla001.tscn" id="10_txyw0"]
+[ext_resource type="PackedScene" uid="uid://dcydi3hgkvmsu" path="res://rooms/light_containment/LConTesla001.tscn" id="10_txyw0"]
 [ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="11_tel4y"]
 [ext_resource type="PackedScene" uid="uid://diwit81i4xr4" path="res://rooms/light_containment/LconHallElevator001.tscn" id="12_ids8r"]
 [ext_resource type="PackedScene" uid="uid://c6ao02qwvnt4g" path="res://rooms/heavy_containment/HConEnd001.tscn" id="12_qkpxi"]
@@ -52,6 +52,7 @@
 [ext_resource type="AudioStream" uid="uid://bc2vehp2j6lys" path="res://audio/ambient/fullsitelockdown.ogg" id="27_tel4y"]
 [ext_resource type="AudioStream" uid="uid://boomnik4hkl8" path="res://audio/ambient/general/Ambient2.ogg" id="28_txyw0"]
 [ext_resource type="AudioStream" uid="uid://du1viwv50yw06" path="res://audio/ambient/general/Ambient3.ogg" id="29_vc5cj"]
+[ext_resource type="PackedScene" uid="uid://dop2o8hoak366" path="res://rooms/heavy_containment/HConHall003.tscn" id="30_gdvew"]
 [ext_resource type="AudioStream" uid="uid://bj4nahfvgd5bm" path="res://audio/ambient/general/Ambient4.ogg" id="30_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://b6p3tjnxsh4ji" path="res://audio/ambient/general/Ambient6.ogg" id="31_ty1g6"]
 [ext_resource type="AudioStream" uid="uid://csds7k22y3o6e" path="res://audio/ambient/general/Ambient7.ogg" id="32_j2jfr"]
@@ -71,6 +72,7 @@
 [ext_resource type="AudioStream" uid="uid://cehc2bpgdxqkd" path="res://audio/scps/079/Broadcast6.ogg" id="60_ksmap"]
 [ext_resource type="AudioStream" uid="uid://bkak1kdex6dsy" path="res://audio/scps/079/Broadcast7.ogg" id="61_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
+[ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
 
@@ -99,7 +101,7 @@ fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so"), ExtResourc
 fillerLConFourWayHalls = Array[PackedScene]([ExtResource("10_fv21b"), ExtResource("22_tm6hj")])
 fillerLConBends = Array[PackedScene]([ExtResource("11_tel4y")])
 fillerHConEndRooms = Array[PackedScene]([ExtResource("12_qkpxi")])
-fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq"), ExtResource("22_0loja")])
+fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq"), ExtResource("22_0loja"), ExtResource("30_gdvew")])
 fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k")])
 fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
 fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
@@ -206,3 +208,6 @@ replication_config = SubResource("SceneReplicationConfig_kf5aa")
 
 [node name="keycard03" parent="." instance=ExtResource("63_ro3en")]
 transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, 37.6763, 0.0472804)
+
+[node name="scp106" parent="." instance=ExtResource("73_kjtvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.692, 32.3138, -1.07706)

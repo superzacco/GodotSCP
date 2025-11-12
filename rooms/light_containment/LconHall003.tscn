@@ -30,30 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("5_xbm6k")]
 
-[node name="shelf01" parent="." instance=ExtResource("6_oqvsy")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.85199, 0.474241, 4.88127)
-
-[node name="shelf02" parent="." instance=ExtResource("6_oqvsy")]
-transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, 2.05555)
-
-[node name="shelf03" parent="." instance=ExtResource("6_oqvsy")]
-transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, -5.25743)
-
-[node name="shelf04" parent="." instance=ExtResource("6_oqvsy")]
-transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -3.0835, 0.474241, -2.0483)
-
-[node name="keycard00" parent="." instance=ExtResource("3_rkwrc")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.38368, -0.0650055, -5.13172)
-collision_layer = 1
-collision_mask = 1
-chanceToSpawn = 80.0
-
-[node name="keycard01" parent="." instance=ExtResource("3_rkwrc")]
-transform = Transform3D(0.972598, 0, 0.232495, 0, 1, 0, -0.232495, 0, 0.972598, -4.67776, -0.660448, 4.52471)
-collision_layer = 1
-collision_mask = 1
-chanceToSpawn = 80.0
-
 [node name="Light2" parent="." instance=ExtResource("6_rkwrc")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 4.84813, 4)
 brightness = 0.5
@@ -67,5 +43,29 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -3.7, 
 
 [node name="Light5" parent="." instance=ExtResource("6_rkwrc")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -3.7, 2.34874, -4)
+
+[node name="prop" type="Node3D" parent="."]
+
+[node name="shelf01" parent="prop" instance=ExtResource("6_oqvsy")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -4.85199, 0.474241, 4.88127)
+
+[node name="shelf02" parent="prop" instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, 2.05555)
+
+[node name="shelf03" parent="prop" instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, -3.0835, 0.474241, -5.25743)
+
+[node name="shelf04" parent="prop" instance=ExtResource("6_oqvsy")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -3.0835, 0.474241, -2.0483)
+
+[node name="items" type="Node3D" parent="."]
+
+[node name="keycard00" parent="items" instance=ExtResource("3_rkwrc")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.38368, -0.0650055, -5.13172)
+chanceToSpawn = 80.0
+
+[node name="keycard01" parent="items" instance=ExtResource("3_rkwrc")]
+transform = Transform3D(0.972598, 0, 0.232495, 0, 1, 0, -0.232495, 0, 0.972598, -4.67776, -0.660448, 4.52471)
+chanceToSpawn = 80.0
 
 [editable path="LConHall003"]

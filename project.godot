@@ -73,6 +73,7 @@ room=""
 grabbypoint=""
 spectatable=""
 roomlight=""
+corrosive=""
 
 [input]
 

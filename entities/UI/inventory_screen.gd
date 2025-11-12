@@ -182,6 +182,15 @@ func clear_equip():
 	equippedItem = null
 
 
+func return_empty_slots() -> int:
+	var i := 0
+	for slot: InventorySlot in slots:
+		if slot.heldItem == null: 
+			i += 1
+	
+	return i
+
+
 func _on_slots_mouse_entered() -> void:
 	overDropArea = false
 func _on_slots_mouse_exited() -> void:
