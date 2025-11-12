@@ -12,10 +12,10 @@ func _ready() -> void:
 
 func step():
 	var clip: AudioStream
-	if corrosivesInRange.size() == 0:
-		clip = ZFunc.rand_from(stepSounds)
-	else:
+	if corrosivesInRange.size() > 0 or GlobalPlayerVariables.inPocketDimension == true:
 		clip = ZFunc.rand_from(corrosiveStepSounds)
+	else:
+		clip = ZFunc.rand_from(stepSounds)
 	
 	playback.play_stream(clip)
 

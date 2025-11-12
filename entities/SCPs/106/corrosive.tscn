@@ -11,6 +11,7 @@ script = ExtResource("2_32nep")
 
 [node name="Decal" type="Decal" parent="."]
 texture_albedo = ExtResource("1_g8idx")
+cull_mask = 1048573
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_32nep")

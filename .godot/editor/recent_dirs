@@ -1,3 +1,6 @@
+res://shaders
+res://levelgen
+res://rooms/pocket_dimension
 res://entities/SCPs/106
 res://entities/SCPs/485
 res://entities/player
@@ -17,4 +20,3 @@ res://rooms/heavy_containment
 res://rooms/Textures
 res://rooms/tesla
 res://entities/map
-res://scenes

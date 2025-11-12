@@ -9,7 +9,7 @@ var spectatorManager: SpectatorManager
 var ambienceManager: AmbienceManager
 
 
-# EXPLICITLY player related
+# player related
 var player: Player
 var playerPosition: Vector3 
 
@@ -22,6 +22,7 @@ var sensitivity: float = 0.67
 var blinkQuickened: bool = false
 
 var nearbyRoomLights: Array[RoomLight]
+var inPocketDimension: bool = false
 
 
 

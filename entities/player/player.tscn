@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=43 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
+[ext_resource type="Shader" uid="uid://dn2wmit8hif78" path="res://shaders/motion_blur.gdshader" id="2_qpopc"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
@@ -50,6 +51,9 @@ properties/4/replication_mode = 1
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ckrbs"]
 radius = 0.3
 height = 1.87171
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpopc"]
+shader = ExtResource("2_qpopc")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b2kln"]
 radius = 0.1
@@ -236,6 +240,22 @@ shape = SubResource("CapsuleShape3D_ckrbs")
 transform = Transform3D(-1, 0, -8.54386e-08, 0, 1, 0, 8.54386e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraBobPivot" type="Node3D" parent="StuffToRotate"]
+
+[node name="ShaderLayer" type="CanvasLayer" parent="StuffToRotate/CameraBobPivot"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="StuffToRotate/CameraBobPivot/ShaderLayer"]
+material = SubResource("ShaderMaterial_qpopc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.0
+offset_top = 176.0
+offset_right = -228.0
+offset_bottom = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)

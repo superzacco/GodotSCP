@@ -49,3 +49,11 @@ res://entities/SCPs/106/corrosive_decal.gd
 res://entities/player/player_step_sounds.gd
 res://entities/player/player.gd
 res://util/ZFunc.gd
+res://rooms/pocket_dimension/PD8way.tscn
+res://entities/player/global_player_variables.gd
+res://levelgen/generate_level.gd
+res://levelgen/pocket_dimension.gd
+res://shaders/motion_blur.gdshader
+res://shaders/motion_blur.gd
+res://shaders/motion_blur.tres
+res://shaders/shader_rect.gd
