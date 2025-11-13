@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh0aj5tcd68wg"]
+
+[ext_resource type="Script" uid="uid://bvupg5i2uyoc8" path="res://util/teleport_point.gd" id="1_e57pk"]
+
+[node name="TeleportPoint" type="Marker3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+gizmo_extents = 1.0
+script = ExtResource("1_e57pk")

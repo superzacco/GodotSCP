@@ -1,8 +1,10 @@
+Marker3D
+Node3D
+NavigationObstacle3D
 AudioStreamPlayer3D
 MultiplayerSynchronizer
 StaticBody3D
 CollisionShape3D
-Node3D
 Timer
 Area3D
 ColorRect
@@ -10,5 +12,3 @@ CanvasLayer
 SpotLight3D
 OmniLight3D
 Decal
-NavigationAgent3D
-CharacterBody3D

@@ -1,3 +1,5 @@
+res://util
+res://rooms
 res://scenes
 res://shaders
 res://levelgen
@@ -6,11 +8,9 @@ res://entities/SCPs/106
 res://entities/SCPs/485
 res://entities/player
 res://entities/items/tools
-res://util
 res://multiplayer
 E:/Desktop/games or whatever/Game
 res://entities/ui
-res://rooms
 res://rooms/light_containment
 res://
 E:/Desktop/games or whatever

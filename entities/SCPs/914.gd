@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-var knobSetting: int
+@export var knobSetting: int
 
 @export var veryFineDict: Dictionary[String, PackedScene]
 @export var fineDict: Dictionary[String, PackedScene]

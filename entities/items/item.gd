@@ -17,12 +17,14 @@ func _ready() -> void:
 	if multiplayer.is_server():
 		var id: int = GameManager.rng.randi_range(000000, 999999)
 		set_name_id.rpc(id)
-	
-	#if !ZFunc.randInPercent(chanceToSpawn):
-		#queue_free()
+		decide_to_spawn.rpc()
 
 
 @rpc("authority", "call_local", "reliable")
 func set_name_id(id: int):
 	self.name = self.name + "_" + str(id)
-	
+
+@rpc("authority", "call_local", "reliable")
+func decide_to_spawn():
+	if !ZFunc.randInPercent(chanceToSpawn):
+		queue_free()

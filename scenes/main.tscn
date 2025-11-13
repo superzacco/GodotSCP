@@ -78,9 +78,11 @@
 [sub_resource type="Compositor" id="Compositor_xljpf"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
-geometry_collision_mask = 4294967037
-cell_size = 0.05
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294967039
+cell_size = 0.1
 agent_radius = 0.1
+region_min_size = 8.0
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("facilityMultiplayerSpawner", "doorMultiplayerSpawner", "navigationRegion", "doorsNode")]
 top_level = true
@@ -196,6 +198,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 
 [node name="keycard03" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("63_ro3en")]
 transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, -0.8283, 0.0472804)
+collision_layer = 2
+collision_mask = 2
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)

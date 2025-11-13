@@ -10,6 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="16_jjtnl"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kawgu"]
+properties/0/path = NodePath("Knob:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("..:knobSetting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tpx0i"]
 size = Vector3(0.5, 0.5, 1)

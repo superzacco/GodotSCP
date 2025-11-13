@@ -102,3 +102,14 @@ func kill_player():
 
 func summon_106():
 	SignalBus.activate_106.emit()
+
+var teleportPoints: Dictionary[String, TeleportPoint]
+func teleport(tpName: String):
+	var point: TeleportPoint = teleportPoints.get(tpName)
+	
+	var player: Player = GlobalPlayerVariables.player
+	var pos: Vector3 = point.global_position
+	var rot: Vector3 = point.global_rotation
+	
+	player.global_position = pos
+	player.stuffToRotate.global_rotation = rot

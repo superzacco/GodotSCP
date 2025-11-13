@@ -1,35 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbs8e406nn8yo"]
+[gd_scene load_steps=9 format=3 uid="uid://bbs8e406nn8yo"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_d04yi"]
 [ext_resource type="PackedScene" uid="uid://dovtpxtu5vygy" path="res://rooms/Models/HCon049Chamber.blend" id="1_eeosu"]
 [ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="2_7pyr0"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="3_7pyr0"]
 [ext_resource type="PackedScene" uid="uid://d12eugvcfftyc" path="res://rooms/big_door.tscn" id="4_p17to"]
-[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_ruo7p"]
-[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="5_d04yi"]
-[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="6_nx7sk"]
-[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="7_3lyrw"]
-[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="8_a5ggg"]
-[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="9_k602m"]
-[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="10_qjqyu"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="11_5ua2h"]
-[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="12_pw0e5"]
-[ext_resource type="AudioStream" uid="uid://cq3n6dw3jwkfx" path="res://audio/scps/173/DoorOpen173.ogg" id="13_ndaxt"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="5_m6l6y"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="16_3lyrw"]
 [ext_resource type="PackedScene" uid="uid://dowuwffank011" path="res://entities/items/cards/keycard04.tscn" id="17_a5ggg"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r0iwn"]
-properties/0/path = NodePath("door/Armature/Skeleton3D/doorside2_col:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("door/Armature/Skeleton3D/doorside1_col:position")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("door/AnimationPlayer:current_animation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
 [node name="049Chamber" type="Node3D"]
 script = ExtResource("1_d04yi")
@@ -49,161 +27,60 @@ id = "049B"
 
 [node name="Doors" type="Node3D" parent="."]
 
-[node name="unopenable1" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.001, 0.0360688, 22.4801)
-script = ExtResource("4_ruo7p")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
-closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
+[node name="BigDoor" parent="Doors" instance=ExtResource("4_p17to")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.20131)
 
-[node name="door" parent="Doors/unopenable1" instance=ExtResource("11_5ua2h")]
+[node name="Keycardbutton2" parent="Doors/BigDoor" index="2"]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
+keycardLevel = 3
 
-[node name="doorside2_col" parent="Doors/unopenable1/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+[node name="Keycardbutton" parent="Doors/BigDoor" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.834308)
+keycardLevel = 3
 
-[node name="doorside1_col" parent="Doors/unopenable1/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+[node name="unopenable" parent="Doors" instance=ExtResource("5_m6l6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9995, 0.0461754, 22.51)
 
-[node name="Button2" parent="Doors/unopenable1" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door wont open."
+[node name="Button" parent="Doors/unopenable" index="1"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
-stream = ExtResource("5_d04yi")
-
-[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
-stream = ExtResource("8_a5ggg")
-
-[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
-
-[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable1"]
-stream = ExtResource("13_ndaxt")
-unit_size = 5.0
-max_distance = 64.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable1"]
-replication_config = SubResource("SceneReplicationConfig_r0iwn")
-
-[node name="unopenable2" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.07524, 0.0360688, 18.7231)
-script = ExtResource("4_ruo7p")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
-closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
-
-[node name="door" parent="Doors/unopenable2" instance=ExtResource("11_5ua2h")]
-
-[node name="doorside2_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Button2" parent="Doors/unopenable2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door wont open."
+[node name="Button2" parent="Doors/unopenable" index="2"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
-stream = ExtResource("5_d04yi")
+[node name="unopenable2" parent="Doors" instance=ExtResource("5_m6l6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0005, 0.0461754, -22.4212)
 
-[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
-stream = ExtResource("8_a5ggg")
-
-[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
-
-[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable2"]
-stream = ExtResource("13_ndaxt")
-unit_size = 5.0
-max_distance = 64.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable2"]
-replication_config = SubResource("SceneReplicationConfig_r0iwn")
-
-[node name="unopenable3" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.0011, 0.0360688, -22.4694)
-script = ExtResource("4_ruo7p")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
-closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
-
-[node name="door" parent="Doors/unopenable3" instance=ExtResource("11_5ua2h")]
-
-[node name="doorside2_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Button2" parent="Doors/unopenable3" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door wont open."
+[node name="Button" parent="Doors/unopenable2" index="1"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
-stream = ExtResource("5_d04yi")
-
-[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
-stream = ExtResource("8_a5ggg")
-
-[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
-
-[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable3"]
-stream = ExtResource("13_ndaxt")
-unit_size = 5.0
-max_distance = 64.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable3"]
-replication_config = SubResource("SceneReplicationConfig_r0iwn")
-
-[node name="unopenable4" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -8.05881, 0.0360688, -18.7232)
-script = ExtResource("4_ruo7p")
-animationPlayer = NodePath("door/AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("5_d04yi"), ExtResource("6_nx7sk"), ExtResource("7_3lyrw")])
-closeSounds = Array[AudioStream]([ExtResource("8_a5ggg"), ExtResource("9_k602m"), ExtResource("10_qjqyu")])
-
-[node name="door" parent="Doors/unopenable4" instance=ExtResource("11_5ua2h")]
-
-[node name="doorside2_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Button2" parent="Doors/unopenable4" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("12_pw0e5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.22)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door wont open."
+[node name="Button2" parent="Doors/unopenable2" index="2"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Open" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
-stream = ExtResource("5_d04yi")
+[node name="unopenable3" parent="Doors" instance=ExtResource("5_m6l6y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.06701, 0.0461754, -18.7349)
 
-[node name="Close" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
-stream = ExtResource("8_a5ggg")
+[node name="Button" parent="Doors/unopenable3" index="1"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
 
-[node name="DoorArea" type="CollisionShape3D" parent="Doors/unopenable4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
+[node name="Button2" parent="Doors/unopenable3" index="2"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
 
-[node name="173 Open" type="AudioStreamPlayer3D" parent="Doors/unopenable4"]
-stream = ExtResource("13_ndaxt")
-unit_size = 5.0
-max_distance = 64.0
+[node name="unopenable4" parent="Doors" instance=ExtResource("5_m6l6y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.09319, 0.0461754, 18.7251)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Doors/unopenable4"]
-replication_config = SubResource("SceneReplicationConfig_r0iwn")
+[node name="Button" parent="Doors/unopenable4" index="1"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
+
+[node name="Button2" parent="Doors/unopenable4" index="2"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -288,21 +165,16 @@ transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, -5
 
 [node name="keycard004" parent="." instance=ExtResource("17_a5ggg")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.66621, -0.414663, -10.1761)
+collision_layer = 2
+collision_mask = 2
 
-[node name="BigDoor" parent="." instance=ExtResource("4_p17to")]
-transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.20131)
-
-[node name="Keycardbutton2" parent="BigDoor" index="2"]
-transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
-keycardLevel = 3
-
-[node name="Keycardbutton" parent="BigDoor" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.834308)
-keycardLevel = 3
-
-[editable path="Doors/unopenable1/door"]
+[editable path="Doors/BigDoor"]
+[editable path="Doors/BigDoor/big_door"]
+[editable path="Doors/unopenable"]
+[editable path="Doors/unopenable/door"]
+[editable path="Doors/unopenable2"]
 [editable path="Doors/unopenable2/door"]
+[editable path="Doors/unopenable3"]
 [editable path="Doors/unopenable3/door"]
+[editable path="Doors/unopenable4"]
 [editable path="Doors/unopenable4/door"]
-[editable path="BigDoor"]
-[editable path="BigDoor/big_door"]

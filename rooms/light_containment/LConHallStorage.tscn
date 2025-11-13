@@ -22,12 +22,6 @@ spawnPosFor173 = NodePath("173Pos")
 [node name="Door" parent="." instance=ExtResource("2_a7uwg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.29803, 0.0519333, 0.00818944)
 
-[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Points" type="Node3D" parent="."]
 
 [node name="point1" parent="Points" instance=ExtResource("10_jgo1u")]
@@ -47,19 +41,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.448057, -0.597524, -2.65368)
 
 [node name="table2" parent="Props" instance=ExtResource("4_ovpt2")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.448057, -0.597524, 2.63365)
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 4.34193, -0.597524, 1.56366)
 
 [node name="shelf01" parent="Props" instance=ExtResource("5_5bsik")]
-transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 3.29586, 0.531952, 0.442369)
+transform = Transform3D(-0.7, 0, 6.1196e-08, 0, 0.7, 0, -6.1196e-08, 0, -0.7, 4.49791, 0.531952, -0.942202)
 
 [node name="shelf02" parent="Props" instance=ExtResource("5_5bsik")]
-transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 0.89586, 0.531952, 0.442369)
+transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, 0.895977, 0.531952, 2.77247)
 
 [node name="shelf03" parent="Props" instance=ExtResource("5_5bsik")]
-transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, 0.793514, 0.531952, -0.457631)
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -0.996514, 0.531952, 2.71236)
 
 [node name="shelf04" parent="Props" instance=ExtResource("5_5bsik")]
-transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, 2.40886, 0.531952, -0.457631)
+transform = Transform3D(9.17939e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, 9.17939e-08, 2.0647, 0.531952, -2.70775)
 
 [node name="bench2" parent="Props" instance=ExtResource("9_7adat")]
 transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -5.51249, -0.632046, 2.52769)
@@ -70,19 +64,27 @@ transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -5.512
 [node name="Items" type="Node3D" parent="."]
 
 [node name="keycard001" parent="Items" instance=ExtResource("6_0010q")]
-transform = Transform3D(0.645911, 0, 0.763413, 0, 1, 0, -0.763413, 0, 0.645911, 0.762524, -0.219361, 2.33916)
+transform = Transform3D(0.319505, 0, -0.947585, 0, 1, 0, 0.947585, 0, 0.319505, 0.762524, 0.103423, 2.5154)
+collision_layer = 2
+collision_mask = 2
 
 [node name="keycard002" parent="Items" instance=ExtResource("7_7adat")]
-transform = Transform3D(0.665256, 0, 0.746615, 0, 1, 0, -0.746615, 0, 0.665256, 2.79982, 0.00581679, 0.500746)
+transform = Transform3D(0.919485, 0, -0.393123, 0, 1, 0, 0.393123, 0, 0.919485, 3.94213, 0.037286, 0.668195)
+collision_layer = 2
+collision_mask = 2
 chanceToSpawn = 5.0
 
 [node name="GasMask" parent="Items" instance=ExtResource("8_jgo1u")]
-transform = Transform3D(-0.419056, 0, -0.90796, 0, 1, 0, 0.90796, 0, -0.419056, 0.780751, 0.105175, -0.517925)
-chanceToSpawn = 35.0
+transform = Transform3D(-0.593405, 0, -0.804904, 0, 1, 0, 0.804904, 0, -0.593405, 4.41082, 0.728847, -1.23606)
+collision_layer = 2
+collision_mask = 2
+chanceToSpawn = 55.0
 
 [node name="keycard003" parent="Items" instance=ExtResource("6_0010q")]
 transform = Transform3D(0.526347, 0, 0.85027, 0, 1, 0, -0.85027, 0, 0.526347, 0.851626, -0.136113, -2.37891)
-chanceToSpawn = 50.0
+collision_layer = 2
+collision_mask = 2
+chanceToSpawn = 35.0
 
 [node name="Lights" type="Node3D" parent="."]
 

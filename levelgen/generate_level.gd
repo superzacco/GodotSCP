@@ -143,7 +143,6 @@ func generate_map():
 			GlobalPlayerVariables.facilityManager.rooms.append(room)
 		room.hide()
 	
-	SignalBus.emit_signal("level_generation_finished")
 
 
 func generate_long_hall(zOffset):
@@ -366,11 +365,6 @@ func replace_filler_rooms():
 
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
-	#var avalibleIndices: Array = range(replacableRoomArray.size())
-	#avalibleIndices.shuffle()
-	#
-	#print(str(multiplayer.get_unique_id()) + str(avalibleIndices))
-	
 	for i in necessaryRoomArray.size():
 		var roomToReplace: int = rng.randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
@@ -385,7 +379,7 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 		var r: Node3D = spawn_room(roomGettingPlaced, roomToReplacePos.x / 15, roomToReplacePos.z /15)
 		r.rotation.y = replacedRoom.rotation.y
 		
-		print(str(multiplayer.get_unique_id()) + " - "  + str(roomToReplace) + ": " + r.name)
+		#print(str(multiplayer.get_unique_id()) + " - "  + str(roomToReplace) + ": " + r.name)
 		
 		replacableRoomArray.remove_at(roomToReplace)
 		finishedRooms.erase(replacedRoom)
@@ -437,3 +431,5 @@ func generate_nav_mesh():
 	await get_tree().create_timer(0.25).timeout
 	navigationRegion.bake_navigation_mesh()
 	await navigationRegion.bake_finished
+	
+	SignalBus.emit_signal("level_generation_finished")

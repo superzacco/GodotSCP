@@ -23,14 +23,18 @@ script = ExtResource("1_2jav0")
 
 [node name="keycard002" parent="Items" instance=ExtResource("8_ywymj")]
 transform = Transform3D(-0.433171, 0, 0.901312, 0, 1, 0, -0.901312, 0, -0.433171, 2.76172, -0.263169, -0.645106)
+collision_layer = 2
+collision_mask = 2
 
 [node name="GasMask" parent="Items" instance=ExtResource("9_71gor")]
 transform = Transform3D(-0.436723, 0, 0.899596, 0, 1, 0, -0.899596, 0, -0.436723, 5.85061, 0.101826, 1.67945)
-chanceToSpawn = 70.0
+collision_layer = 2
+collision_mask = 2
 
 [node name="keycard00" parent="Items" instance=ExtResource("10_i5yya")]
 transform = Transform3D(-0.945411, 0, -0.325882, 0, 1, 0, 0.325882, 0, -0.945411, -3.64642, -0.587569, -3.60488)
-chanceToSpawn = 80.0
+collision_layer = 2
+collision_mask = 2
 
 [node name="Props" type="Node3D" parent="."]
 
@@ -58,12 +62,22 @@ omniBrightness = 0.25
 
 [node name="Light2" parent="Lights" instance=ExtResource("4_t6k5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00159264, 1.85463, 4.1678)
+brightness = 0.5
+omniBrightness = 0.2
 
 [node name="Light3" parent="Lights" instance=ExtResource("4_t6k5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49397, 1.85463, -3.76875)
+brightness = 0.5
+omniBrightness = 0.25
 
 [node name="Door" parent="." instance=ExtResource("2_xaxhs")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.70635, 0.0519332, 4.50022)
+
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 1

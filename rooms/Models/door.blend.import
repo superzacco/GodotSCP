@@ -32,7 +32,25 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Armature/Skeleton3D/doorside1_col/doorside1": {
+"generate/physics": true,
+"physics/layer": 256,
+"physics/mask": 256
+},
+"PATH:Armature/Skeleton3D/doorside2_col/doorside2": {
+"generate/physics": true,
+"physics/layer": 256,
+"physics/mask": 256
+},
+"PATH:doorframe": {
+"generate/physics": true,
+"physics/layer": 256,
+"physics/mask": 256
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

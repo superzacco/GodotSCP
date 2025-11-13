@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://jnxvnc3ohjw2"]
+
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="1_ynhyo"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_0yn3h"]
+[ext_resource type="Script" uid="uid://cphyc6nao2p6s" path="res://rooms/checkpoint/checkpointalarm.gd" id="3_ccnjj"]
+[ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/door/DoorCheckpoint.ogg" id="4_tabls"]
+[ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="5_skeb3"]
+
+[node name="Checkpoint" type="Node3D"]
+
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("1_ynhyo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0010417, 0.31021, 1.54017)
+extraToControl = NodePath("../CheckpointAlarm")
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("1_ynhyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010417, 0.31021, -1.5509)
+extraToControl = NodePath("../CheckpointAlarm")
+keycardLevel = 3
+
+[node name="doors" type="Node3D" parent="."]
+
+[node name="Door" parent="doors" instance=ExtResource("2_0yn3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00417, 0.0426216, 0.00045833)
+
+[node name="doorside2_col" parent="doors/Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="doors/Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button" parent="doors/Door" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="doors/Door" index="2"]
+visible = false
+disabled = true
+
+[node name="Door2" parent="doors" instance=ExtResource("2_0yn3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99583, 0.0426216, 0.00045833)
+
+[node name="doorside2_col" parent="doors/Door2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="doors/Door2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button" parent="doors/Door2" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="doors/Door2" index="2"]
+visible = false
+disabled = true
+
+[node name="CheckpointAlarm" type="AudioStreamPlayer3D" parent="." node_paths=PackedStringArray("doors")]
+script = ExtResource("3_ccnjj")
+checkpointSound = ExtResource("4_tabls")
+checkpointAlarm = ExtResource("5_skeb3")
+doors = [null, null]
+
+[node name="Extra" type="AudioStreamPlayer3D" parent="CheckpointAlarm"]
+
+[editable path="doors/Door"]
+[editable path="doors/Door/door"]
+[editable path="doors/Door2"]
+[editable path="doors/Door2/door"]

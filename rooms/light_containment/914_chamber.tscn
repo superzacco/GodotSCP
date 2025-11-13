@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw3hwsiih5tal"]
+[gd_scene load_steps=13 format=3 uid="uid://dw3hwsiih5tal"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_g5wda"]
 [ext_resource type="PackedScene" uid="uid://d1ybqyikok1yf" path="res://rooms/Models/chamber914.blend" id="1_lb7g5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="10_ya2lh"]
 [ext_resource type="PackedScene" uid="uid://ckpckhl646a40" path="res://entities/SCPs/scp_914.tscn" id="11_25f8e"]
 [ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="12_l7v6k"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="12_ya2lh"]
 
 [node name="914" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
 script = ExtResource("1_g5wda")
@@ -23,6 +24,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142248, 0)
 [node name="Door" parent="." instance=ExtResource("4_kyeim")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.7, 0.0422479, -4.8)
 
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 2
 
@@ -32,11 +39,11 @@ keycardLevel = 2
 [node name="BigDoor" parent="." instance=ExtResource("2_kyeim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0235494, 0.340066, -2.08688)
 
-[node name="Keycardbutton2" parent="BigDoor" index="2"]
+[node name="Keycardbutton2" parent="BigDoor" index="3"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.74159)
 keycardLevel = 2
 
-[node name="Keycardbutton" parent="BigDoor" index="3"]
+[node name="Keycardbutton" parent="BigDoor" index="4"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.47006, 0, -2.96139)
 keycardLevel = 2
 
@@ -98,13 +105,21 @@ brightness = 0.6
 
 [node name="GasMask" parent="items" instance=ExtResource("12_l7v6k")]
 transform = Transform3D(0.535797, 0, -0.844347, 0, 1, 0, 0.844347, 0, 0.535797, 10.2713, 0.909149, 3.41588)
+collision_layer = 2
+collision_mask = 2
 chanceToSpawn = 10.0
 
 [node name="keycard01" parent="items" instance=ExtResource("9_25f8e")]
 transform = Transform3D(-0.371416, 0, -0.928466, 0, 1, 0, 0.928466, 0, -0.371416, 7.92069, -0.244473, -2.5801)
+collision_layer = 2
+collision_mask = 2
 
 [node name="scp914" parent="." instance=ExtResource("11_25f8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6795, 1.11447, 7.24599)
+
+[node name="TeleportPoint" parent="." instance=ExtResource("12_ya2lh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.9, 1, 2)
+tpName = "914"
 
 [editable path="Door"]
 [editable path="Door/door"]

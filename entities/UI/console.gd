@@ -85,6 +85,11 @@ func _input(event: InputEvent) -> void:
 				Commands.kill_player()
 			"106":
 				Commands.summon_106()
+			"tp":
+				if commandStringArray.size() == 1:
+					println("missing <room>", Commands.errorColor)
+				else:
+					Commands.teleport(commandStringArray[1])
 		
 		inputField.clear()
 	

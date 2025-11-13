@@ -1,17 +1,21 @@
-extends Node3D
+extends StaticBody3D
 class_name Door
 
 @export var animationPlayer: AnimationPlayer
 
 @export var openSounds: Array[AudioStream]
 @export var closeSounds: Array[AudioStream]
+
 @export var ignore079: bool = false
 
 var doorOpen: bool = false
 var opening: bool = false
 
 func _ready() -> void:
-	pass
+	# // TO-DO -- FIX THIS SHIT
+	self.global_position += Vector3(0, 3, 0)
+	await SignalBus.level_generation_finished
+	self.global_position -= Vector3(0, 3, 0)
 
 @rpc("reliable", "call_local", "any_peer")
 func toggle_door():
