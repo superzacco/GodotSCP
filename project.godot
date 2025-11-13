@@ -74,6 +74,7 @@ grabbypoint=""
 spectatable=""
 roomlight=""
 corrosive=""
+noclip_safe_player_area=""
 
 [input]
 

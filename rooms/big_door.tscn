@@ -1,26 +1,47 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlpir7u7sfxhv"]
+[gd_scene load_steps=11 format=3 uid="uid://d12eugvcfftyc"]
 
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="1_ol6ec"]
-[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="2_xee4u"]
-[ext_resource type="AudioStream" uid="uid://cxwqfxlhtk2nt" path="res://audio/door/BigDoorOpen0.ogg" id="3_xee4u"]
-[ext_resource type="AudioStream" uid="uid://c57fjv4406o4m" path="res://audio/door/BigDoorOpen1.ogg" id="4_eb36k"]
-[ext_resource type="AudioStream" uid="uid://dhl6nvhuq6raa" path="res://audio/door/BigDoorOpen2.ogg" id="5_o7dva"]
-[ext_resource type="AudioStream" uid="uid://u03j184e6q2s" path="res://audio/door/BigDoorClose0.ogg" id="6_73gmf"]
-[ext_resource type="AudioStream" uid="uid://ds6pac2y5m33g" path="res://audio/door/BigDoorClose1.ogg" id="7_j54al"]
-[ext_resource type="AudioStream" uid="uid://bepwta6osrs4h" path="res://audio/door/BigDoorClose2.ogg" id="8_gdwp7"]
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="2_oic51"]
+[ext_resource type="AudioStream" uid="uid://cxwqfxlhtk2nt" path="res://audio/door/BigDoorOpen0.ogg" id="3_dxj0x"]
+[ext_resource type="AudioStream" uid="uid://c57fjv4406o4m" path="res://audio/door/BigDoorOpen1.ogg" id="4_yfkp1"]
+[ext_resource type="AudioStream" uid="uid://dhl6nvhuq6raa" path="res://audio/door/BigDoorOpen2.ogg" id="5_piuoq"]
+[ext_resource type="AudioStream" uid="uid://u03j184e6q2s" path="res://audio/door/BigDoorClose0.ogg" id="6_mkitg"]
+[ext_resource type="AudioStream" uid="uid://ds6pac2y5m33g" path="res://audio/door/BigDoorClose1.ogg" id="7_cwjtv"]
+[ext_resource type="AudioStream" uid="uid://bepwta6osrs4h" path="res://audio/door/BigDoorClose2.ogg" id="8_5v8jb"]
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="9_eb36k"]
 
-[node name="big_door" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_ol6ec")]
-script = ExtResource("2_xee4u")
-animationPlayer = NodePath("AnimationPlayer")
-openSounds = Array[AudioStream]([ExtResource("3_xee4u"), ExtResource("4_eb36k"), ExtResource("5_o7dva")])
-closeSounds = Array[AudioStream]([ExtResource("6_73gmf"), ExtResource("7_j54al"), ExtResource("8_gdwp7")])
+[sub_resource type="BoxShape3D" id="BoxShape3D_oic51"]
 
-[node name="DoorR-col" parent="Armature/Skeleton3D" index="0"]
+[node name="BigDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("2_oic51")
+animationPlayer = NodePath("big_door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("3_dxj0x"), ExtResource("4_yfkp1"), ExtResource("5_piuoq")])
+closeSounds = Array[AudioStream]([ExtResource("6_mkitg"), ExtResource("7_cwjtv"), ExtResource("8_5v8jb")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_oic51")
+
+[node name="big_door" parent="." instance=ExtResource("1_ol6ec")]
+
+[node name="DoorR-col" parent="big_door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
 
-[node name="DoorL-col" parent="Armature/Skeleton3D" index="1"]
+[node name="DoorL-col" parent="big_door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
 
-[node name="Open" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="Keycardbutton2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("9_eb36k")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.561387)
+doorsToControl = [NodePath("..")]
 
-[node name="Close" type="AudioStreamPlayer3D" parent="." index="4"]
+[node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("9_eb36k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.561387)
+doorsToControl = [NodePath("..")]
+
+[node name="Open" type="AudioStreamPlayer3D" parent="."]
+bus = &"Sound Effects"
+
+[node name="Close" type="AudioStreamPlayer3D" parent="."]
+bus = &"Sound Effects"
+
+[editable path="big_door"]

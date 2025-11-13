@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=77 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -72,16 +72,15 @@
 [ext_resource type="AudioStream" uid="uid://cehc2bpgdxqkd" path="res://audio/scps/079/Broadcast6.ogg" id="60_ksmap"]
 [ext_resource type="AudioStream" uid="uid://bkak1kdex6dsy" path="res://audio/scps/079/Broadcast7.ogg" id="61_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
-[ext_resource type="Script" uid="uid://ugwghevpfiyf" path="res://levelgen/pocket_dimension.gd" id="72_xljpf"]
+[ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
-[ext_resource type="PackedScene" uid="uid://dlaatr81rovwd" path="res://rooms/pocket_dimension/PD8way.tscn" id="74_xrs0c"]
 
 [sub_resource type="Compositor" id="Compositor_xljpf"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xrs0c"]
-size = Vector3(200, 50, 300)
+geometry_collision_mask = 4294967037
+cell_size = 0.05
+agent_radius = 0.1
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("facilityMultiplayerSpawner", "doorMultiplayerSpawner", "navigationRegion", "doorsNode")]
 top_level = true
@@ -127,9 +126,10 @@ script = ExtResource("17_fuf3a")
 
 [node name="LightTimer" type="Timer" parent="Facility Manager"]
 
-[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayer", "soundsPlayerA", "soundsPlayerB", "ambiencePlayerA", "ambiencePlayerB", "ambiencePlayerC")]
+[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayerA", "musicPlayerB", "soundsPlayerA", "soundsPlayerB", "ambiencePlayerA", "ambiencePlayerB", "ambiencePlayerC")]
 script = ExtResource("18_pm3ni")
-musicPlayer = NodePath("AmbienceMusic")
+musicPlayerA = NodePath("AmbienceMusicA")
+musicPlayerB = NodePath("AmbienceMusicB")
 soundsPlayerA = NodePath("SoundsPlayerA")
 soundsPlayerB = NodePath("SoundsPlayerB")
 ambiencePlayerA = NodePath("AmbiencePlayerA")
@@ -153,11 +153,15 @@ bus = &"Sound Effects"
 volume_db = -16.0
 bus = &"Sound Effects"
 
-[node name="AmbienceMusic" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+[node name="AmbienceMusicA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 stream = ExtResource("19_y6deb")
-volume_db = -16.0
+volume_db = -15.0
 bus = &"Music"
 parameters/looping = true
+
+[node name="AmbienceMusicB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Music"
 
 [node name="SoundsPlayerA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
 volume_db = -6.0
@@ -204,15 +208,8 @@ playerScene = ExtResource("20_5he1u")
 [node name="PlayerSpawn" type="Node3D" parent="Facility"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 2.15, -41)
 
-[node name="PocketDimension" type="Area3D" parent="." groups=["corrosive"]]
+[node name="PocketDimension" parent="." instance=ExtResource("72_xrs0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 23, -229)
-script = ExtResource("72_xljpf")
-
-[node name="PD8Way" parent="PocketDimension" instance=ExtResource("74_xrs0c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7513, 6.09435, 88.9742)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PocketDimension"]
-shape = SubResource("BoxShape3D_xrs0c")
 
 [node name="SCPs" type="Node3D" parent="."]
 
@@ -221,6 +218,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120, 32.5825, 0)
 
 [node name="scp106" parent="SCPs" instance=ExtResource("73_kjtvk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.692, 32.3138, -1.07706)
-
-[connection signal="body_entered" from="PocketDimension" to="PocketDimension" method="_on_body_entered"]
-[connection signal="body_exited" from="PocketDimension" to="PocketDimension" method="_on_body_exited"]

@@ -1,12 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cx1ergchu2j1f"]
+[gd_scene load_steps=13 format=3 uid="uid://cx1ergchu2j1f"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_njtbk"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="2_xaeff"]
 [ext_resource type="PackedScene" uid="uid://bxxnvxr1if2hq" path="res://rooms/Models/SpawnRoom.blend" id="3_xaeff"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="4_aslt0"]
-[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_xvian"]
-[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="5_7k8ml"]
-[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="6_lcceb"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="8_7k8ml"]
 [ext_resource type="AudioStream" uid="uid://c8qr46gac7r6u" path="res://audio/ambient/Alarm0.ogg" id="9_lcceb"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="10_88tpj"]
@@ -91,12 +88,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.179, -7.5)
 
 [node name="Doors" type="Node3D" parent="."]
 
-[node name="Door2" type="Node3D" parent="Doors" node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -15, 3.02831, -6.8)
-script = ExtResource("4_xvian")
-animationPlayer = NodePath("door/AnimationPlayer")
+[node name="Door" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3.02031, -6.8)
 
-[node name="door" parent="Doors/Door2" instance=ExtResource("5_7k8ml")]
+[node name="doorside2_col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Button" parent="Doors/Door" index="1"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
+
+[node name="Button2" parent="Doors/Door" index="2"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
+
+[node name="Door2" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -22.4546, 3.02031, 0.700003)
 
 [node name="doorside2_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
@@ -104,38 +114,16 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Doors/Door2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
-collision_layer = 256
-collision_mask = 256
-doorsToControl = [NodePath("..")]
-rejectionText = "The door won't open."
+[node name="Button" parent="Doors/Door2" index="1"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Door6" parent="Doors" instance=ExtResource("4_aslt0")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.9809, 3.01868, 8.2)
-
-[node name="door2" parent="Doors" instance=ExtResource("5_7k8ml")]
-transform = Transform3D(1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, -22.5, 3.02831, 0.700003)
-
-[node name="doorside2_col" parent="Doors/door2/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/door2/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="Button2" parent="Doors/door2" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.200001)
-doorsToControl = [NodePath("../../Door2")]
-rejectionText = "The door won't open."
+[node name="Button2" parent="Doors/Door2" index="2"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Door4" type="Node3D" parent="Doors" node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, -18.6464, 3.02583, 25.5)
-script = ExtResource("4_xvian")
-animationPlayer = NodePath("door/AnimationPlayer")
-
-[node name="door" parent="Doors/Door4" instance=ExtResource("5_7k8ml")]
+[node name="Door4" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -11.2994, 3.02031, 25.5)
 
 [node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
@@ -143,18 +131,16 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Doors/Door4" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door won't open."
+[node name="Button" parent="Doors/Door4" index="1"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
 
-[node name="Door5" type="Node3D" parent="Doors" node_paths=PackedStringArray("animationPlayer")]
-transform = Transform3D(-2.8213e-07, 0, 1, 0, 1, 0, -1, 0, -2.8213e-07, -11.2958, 3.02583, 25.5)
-script = ExtResource("4_xvian")
-animationPlayer = NodePath("door/AnimationPlayer")
+[node name="Button2" parent="Doors/Door4" index="2"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
 
-[node name="door" parent="Doors/Door5" instance=ExtResource("5_7k8ml")]
+[node name="Door5" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -18.6269, 3.02031, 25.5)
 
 [node name="doorside2_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
@@ -162,11 +148,31 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 [node name="doorside1_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
-[node name="Button2" parent="Doors/Door5" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("6_lcceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2)
-doorsToControl = [NodePath("..")]
-rejectionText = "The door won't open."
+[node name="Button" parent="Doors/Door5" index="1"]
+rejectionText = "The door appears to be locked..."
 wontOpen = true
+
+[node name="Button2" parent="Doors/Door5" index="2"]
+rejectionText = "The door appears to be locked..."
+wontOpen = true
+
+[node name="Door3" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(-1, -4.37114e-08, 8.74227e-08, -4.37114e-08, 1, 4.37114e-08, -8.74227e-08, 4.37114e-08, -1, -14.9703, 3.02031, 8.17617)
+
+[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Door6" parent="Doors" instance=ExtResource("4_aslt0")]
+transform = Transform3D(1.31134e-07, -4.37114e-08, 1, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 1.31134e-07, -7.47028, 3.02031, 0.688997)
+
+[node name="doorside2_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Cell" type="Node3D" parent="." node_paths=PackedStringArray("cellDoor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.8, 40.9)
@@ -182,7 +188,15 @@ transform = Transform3D(-0.105587, 0, -0.99441, 0, 1, 0, 0.99441, 0, -0.105587, 
 [connection signal="body_entered" from="173trigger" to="173trigger" method="_on_body_entered"]
 
 [editable path="RoomArea"]
+[editable path="Doors/Door"]
+[editable path="Doors/Door/door"]
+[editable path="Doors/Door2"]
 [editable path="Doors/Door2/door"]
-[editable path="Doors/door2"]
+[editable path="Doors/Door4"]
 [editable path="Doors/Door4/door"]
+[editable path="Doors/Door5"]
 [editable path="Doors/Door5/door"]
+[editable path="Doors/Door3"]
+[editable path="Doors/Door3/door"]
+[editable path="Doors/Door6"]
+[editable path="Doors/Door6/door"]

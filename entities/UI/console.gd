@@ -15,8 +15,10 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if Input.is_action_just_pressed("console") and !GlobalPlayerVariables.immutableMenuOpen:
-		
 		GlobalPlayerVariables.consoleOpen = true
 		
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
@@ -48,7 +50,6 @@ func _input(event: InputEvent) -> void:
 		
 		commandHistory.append(commandStringArray)
 		commandHistoryIdx = commandHistory.size()-1
-		print(commandStringArray)
 		println(" ".join(commandStringArray))
 		
 		match commandStringArray[0]:
@@ -79,7 +80,7 @@ func _input(event: InputEvent) -> void:
 			"dist":
 				Commands.toggle_room_culling()
 			"lvl":
-				GameManager.game_start.rpc()
+				GameManager.game_start.rpc(GameManager.seed)
 			"kill":
 				Commands.kill_player()
 			"106":

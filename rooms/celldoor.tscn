@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxmgyck0wts7g" path="res://rooms/Models/celldoor.blend" id="2_mtcmh"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="3_mtcmh"]
 
-[node name="celldoor" type="Node3D" node_paths=PackedStringArray("animationPlayer")]
+[node name="celldoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer")]
 script = ExtResource("1_3rw1a")
 animationPlayer = NodePath("celldoor/AnimationPlayer")
 

@@ -35,13 +35,22 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Armature/Skeleton3D/DoorL-col/DoorL": {
-"mesh_instance/layers": 3
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 259,
+"physics/mask": 259
 },
 "PATH:Armature/Skeleton3D/DoorR-col/DoorR": {
-"mesh_instance/layers": 3
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 259,
+"physics/mask": 259
 },
 "PATH:Frame": {
-"mesh_instance/layers": 3
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 259,
+"physics/mask": 259
 }
 }
 }

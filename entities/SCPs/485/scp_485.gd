@@ -17,20 +17,5 @@ var texts: Dictionary[String, int] = {
 
 
 func equip():
-	GlobalPlayerVariables.interactionText.display(pick_from_list())
+	GlobalPlayerVariables.interactionText.display(ZFunc.pick_from_list(texts))
 	GlobalPlayerVariables.ambienceManager.play_sound(clickSounds[randi_range(0, clickSounds.size()-1)])
-
-
-func pick_from_list():
-	var totalWeight: int
-	
-	for weight in texts.values():
-		totalWeight +=  weight
-	
-	var randomWeight: int = randi_range(0, totalWeight-1)
-	var currentWeight: int = 0
-	
-	for option in texts.keys():
-		currentWeight += texts[option]
-		if randomWeight < currentWeight:
-			return option

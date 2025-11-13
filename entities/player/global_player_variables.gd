@@ -53,13 +53,13 @@ var playersBlinkingIDs: Array[int]
 @export var playersBlinking: Array[bool]
 @export var OnScreen173: Array[bool]
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func update_blinking(id: int, blinking: bool):
 	if is_multiplayer_authority():
 		var idx = playersBlinkingIDs.find(id)
 		playersBlinking[idx] = blinking
 
-@rpc("call_local", "any_peer")
+@rpc("reliable", "call_local", "any_peer")
 func add_blinking(id: int, blinking: bool = false):
 	if !playersBlinkingIDs.has(id):
 		playersBlinkingIDs.append(id)

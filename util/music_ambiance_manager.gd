@@ -1,7 +1,8 @@
 extends Node
 class_name AmbienceManager
 
-@export var musicPlayer: AudioStreamPlayer
+@export var musicPlayerA: AudioStreamPlayer
+@export var musicPlayerB: AudioStreamPlayer
 @export var soundsPlayerA: AudioStreamPlayer
 @export var soundsPlayerB: AudioStreamPlayer
 @export var ambiencePlayerA: AudioStreamPlayer
@@ -22,8 +23,8 @@ func _ready() -> void:
 	
 	await SignalBus.generate_level
 	
-	musicPlayer.stream = LConMusic
-	musicPlayer.play()
+	musicPlayerA.stream = LConMusic
+	musicPlayerA.play()
 	
 	ambiencePlayerA.stream = fullSiteLockdown
 	ambiencePlayerA.play()
@@ -53,11 +54,20 @@ func play_random_ambience(quicker: bool = false):
 	play_random_ambience()
 
 
+# // SCP/ROOM AMBIANCE MUSIC TRACKS
+func play_music(clip: AudioStream):
+	musicPlayerB.stream = clip
+	musicPlayerB.play()
+	
+
+
+# // NON-POSITIONAL SOUNDS
 func play_sound(clip: AudioStream):
 	soundsPlayerA.stream = clip
 	soundsPlayerA.play()
 
 
+# // FOR 173 SCRAPING
 func play_ambience(clip: AudioStream):
 	ambiencePlayerC.stream = clip
 	ambiencePlayerC.play()

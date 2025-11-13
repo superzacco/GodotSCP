@@ -6,6 +6,9 @@ extends Control
 var mainMenu: PackedScene = load("res://scenes/menu.tscn")
 
 func _input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if Input.is_action_just_pressed("quit") and !GlobalPlayerVariables.consoleOpen:
 		if GlobalPlayerVariables.inventory != null and GlobalPlayerVariables.inventory.inventoryOpen:
 			return

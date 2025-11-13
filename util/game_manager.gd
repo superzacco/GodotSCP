@@ -44,10 +44,11 @@ func clear_state():
 
 
 @rpc("reliable", "call_local", "any_peer")
-func game_start():
+func game_start(passedSeed: int):
 	if gameStarted:
 		return
 	
+	seed = passedSeed
 	SignalBus.emit_signal("generate_level")
 	startingCell.on_start_game()
 	gameStarted = true

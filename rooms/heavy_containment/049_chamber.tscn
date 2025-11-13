@@ -1,12 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbs8e406nn8yo"]
+[gd_scene load_steps=20 format=3 uid="uid://bbs8e406nn8yo"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_d04yi"]
 [ext_resource type="PackedScene" uid="uid://dovtpxtu5vygy" path="res://rooms/Models/HCon049Chamber.blend" id="1_eeosu"]
 [ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="2_7pyr0"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="3_7pyr0"]
-[ext_resource type="PackedScene" uid="uid://dlpir7u7sfxhv" path="res://rooms/big_door.tscn" id="4_p17to"]
+[ext_resource type="PackedScene" uid="uid://d12eugvcfftyc" path="res://rooms/big_door.tscn" id="4_p17to"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="4_ruo7p"]
-[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="5_a5ggg"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="5_d04yi"]
 [ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="6_nx7sk"]
 [ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="7_3lyrw"]
@@ -49,19 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.97081, 0, 15.9465)
 id = "049B"
 
 [node name="Doors" type="Node3D" parent="."]
-
-[node name="big_door" parent="Doors" instance=ExtResource("4_p17to")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00408077, 0.343907, -2.24503)
-
-[node name="Keycardbutton" parent="Doors/big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("5_a5ggg")]
-transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, -0.163986, 0.777012)
-doorsToControl = [NodePath("..")]
-keycardLevel = 3
-
-[node name="Keycardbutton2" parent="Doors/big_door" node_paths=PackedStringArray("doorsToControl") instance=ExtResource("5_a5ggg")]
-transform = Transform3D(1, 0, 1.7683e-07, 0, 1, 0, -1.7683e-07, 0, 1, -4, -0.163986, -0.780636)
-doorsToControl = [NodePath("..")]
-keycardLevel = 3
 
 [node name="unopenable1" type="StaticBody3D" parent="Doors" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.001, 0.0360688, 22.4801)
@@ -303,7 +289,20 @@ transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, -5
 [node name="keycard004" parent="." instance=ExtResource("17_a5ggg")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.66621, -0.414663, -10.1761)
 
+[node name="BigDoor" parent="." instance=ExtResource("4_p17to")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.20131)
+
+[node name="Keycardbutton2" parent="BigDoor" index="2"]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
+keycardLevel = 3
+
+[node name="Keycardbutton" parent="BigDoor" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.834308)
+keycardLevel = 3
+
 [editable path="Doors/unopenable1/door"]
 [editable path="Doors/unopenable2/door"]
 [editable path="Doors/unopenable3/door"]
 [editable path="Doors/unopenable4/door"]
+[editable path="BigDoor"]
+[editable path="BigDoor/big_door"]

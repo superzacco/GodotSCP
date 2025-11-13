@@ -35,19 +35,22 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:914": {
-"mesh_instance/layers": 3
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 3,
+"physics/mask": 3
 },
 "PATH:914_001": {
-"mesh_instance/layers": 3
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 3,
+"physics/mask": 3
 },
 "PATH:Cube": {
-"mesh_instance/layers": 3
-},
-"PATH:Key": {
-"mesh_instance/layers": 0
-},
-"PATH:Knob": {
-"mesh_instance/layers": 0
+"generate/physics": true,
+"mesh_instance/layers": 3,
+"physics/layer": 3,
+"physics/mask": 3
 }
 }
 }

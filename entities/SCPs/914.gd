@@ -8,8 +8,8 @@ var knobSetting: int
 @export var coarseDict: Dictionary[String, PackedScene]
 @export var roughDict: Dictionary[String, PackedScene]
 
-@export var doorL: StaticBody3D
-@export var doorR: StaticBody3D
+@export var doorL: Door
+@export var doorR: Door
 @export var refiningAudioPlayer: AudioStreamPlayer3D
 
 @export var knob: MeshInstance3D
@@ -38,15 +38,16 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	interactionScript = GlobalPlayerVariables.interactionScript
-	doorL.doorOpen = true
-	doorR.doorOpen = true
+	
+	doorL.open.rpc()
+	doorR.open.rpc()
 
 
 func _process(delta: float) -> void:
 	if keyJuice > 500 and fakeNearKey and !refining:
 		fakeNearKey = false
 		turningKnobUI.hide()
-		activate()
+		activate.rpc()
 	
 	if Input.is_action_just_pressed("interact"):
 		keyJuice = 0
@@ -80,13 +81,14 @@ func _process(delta: float) -> void:
 	knob.rotation.z = clamp(knob.rotation.z, deg_to_rad(-90), deg_to_rad(90))
 
 
+@rpc("reliable", "any_peer", "call_local")
 func activate():
 	refining = true
 	
 	refiningAudioPlayer.play()
 	await get_tree().create_timer(0.5).timeout
-	doorL.toggle_door()
-	doorR.toggle_door()
+	doorL.close()
+	doorR.close()
 	await get_tree().create_timer(15).timeout
 	
 	for inputItem in itemsInInput:
@@ -109,8 +111,9 @@ func activate():
 				if veryFineDict.has(inputItem.itemName):
 					outputItem = veryFineDict[inputItem.itemName]
 		
-		print(outputItem)
-		if outputItem != null:
+		print("914 Output Item: %s" % outputItem)
+		print("914 Input Item: %s -- Knob Setting: %s" % [inputItem, knobSetting])
+		if outputItem != null: 
 			var spawnedItem = outputItem.instantiate()
 			get_tree().root.add_child(spawnedItem)
 			spawnedItem.global_position = outputPoint.global_position
@@ -119,8 +122,8 @@ func activate():
 		else:
 			inputItem.global_position = outputPoint.global_position
 	
-	doorL.toggle_door()
-	doorR.toggle_door()
+	doorL.open()
+	doorR.open()
 	
 	refining = false
 

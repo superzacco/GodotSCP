@@ -88,12 +88,17 @@ var finishedRoomGrid = []
 var xSize: int
 var zSize: int
 var rng: RandomNumberGenerator
+var navMesh: NavigationMesh 
+var navRegion: NavigationRegion3D
 
 
 func _ready() -> void:
 	GameManager.rng.seed = randi_range(-999999999, 999999999)
 	rng = GameManager.rng
 	rng.seed = GameManager.rng.seed
+	
+	navRegion = $Facility/FacilityRegion
+	navMesh = $Facility/FacilityRegion.navigation_mesh
 	
 	for i in mapWidth:
 		temporaryRooms.append([])
@@ -138,7 +143,6 @@ func generate_map():
 			GlobalPlayerVariables.facilityManager.rooms.append(room)
 		room.hide()
 	
-	GameManager.game_start()
 	SignalBus.emit_signal("level_generation_finished")
 
 
@@ -430,14 +434,6 @@ func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):
 
 
 func generate_nav_mesh():
-	var mesh = NavigationMesh.new()
-	
-	mesh.agent_radius = 0.325
-	mesh.agent_height = 1
-	mesh.cell_size = 0.05
-	
-	navigationRegion.navigation_mesh = mesh
-	
-	await get_tree().create_timer(0.5).timeout
-	
+	await get_tree().create_timer(0.25).timeout
 	navigationRegion.bake_navigation_mesh()
+	await navigationRegion.bake_finished

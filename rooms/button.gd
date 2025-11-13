@@ -2,7 +2,8 @@ extends Node3D
 
 @export var doorsToControl: Array[Door]
 @export var rejectionText: String
-@export var wontOpen: bool
+@export var wontOpen: bool = false
+@export var disabled: bool = false
 
 @export var extraToControl: Node3D
 
@@ -10,6 +11,9 @@ extends Node3D
 @export_enum("Button", "KeycardButton") var buttonType: int = 0
 @export var keycardLevel: int = 0
 
+func _ready() -> void:
+	if disabled:
+		queue_free()
 
 @rpc("reliable", "call_local", "any_peer")
 func on_pressed():
