@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=45 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
 [ext_resource type="Shader" uid="uid://dn2wmit8hif78" path="res://shaders/motion_blur.gdshader" id="2_qpopc"]
+[ext_resource type="AudioStream" uid="uid://44x4u37hyj6i" path="res://audio/character/player/death_touched.ogg" id="2_wq0jh"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
@@ -231,6 +232,7 @@ sprintReplenishRate = 15.0
 blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
 playerModel = NodePath("StuffToRotate/classd001")
 modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
+deathsound_106 = ExtResource("2_wq0jh")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_b2kln")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bclsa0mrujt1x"]
+[gd_scene load_steps=18 format=3 uid="uid://bclsa0mrujt1x"]
 
 [ext_resource type="Script" uid="uid://bjl6a80c4rqvc" path="res://entities/SCPs/106/scp_106.gd" id="1_breko"]
 [ext_resource type="PackedScene" uid="uid://dy0ygrxxdim7s" path="res://entities/SCPs/106/corrosive.tscn" id="2_hx8ni"]
@@ -7,10 +7,17 @@
 [ext_resource type="AudioStream" uid="uid://cg0143o5qmaw" path="res://audio/scps/106/106Chase.ogg" id="3_hx8ni"]
 [ext_resource type="AudioStream" uid="uid://b1x4i7l276gwn" path="res://audio/steps/StepPD1.ogg" id="4_tokrx"]
 [ext_resource type="AudioStream" uid="uid://bdonxt4exxue4" path="res://audio/steps/StepPD2.ogg" id="5_i5iqq"]
+[ext_resource type="AudioStream" uid="uid://gj8dq2ajue28" path="res://audio/scps/106/Decay0.ogg" id="7_i5iqq"]
+[ext_resource type="AudioStream" uid="uid://df7nieknao5st" path="res://audio/scps/106/PD.ogg" id="8_8dxoy"]
+[ext_resource type="AudioStream" uid="uid://cjunbl3vguj14" path="res://audio/scps/106/Laugh.ogg" id="8_62ji8"]
+[ext_resource type="AudioStream" uid="uid://dsly5sg0ysest" path="res://audio/scps/106/Breathing.ogg" id="9_62ji8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i88jd"]
-radius = 0.25
+radius = 0.15
 height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h5wwc"]
+radius = 0.3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i88jd"]
 radius = 25.0
@@ -23,51 +30,64 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_62ji8"]
+
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_h5wwc"]
 
 [node name="scp106" type="CharacterBody3D" node_paths=PackedStringArray("agent", "animationPlayer")]
 script = ExtResource("1_breko")
-speed = 1.0
+speed = 1.2
+minSpawnTime = 600
+maxSpawnTime = 900
 agent = NodePath("NavigationAgent3D")
 animationPlayer = NodePath("106/AnimationPlayer")
 corrosiveDecal = ExtResource("2_hx8ni")
 stepSounds = Array[AudioStream]([ExtResource("3_h5wwc"), ExtResource("4_tokrx"), ExtResource("5_i5iqq")])
 chaseAmbiance = ExtResource("3_hx8ni")
+sendtoPDSound = ExtResource("7_i5iqq")
+laugh = ExtResource("8_62ji8")
+breathing = ExtResource("9_62ji8")
+PDAmbiance = ExtResource("8_8dxoy")
 
 [node name="Decal Timer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.785483, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.785, 0)
 shape = SubResource("CapsuleShape3D_i88jd")
-disabled = true
 
 [node name="106" parent="." instance=ExtResource("2_i88jd")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.0214167, 0)
 
 [node name="Skeleton3D" parent="106/Armature" index="0"]
-bones/0/position = Vector3(0.000326671, -0.00554419, -1.28057e-09)
-bones/0/rotation = Quaternion(0.0777307, 0.00203915, -0.000919181, 0.996972)
-bones/1/rotation = Quaternion(0.993281, 0.0503332, 0.0770409, 0.0701755)
-bones/2/rotation = Quaternion(0.054209, 0.0120878, 0.0351731, 0.997837)
-bones/3/rotation = Quaternion(0.133131, -0.651037, 0.714278, -0.219622)
-bones/4/rotation = Quaternion(0.989088, -0.0495427, -0.0643987, 0.122892)
-bones/5/rotation = Quaternion(0.0792712, -0.0111852, -0.0560301, 0.995214)
-bones/6/rotation = Quaternion(-0.220415, -0.654169, 0.660112, 0.296197)
-bones/7/rotation = Quaternion(-0.0491615, -0.0351637, -0.00777292, 0.998141)
-bones/8/position = Vector3(0.12344, 0.272292, -0.0311806)
-bones/8/rotation = Quaternion(0.827762, 0.100061, 0.519547, -0.186732)
-bones/9/rotation = Quaternion(-0.151052, 0.0132168, -0.127262, 0.980211)
-bones/10/rotation = Quaternion(-0.0529684, -0.421894, 0.0923653, 0.900371)
-bones/11/position = Vector3(-0.126376, 0.272408, -0.0153078)
-bones/11/rotation = Quaternion(0.688772, -0.118919, -0.699886, -0.147007)
-bones/12/rotation = Quaternion(-0.145664, 0.0638584, 0.0275092, 0.986888)
-bones/13/rotation = Quaternion(-0.133687, 0.403491, -0.0218701, 0.9049)
-bones/14/rotation = Quaternion(0.194744, 0.0298341, -0.00569933, 0.980384)
+bones/0/position = Vector3(-3.30872e-24, -1.97363, 2.98023e-08)
+bones/0/rotation = Quaternion(0.0933499, -1.38623e-17, -1.38623e-17, 0.995633)
+bones/1/rotation = Quaternion(0.976143, 0.0536855, 0.0602685, 0.201568)
+bones/2/rotation = Quaternion(0.467737, 0.0247649, 0.108494, 0.876834)
+bones/3/rotation = Quaternion(0.170534, -0.536442, 0.734293, -0.379424)
+bones/4/rotation = Quaternion(0.976143, -0.0536855, -0.0602685, 0.201568)
+bones/5/rotation = Quaternion(0.0682997, -0.0107829, -0.0541005, 0.996139)
+bones/6/rotation = Quaternion(-0.245135, -0.504617, 0.703225, 0.436744)
+bones/7/rotation = Quaternion(0.0663856, -0.0307922, -0.00210614, 0.997317)
+bones/8/position = Vector3(0.123454, 0.272364, -0.0309663)
+bones/8/rotation = Quaternion(0.876724, -0.0220072, 0.428963, -0.216475)
+bones/9/rotation = Quaternion(0.0723478, 0.263896, -0.342619, 0.898742)
+bones/10/rotation = Quaternion(-0.265398, -0.0946092, -0.311442, 0.907534)
+bones/11/position = Vector3(-0.126389, 0.272336, -0.0155219)
+bones/11/rotation = Quaternion(0.779123, -0.0343492, -0.603792, -0.164994)
+bones/12/rotation = Quaternion(-0.292753, 0.00417764, 0.675477, 0.676764)
+bones/13/rotation = Quaternion(-0.118236, 0.111298, -0.426029, 0.890018)
+bones/14/rotation = Quaternion(-0.131435, 0.0305886, 0.00411443, 0.990844)
 
 [node name="AnimationPlayer" parent="106" index="1"]
 playback_default_blend_time = 0.2
 blend_times = [&"walk", &"rise", 0.5, &"walk", &"walk", 0.5]
+
+[node name="TeleportZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TeleportZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_h5wwc")
 
 [node name="ChaseRadius" type="Area3D" parent="."]
 
@@ -85,6 +105,18 @@ debug_enabled = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_i88jd")
 
+[node name="GlobalAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_62ji8")
+autoplay = true
+
+[node name="Rising" type="AudioStreamPlayer3D" parent="."]
+volume_db = -8.0
+
+[node name="Breathing" type="AudioStreamPlayer3D" parent="."]
+attenuation_model = 1
+volume_db = -16.0
+unit_size = 8.0
+
 [node name="StepSounds" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamPolyphonic_h5wwc")
 volume_db = -16.0
@@ -92,6 +124,11 @@ volume_db = -16.0
 [node name="Timer" type="Timer" parent="StepSounds"]
 wait_time = 0.74
 
+[node name="SummonTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="body_entered" from="TeleportZone" to="." method="_on_teleportzone_body_entered"]
 [connection signal="area_exited" from="ChaseRadius" to="." method="_on_chase_radius_area_exited"]
 
 [editable path="106"]

@@ -13,6 +13,7 @@ var nearestInteractable: Node3D = null
 func _ready() -> void:
 	if !is_multiplayer_authority():
 		interactionSprite.set_process(false)
+		interactionSprite.hide()
 	
 	GlobalPlayerVariables.interactionScript = self
 	GlobalPlayerVariables.interactionSprite = interactionSprite

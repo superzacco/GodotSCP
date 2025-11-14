@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs1exj73m5bg0"]
+
+[ext_resource type="Script" uid="uid://bbm4jusatl2dw" path="res://rooms/pocket_dimension/pocket_dimension_release_point.gd" id="1_0n87p"]
+
+[node name="PocketDimensionReleasePoint" type="Marker3D"]
+gizmo_extents = 1.0
+script = ExtResource("1_0n87p")

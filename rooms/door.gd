@@ -6,7 +6,7 @@ class_name Door
 @export var openSounds: Array[AudioStream]
 @export var closeSounds: Array[AudioStream]
 
-@export var ignore079: bool = false
+@export var closableBy079: bool = false
 
 var doorOpen: bool = false
 var opening: bool = false
@@ -16,6 +16,10 @@ func _ready() -> void:
 	self.global_position += Vector3(0, 3, 0)
 	await SignalBus.level_generation_finished
 	self.global_position -= Vector3(0, 3, 0)
+	
+	if multiplayer.is_server():
+		if ZFunc.randInPercent(2) and closableBy079 == true:
+			open.rpc()
 
 @rpc("reliable", "call_local", "any_peer")
 func toggle_door():
@@ -60,7 +64,7 @@ func one_seven_three_open():
 
 @rpc("reliable", "call_local", "any_peer")
 func scp_079_close():
-	if ignore079 == true:
+	if !closableBy079 == true:
 		return
 	
 	animationPlayer.speed_scale = 1.5

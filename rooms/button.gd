@@ -17,7 +17,6 @@ func _ready() -> void:
 
 @rpc("reliable", "call_local", "any_peer")
 func on_pressed():
-	
 	if extraToControl == null and doorsToControl.size() <= 0:
 		push_error("Button with unassigned things")
 		return
@@ -25,7 +24,8 @@ func on_pressed():
 	if wontOpen:
 		$Fail.play()
 		if GlobalPlayerVariables.interactionText != null:
-			GlobalPlayerVariables.interactionText.display(rejectionText)
+			if multiplayer.get_unique_id() == multiplayer.get_remote_sender_id():
+				GlobalPlayerVariables.interactionText.display(rejectionText)
 		return
 	
 	if buttonType == 0:

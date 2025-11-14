@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbs8e406nn8yo"]
+[gd_scene load_steps=10 format=3 uid="uid://bbs8e406nn8yo"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_d04yi"]
 [ext_resource type="PackedScene" uid="uid://dovtpxtu5vygy" path="res://rooms/Models/HCon049Chamber.blend" id="1_eeosu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="3_7pyr0"]
 [ext_resource type="PackedScene" uid="uid://d12eugvcfftyc" path="res://rooms/big_door.tscn" id="4_p17to"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="5_m6l6y"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="9_fkbu8"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="16_3lyrw"]
 [ext_resource type="PackedScene" uid="uid://dowuwffank011" path="res://entities/items/cards/keycard04.tscn" id="17_a5ggg"]
 
@@ -30,16 +31,22 @@ id = "049B"
 [node name="BigDoor" parent="Doors" instance=ExtResource("4_p17to")]
 transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.20131)
 
-[node name="Keycardbutton2" parent="Doors/BigDoor" index="2"]
+[node name="Keycardbutton2" parent="Doors/BigDoor" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
 keycardLevel = 3
 
-[node name="Keycardbutton" parent="Doors/BigDoor" index="3"]
+[node name="Keycardbutton" parent="Doors/BigDoor" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.834308)
 keycardLevel = 3
 
 [node name="unopenable" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9995, 0.0461754, 22.51)
+
+[node name="doorside2_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/unopenable" index="1"]
 rejectionText = "The door appears to be locked..."
@@ -52,6 +59,12 @@ wontOpen = true
 [node name="unopenable2" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0005, 0.0461754, -22.4212)
 
+[node name="doorside2_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Button" parent="Doors/unopenable2" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -63,6 +76,12 @@ wontOpen = true
 [node name="unopenable3" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.06701, 0.0461754, -18.7349)
 
+[node name="doorside2_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Button" parent="Doors/unopenable3" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -73,6 +92,12 @@ wontOpen = true
 
 [node name="unopenable4" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.09319, 0.0461754, 18.7251)
+
+[node name="doorside2_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/unopenable4" index="1"]
 rejectionText = "The door appears to be locked..."
@@ -167,6 +192,10 @@ transform = Transform3D(9.17939e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, 9.17939e-08, -5
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.66621, -0.414663, -10.1761)
 collision_layer = 2
 collision_mask = 2
+
+[node name="TeleportPoint" parent="." instance=ExtResource("9_fkbu8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+tpName = "049"
 
 [editable path="Doors/BigDoor"]
 [editable path="Doors/BigDoor/big_door"]

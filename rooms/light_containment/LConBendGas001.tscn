@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bckxtfpowonvq"]
+[gd_scene load_steps=20 format=3 uid="uid://bckxtfpowonvq"]
 
 [ext_resource type="Script" uid="uid://dvckw1oge0tu" path="res://rooms/light_containment/gas_chamber_room.gd" id="1_x8qef"]
 [ext_resource type="PackedScene" uid="uid://4cvr143oel6j" path="res://rooms/Models/LConBendGas001.blend" id="2_nsxgj"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="12_t658x"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="16_ps7mm"]
 [ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="16_q8o8c"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="16_x8qef"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="18_clspc"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="19_u6j3f"]
 [ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="20_u6j3f"]
@@ -42,7 +43,7 @@ size = Vector2(3, 3)
 [node name="LConBendGas001" type="Node3D" node_paths=PackedStringArray("gasEmitters", "doors") groups=["room"]]
 script = ExtResource("1_x8qef")
 gasEmitters = [NodePath("Gas Emitters/GPUParticles3D"), NodePath("Gas Emitters/GPUParticles3D2"), NodePath("Gas Emitters/GPUParticles3D3"), NodePath("Gas Emitters/GPUParticles3D4")]
-doors = [null, null]
+doors = [NodePath("Doors/Door3"), NodePath("Doors/Door4")]
 
 [node name="LConBendGasModel" parent="." instance=ExtResource("2_nsxgj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -88,7 +89,7 @@ panning_strength = 0.0
 bus = &"Sound Effects"
 
 [node name="GasMask" parent="." instance=ExtResource("20_u6j3f")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -2.76953, 0.0439878, -2.4507)
+transform = Transform3D(-0.905894, 0, -0.423504, 0, 1, 0, 0.423504, 0, -0.905894, -2.76953, 0.0439878, -2.4507)
 collision_layer = 2
 collision_mask = 2
 
@@ -152,7 +153,6 @@ keycardLevel = 3
 
 [node name="Door3" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09619, 0.0331171, -2.11391)
-ignore079 = true
 
 [node name="Button" parent="Doors/Door3" index="1"]
 visible = false
@@ -164,7 +164,6 @@ disabled = true
 
 [node name="Door4" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.18552, 0.0331171, 5.91612)
-ignore079 = true
 
 [node name="Button" parent="Doors/Door4" index="1"]
 visible = false
@@ -203,6 +202,10 @@ transform = Transform3D(-3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 
 
 [node name="shelf01" parent="Props" instance=ExtResource("19_u6j3f")]
 transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -2.82376, 0.511979, -2.34283)
+
+[node name="TeleportPoint" parent="." instance=ExtResource("16_x8qef")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -5, 0.5, -5)
+tpName = "gas"
 
 [connection signal="body_entered" from="RoomArea" to="." method="_on_room_area_body_entered"]
 [connection signal="body_exited" from="RoomArea" to="." method="_on_room_area_body_exited"]

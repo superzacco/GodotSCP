@@ -94,8 +94,6 @@ var navRegion: NavigationRegion3D
 
 func _ready() -> void:
 	GameManager.rng.seed = randi_range(-999999999, 999999999)
-	rng = GameManager.rng
-	rng.seed = GameManager.rng.seed
 	
 	navRegion = $Facility/FacilityRegion
 	navMesh = $Facility/FacilityRegion.navigation_mesh
@@ -121,6 +119,8 @@ func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
 	await SignalBus.generate_level
 	
+	rng = GameManager.rng
+	rng.seed = GameManager.seed
 	print("Generating with Seed: %s" % rng.seed)
 	
 	print(rng.randi_range(1,100))
@@ -407,8 +407,7 @@ func place_doors():
 			spawnedDoor.global_position.y += 1.2
 			doorLocations.append(point.global_position)
 			
-			if ZFunc.randInPercent(10):
-				spawnedDoor.open.rpc()
+			
 
 
 func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):

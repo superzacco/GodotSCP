@@ -116,10 +116,10 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohbr2"]
-size = Vector3(5, 5, 2.75)
+size = Vector3(5, 5, 2.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k17ir"]
-size = Vector3(5, 5, 3)
+size = Vector3(5, 5, 3.5)
 
 [node name="TeslaGate" type="Sprite3D"]
 transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.637, 0, 0, 0)
@@ -142,6 +142,7 @@ shape = SubResource("BoxShape3D_ohbr2")
 [node name="TeslaTriggerBox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TeslaTriggerBox"]
+transform = Transform3D(0.999999, 0, -1.42109e-14, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_k17ir")
 
 [node name="TeslaLight1" type="OmniLight3D" parent="."]

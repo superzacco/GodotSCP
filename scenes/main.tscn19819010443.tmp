@@ -1,0 +1,230 @@
+[gd_scene load_steps=79 format=3 uid="uid://iyctvu16a6uw"]
+
+[ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
+[ext_resource type="PackedScene" uid="uid://cx1ergchu2j1f" path="res://rooms/light_containment/spawnroom.tscn" id="3_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://c0ltomxgby0du" path="res://rooms/checkpoint/LConToHconCheckpoint.tscn" id="4_fv21b"]
+[ext_resource type="PackedScene" uid="uid://dw3hwsiih5tal" path="res://rooms/light_containment/914_chamber.tscn" id="4_og1vs"]
+[ext_resource type="PackedScene" uid="uid://cq36u66dwnw6w" path="res://rooms/light_containment/LConTeslaOffice.tscn" id="4_y6deb"]
+[ext_resource type="PackedScene" uid="uid://2tmrt17xnndd" path="res://rooms/checkpoint/HConToEntCheckpoint.tscn" id="5_bu4jf"]
+[ext_resource type="PackedScene" uid="uid://cuqrl2w7xfb23" path="res://rooms/light_containment/LconHall003.tscn" id="5_og1vs"]
+[ext_resource type="PackedScene" uid="uid://bkggfnfyoup03" path="res://rooms/light_containment/LConEnd001.tscn" id="6_2wyq8"]
+[ext_resource type="PackedScene" uid="uid://bckxtfpowonvq" path="res://rooms/light_containment/LConBendGas001.tscn" id="7_2f3dj"]
+[ext_resource type="PackedScene" uid="uid://denjqd6filqia" path="res://rooms/light_containment/LConHall001.tscn" id="7_vxglm"]
+[ext_resource type="PackedScene" uid="uid://dmlmovv3qtocd" path="res://rooms/light_containment/LConHall002.tscn" id="8_2f3dj"]
+[ext_resource type="PackedScene" uid="uid://dxnhftdwber4s" path="res://rooms/light_containment/LConTestingChamber001.tscn" id="8_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://6evvbgv0kbkg" path="res://rooms/light_containment/LConHallStorage.tscn" id="9_vchkt"]
+[ext_resource type="PackedScene" uid="uid://b2ubs0d7q4xbr" path="res://rooms/light_containment/LCon3Way001.tscn" id="9_yq6so"]
+[ext_resource type="PackedScene" uid="uid://c51e2qcf67eci" path="res://rooms/light_containment/LCon4Way001.tscn" id="10_fv21b"]
+[ext_resource type="PackedScene" uid="uid://dcydi3hgkvmsu" path="res://rooms/light_containment/LConTesla001.tscn" id="10_txyw0"]
+[ext_resource type="PackedScene" uid="uid://cprgdtnc3bad7" path="res://rooms/light_containment/LConBend001.tscn" id="11_tel4y"]
+[ext_resource type="PackedScene" uid="uid://diwit81i4xr4" path="res://rooms/light_containment/LconHallElevator001.tscn" id="12_ids8r"]
+[ext_resource type="PackedScene" uid="uid://c6ao02qwvnt4g" path="res://rooms/heavy_containment/HConEnd001.tscn" id="12_qkpxi"]
+[ext_resource type="PackedScene" uid="uid://7ro1b7portdx" path="res://rooms/heavy_containment/HConHall001.tscn" id="13_5q0nq"]
+[ext_resource type="PackedScene" uid="uid://bgye3c3incbt3" path="res://rooms/heavy_containment/HConTesla001.tscn" id="13_o7ddy"]
+[ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://dmrarvt6khysl" path="res://rooms/heavy_containment/HCon049Hall.tscn" id="15_dnhof"]
+[ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
+[ext_resource type="PackedScene" uid="uid://bv2x1o14vua8t" path="res://rooms/entrance_zone/EntHallOffice001.tscn" id="16_kf5aa"]
+[ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
+[ext_resource type="PackedScene" uid="uid://cqulx25h6s2au" path="res://rooms/entrance_zone/EntGateA.tscn" id="16_t5ykj"]
+[ext_resource type="PackedScene" uid="uid://kpr4ocxg4x8d" path="res://rooms/entrance_zone/EntGateB.tscn" id="17_e755i"]
+[ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_fuf3a"]
+[ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="18_og1vs"]
+[ext_resource type="Environment" uid="uid://3hc4e6f8vcah" path="res://entities/graphics.tres" id="18_pibwh"]
+[ext_resource type="Script" uid="uid://d32la25i6r8nw" path="res://util/music_ambiance_manager.gd" id="18_pm3ni"]
+[ext_resource type="Script" uid="uid://dd4rvwmhcar75" path="res://multiplayer/spectator_manager.gd" id="19_2f3dj"]
+[ext_resource type="Script" uid="uid://bqrvo2pd8bolh" path="res://levelgen/world_environment.gd" id="19_c6pm6"]
+[ext_resource type="AudioStream" uid="uid://bs5rf6svm0df2" path="res://audio/ambient/LCZmusic.ogg" id="19_y6deb"]
+[ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="20_5he1u"]
+[ext_resource type="PackedScene" uid="uid://diugygficpf1s" path="res://rooms/light_containment/LCon3Way002.tscn" id="20_augu2"]
+[ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
+[ext_resource type="PackedScene" uid="uid://ci25vwa1xs255" path="res://entities/player/spectatorCamera.tscn" id="20_yq6so"]
+[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
+[ext_resource type="PackedScene" uid="uid://clegh7vjl7vod" path="res://rooms/heavy_containment/HConHall002.tscn" id="22_0loja"]
+[ext_resource type="PackedScene" uid="uid://orri5ldfyoc7" path="res://rooms/light_containment/LCon4Way002.tscn" id="22_tm6hj"]
+[ext_resource type="PackedScene" uid="uid://dasm70153x3ph" path="res://rooms/entrance_zone/EntEnd001.tscn" id="23_nvyfr"]
+[ext_resource type="PackedScene" uid="uid://bhbhaindio14i" path="res://rooms/entrance_zone/EntHall001.tscn" id="24_ty1g6"]
+[ext_resource type="PackedScene" uid="uid://cipmn1xaonh7y" path="res://rooms/entrance_zone/Ent3Way001.tscn" id="25_bjg73"]
+[ext_resource type="PackedScene" uid="uid://2m7c1q81nxo7" path="res://rooms/entrance_zone/Ent4Way001.tscn" id="26_bu4jf"]
+[ext_resource type="AudioStream" uid="uid://b124ybbn0bjvr" path="res://audio/ambient/general/Ambient0.ogg" id="26_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://c27fnwp1k4213" path="res://rooms/entrance_zone/EntBend001.tscn" id="27_o7ddy"]
+[ext_resource type="AudioStream" uid="uid://bc2vehp2j6lys" path="res://audio/ambient/fullsitelockdown.ogg" id="27_tel4y"]
+[ext_resource type="AudioStream" uid="uid://boomnik4hkl8" path="res://audio/ambient/general/Ambient2.ogg" id="28_txyw0"]
+[ext_resource type="AudioStream" uid="uid://du1viwv50yw06" path="res://audio/ambient/general/Ambient3.ogg" id="29_vc5cj"]
+[ext_resource type="PackedScene" uid="uid://dop2o8hoak366" path="res://rooms/heavy_containment/HConHall003.tscn" id="30_gdvew"]
+[ext_resource type="AudioStream" uid="uid://bj4nahfvgd5bm" path="res://audio/ambient/general/Ambient4.ogg" id="30_nvyfr"]
+[ext_resource type="AudioStream" uid="uid://b6p3tjnxsh4ji" path="res://audio/ambient/general/Ambient6.ogg" id="31_ty1g6"]
+[ext_resource type="AudioStream" uid="uid://csds7k22y3o6e" path="res://audio/ambient/general/Ambient7.ogg" id="32_j2jfr"]
+[ext_resource type="PackedScene" uid="uid://bxm6mcif6q808" path="res://rooms/heavy_containment/HCon3Way002.tscn" id="32_xljpf"]
+[ext_resource type="AudioStream" uid="uid://uqkjms4xaosg" path="res://audio/ambient/general/Ambient8.ogg" id="33_bjg73"]
+[ext_resource type="AudioStream" uid="uid://clbr6345jrfgm" path="res://audio/ambient/general/Ambient9.ogg" id="34_bu4jf"]
+[ext_resource type="AudioStream" uid="uid://dnjktgqqin8ai" path="res://audio/ambient/general/Ambient10.ogg" id="35_o7ddy"]
+[ext_resource type="AudioStream" uid="uid://beh0bjchplonr" path="res://audio/ambient/general/Ambient11.ogg" id="36_0loja"]
+[ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
+[ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
+[ext_resource type="AudioStream" uid="uid://ceabcywibvtxy" path="res://audio/scps/079/Broadcast0.ogg" id="54_a82wo"]
+[ext_resource type="AudioStream" uid="uid://bdx62o7eplbrs" path="res://audio/scps/079/Broadcast1.ogg" id="55_gdvew"]
+[ext_resource type="AudioStream" uid="uid://b3ax04pxempad" path="res://audio/scps/079/Broadcast2.ogg" id="56_kjtvk"]
+[ext_resource type="AudioStream" uid="uid://dbd1eugkc68ye" path="res://audio/scps/079/Broadcast3.ogg" id="57_xrs0c"]
+[ext_resource type="AudioStream" uid="uid://bcvyhwgvxdudj" path="res://audio/scps/079/Broadcast4.ogg" id="58_xljpf"]
+[ext_resource type="AudioStream" uid="uid://tqchhn7f2fkn" path="res://audio/scps/079/Broadcast5.ogg" id="59_j4bwh"]
+[ext_resource type="PackedScene" uid="uid://bbs8e406nn8yo" path="res://rooms/heavy_containment/049_chamber.tscn" id="59_tm6hj"]
+[ext_resource type="AudioStream" uid="uid://cehc2bpgdxqkd" path="res://audio/scps/079/Broadcast6.ogg" id="60_ksmap"]
+[ext_resource type="AudioStream" uid="uid://bkak1kdex6dsy" path="res://audio/scps/079/Broadcast7.ogg" id="61_ygd8o"]
+[ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
+[ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
+[ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_xrs0c"]
+
+[sub_resource type="Compositor" id="Compositor_xljpf"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294967039
+cell_size = 0.1
+agent_radius = 0.1
+region_min_size = 8.0
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("facilityMultiplayerSpawner", "doorMultiplayerSpawner", "navigationRegion", "doorsNode")]
+top_level = true
+script = ExtResource("1_yc10j")
+facilityMultiplayerSpawner = NodePath("Facility/FacilityRegion/FacilitySpawner")
+doorMultiplayerSpawner = NodePath("Facility/Doors/DoorSpawner")
+navigationRegion = NodePath("Facility/FacilityRegion")
+doorsNode = NodePath("Facility/Doors")
+door = ExtResource("2_jscy8")
+spawnRoom = ExtResource("3_pm3ni")
+LContoHConCheckpoint = ExtResource("4_fv21b")
+HContoENTCheckpoint = ExtResource("5_bu4jf")
+necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
+necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r")])
+necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
+necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof")])
+necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
+necessaryEntTwoWayHalls = Array[PackedScene]([ExtResource("16_kf5aa")])
+fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
+fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
+fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so"), ExtResource("20_augu2")])
+fillerLConFourWayHalls = Array[PackedScene]([ExtResource("10_fv21b"), ExtResource("22_tm6hj")])
+fillerLConBends = Array[PackedScene]([ExtResource("11_tel4y")])
+fillerHConEndRooms = Array[PackedScene]([ExtResource("12_qkpxi")])
+fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq"), ExtResource("22_0loja"), ExtResource("30_gdvew")])
+fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k"), ExtResource("32_xljpf")])
+fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
+fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
+fillerEntEndRooms = Array[PackedScene]([ExtResource("23_nvyfr")])
+fillerEntTwoWayHalls = Array[PackedScene]([ExtResource("24_ty1g6")])
+fillerEntThreeWayHalls = Array[PackedScene]([ExtResource("25_bjg73")])
+fillerEntFourWayHalls = Array[PackedScene]([ExtResource("26_bu4jf")])
+fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
+
+[node name="SpectatorScreenManager" type="Node" parent="."]
+script = ExtResource("19_2f3dj")
+spectatorScene = ExtResource("20_yq6so")
+
+[node name="Facility Manager" type="Node" parent="."]
+script = ExtResource("17_fuf3a")
+
+[node name="OtherPlayer" type="AudioStreamPlayer" parent="Facility Manager"]
+
+[node name="LightTimer" type="Timer" parent="Facility Manager"]
+
+[node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayerA", "musicPlayerB", "soundsPlayerA", "soundsPlayerB", "ambiencePlayerA", "ambiencePlayerB", "ambiencePlayerC")]
+script = ExtResource("18_pm3ni")
+musicPlayerA = NodePath("AmbienceMusicA")
+musicPlayerB = NodePath("AmbienceMusicB")
+soundsPlayerA = NodePath("SoundsPlayerA")
+soundsPlayerB = NodePath("SoundsPlayerB")
+ambiencePlayerA = NodePath("AmbiencePlayerA")
+ambiencePlayerB = NodePath("AmbiencePlayerB")
+ambiencePlayerC = NodePath("AmbiencePlayerC")
+randomAmbience = Array[AudioStream]([ExtResource("26_cjqg0"), ExtResource("28_txyw0"), ExtResource("29_vc5cj"), ExtResource("30_nvyfr"), ExtResource("31_ty1g6"), ExtResource("32_j2jfr"), ExtResource("33_bjg73"), ExtResource("34_bu4jf"), ExtResource("35_o7ddy"), ExtResource("36_0loja"), ExtResource("37_ids8r"), ExtResource("38_dnhof")])
+Intercom079Ambiance = Array[AudioStream]([ExtResource("54_a82wo"), ExtResource("55_gdvew"), ExtResource("56_kjtvk"), ExtResource("57_xrs0c"), ExtResource("58_xljpf"), ExtResource("59_j4bwh"), ExtResource("60_ksmap"), ExtResource("61_ygd8o")])
+LConMusic = ExtResource("19_y6deb")
+fullSiteLockdown = ExtResource("27_tel4y")
+spawnInSound = ExtResource("20_y6deb")
+
+[node name="AmbiencePlayerA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Sound Effects"
+
+[node name="AmbiencePlayerB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Sound Effects"
+
+[node name="AmbiencePlayerC" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -16.0
+bus = &"Sound Effects"
+
+[node name="AmbienceMusicA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+stream = ExtResource("19_y6deb")
+volume_db = -15.0
+bus = &"Music"
+parameters/looping = true
+
+[node name="AmbienceMusicB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Music"
+
+[node name="SoundsPlayerA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+stream = SubResource("AudioStreamPolyphonic_xrs0c")
+volume_db = -6.0
+autoplay = true
+max_polyphony = 4
+bus = &"Sound Effects"
+
+[node name="SoundsPlayerB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+volume_db = -6.0
+bus = &"Sound Effects"
+
+[node name="AmbienceTimer" type="Timer" parent="MusicAmbienceManager"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("18_pibwh")
+compositor = SubResource("Compositor_xljpf")
+script = ExtResource("19_c6pm6")
+
+[node name="Facility" type="Node3D" parent="."]
+
+[node name="Doors" type="Node3D" parent="Facility"]
+
+[node name="DoorSpawner" type="MultiplayerSpawner" parent="Facility/Doors"]
+spawn_path = NodePath("..")
+
+[node name="FacilityRegion" type="NavigationRegion3D" parent="Facility"]
+navigation_mesh = SubResource("NavigationMesh_doq7x")
+
+[node name="FacilitySpawner" type="MultiplayerSpawner" parent="Facility/FacilityRegion"]
+spawn_path = NodePath("..")
+
+[node name="LConHall003" parent="Facility/FacilityRegion" instance=ExtResource("12_ids8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
+
+[node name="keycard03" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("63_ro3en")]
+transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, -0.8283, 0.0472804)
+collision_layer = 2
+collision_mask = 2
+
+[node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="Facility"]
+spawn_path = NodePath("../PlayerSpawn")
+script = ExtResource("18_og1vs")
+playerScene = ExtResource("20_5he1u")
+
+[node name="PlayerSpawn" type="Node3D" parent="Facility"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 2.15, -41)
+
+[node name="PocketDimension" parent="." instance=ExtResource("72_xrs0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 23, -229)
+
+[node name="SCPs" type="Node3D" parent="."]
+
+[node name="Scp173" parent="SCPs" instance=ExtResource("21_5poiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -14.4175, 7)
+
+[node name="scp106" parent="SCPs" instance=ExtResource("73_kjtvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.308, -14.6862, 5.92294)

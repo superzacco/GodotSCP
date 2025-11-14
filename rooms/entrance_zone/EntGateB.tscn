@@ -44,11 +44,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="BigDoor" parent="." instance=ExtResource("5_x3606")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0208265, 0.349527, -2.6821)
 
-[node name="Keycardbutton2" parent="BigDoor" index="2"]
+[node name="Keycardbutton2" parent="BigDoor" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.637472)
 keycardLevel = 4
 
-[node name="Keycardbutton" parent="BigDoor" index="3"]
+[node name="Keycardbutton" parent="BigDoor" index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.21433, 0, -2.56139)
 keycardLevel = 4
 

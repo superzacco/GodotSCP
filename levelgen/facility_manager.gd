@@ -5,6 +5,7 @@ var rooms: Array
 var playerNearbyRooms: Array[Room]
 
 var scp173: CharacterBody3D
+var scp106: CharacterBody3D
 
 
 func _ready() -> void:

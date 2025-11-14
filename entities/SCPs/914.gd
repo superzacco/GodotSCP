@@ -1,6 +1,11 @@
 extends StaticBody3D
 
-@export var knobSetting: int
+@export var knobSetting: int: 
+	set(val):
+		if val != knobSetting:
+			$KnobTurn.play()
+		
+		knobSetting = val
 
 @export var veryFineDict: Dictionary[String, PackedScene]
 @export var fineDict: Dictionary[String, PackedScene]
@@ -61,24 +66,38 @@ func _process(delta: float) -> void:
 		turningKnobUI.hide()
 	
 	var angle = knob.rotation_degrees.z
+	
+	if angle > 67:
+		knobSetting = 4
+	elif angle < 67 and !angle < 23:
+		knobSetting = 3
+	elif angle < 23 and !angle < -23:
+		knobSetting = 2
+	elif angle < -23 and !angle < -67:
+		knobSetting = 1
+	elif angle < -67:
+		knobSetting = 0
+	
 	if !Input.is_action_pressed("interact") and nearControls:
 		if angle > 67:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, 90.0, 0.25)
-			knobSetting = 4
 		elif angle < 67 and !angle < 23:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, 45.0, 0.25)
-			knobSetting = 3
 		elif angle < 23 and !angle < -23:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, 0.0, 0.25)
-			knobSetting = 2
 		elif angle < -23 and !angle < -67:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, -45.0, 0.25)
-			knobSetting = 1
 		elif angle < -67:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, -90.0, 0.25)
-			knobSetting = 0
 	
 	knob.rotation.z = clamp(knob.rotation.z, deg_to_rad(-90), deg_to_rad(90))
+	update_values.rpc(knobSetting, knob.rotation_degrees.z)
+
+
+@rpc("reliable", "any_peer", "call_local")
+func update_values(setting: int, rotation: float):
+	knobSetting = setting
+	knob.rotation_degrees.z = rotation
 
 
 @rpc("reliable", "any_peer", "call_local")

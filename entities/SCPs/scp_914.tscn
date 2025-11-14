@@ -6,19 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="3_jjtnl"]
 [ext_resource type="Texture2D" uid="uid://bhdxr61b0sktg" path="res://entities/ui/914.png" id="3_rw2e6"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="4_yokc0"]
+[ext_resource type="AudioStream" uid="uid://bubr0tua8g3a1" path="res://audio/interaction/button.ogg" id="9_5rrng"]
 [ext_resource type="AudioStream" uid="uid://fm2w87eck4xq" path="res://audio/scps/914/Refining.ogg" id="10_mjqu1"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="16_jjtnl"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kawgu"]
-properties/0/path = NodePath("Knob:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("..:knobSetting")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tpx0i"]
-size = Vector3(0.5, 0.5, 1)
+size = Vector3(1.055, 0.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
 size = Vector3(3.14069, 3, 1.76438)
@@ -39,9 +32,6 @@ turningKnobUI = NodePath("KnobUI/TextureRect")
 outputPoint = NodePath("OutputPoint")
 
 [node name="914model" parent="." instance=ExtResource("2_rw2e6")]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="914model"]
-replication_config = SubResource("SceneReplicationConfig_kawgu")
 
 [node name="KnobArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279554, -1.4)
@@ -66,16 +56,11 @@ shape = SubResource("BoxShape3D_rw2e6")
 
 [node name="DoorL" parent="." instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28688, -0.0480342, -0.648507)
-ignore079 = true
 
 [node name="doorframe" parent="DoorL/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="DoorL/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="DoorL/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="DoorL" index="1"]
@@ -88,16 +73,11 @@ disabled = true
 
 [node name="DoorR" parent="." instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71312, -0.0480342, -0.648507)
-ignore079 = true
 
 [node name="doorframe" parent="DoorR/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="DoorR/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="DoorR/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="DoorR" index="1"]
@@ -153,6 +133,11 @@ expand_mode = 1
 stream = ExtResource("10_mjqu1")
 attenuation_model = 3
 bus = &"Sound Effects"
+
+[node name="KnobTurn" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_5rrng")
+volume_db = -12.0
+max_polyphony = 2
 
 [connection signal="area_entered" from="KnobArea" to="." method="_on_knob_area_area_entered"]
 [connection signal="area_exited" from="KnobArea" to="." method="_on_knob_area_area_exited"]

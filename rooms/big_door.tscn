@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d12eugvcfftyc"]
+[gd_scene load_steps=10 format=3 uid="uid://d12eugvcfftyc"]
 
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="1_ol6ec"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="2_oic51"]
@@ -10,9 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://bepwta6osrs4h" path="res://audio/door/BigDoorClose2.ogg" id="8_5v8jb"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="9_eb36k"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_oic51"]
-size = Vector3(1.6, 15, 1)
-
 [node name="BigDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer")]
 collision_layer = 0
 collision_mask = 0
@@ -20,14 +17,6 @@ script = ExtResource("2_oic51")
 animationPlayer = NodePath("big_door/AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("3_dxj0x"), ExtResource("4_yfkp1"), ExtResource("5_piuoq")])
 closeSounds = Array[AudioStream]([ExtResource("6_mkitg"), ExtResource("7_cwjtv"), ExtResource("8_5v8jb")])
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 0)
-shape = SubResource("BoxShape3D_oic51")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81851, 0, 0)
-shape = SubResource("BoxShape3D_oic51")
 
 [node name="big_door" parent="." instance=ExtResource("1_ol6ec")]
 

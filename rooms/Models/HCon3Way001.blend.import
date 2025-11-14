@@ -38,6 +38,11 @@ _subresources={
 "generate/physics": true,
 "physics/layer": 3,
 "physics/mask": 3
+},
+"PATH:Cube-col": {
+"generate/physics": true,
+"physics/layer": 3,
+"physics/mask": 3
 }
 }
 }

@@ -55,18 +55,6 @@ spot_angle = 75.0
 [node name="Checkpoint" parent="." instance=ExtResource("4_4k0ch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00530711, -0.0134288, -0.000239134)
 
-[node name="doorside2_col" parent="Checkpoint/doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Checkpoint/doors/Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
-[node name="doorside2_col" parent="Checkpoint/doors/Door2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Checkpoint/doors/Door2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="CheckpointAlarm" parent="Checkpoint" index="3" node_paths=PackedStringArray("doors")]
 doors = [NodePath("../doors/Door"), NodePath("../doors/Door2")]
 

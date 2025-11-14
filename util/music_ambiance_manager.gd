@@ -1,6 +1,8 @@
 extends Node
 class_name AmbienceManager
 
+var soundsPlayerAPlaybackPolyphonic: AudioStreamPlaybackPolyphonic
+
 @export var musicPlayerA: AudioStreamPlayer
 @export var musicPlayerB: AudioStreamPlayer
 @export var soundsPlayerA: AudioStreamPlayer
@@ -19,6 +21,7 @@ class_name AmbienceManager
 
 
 func _ready() -> void:
+	soundsPlayerAPlaybackPolyphonic = soundsPlayerA.get_stream_playback()
 	GlobalPlayerVariables.ambienceManager = self
 	
 	await SignalBus.generate_level
@@ -26,8 +29,8 @@ func _ready() -> void:
 	musicPlayerA.stream = LConMusic
 	musicPlayerA.play()
 	
-	ambiencePlayerA.stream = fullSiteLockdown
-	ambiencePlayerA.play()
+	#ambiencePlayerA.stream = fullSiteLockdown
+	#ambiencePlayerA.play()
 	
 	soundsPlayerA.stream = spawnInSound
 	soundsPlayerA.play()
@@ -44,7 +47,7 @@ func play_random_ambience(quicker: bool = false):
 	
 	quicker = false
 	
-	if ZFunc.randInPercent(15):
+	if ZFunc.randInPercent(8):
 		quicker = true
 		ambiencePlayerB.stream = Intercom079Ambiance[randi_range(0, Intercom079Ambiance.size()-1)]
 	else:
@@ -56,15 +59,21 @@ func play_random_ambience(quicker: bool = false):
 
 # // SCP/ROOM AMBIANCE MUSIC TRACKS
 func play_music(clip: AudioStream):
+	cancel_music()
+	
 	musicPlayerB.stream = clip
 	musicPlayerB.play()
 	
+	print(musicPlayerB.volume_db)
+
+func cancel_music():
+	musicPlayerB.stop()
 
 
 # // NON-POSITIONAL SOUNDS
 func play_sound(clip: AudioStream):
-	soundsPlayerA.stream = clip
-	soundsPlayerA.play()
+	print(soundsPlayerAPlaybackPolyphonic, clip)
+	soundsPlayerAPlaybackPolyphonic.play_stream(clip)
 
 
 # // FOR 173 SCRAPING

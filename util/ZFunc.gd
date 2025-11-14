@@ -26,3 +26,22 @@ func pick_from_list(weightedDict: Dictionary):
 		currentWeight += weightedDict[option]
 		if randomWeight < currentWeight:
 			return option
+
+
+func fade_in(player: Node, duration: float):
+	var curr_vol: float = player.volume_db
+	player.volume_db = -44.0
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(player, "volume_db", curr_vol, duration).set_ease(Tween.EASE_IN)
+
+func fade_out(player: Node, duration: float):
+	var curr_vol: float = player.volume_db
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(player, "volume_db", -25.0, duration).set_ease(Tween.EASE_IN)
+	
+	await tween.finished
+	
+	player.stop()
+	player.volume_db = curr_vol

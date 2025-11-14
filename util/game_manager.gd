@@ -17,8 +17,6 @@ func _ready() -> void:
 	
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
-	
-	print(seed)
 
 
 func quit_to_menu():

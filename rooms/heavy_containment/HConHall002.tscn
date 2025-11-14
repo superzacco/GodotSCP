@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clegh7vjl7vod"]
+[gd_scene load_steps=7 format=3 uid="uid://clegh7vjl7vod"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_rtw6j"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_moeaw"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_k5s0a"]
 [ext_resource type="PackedScene" uid="uid://buqtktitrm7uf" path="res://rooms/Models/HConHall003.blend" id="5_rtw6j"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_ycx3q"]
+[ext_resource type="PackedScene" uid="uid://bs1exj73m5bg0" path="res://rooms/pocket_dimension/PocketDimensionReleasePoint.tscn" id="6_j8f16"]
 
 [node name="HConHall001" type="Node3D"]
 script = ExtResource("1_rtw6j")
@@ -30,3 +31,7 @@ brightness = 0.5
 omniBrightness = 0.25
 
 [node name="HConHall003" parent="." instance=ExtResource("5_rtw6j")]
+
+[node name="PocketDimensionReleasePoint" parent="." instance=ExtResource("6_j8f16")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.2, 0)
+weight = 10

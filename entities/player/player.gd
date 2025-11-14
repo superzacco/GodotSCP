@@ -16,11 +16,16 @@ class_name Player
 @export var playerModel: Node3D
 @export var modelAnimations: AnimationPlayer
 
+@export var deathsound_106: AudioStream
+
 var moveSpeed: float
 
 var wishDir: Vector3
 var sprinting: bool = false
+
+var health: float = 100.0
 var dead: bool = false
+var canMove: bool = true
 
 var multiplayerAuthorityID: int 
 
@@ -43,7 +48,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !is_multiplayer_authority() or dead:
+	if !is_multiplayer_authority() or dead or !canMove:
 		return
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
@@ -66,7 +71,6 @@ func _physics_process(delta: float) -> void:
 	
 	GlobalPlayerVariables.playerPosition = self.global_position
 	#endregion
-	
 	
 	#region SPRINTING
 	if GlobalPlayerVariables.sprintJuice > 0 and sprinting and moveDir != Vector3(0, 0, 0):
@@ -144,6 +148,30 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 	if GlobalPlayerVariables.sprintJuice > 100:
 		GlobalPlayerVariables.sprintJuice = 100
 
+
+func sent_to_pocket_dimension():
+	$AnimationPlayer.play("death")
+	GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
+	
+	canMove = false
+	GlobalPlayerVariables.lookingEnabled = false
+	
+	await get_tree().create_timer(2.5).timeout
+	SignalBus.send_player_to_106.emit(self)
+	
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("walking_Bob")
+	
+	canMove = true
+	GlobalPlayerVariables.lookingEnabled = true
+
+
+func take_damage(damage: float, sendToPocketDimension: bool = false):
+	if sendToPocketDimension == true:
+		sent_to_pocket_dimension()
+	
+	if health <= 0:
+		on_death()
 
 func on_death():
 	dead = true
