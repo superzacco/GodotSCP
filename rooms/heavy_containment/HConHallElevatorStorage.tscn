@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://da131wpnhnun4"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_t2wkf"]
+[ext_resource type="PackedScene" uid="uid://b2nwhry5fshml" path="res://rooms/Models/HCon2WayElevatorStorage.blend" id="2_t2wkf"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_dec0u"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_crpvv"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_5iqqa"]
+[ext_resource type="PackedScene" uid="uid://c5u47f2nm250v" path="res://rooms/elevator_door.tscn" id="6_4wlki"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="6_v5lth"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="7_4s1b0"]
+[ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="9_xyxxv"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="10_lu20d"]
+[ext_resource type="PackedScene" uid="uid://bs1exj73m5bg0" path="res://rooms/pocket_dimension/PocketDimensionReleasePoint.tscn" id="11_koiad"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="11_xyxxv"]
+[ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="12_4s1b0"]
+
+[node name="HConElevatorStorage" type="Node3D"]
+script = ExtResource("1_t2wkf")
+
+[node name="HCon2WayElevatorStorage" parent="." instance=ExtResource("2_t2wkf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("3_dec0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("3_dec0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_crpvv")]
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="Light" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84865, 4)
+brightness = 0.75
+
+[node name="Light4" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 1.84865, 5.8)
+brightness = 0.5
+
+[node name="Light5" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4, 1.84865, 5.8)
+brightness = 0.5
+
+[node name="Light6" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.2, 2.87017, 2.1)
+brightness = 0.85
+
+[node name="Light3" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.3, 1.84865, -1.5)
+brightness = 0.75
+
+[node name="Light2" parent="lights" instance=ExtResource("5_5iqqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84865, -4)
+brightness = 0.75
+
+[node name="doors" type="Node3D" parent="."]
+
+[node name="Door" parent="doors" instance=ExtResource("6_v5lth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.056723, 4.1)
+
+[node name="KeycardDoor" parent="doors" instance=ExtResource("7_4s1b0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.70825, 0.0549742, 5.79265)
+
+[node name="doorside2_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="Keycardbutton" parent="doors/KeycardDoor" index="1"]
+keycardLevel = 2
+
+[node name="Keycardbutton2" parent="doors/KeycardDoor" index="2"]
+keycardLevel = 2
+
+[node name="ElevatorDoor" parent="doors" instance=ExtResource("6_4wlki")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0.0573279, -1.5)
+
+[node name="doorside2-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
+
+[node name="doorside1-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
+
+[node name="Button" parent="doors/ElevatorDoor" index="4"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="doors/ElevatorDoor" index="5" node_paths=PackedStringArray("doorsToControl")]
+doorsToControl = [NodePath("..")]
+rejectionText = "The elevator appears to be stuck..."
+wontOpen = true
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="shelf01" parent="props" instance=ExtResource("9_xyxxv")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -9.85519, 0.803723, 1.68405)
+
+[node name="shelf02" parent="props" instance=ExtResource("9_xyxxv")]
+transform = Transform3D(1.04907e-07, 3.49691e-08, -0.8, 3.49691e-08, 0.8, 3.49691e-08, 0.8, -3.49691e-08, 1.04907e-07, -5.10936, 0.803723, 1.18014)
+
+[node name="table" parent="props" instance=ExtResource("10_lu20d")]
+transform = Transform3D(-0.7, 0, 6.11959e-08, 0, 0.8, 0, -6.11959e-08, 0, -0.7, -5.63335, -0.70812, 3.42422)
+
+[node name="TeleportPoint" parent="." instance=ExtResource("11_xyxxv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.1, 0.7, 2.4)
+tpName = "elevatorstorage"
+
+[node name="PocketDimensionReleasePoint" parent="." instance=ExtResource("11_koiad")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.64904, 0.7, 1.94066)
+weight = 50
+
+[node name="keycard02" parent="." instance=ExtResource("12_4s1b0")]
+transform = Transform3D(0.218399, 0, -0.97586, 0, 1, 0, 0.97586, 0, 0.218399, -6.7061, -0.306545, 3.31783)
+
+[editable path="doors/KeycardDoor"]
+[editable path="doors/KeycardDoor/door"]
+[editable path="doors/ElevatorDoor"]
+[editable path="doors/ElevatorDoor/elevator_door"]

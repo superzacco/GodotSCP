@@ -136,6 +136,12 @@ draw_pass_1 = SubResource("QuadMesh_l30ap")
 [node name="KeycardDoor" parent="Doors" instance=ExtResource("5_s7ko5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7, 0.0221875, -5.8)
 
+[node name="doorside2_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 3
 
@@ -145,6 +151,12 @@ keycardLevel = 3
 [node name="KeycardDoor2" parent="Doors" instance=ExtResource("5_s7ko5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0.0244782, -1.7)
 
+[node name="doorside2_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
 keycardLevel = 3
 
@@ -153,6 +165,12 @@ keycardLevel = 3
 
 [node name="Door3" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09619, 0.0331171, -2.11391)
+
+[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door3" index="1"]
 visible = false
@@ -164,6 +182,12 @@ disabled = true
 
 [node name="Door4" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.18552, 0.0331171, 5.91612)
+
+[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door4" index="1"]
 visible = false

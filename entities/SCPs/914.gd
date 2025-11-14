@@ -108,7 +108,7 @@ func activate():
 	await get_tree().create_timer(0.5).timeout
 	doorL.close()
 	doorR.close()
-	await get_tree().create_timer(15).timeout
+	await get_tree().create_timer(13.5).timeout
 	
 	for inputItem in itemsInInput:
 		var outputItem: PackedScene = null

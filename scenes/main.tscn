@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=80 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
 [ext_resource type="PackedScene" uid="uid://dmrarvt6khysl" path="res://rooms/heavy_containment/HCon049Hall.tscn" id="15_dnhof"]
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
+[ext_resource type="PackedScene" uid="uid://da131wpnhnun4" path="res://rooms/heavy_containment/HConHallElevatorStorage.tscn" id="16_j4bwh"]
 [ext_resource type="PackedScene" uid="uid://bv2x1o14vua8t" path="res://rooms/entrance_zone/EntHallOffice001.tscn" id="16_kf5aa"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="16_kmb1v"]
 [ext_resource type="PackedScene" uid="uid://cqulx25h6s2au" path="res://rooms/entrance_zone/EntGateA.tscn" id="16_t5ykj"]
@@ -104,7 +105,7 @@ necessaryLConThreeWayHalls = null
 necessaryLConFourWayHalls = null
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 necessaryHConEndRooms = null
-necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof")])
+necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof"), ExtResource("16_j4bwh")])
 necessaryHConThreeWayHalls = null
 necessaryHConFourWayHalls = null
 necessaryHConBends = null
