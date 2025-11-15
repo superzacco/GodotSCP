@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://di7vm63q2wksv"]
 
 [ext_resource type="Texture2D" uid="uid://ddgk7tlgtfo5o" path="res://rooms/Textures/tesla.png" id="1_y4huy"]
-[ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/light_containment/teslagate.gd" id="2_otmie"]
+[ext_resource type="Script" uid="uid://bfcuwcipqnvp3" path="res://rooms/tesla/teslagate.gd" id="2_otmie"]
 [ext_resource type="AudioStream" uid="uid://djf6eoq7mef2g" path="res://audio/rooms/tesla/Idle.ogg" id="3_oq8pu"]
 [ext_resource type="AudioStream" uid="uid://dw12rvtl3x14f" path="res://audio/rooms/tesla/WindUp.ogg" id="4_evhu7"]
 [ext_resource type="AudioStream" uid="uid://bnq1v0tmwdb4v" path="res://audio/rooms/tesla/Shock.ogg" id="5_k28y7"]

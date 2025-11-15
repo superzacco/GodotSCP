@@ -247,7 +247,6 @@ shape = SubResource("CapsuleShape3D_ckrbs")
 transform = Transform3D(-1, 0, -8.54386e-08, 0, 1, 0, 8.54386e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraBobPivot" type="Node3D" parent="StuffToRotate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ShaderLayer" type="CanvasLayer" parent="StuffToRotate/CameraBobPivot"]
 visible = false
@@ -324,7 +323,7 @@ bones/18/position = Vector3(0.138318, 0.0527456, 0.0829738)
 bones/18/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999194, 0, 0, 0, 0.999194, 2.98023e-08, 0, 0, 0.999194, -0.00790259, 1.6603, -0.11095)
+transform = Transform3D(0.999194, 0, 0, 0, 0.999194, -5.96046e-08, 0, 8.9407e-08, 0.999194, -0.00790259, 1.6603, -0.11095)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, -0.00640416, 0)

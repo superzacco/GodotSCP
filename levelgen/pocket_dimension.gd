@@ -23,7 +23,7 @@ func send_player_to_pd(player: Player):
 	var point: Marker3D = ZFunc.rand_from(spawnPoints)
 	
 	player.global_position = point.global_position
-	player.global_rotation = point.global_rotation
+	player.stuffToRotate.global_rotation = point.global_rotation
 	
 	ambiance.play_sound(laugh)
 
@@ -32,7 +32,7 @@ func release_player_from_pd(player: Player):
 	var point: Marker3D = ZFunc.pick_from_list(releasePoints)
 	
 	player.global_position = point.global_position
-	player.global_rotation = point.global_rotation
+	player.stuffToRotate.global_rotation = point.global_rotation
 	
 	ambiance.play_sound(laugh)
 	ZFunc.fade_out(ambiance.musicPlayerB, 5.0)

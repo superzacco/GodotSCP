@@ -1,13 +1,13 @@
-AudioStreamPlayer3D
 Node3D
+CollisionShape3D
+StaticBody3D
+AudioStreamPlayer3D
 Timer
 Marker3D
-CollisionShape3D
 Area3D
 AudioStreamPlayer
 NavigationObstacle3D
 MultiplayerSynchronizer
-StaticBody3D
 ColorRect
 CanvasLayer
 SpotLight3D

@@ -74,19 +74,13 @@
 [ext_resource type="AudioStream" uid="uid://cehc2bpgdxqkd" path="res://audio/scps/079/Broadcast6.ogg" id="60_ksmap"]
 [ext_resource type="AudioStream" uid="uid://bkak1kdex6dsy" path="res://audio/scps/079/Broadcast7.ogg" id="61_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
+[ext_resource type="NavigationMesh" uid="uid://w5dww2pihs38" path="res://levelgen/navmesh.tres" id="70_ksmap"]
 [ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_xrs0c"]
 
 [sub_resource type="Compositor" id="Compositor_xljpf"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]
-geometry_parsed_geometry_type = 1
-geometry_collision_mask = 4294967039
-cell_size = 0.1
-agent_radius = 0.1
-region_min_size = 8.0
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("facilityMultiplayerSpawner", "doorMultiplayerSpawner", "navigationRegion", "doorsNode")]
 top_level = true
@@ -101,19 +95,10 @@ LContoHConCheckpoint = ExtResource("4_fv21b")
 HContoENTCheckpoint = ExtResource("5_bu4jf")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r")])
-necessaryLConThreeWayHalls = null
-necessaryLConFourWayHalls = null
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
-necessaryHConEndRooms = null
 necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof"), ExtResource("16_j4bwh")])
-necessaryHConThreeWayHalls = null
-necessaryHConFourWayHalls = null
-necessaryHConBends = null
 necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
 necessaryEntTwoWayHalls = Array[PackedScene]([ExtResource("16_kf5aa")])
-necessaryEntThreeWayHalls = null
-necessaryEntFourWayHalls = null
-necessaryEntBends = null
 fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
 fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
 fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so"), ExtResource("20_augu2")])
@@ -204,7 +189,7 @@ script = ExtResource("19_c6pm6")
 spawn_path = NodePath("..")
 
 [node name="FacilityRegion" type="NavigationRegion3D" parent="Facility"]
-navigation_mesh = SubResource("NavigationMesh_doq7x")
+navigation_mesh = ExtResource("70_ksmap")
 
 [node name="FacilitySpawner" type="MultiplayerSpawner" parent="Facility/FacilityRegion"]
 spawn_path = NodePath("..")

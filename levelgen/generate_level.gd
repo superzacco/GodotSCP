@@ -405,9 +405,8 @@ func place_doors():
 			spawnedDoor.global_position = point.global_position
 			spawnedDoor.global_basis = point.global_basis
 			spawnedDoor.global_position.y += 1.2
+			spawnedDoor.nonGenerated = false
 			doorLocations.append(point.global_position)
-			
-			
 
 
 func spawn_checkpoint_room(zDepth: int, checkpointRoom: PackedScene):

@@ -53,9 +53,14 @@ func shock():
 	$TeslaIdle.stop()
 	$AnimationPlayer.play("teslafire")
 	
+	if !multiplayer.is_server():
+		return
+	
 	if thingsInKillBox.size() > 0:
-		for item: Player in thingsInKillBox:
-			item.on_death()
+		for player: Player in thingsInKillBox:
+			print("Tesla: %s" % self.get_multiplayer_authority())
+			print("Shocking Player: %s in Tesla Gate!" % player.get_multiplayer_authority())
+			player.take_damage(999)
 
 
 func reset():

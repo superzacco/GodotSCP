@@ -37,3 +37,17 @@ res://entities/ui/pause_menu.gd
 res://multiplayer/networking.gd
 res://util/signal_bus.gd
 res://util/game_manager.tscn
+res://levelgen/pocket_dimension.gd
+res://levelgen/generate_level.gd
+res://rooms/light_containment/LConHall001.tscn
+res://rooms/door.gd
+res://entities/player/room_culler.tscn
+res://rooms/keycard_door.tscn
+res://levelgen/navmesh.tres
+res://rooms/light_containment/spawnroom.tscn
+res://rooms/light_containment/teslagate.gd
+res://rooms/tesla/teslagate.gd
+res://rooms/light_containment/LConTestingChamber001.tscn
+res://rooms/entrance_zone/EntHallOffice001.tscn
+res://rooms/heavy_containment/049_chamber.tscn
+res://rooms/light_containment/914_chamber.tscn

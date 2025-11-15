@@ -7,6 +7,7 @@ class_name Door
 @export var closeSounds: Array[AudioStream]
 
 @export var closableBy079: bool = false
+var nonGenerated: bool = true
 
 var doorOpen: bool = false
 var opening: bool = false
@@ -15,7 +16,9 @@ func _ready() -> void:
 	# // TO-DO -- FIX THIS SHIT
 	self.global_position += Vector3(0, 3, 0)
 	await SignalBus.level_generation_finished
-	self.global_position -= Vector3(0, 3, 0)
+	
+	if nonGenerated == true:
+		self.global_position += Vector3(0, -3, 0)
 	
 	if multiplayer.is_server():
 		if ZFunc.randInPercent(2) and closableBy079 == true:

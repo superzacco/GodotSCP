@@ -170,10 +170,12 @@ func sent_to_pocket_dimension():
 	GlobalPlayerVariables.lookingEnabled = true
 
 
-
 func take_damage(damage: float, sendToPocketDimension: bool = false):
 	if sendToPocketDimension == true:
 		sent_to_pocket_dimension()
+	
+	health -= damage
+	print("owie")
 	
 	if health <= 0.0:
 		on_death.rpc() # Add types later
@@ -198,4 +200,5 @@ func on_death():
 	if senderID == uniqueID:
 		specMgr.switch_player_to_spectator(senderID)
 	
+	print("player: %s has died!" % senderID)
 	SignalBus.remove_player.emit(senderID)

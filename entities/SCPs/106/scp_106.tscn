@@ -35,6 +35,8 @@ properties/1/replication_mode = 1
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_h5wwc"]
 
 [node name="scp106" type="CharacterBody3D" node_paths=PackedStringArray("agent", "animationPlayer")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_breko")
 speed = 1.2
 minSpawnTime = 600
