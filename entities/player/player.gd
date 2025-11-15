@@ -16,6 +16,7 @@ class_name Player
 @export var playerModel: Node3D
 @export var modelAnimations: AnimationPlayer
 
+@export var bodyslump: AudioStream
 @export var deathsound_106: AudioStream
 
 var moveSpeed: float
@@ -26,6 +27,7 @@ var sprinting: bool = false
 var health: float = 100.0
 var dead: bool = false
 var canMove: bool = true
+var specMgr: SpectatorManager
 
 var multiplayerAuthorityID: int 
 
@@ -38,6 +40,7 @@ func _ready() -> void:
 	
 	GlobalPlayerVariables.player = self
 	GameManager.clear_state()
+	specMgr = GlobalPlayerVariables.spectatorManager
 	
 	moveSpeed = moveSpeedDesired
 	
@@ -152,6 +155,7 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 func sent_to_pocket_dimension():
 	$AnimationPlayer.play("death")
 	GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
+	GlobalPlayerVariables.ambienceManager.play_sound(bodyslump)
 	
 	canMove = false
 	GlobalPlayerVariables.lookingEnabled = false
@@ -166,17 +170,32 @@ func sent_to_pocket_dimension():
 	GlobalPlayerVariables.lookingEnabled = true
 
 
+
 func take_damage(damage: float, sendToPocketDimension: bool = false):
 	if sendToPocketDimension == true:
 		sent_to_pocket_dimension()
 	
-	if health <= 0:
-		on_death()
+	if health <= 0.0:
+		on_death.rpc() # Add types later
 
+@rpc("any_peer", "call_local", "reliable")
 func on_death():
-	dead = true
-	$AnimationPlayer.play("death")
+	var senderID: int = multiplayer.get_remote_sender_id() 
+	var uniqueID: int = multiplayer.get_unique_id() 
 	
-	await get_tree().create_timer(1.5).timeout
-	GlobalPlayerVariables.spectatorManager.switch_player_to_spectator(multiplayerAuthorityID)
-	queue_free()
+	if senderID == uniqueID:
+		canMove = false
+		$AnimationPlayer.play("death")
+	
+	#modelAnimations.play("death")
+	
+	await get_tree().create_timer(0.4)
+	$BodySlumpPlayer.play()
+	
+	await get_tree().create_timer(2.5).timeout
+	print("remote sender: %s -- unique_id: %s" % [senderID, uniqueID])
+	
+	if senderID == uniqueID:
+		specMgr.switch_player_to_spectator(senderID)
+	
+	SignalBus.remove_player.emit(senderID)

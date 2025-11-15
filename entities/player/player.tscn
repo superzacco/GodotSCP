@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=46 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
+[ext_resource type="AudioStream" uid="uid://d2yql7gpensax" path="res://audio/character/player/slump.ogg" id="2_gt4e4"]
 [ext_resource type="Shader" uid="uid://dn2wmit8hif78" path="res://shaders/motion_blur.gdshader" id="2_qpopc"]
 [ext_resource type="AudioStream" uid="uid://44x4u37hyj6i" path="res://audio/character/player/death_touched.ogg" id="2_wq0jh"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
@@ -39,13 +40,13 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("StuffToRotate:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("StuffToRotate/classd001/AnimationPlayer:current_animation")
+properties/2/path = NodePath("StuffToRotate/classd001/Armature/Skeleton3D/class_d:skeleton")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("StuffToRotate/classd001/Armature/Skeleton3D/class_d:skeleton")
+properties/3/path = NodePath("OverheadUsername/SubViewport/Label:text")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("OverheadUsername/SubViewport/Label:text")
+properties/4/path = NodePath("StuffToRotate/classd001/AnimationPlayer:current_animation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
@@ -126,10 +127,10 @@ tracks/0/path = NodePath("StuffToRotate/CameraBobPivot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0343251, 0.449904, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.000117174, 0.00255085, -0.00207017), Vector3(-0.0397446, 1.0255, -0.935117), Vector3(-0.0635926, 1.64111, -1.49663)]
+"values": [Vector3(0, 0, 0), Vector3(1.39626, 4.06583e-07, 4.84546e-07), Vector3(1.48353, 8.9486e-07, 9.76568e-07)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -138,10 +139,10 @@ tracks/1/path = NodePath("StuffToRotate/CameraBobPivot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0343251, 0.2, 0.449904, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -0.25), Vector3(0, 0, -0.75)]
+"values": [Vector3(0, 0, 0), Vector3(-3.41754e-08, 0, 0.4)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -150,10 +151,10 @@ tracks/2/path = NodePath("StuffToRotate/CameraBobPivot/Camera3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.2, 0.7),
-"transitions": PackedFloat32Array(5.65685, 0.196146, 1, 1),
+"times": PackedFloat32Array(-0.233333, -0.2, 0.366667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 2, 2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.785398, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0168785, 0.286785, 0.140624), Vector3(-0.102523, 1.13537, 0.160563)]
 }
 
 [sub_resource type="Animation" id="Animation_akv28"]
@@ -232,6 +233,7 @@ sprintReplenishRate = 15.0
 blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
 playerModel = NodePath("StuffToRotate/classd001")
 modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
+bodyslump = ExtResource("2_gt4e4")
 deathsound_106 = ExtResource("2_wq0jh")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
@@ -245,6 +247,7 @@ shape = SubResource("CapsuleShape3D_ckrbs")
 transform = Transform3D(-1, 0, -8.54386e-08, 0, 1, 0, 8.54386e-08, 0, -1, 0, 0, 0)
 
 [node name="CameraBobPivot" type="Node3D" parent="StuffToRotate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ShaderLayer" type="CanvasLayer" parent="StuffToRotate/CameraBobPivot"]
 visible = false
@@ -263,7 +266,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73195e-14, 1.65, -2.23517e-08)
 cull_mask = 1048063
 fov = 90.0
 
@@ -292,6 +295,33 @@ eyeDrynessPerSecond = 7.5
 
 [node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
 transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
+bones/0/position = Vector3(-0.000392899, 0.85, 1.38909e-09)
+bones/0/rotation = Quaternion(-0.0116533, 0, 0, 0.999932)
+bones/3/rotation = Quaternion(0.0265452, 0.0972024, 0.978736, 0.178669)
+bones/4/rotation = Quaternion(-0.251597, -0.00254429, 0.185572, 0.949871)
+bones/5/rotation = Quaternion(0.165581, -0.0571952, 0.117438, 0.977507)
+bones/6/rotation = Quaternion(-0.0209184, -0.00150574, 0.999566, 0.0206666)
+bones/6/scale = Vector3(0.999967, 1, 0.999999)
+bones/7/rotation = Quaternion(0.0802807, 0.00152674, 0.0114318, 0.996706)
+bones/8/rotation = Quaternion(-0.700607, 0.00955928, -0.0369276, 0.712528)
+bones/8/scale = Vector3(0.999989, 0.999999, 1)
+bones/9/rotation = Quaternion(-0.0265451, 0.0972024, 0.978736, -0.178669)
+bones/10/rotation = Quaternion(-0.251597, 0.00254432, -0.185572, 0.949871)
+bones/11/rotation = Quaternion(0.166125, 0.040686, -0.0773327, 0.982225)
+bones/12/rotation = Quaternion(0.0283778, 0.000627697, 0.999448, -0.017286)
+bones/12/scale = Vector3(0.999967, 1, 0.999999)
+bones/13/rotation = Quaternion(0.0761375, -0.00152724, -0.0108419, 0.997037)
+bones/14/rotation = Quaternion(-0.69879, -0.00515252, 0.0436028, 0.713978)
+bones/14/scale = Vector3(0.999989, 0.999999, 1)
+bones/15/position = Vector3(-0.106556, 0.467222, -0.497362)
+bones/15/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
+bones/16/position = Vector3(-0.143188, 0.053142, 0.0829738)
+bones/16/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
+bones/17/position = Vector3(0.0957707, 0.467222, -0.497362)
+bones/18/position = Vector3(0.138318, 0.0527456, 0.0829738)
+bones/18/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0.999194, 0, 0, 0, 0.999194, 2.98023e-08, 0, 0, 0.999194, -0.00790259, 1.6603, -0.11095)
@@ -365,6 +395,9 @@ script = ExtResource("18_b2kln")
 shape = SubResource("SphereShape3D_mtric")
 
 [node name="RoomCuller" parent="." instance=ExtResource("21_eyb6c")]
+
+[node name="BodySlumpPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_gt4e4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

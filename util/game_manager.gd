@@ -21,8 +21,11 @@ func _ready() -> void:
 
 func quit_to_menu():
 	gameStarted = false
-	get_tree().change_scene_to_packed(mainMenu)
+	
+	SignalBus.player_disconnected.emit(multiplayer.get_unique_id())
 	Lobby.leave_lobby()
+	
+	get_tree().change_scene_to_packed(mainMenu)
 
 
 func _physics_process(delta: float) -> void:

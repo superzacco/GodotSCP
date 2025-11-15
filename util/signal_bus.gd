@@ -1,5 +1,7 @@
 extends Node
 
+signal player_disconnected(id: int)
+signal remove_player(id: int)
 
 signal generate_level
 signal level_generation_finished

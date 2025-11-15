@@ -35,6 +35,7 @@ func _on_quit_button_pressed() -> void:
 	GameManager.quit_to_menu()
 
 
+
 func _on_options_button_pressed() -> void:
 	primaryMenu.hide()
 	optionsMenu.show()

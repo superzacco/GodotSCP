@@ -106,7 +106,7 @@ func try_kill_player(player: Player):
 	if !GlobalPlayerVariables.playersBlinking.has(false) or !GlobalPlayerVariables.OnScreen173.has(true):
 		$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
 		$NeckSnap.play()
-		player.on_death()
+		player.take_damage(9999)
 		playerInKillRange = null
 
 

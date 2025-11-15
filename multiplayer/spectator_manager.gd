@@ -13,15 +13,16 @@ func _ready() -> void:
 	GlobalPlayerVariables.spectatorManager = self
 
 
-func switch_player_to_spectator(data):
+func switch_player_to_spectator(playerID: int):
+	print("Switching 'Player: %s' to Spectator..." % playerID)
+	
 	spectatorPivot = spectatorScene.instantiate()
 	self.add_child(spectatorPivot)
 	
 	camera = spectatorPivot.camera
-	spectatorPivot.set_multiplayer_authority(data, true)
+	spectatorPivot.set_multiplayer_authority(playerID, true)
 	
-	if camera.is_multiplayer_authority():
-		camera.call_deferred("make_current") 
+	camera.call_deferred("make_current") 
 
 
 func get_spectatable_objects():

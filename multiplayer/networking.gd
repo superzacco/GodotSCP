@@ -3,6 +3,10 @@ extends Node
 var peer := ENetMultiplayerPeer.new()
 
 
+func _ready() -> void:
+	SignalBus.player_disconnected.connect(on_player_disconnect)
+
+
 func host_lan_server(port: int):
 	DisplayServer.window_set_title("SCP - HOST") 
 	if port == 0:
@@ -28,3 +32,7 @@ func join_lan_server(address: String, port: int):
 	multiplayer.multiplayer_peer = peer
 	
 	SignalBus.hide_main_menu.emit()
+
+
+func on_player_disconnect(id: int):
+	peer.close()
