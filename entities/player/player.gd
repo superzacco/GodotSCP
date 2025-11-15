@@ -24,6 +24,8 @@ var moveSpeed: float
 var wishDir: Vector3
 var sprinting: bool = false
 
+var blinking: bool = false
+
 var health: float = 100.0
 var dead: bool = false
 var canMove: bool = true
@@ -55,6 +57,8 @@ func _physics_process(delta: float) -> void:
 		return
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
+	
+	blinking = GlobalPlayerVariables.blinking
 	
 	#region MOVEMENT
 	linear_velocity *= 0.85

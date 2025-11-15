@@ -10,8 +10,8 @@ var otherElevator: Elevator
 @export var ownDestination: Node3D
 @export var door: Door
 
-@export var beepPlayer: AudioStreamPlayer
-@export var movingPlayer: AudioStreamPlayer
+@export var beepPlayer: AudioStreamPlayer3D
+@export var movingPlayer: AudioStreamPlayer3D
 
 var moving: bool = false
 @export var atCurrentFloor := false
@@ -45,11 +45,14 @@ func elevator_setup(passedElevator: Elevator):
 
 @rpc("reliable", "call_local", "any_peer")
 func activate():
+	print(moving)
 	if moving:
-		if randi_range(1, 10) == 10:
+		if ZFunc.randInPercent(10):
 			GlobalPlayerVariables.interactionText.display("Pressing the button more wont make the elevator come any faster.")
 		else:
 			GlobalPlayerVariables.interactionText.display("You pressed the button, but the elevator was already moving.")
+		
+		return
 	
 	if !atCurrentFloor:
 		move_elevator_to_floor()
@@ -70,6 +73,7 @@ func move_elevator_to_floor():
 	GlobalPlayerVariables.interactionText.display("You called the elevator.")
 	
 	moving = true
+	otherElevator.moving = true
 	
 	movingPlayer.play()
 	await get_tree().create_timer(8).timeout
@@ -77,12 +81,17 @@ func move_elevator_to_floor():
 	door.open()
 	
 	atCurrentFloor = true
+	
+	await get_tree().create_timer(2).timeout
+	otherElevator.moving = false
 	moving = false
 
 
 func send_elevator():
 	if moving:
 		return
+	
+	otherElevator.moving = true
 	moving = true
 	
 	door.close()
@@ -90,6 +99,7 @@ func send_elevator():
 	await get_tree().create_timer(1).timeout
 	
 	movingPlayer.play()
+	otherElevator.movingPlayer.play()
 	await get_tree().create_timer(6).timeout
 	
 	for player in playersInElevator:
@@ -103,12 +113,14 @@ func send_elevator():
 	
 	await get_tree().create_timer(1).timeout
 	
-	beepPlayer.play()
+	otherElevator.beepPlayer.play()
 	otherElevator.door.open()
 	
 	otherElevator.atCurrentFloor = true
 	atCurrentFloor = false
 	
+	await get_tree().create_timer(2).timeout
+	otherElevator.moving = false
 	moving = false
 
 

@@ -310,8 +310,9 @@ func replace_temporary_room(temporaryRoom, surroundingRooms: int, x: int, z: int
 				fillerRoom = place_filler_room_in_containment(fillerEntThreeWayHalls, replacableEntThreeWayHalls, x, z)
 				
 			
-			if (!(x-1 < 0) and temporaryRooms[x-1][z] == null):
+			if ((x-1 < 0) and temporaryRooms[x-1][z] == null):
 				timesToRotate = 3
+				print("rotating 3 times")
 			if (!(z+1 > zSize) and temporaryRooms[x][z+1] == null):
 				timesToRotate = 2
 			if (!(x+1 > xSize) and temporaryRooms[x+1][z] == null):

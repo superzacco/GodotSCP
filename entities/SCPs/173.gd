@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var playersInRadius: Array[Player]
+var playersLooking: Array[bool]
+
 @export var speed: float
 @export var agent: NavigationAgent3D
 
@@ -7,8 +10,10 @@ extends CharacterBody3D
 @export var relocationSounds: Array[AudioStream]
 
 var nearPlayer: bool = false
+var relocating: bool = false
+
 var playerInKillRange: Player = null
-var nearDoor: StaticBody3D 
+var nearDoor: Door 
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
 	pass
@@ -18,15 +23,20 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func _ready() -> void:
 	SignalBus.connect("activate_173", relocate)
+	SignalBus.connect("teleport_173_to_player", teleport_to_player)
 
 
 var nextPathPos: Vector3
 func _physics_process(delta: float) -> void:
-	if (!GlobalPlayerVariables.OnScreen173.has(true) or !GlobalPlayerVariables.playersBlinking.has(false)) and nearPlayer:
-		try_kill_player(playerInKillRange)
+	nearPlayer = true if playersInRadius.size() > 0 else false
+	#print("near player?: %s -- all players blinking?: %s -- all players looking away?: %s" % [nearPlayer, players_blinking(), !players_looking()])
+	
+	if (players_blinking() or !players_looking()) and nearPlayer:
+		#try_kill_player(playerInKillRange)
 		
-		agent.target_position = GlobalPlayerVariables.playerPosition
-		nextPathPos = agent.get_next_path_position() - position
+		agent.target_position = find_closest_player().global_position
+		nextPathPos = agent.get_next_path_position() - global_position
+	
 		velocity = (nextPathPos.normalized() * speed)
 		
 		move_and_slide()
@@ -44,6 +54,25 @@ func _physics_process(delta: float) -> void:
 	
 	$StoneScraping.stop()
 
+func players_blinking() -> bool: # Returns true if ALL players are blinking
+	for player: Player in playersInRadius:
+		if player.blinking != true:
+			return false
+		else:
+			return true
+	
+	return false
+
+func players_looking() -> bool: # Returns false if ALL players are looking away
+	on_screen_check.rpc()
+	if !playersLooking.has(true):
+		return false
+	return true
+
+@rpc("authority", "call_local", "reliable")
+func on_screen_check():
+	playersLooking.clear()
+	playersLooking.append($VisibleOnScreenNotifier3D.is_on_screen())
 
 var waiting: bool = false
 func try_break_door():
@@ -55,13 +84,13 @@ func try_break_door():
 	
 	await get_tree().create_timer(2).timeout
 	waiting = false
-	if randi_range(0, 3) == 0:
+	if ZFunc.randInPercent(25):
 		if nearDoor != null:
-			nearDoor.one_seven_three_open()
+			nearDoor.one_seven_three_open.rpc()
 			print("Broke through door!")
 
 
-func relocate(firstTime: bool = false):
+func relocate(playAmbiance: bool = false):
 	var rooms = GlobalPlayerVariables.facilityManager.playerNearbyRooms
 	if rooms.size() <= 0:
 		print("no nearby rooms")
@@ -69,6 +98,7 @@ func relocate(firstTime: bool = false):
 		return
 	
 	print("relocating!")
+	relocating = true
 	
 	var room: Room = rooms[randi_range(0, rooms.size()-1)]
 	
@@ -81,21 +111,22 @@ func relocate(firstTime: bool = false):
 		else:
 			self.global_position = room.spawnPosFor173.global_position + Vector3(0, 0.25, 0)
 	
-	if firstTime:
+	if playAmbiance == true:
 		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
 	
 	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
 		print("close to player")
-		$"3sRelocateTimer".stop()
-		
-	else:
-		try_relocate()
+		relocating = false
+		$"RelocateTimer".stop()
+		return
+	
+	try_relocate()
 
 
 func try_relocate():
-	await $"3sRelocateTimer".timeout
-	if $"3sRelocateTimer".is_stopped():
-		$"3sRelocateTimer".start()
+	await $"RelocateTimer".timeout
+	if $"RelocateTimer".is_stopped():
+		$"RelocateTimer".start()
 	relocate()
 
 
@@ -103,11 +134,29 @@ func try_kill_player(player: Player):
 	if playerInKillRange == null:
 		return
 	
-	if !GlobalPlayerVariables.playersBlinking.has(false) or !GlobalPlayerVariables.OnScreen173.has(true):
-		$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
-		$NeckSnap.play()
-		player.take_damage(9999)
-		playerInKillRange = null
+	$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
+	$NeckSnap.play()
+	
+	player.take_damage(9999)
+	playerInKillRange = null
+
+
+func find_closest_player() -> Player:
+	var closestDist: float = INF
+	var closestPlayer: Player
+	
+	for player: Player in playersInRadius:
+		var dist: float = self.global_position.distance_to(player.global_position)
+		
+		if dist < closestDist:
+			dist = closestDist
+			closestPlayer = player
+	
+	return closestPlayer
+
+
+func teleport_to_player(position: Vector3):
+	self.global_position = position
 
 
 func _on_door_detection_area_body_entered(body: Node3D) -> void:
@@ -120,22 +169,22 @@ func _on_door_detection_area_body_exited(body: Node3D) -> void:
 
 func _on_chase_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		nearPlayer = true
+		playersInRadius.append(body)
 		
-		$"3sRelocateTimer".stop()
+		$"RelocateTimer".stop()
+
 func _on_chase_radius_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		nearPlayer = false
+		playersInRadius.erase(body)
 		
-		$"3sRelocateTimer".start()
-		await $"3sRelocateTimer".timeout
+		$"RelocateTimer".start()
+		await $"RelocateTimer".timeout
 		relocate(true)
 
 
 func _on_neck_snap_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playerInKillRange = body
-		try_kill_player(body)
 func _on_neck_snap_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playerInKillRange = null

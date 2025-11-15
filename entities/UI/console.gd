@@ -84,7 +84,9 @@ func _input(event: InputEvent) -> void:
 			"kill":
 				Commands.kill_player()
 			"106":
-				Commands.summon_106()
+				SignalBus.activate_106.emit()
+			"173":
+				SignalBus.teleport_173_to_player.emit(GlobalPlayerVariables.playerPosition)
 			"tp":
 				if commandStringArray.size() == 1:
 					println("missing <room>", Commands.errorColor)

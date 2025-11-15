@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwbgwlp2jepq"]
+[gd_scene load_steps=16 format=3 uid="uid://bwbgwlp2jepq"]
 
 [ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
 [ext_resource type="AudioStream" uid="uid://btbq6q6uw7u4t" path="res://audio/scps/173/NeckSnap0.ogg" id="2_l0rpv"]
@@ -10,20 +10,19 @@
 [ext_resource type="AudioStream" uid="uid://py81n6rg6r0q" path="res://audio/scps/173/scrapeambient2.ogg" id="6_aqo5w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p8ad7"]
-size = Vector3(0.534424, 1, 0.3396)
+size = Vector3(0.534, 1.5, 0.34)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqo5w"]
-size = Vector3(0.24, 2.1, 0.24)
+size = Vector3(0.24, 1.5, 0.24)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
 size = Vector3(1.1, 2, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3wo6"]
-size = Vector3(1.5, 3, 1.5)
+size = Vector3(1.5, 5, 1.5)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_u3wo6"]
-height = 10.0
-radius = 40.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_p8ad7"]
+radius = 25.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_u3wo6"]
 properties/0/path = NodePath(".:position")
@@ -33,69 +32,70 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_aqo5w"]
+radius = 0.2
+
 [node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent") groups=["spectatable"]]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 collision_layer = 256
 collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
-speed = 35.0
+speed = 30.0
 agent = NodePath("NavigationAgent3D")
 neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.838354, 0.885156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 1.02891, 0.885156)
 aabb = AABB(-0.846248, -1.53184, -1.01123, 0.921496, 2.10968, 0.312465)
 
 [node name="Col1" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114365, 0.349568, 0.0293652)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114365, 0.626926, 0.0293652)
 shape = SubResource("BoxShape3D_p8ad7")
 
 [node name="Col2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.256106, 0.349568, 0.0293652)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.256106, 0.626926, 0.0293652)
 shape = SubResource("BoxShape3D_aqo5w")
 
 [node name="Col3" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.278982, 0.349568, 0.0293652)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -0.278982, 0.626926, 0.0293652)
 shape = SubResource("BoxShape3D_aqo5w")
 
 [node name="NeckSnapArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481132, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeckSnapArea"]
 shape = SubResource("BoxShape3D_jahs6")
 
 [node name="DoorDetectionArea" type="Area3D" parent="."]
+collision_layer = 257
+collision_mask = 257
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorDetectionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 shape = SubResource("BoxShape3D_u3wo6")
 
 [node name="ChaseRadius" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRadius"]
-shape = SubResource("CylinderShape3D_u3wo6")
+shape = SubResource("SphereShape3D_p8ad7")
 
 [node name="173Model" parent="." instance=ExtResource("2_tmptw")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.16011, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.347795, 0)
 
 [node name="StoneScraping" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 stream = ExtResource("3_u3wo6")
 attenuation_model = 2
-unit_size = 5.0
+volume_db = -12.0
 max_distance = 64.0
 
 [node name="NeckSnap" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="HorrorSFX" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-
-[node name="3sRelocateTimer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="RelocateTimer" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.4
@@ -107,6 +107,10 @@ debug_enabled = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_u3wo6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32, 0)
+shape = SubResource("SphereShape3D_aqo5w")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

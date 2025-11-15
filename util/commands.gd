@@ -100,9 +100,6 @@ func set_seed(seed: int):
 func kill_player():
 	GlobalPlayerVariables.player.on_death.rpc()
 
-func summon_106():
-	SignalBus.activate_106.emit()
-
 var teleportPoints: Dictionary[String, TeleportPoint]
 func teleport(tpName: String):
 	var point: TeleportPoint = teleportPoints.get(tpName)

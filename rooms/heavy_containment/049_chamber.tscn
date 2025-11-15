@@ -49,6 +49,12 @@ keycardLevel = 3
 [node name="unopenable" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9995, 0.0461754, 22.51)
 
+[node name="doorside2_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Button" parent="Doors/unopenable" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -59,6 +65,12 @@ wontOpen = true
 
 [node name="unopenable2" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0005, 0.0461754, -22.4212)
+
+[node name="doorside2_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/unopenable2" index="1"]
 rejectionText = "The door appears to be locked..."
@@ -71,6 +83,12 @@ wontOpen = true
 [node name="unopenable3" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.06701, 0.0461754, -18.7349)
 
+[node name="doorside2_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Button" parent="Doors/unopenable3" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -81,6 +99,12 @@ wontOpen = true
 
 [node name="unopenable4" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.09319, 0.0461754, 18.7251)
+
+[node name="doorside2_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/unopenable4" index="1"]
 rejectionText = "The door appears to be locked..."
