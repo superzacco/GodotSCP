@@ -7,6 +7,7 @@ class_name Door
 @export var closeSounds: Array[AudioStream]
 
 @export var closableBy079: bool = false
+@export var openableBy173: bool = false
 var nonGenerated: bool = true
 
 var doorOpen: bool = false
@@ -59,10 +60,12 @@ func close():
 
 @rpc("reliable", "call_local", "any_peer")
 func one_seven_three_open():
+	if !openableBy173:
+		return
+	
 	$"173 Open".play()
 	animationPlayer.play("open")
 	doorOpen = true
-	
 
 
 @rpc("reliable", "call_local", "any_peer")

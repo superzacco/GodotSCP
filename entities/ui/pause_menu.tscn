@@ -30,7 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PrimaryMenu" type="VBoxContainer" parent="Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +60,7 @@ layout_mode = 2
 text = "QUIT TO MENU"
 
 [node name="OptionsContainer" type="VBoxContainer" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

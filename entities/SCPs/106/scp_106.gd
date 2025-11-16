@@ -36,6 +36,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if GlobalPlayerVariables.debugInfo != null:
+		GlobalPlayerVariables.debugInfo.summonTimer = $SummonTimer.time_left
+	
 	if chasing == true:
 		var nextPathPos := Vector3.ZERO
 		
@@ -131,7 +134,7 @@ func spawn_repeating_decal():
 	$"Decal Timer".start(0.65)
 	await $"Decal Timer".timeout
 	
-	var randomSize = randf_range(1.25, 1.75)
+	var randomSize = randf_range(1.0, 1.5)
 	var corrode: CorrosiveDecal = corrosiveDecal.instantiate()
 	
 	get_tree().root.add_child(corrode)

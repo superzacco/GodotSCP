@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxli2atpce1tr"]
+
+[ext_resource type="Script" uid="uid://bym2ra44sa45y" path="res://entities/ui/debug_info.gd" id="1_wbt04"]
+[ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="2_1gmre"]
+
+[node name="DebugInfo" type="Control" node_paths=PackedStringArray("debug173", "debug106")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_wbt04")
+debug173 = NodePath("MarginContainer/HBoxContainer/173Debug")
+debug106 = NodePath("MarginContainer/HBoxContainer/106Debug")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="173Debug" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "173 info:
+near player?: 
+all players blinking?: 
+all players looking away?: "
+label_settings = ExtResource("2_1gmre")
+
+[node name="106Debug" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "106 info:
+summon timer:
+"
+label_settings = ExtResource("2_1gmre")
+
+[node name="UpdateData" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+autostart = true

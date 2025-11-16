@@ -84,7 +84,7 @@ func on_click_interactable():
 
 
 func interact(interactable):
-	interactable.on_pressed.rpc()
+	interactable.on_pressed()
 
 
 @rpc("reliable", "call_local", "any_peer")

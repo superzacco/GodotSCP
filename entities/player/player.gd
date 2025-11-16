@@ -39,6 +39,7 @@ func _ready() -> void:
 	if !is_multiplayer_authority():
 		$UI.hide()
 		$UI.set_process(false)
+		return
 	
 	GlobalPlayerVariables.player = self
 	GameManager.clear_state()
@@ -179,17 +180,15 @@ func take_damage(damage: float, sendToPocketDimension: bool = false):
 		sent_to_pocket_dimension()
 	
 	health -= damage
-	print("owie")
 	
 	if health <= 0.0:
-		on_death.rpc() # Add types later
+		on_death.rpc(self.get_multiplayer_authority()) # Add types later
 
 @rpc("any_peer", "call_local", "reliable")
-func on_death():
-	var senderID: int = multiplayer.get_remote_sender_id() 
-	var uniqueID: int = multiplayer.get_unique_id() 
+func on_death(dyingPLayerID: int):
+	var selfID: int = multiplayer.get_unique_id()
 	
-	if senderID == uniqueID:
+	if dyingPLayerID == selfID:
 		canMove = false
 		$AnimationPlayer.play("death")
 	
@@ -199,10 +198,11 @@ func on_death():
 	$BodySlumpPlayer.play()
 	
 	await get_tree().create_timer(2.5).timeout
-	print("remote sender: %s -- unique_id: %s" % [senderID, uniqueID])
+	print("dying player id: %s -- id runing code: %s" % [dyingPLayerID, selfID])
 	
-	if senderID == uniqueID:
-		specMgr.switch_player_to_spectator(senderID)
+	if dyingPLayerID == selfID:
+		print("this should not show up twice")
+		specMgr.switch_player_to_spectator(dyingPLayerID)
 	
-	print("player: %s has died!" % senderID)
-	SignalBus.remove_player.emit(senderID)
+	print("player: %s has died!" % dyingPLayerID)
+	SignalBus.remove_player.emit(dyingPLayerID)

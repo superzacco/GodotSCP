@@ -33,6 +33,9 @@ outputPoint = NodePath("OutputPoint")
 
 [node name="914model" parent="." instance=ExtResource("2_rw2e6")]
 
+[node name="Key" parent="914model" index="4"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.270788, -1.63126)
+
 [node name="KnobArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279554, -1.4)
 
@@ -56,15 +59,12 @@ shape = SubResource("BoxShape3D_rw2e6")
 
 [node name="DoorL" parent="." instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28688, -0.0480342, -0.648507)
+openableBy173 = false
 
 [node name="doorframe" parent="DoorL/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="DoorL/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="DoorL/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="DoorL" index="1"]
@@ -77,15 +77,12 @@ disabled = true
 
 [node name="DoorR" parent="." instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71312, -0.0480342, -0.648507)
+openableBy173 = false
 
 [node name="doorframe" parent="DoorR/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="DoorR/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="DoorR/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="DoorR" index="1"]

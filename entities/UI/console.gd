@@ -86,7 +86,7 @@ func _input(event: InputEvent) -> void:
 			"106":
 				SignalBus.activate_106.emit()
 			"173":
-				SignalBus.teleport_173_to_player.emit(GlobalPlayerVariables.playerPosition)
+				SignalBus.teleport_173_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0, 0.5, 0))
 			"tp":
 				if commandStringArray.size() == 1:
 					println("missing <room>", Commands.errorColor)

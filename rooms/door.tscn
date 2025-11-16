@@ -25,6 +25,7 @@ script = ExtResource("1_i3vr1")
 animationPlayer = NodePath("door/AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("4_1nf8s"), ExtResource("3_r0iwn"), ExtResource("4_ivvos")])
 closeSounds = Array[AudioStream]([ExtResource("5_pgugy"), ExtResource("6_i7sdm"), ExtResource("7_w5vcm")])
+openableBy173 = true
 
 [node name="door" parent="." instance=ExtResource("1_w23wf")]
 

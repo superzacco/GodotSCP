@@ -1,14 +1,18 @@
 extends CharacterBody3D
 
-var playersInRadius: Array[Player]
-var playersLooking: Array[bool]
+@export var disabled: bool = false
 
 @export var speed: float
 @export var agent: NavigationAgent3D
 
+@export var tooCloseToPlayers: float 
+@export var tooFarFromPlayers: float 
+
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
+@export var playersLooking: Array[bool]
+var playersInRadius: Array[Player]
 var nearPlayer: bool = false
 var relocating: bool = false
 
@@ -22,12 +26,29 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 
 func _ready() -> void:
+	if disabled == true:
+		queue_free()
+	
 	SignalBus.connect("activate_173", relocate)
 	SignalBus.connect("teleport_173_to_player", teleport_to_player)
+	
+	$TenTimesASecond.connect("timeout", process_one)
+	$StoneScraping.connect("finished", play_scraping)
 
+func play_scraping():
+	if (players_blinking() or !players_looking()) and nearPlayer:
+		$StoneScraping.play(randf_range(0.0, 5.0))
 
-var nextPathPos: Vector3
-func _physics_process(delta: float) -> void:
+var nextPathPos := Vector3.ZERO
+func process_one():
+	if !multiplayer.is_server():
+		return
+	
+	if GlobalPlayerVariables.debugInfo != null:
+		GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
+		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
+		GlobalPlayerVariables.debugInfo.nearPlayer173 = nearPlayer
+	
 	nearPlayer = true if playersInRadius.size() > 0 else false
 	#print("near player?: %s -- all players blinking?: %s -- all players looking away?: %s" % [nearPlayer, players_blinking(), !players_looking()])
 	
@@ -45,14 +66,15 @@ func _physics_process(delta: float) -> void:
 		self.rotation.x = 0
 		self.rotation.z = 0
 		
-		if !$StoneScraping.playing: # fires on the first frame
-			$StoneScraping.play(randf_range(0.0, 5.0))
+		if !$StoneScraping.playing:
+			play_scraping()
 			if nearDoor != null and !waiting:
 				try_break_door()
 		
 		return
 	
 	$StoneScraping.stop()
+
 
 func players_blinking() -> bool: # Returns true if ALL players are blinking
 	for player: Player in playersInRadius:
@@ -64,14 +86,14 @@ func players_blinking() -> bool: # Returns true if ALL players are blinking
 	return false
 
 func players_looking() -> bool: # Returns false if ALL players are looking away
+	playersLooking.clear()
 	on_screen_check.rpc()
 	if !playersLooking.has(true):
 		return false
 	return true
 
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func on_screen_check():
-	playersLooking.clear()
 	playersLooking.append($VisibleOnScreenNotifier3D.is_on_screen())
 
 var waiting: bool = false

@@ -98,7 +98,7 @@ func set_seed(seed: int):
 	print(GameManager.rng.seed)
 
 func kill_player():
-	GlobalPlayerVariables.player.on_death.rpc()
+	GlobalPlayerVariables.player.take_damage(999)
 
 var teleportPoints: Dictionary[String, TeleportPoint]
 func teleport(tpName: String):

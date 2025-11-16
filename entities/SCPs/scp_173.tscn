@@ -31,6 +31,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:playersLooking")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqo5w"]
 radius = 0.2
@@ -41,8 +44,10 @@ collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
-speed = 30.0
+speed = 350.0
 agent = NodePath("NavigationAgent3D")
+tooCloseToPlayers = 15.0
+tooFarFromPlayers = 45.0
 neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
@@ -96,6 +101,11 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="RelocateTimer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="TenTimesASecond" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+autostart = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.4

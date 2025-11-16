@@ -7,6 +7,7 @@ var facilityManager: FacilityManager
 var interactionScript: Interaction
 var spectatorManager: SpectatorManager
 var ambienceManager: AmbienceManager
+var debugInfo: DebugInfo
 
 
 # player related

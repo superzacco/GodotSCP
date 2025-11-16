@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=22 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="Texture2D" uid="uid://ltthbch67w2c" path="res://entities/items/tools/gasmaskoverlay.png" id="1_1viem"]
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://df3nr6nsrp5kn" path="res://entities/ui/screen_text.gd" id="11_uwlwq"]
 [ext_resource type="Texture2D" uid="uid://bxggraj21k2dq" path="res://entities/ui/320px-Bigrigsovertheroadracing-yourewinner.png" id="16_2jsk5"]
 [ext_resource type="Script" uid="uid://dd05lm145jayr" path="res://entities/ui/win_screen.gd" id="16_ks708"]
+[ext_resource type="PackedScene" uid="uid://bxli2atpce1tr" path="res://entities/ui/debug_info.tscn" id="18_svwow"]
 [ext_resource type="LabelSettings" uid="uid://c34uqg2lfcw6k" path="res://entities/ui/label_bigger.tres" id="18_xuvmb"]
 
 [node name="UI" type="Control"]
@@ -187,6 +188,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 2
+
+[node name="DebugInfo" parent="." instance=ExtResource("18_svwow")]
+layout_mode = 1
 
 [node name="InventoryScreen" parent="." node_paths=PackedStringArray("equippedItemFrame") instance=ExtResource("2_suasf")]
 visible = false
