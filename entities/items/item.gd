@@ -20,6 +20,8 @@ func _ready() -> void:
 		
 		if !ZFunc.randInPercent(chanceToSpawn):
 			delete_item.rpc()
+		
+		SignalBus.reparent_item.emit(self)
 
 
 @rpc("authority", "call_local", "reliable")

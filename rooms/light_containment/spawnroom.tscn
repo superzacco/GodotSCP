@@ -118,8 +118,10 @@ rejectionText = "The door appears to be locked..."
 wontOpen = true
 
 [node name="Button2" parent="Doors/Door" index="2"]
+visible = false
 rejectionText = "The door appears to be locked..."
 wontOpen = true
+disabled = true
 
 [node name="Door2" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -22.4546, 3.02031, 0.700003)
@@ -131,8 +133,10 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door2" index="1"]
+visible = false
 rejectionText = "The door appears to be locked..."
 wontOpen = true
+disabled = true
 
 [node name="Button2" parent="Doors/Door2" index="2"]
 rejectionText = "The door appears to be locked..."
@@ -152,8 +156,10 @@ rejectionText = "The door appears to be locked..."
 wontOpen = true
 
 [node name="Button2" parent="Doors/Door4" index="2"]
+visible = false
 rejectionText = "The door appears to be locked..."
 wontOpen = true
+disabled = true
 
 [node name="Door5" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -18.6269, 3.02031, 25.5)
@@ -165,8 +171,10 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door5" index="1"]
+visible = false
 rejectionText = "The door appears to be locked..."
 wontOpen = true
+disabled = true
 
 [node name="Button2" parent="Doors/Door5" index="2"]
 rejectionText = "The door appears to be locked..."
@@ -198,11 +206,6 @@ cellDoor = NodePath("celldoor")
 [node name="celldoor" parent="Cell" instance=ExtResource("12_g0g5g")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.31439, 0.22901, -0.00910568)
 
-[node name="Scp485" parent="." instance=ExtResource("14_6622i")]
-transform = Transform3D(-0.105587, 0, -0.99441, 0, 1, 0, 0.99441, 0, -0.105587, -18.019, 2.12783, 41.4463)
-collision_layer = 2
-collision_mask = 2
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.768279, -3)
 
@@ -216,6 +219,9 @@ collision_mask = 256
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("BoxShape3D_25uhd")
+
+[node name="SCP485" parent="." instance=ExtResource("14_6622i")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.865, 2.1109, 25.4577)
 
 [connection signal="body_entered" from="173trigger" to="173trigger" method="_on_body_entered"]
 

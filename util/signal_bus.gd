@@ -11,6 +11,7 @@ signal win_game(time: String)
 signal hide_main_menu
 
 signal connect_elevator(elevator: Elevator)
+signal reparent_item(item: Item)
 signal setup_pd_release_point(point: PDReleasePoint)
 signal activate_173
 signal activate_106

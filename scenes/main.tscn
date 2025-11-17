@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=82 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -77,6 +77,9 @@
 [ext_resource type="NavigationMesh" uid="uid://w5dww2pihs38" path="res://levelgen/navmesh.tres" id="70_ksmap"]
 [ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
+[ext_resource type="Script" uid="uid://cjgxc8csbdga" path="res://scenes/items_node.gd" id="75_ygd8o"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ksmap"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_xrs0c"]
 
@@ -114,6 +117,8 @@ fillerEntTwoWayHalls = Array[PackedScene]([ExtResource("24_ty1g6")])
 fillerEntThreeWayHalls = Array[PackedScene]([ExtResource("25_bjg73")])
 fillerEntFourWayHalls = Array[PackedScene]([ExtResource("26_bu4jf")])
 fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
+connnectingHallLength = 2
+amountOfConnectingHalls = 3
 
 [node name="SpectatorScreenManager" type="Node" parent="."]
 script = ExtResource("19_2f3dj")
@@ -160,7 +165,10 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="AmbienceMusicB" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
+stream = SubResource("AudioStreamPolyphonic_ksmap")
 volume_db = -6.0
+autoplay = true
+max_polyphony = 4
 bus = &"Music"
 
 [node name="SoundsPlayerA" type="AudioStreamPlayer" parent="MusicAmbienceManager"]
@@ -199,8 +207,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 
 [node name="keycard03" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("63_ro3en")]
 transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, -0.8283, 0.0472804)
-collision_layer = 2
-collision_mask = 2
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
@@ -209,6 +215,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
 spawn_path = NodePath("../PlayerSpawn")
 script = ExtResource("18_og1vs")
 playerScene = ExtResource("20_5he1u")
+
+[node name="Items" type="Node3D" parent="Facility"]
+script = ExtResource("75_ygd8o")
 
 [node name="PlayerSpawn" type="Node3D" parent="Facility"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 2.15, -41)

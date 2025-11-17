@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djwk83tg7nipm"]
+[gd_scene load_steps=7 format=3 uid="uid://djwk83tg7nipm"]
 
 [ext_resource type="Script" uid="uid://ugwghevpfiyf" path="res://levelgen/pocket_dimension.gd" id="1_ersq4"]
 [ext_resource type="PackedScene" uid="uid://dlaatr81rovwd" path="res://rooms/pocket_dimension/PD8way.tscn" id="2_fsflu"]
 [ext_resource type="AudioStream" uid="uid://cjunbl3vguj14" path="res://audio/scps/106/Laugh.ogg" id="2_tak7t"]
+[ext_resource type="AudioStream" uid="uid://df7nieknao5st" path="res://audio/scps/106/PD.ogg" id="3_tak7t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrs0c"]
 size = Vector3(200, 50, 300)
@@ -12,7 +13,14 @@ size = Vector3(5, 5, 5)
 
 [node name="PocketDimension" type="Area3D" groups=["corrosive"]]
 script = ExtResource("1_ersq4")
-laugh = ExtResource("2_tak7t")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="PDAmbiance" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_tak7t")
+
+[node name="Laugh" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("2_tak7t")
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 

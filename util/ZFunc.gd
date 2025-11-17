@@ -30,16 +30,16 @@ func pick_from_list(weightedDict: Dictionary):
 
 func fade_in(player: Node, duration: float):
 	var curr_vol: float = player.volume_db
-	player.volume_db = -44.0
+	player.volume_db = -48.0
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(player, "volume_db", curr_vol, duration).set_ease(Tween.EASE_IN)
+	tween.tween_property(player, "volume_db", curr_vol, duration)
 
 func fade_out(player: Node, duration: float):
 	var curr_vol: float = player.volume_db
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(player, "volume_db", -25.0, duration).set_ease(Tween.EASE_IN)
+	tween.tween_property(player, "volume_db", -60.0, duration)
 	
 	await tween.finished
 	

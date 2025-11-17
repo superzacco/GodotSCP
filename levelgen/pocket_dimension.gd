@@ -1,14 +1,9 @@
 extends Area3D
 
-var ambiance: AmbienceManager
-
 @export var spawnPoints: Array[Marker3D]
 @export var releasePoints: Dictionary[PDReleasePoint, int]
 
-@export var laugh: AudioStream
-
 func _ready() -> void:
-	ambiance = GlobalPlayerVariables.ambienceManager
 	spawnPoints.append_array($SpawnPoints.get_children())
 	
 	SignalBus.send_player_to_106.connect(send_player_to_pd)
@@ -25,7 +20,11 @@ func send_player_to_pd(player: Player):
 	player.global_position = point.global_position
 	player.stuffToRotate.global_rotation = point.global_rotation
 	
-	ambiance.play_sound(laugh)
+	$Audio/Laugh.play()
+	
+	if !$Audio/PDAmbiance.playing:
+		ZFunc.fade_in($Audio/PDAmbiance, 3.0)
+		$Audio/PDAmbiance.play()
 
 
 func release_player_from_pd(player: Player):
@@ -34,13 +33,13 @@ func release_player_from_pd(player: Player):
 	player.global_position = point.global_position
 	player.stuffToRotate.global_rotation = point.global_rotation
 	
-	ambiance.play_sound(laugh)
-	ZFunc.fade_out(ambiance.musicPlayerB, 5.0)
+	$Audio/Laugh.play()
+	ZFunc.fade_out($Audio/PDAmbiance, 8.0)
 
 
 func _on_way_teleports_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		if ZFunc.randInPercent(50):
+		if ZFunc.randInPercent(40):
 			send_player_to_pd(body)
 		else:
 			release_player_from_pd(body)

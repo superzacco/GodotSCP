@@ -64,6 +64,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.056723, 4.1)
 [node name="KeycardDoor" parent="doors" instance=ExtResource("7_4s1b0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.70825, 0.0549742, 5.79265)
 
+[node name="doorside2_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="doors/KeycardDoor" index="1"]
 keycardLevel = 2
 
@@ -72,6 +78,12 @@ keycardLevel = 2
 
 [node name="ElevatorDoor" parent="doors" instance=ExtResource("6_4wlki")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0.0573279, -1.5)
+
+[node name="doorside2-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
+
+[node name="doorside1-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
 
 [node name="Button" parent="doors/ElevatorDoor" index="4"]
 visible = false
@@ -94,11 +106,11 @@ transform = Transform3D(1.04907e-07, 3.49691e-08, -0.8, 3.49691e-08, 0.8, 3.4969
 transform = Transform3D(-0.7, 0, 6.11959e-08, 0, 0.8, 0, -6.11959e-08, 0, -0.7, -5.63335, -0.70812, 3.42422)
 
 [node name="TeleportPoint" parent="." instance=ExtResource("11_xyxxv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.1, 0.7, 2.4)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -8.1, 0.7, 2.4)
 tpName = "elevatorstorage"
 
 [node name="PocketDimensionReleasePoint" parent="." instance=ExtResource("11_koiad")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.64904, 0.7, 1.94066)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -7.84904, 0.7, 2.14066)
 weight = 50
 
 [node name="keycard02" parent="." instance=ExtResource("12_4s1b0")]

@@ -12,7 +12,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rfcwx"]
 size = Vector3(0.355, 0.1, 0.1)
 
-[node name="Item" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_bisa4")]
+[node name="SCP485" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_bisa4")]
 inventorySprite = ExtResource("2_rfcwx")
 inventoryName = "SCP-485"
 itemName = "scp485"

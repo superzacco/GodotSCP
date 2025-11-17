@@ -1,3 +1,7 @@
+Node3D
+AudioStreamPlayer3D
+AudioStreamPlayer
+Node
 HBoxContainer
 Timer
 MarginContainer
@@ -5,11 +9,6 @@ Label
 Control
 CollisionShape3D
 Marker3D
-Node3D
-AudioStreamPlayer3D
 StaticBody3D
 Area3D
-AudioStreamPlayer
 NavigationObstacle3D
-MultiplayerSynchronizer
-ColorRect

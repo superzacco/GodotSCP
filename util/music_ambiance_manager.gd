@@ -1,7 +1,8 @@
 extends Node
 class_name AmbienceManager
 
-var soundsPlayerAPlaybackPolyphonic: AudioStreamPlaybackPolyphonic
+var soundsPlayerAPlayback: AudioStreamPlaybackPolyphonic
+var musicPlayerBPlayback: AudioStreamPlaybackPolyphonic
 
 @export var musicPlayerA: AudioStreamPlayer
 @export var musicPlayerB: AudioStreamPlayer
@@ -21,7 +22,9 @@ var soundsPlayerAPlaybackPolyphonic: AudioStreamPlaybackPolyphonic
 
 
 func _ready() -> void:
-	soundsPlayerAPlaybackPolyphonic = soundsPlayerA.get_stream_playback()
+	musicPlayerBPlayback = musicPlayerB.get_stream_playback()
+	soundsPlayerAPlayback = soundsPlayerA.get_stream_playback()
+	
 	GlobalPlayerVariables.ambienceManager = self
 	
 	await SignalBus.generate_level
@@ -57,23 +60,27 @@ func play_random_ambience(quicker: bool = false):
 	play_random_ambience()
 
 
-# // SCP/ROOM AMBIANCE MUSIC TRACKS
-func play_music(clip: AudioStream):
-	cancel_music()
-	
-	musicPlayerB.stream = clip
-	musicPlayerB.play()
-	
-	print(musicPlayerB.volume_db)
+#region // SCP/ROOM AMBIANCE MUSIC TRACKS
+func play_music_ambiance(clip: AudioStream):
+	cancel_current_music_ambiance()
+	musicPlayerBPlayback.play_stream(clip)
 
-func cancel_music():
-	musicPlayerB.stop()
+func cancel_current_music_ambiance(fadeDuration: float = 0.0):
+	if fadeDuration > 0:
+		fade_current_music_ambiance(fadeDuration)
+		return
+	
+	musicPlayerBPlayback.stop()
+
+func fade_current_music_ambiance(duration: int):
+	ZFunc.fade_out(musicPlayerB, duration)
+#endregion
 
 
 # // NON-POSITIONAL SOUNDS
 func play_sound(clip: AudioStream):
-	print(soundsPlayerAPlaybackPolyphonic, clip)
-	soundsPlayerAPlaybackPolyphonic.play_stream(clip)
+	print(soundsPlayerAPlayback, clip)
+	soundsPlayerAPlayback.play_stream(clip)
 
 
 # // FOR 173 SCRAPING

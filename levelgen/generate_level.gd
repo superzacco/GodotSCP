@@ -73,9 +73,13 @@ var replacableEntFourWayHalls: Array
 var replacableEntBends: Array
 #endregion
 
+@export_group("everything else")
 var spaceMultiplier: float = 15
-var mapWidth: int = 12
-var mapHeight: int = 25
+@export var mapWidth: int = 12
+@export var mapHeight: int = 25
+
+@export var connnectingHallLength: int
+@export var amountOfConnectingHalls: int
 
 var LContoHConCheckpointLine: int = 5
 var HContoEntranceCheckpointLine: int = 10
@@ -165,22 +169,20 @@ func generate_long_hall(zOffset):
 
 
 func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
-	var amountOfConnectingHalls: int = 3
-	
 	var startingPoint = hallMinExtent.x / spaceMultiplier
 	var endingPoint = hallMaxExtent.x / spaceMultiplier
 	var xPosition = startingPoint 
 	var zPosition = hallMinExtent.z / spaceMultiplier
 	
 	for i in amountOfConnectingHalls:
-		var distanceAddedBetween: int = rng.randi_range(1,3) + rng.randi_range(1,2)
+		var distanceAddedBetween: int = rng.randi_range(1,2) + rng.randi_range(1,3)
 		if i == 0: distanceAddedBetween = rng.randi_range(0,2)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
 			return
 		
-		for i2 in 2:
+		for i2 in connnectingHallLength:
 			spawn_room(fillerLConFourWayHalls[0], xPosition, zPosition + i2 + 1, true)
 #endregion // SHAPE
 

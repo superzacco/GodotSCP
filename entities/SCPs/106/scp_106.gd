@@ -10,14 +10,12 @@ var chasing: bool = false
 @export var animationPlayer: AnimationPlayer
 @export var corrosiveDecal: PackedScene
 
-@export var stepSounds: Array[AudioStream]
+@export var ermergeSounds: Array[AudioStream]
 @export var chaseAmbiance: AudioStream
 @export var sendtoPDSound: AudioStream
-@export var laugh: AudioStream
-@export var breathing: AudioStream
 @export var PDAmbiance: AudioStream
 
-var audioStreamPlaybackPolyphonic: AudioStreamPlaybackPolyphonic
+var audioPlaybackGlobal: AudioStreamPlaybackPolyphonic
 var ambiance: AmbienceManager
 
 
@@ -26,7 +24,6 @@ func _ready() -> void:
 	
 	$CollisionShape3D.position += Vector3(0, -15, 0)
 	
-	audioStreamPlaybackPolyphonic = $GlobalAudio.get_stream_playback()
 	ambiance = GlobalPlayerVariables.ambienceManager
 	
 	await SignalBus.level_generation_finished
@@ -62,13 +59,14 @@ func on_106_activated():
 func rise(position: Vector3):
 	$SummonTimer.stop()
 	
-	$Breathing.stream = breathing
-	$Breathing.play()
-	ZFunc.fade_in($Breathing, 7.0)
+	$Decay.stream = ZFunc.rand_from(ermergeSounds)
+	$Decay.play()
 	
-	$Rising.stream = sendtoPDSound
+	$Breathing.play()
+	ZFunc.fade_in($Breathing, 4.0)
+	
 	$Rising.play()
-	ZFunc.fade_in($Rising, 5.0)
+	ZFunc.fade_in($Rising, 1.0)
 	
 	self.global_position = GlobalPlayerVariables.playerPosition
 	
@@ -83,7 +81,7 @@ func rise(position: Vector3):
 
 @rpc("any_peer", "call_local", "reliable")
 func begin_chase():
-	ambiance.play_music(chaseAmbiance)
+	$Chase.play()
 	
 	chasing = true
 	$CollisionShape3D.position += Vector3(0, 15, 0)
@@ -94,29 +92,27 @@ func begin_chase():
 
 
 func end_chase():
-	if !chasing == true:
+	if chasing == false:
 		return
 	
+	ZFunc.fade_out($Chase, 5.0)
 	$Breathing.stop()
 	
 	chasing = false
 	$CollisionShape3D.position += Vector3(0, -15, 0)
+	
 	$"Decal Timer".stop()
+	spawn_first_decal()
 	
 	animationPlayer.stop()
 	animationPlayer.play_backwards("rise")
-	spawn_first_decal()
 	
 	$SummonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
 
 
-func on_send_player_to_pd():
-	audioStreamPlaybackPolyphonic.play_stream(sendtoPDSound)
-	await get_tree().create_timer(0.5).timeout
-	audioStreamPlaybackPolyphonic.play_stream(laugh)
-	
-	await get_tree().create_timer(0.5).timeout
-	ambiance.play_music(PDAmbiance)
+func on_send_player_to_pd(player: Player):
+	player.take_damage(25.0, "106")
+	$SendToPD.play()
 
 
 func spawn_first_decal():
@@ -150,12 +146,16 @@ func spawn_repeating_decal():
 	#if !chasing == true:
 		#return
 	#
-	#if !audioStreamPlaybackPolyphonic == null:
-		#audioStreamPlaybackPolyphonic.play_stream(ZFunc.rand_from(stepSounds))
+	#if !audioPlaybackGlobal == null:
+		#audioPlaybackGlobal.play_stream(ZFunc.rand_from(stepSounds))
 	#
 	#$StepSounds/Timer.start(0.74)
 	#await $StepSounds/Timer.timeout
 	#step()
+
+
+func stop_pd_ambiance():
+	ZFunc.fade_out($PDAmbiance, 5.0)
 
 
 func _on_chase_radius_area_exited(area: Area3D) -> void:
@@ -166,5 +166,4 @@ func _on_chase_radius_area_exited(area: Area3D) -> void:
 func _on_teleportzone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and chasing == true:
 		var player: Player = body
-		player.take_damage(25.0, true)
-		on_send_player_to_pd()
+		on_send_player_to_pd(player)

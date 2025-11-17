@@ -160,10 +160,12 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 func sent_to_pocket_dimension():
 	$AnimationPlayer.play("death")
 	GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
-	GlobalPlayerVariables.ambienceManager.play_sound(bodyslump)
 	
 	canMove = false
 	GlobalPlayerVariables.lookingEnabled = false
+	
+	await get_tree().create_timer(0.4)
+	$BodySlumpPlayer.play()
 	
 	await get_tree().create_timer(2.5).timeout
 	SignalBus.send_player_to_106.emit(self)
@@ -175,11 +177,12 @@ func sent_to_pocket_dimension():
 	GlobalPlayerVariables.lookingEnabled = true
 
 
-func take_damage(damage: float, sendToPocketDimension: bool = false):
-	if sendToPocketDimension == true:
-		sent_to_pocket_dimension()
-	
+func take_damage(damage: float, typeOfDamage: String = ""):
 	health -= damage
+	
+	match typeOfDamage:
+		"106":
+			sent_to_pocket_dimension()
 	
 	if health <= 0.0:
 		on_death.rpc(self.get_multiplayer_authority()) # Add types later
@@ -192,7 +195,7 @@ func on_death(dyingPLayerID: int):
 		canMove = false
 		$AnimationPlayer.play("death")
 	
-	#modelAnimations.play("death")
+	#modelAnimations.play("death") // not animated yet
 	
 	await get_tree().create_timer(0.4)
 	$BodySlumpPlayer.play()
