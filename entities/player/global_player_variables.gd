@@ -48,7 +48,6 @@ var blinking: bool = false
 
 
 # MULTIPLAYER
-var ID: int
 var playersBlinkingIDs: Array[int]
 
 @export var playersBlinking: Array[bool]

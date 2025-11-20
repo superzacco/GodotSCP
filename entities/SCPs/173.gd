@@ -11,7 +11,7 @@ extends CharacterBody3D
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
-@export var playersLooking: Array[bool]
+var playersState := {}
 var playersInRadius: Array[Player]
 var nearPlayer: bool = false
 var relocating: bool = false
@@ -28,6 +28,7 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 func _ready() -> void:
 	if disabled == true:
 		queue_free()
+		return
 	
 	SignalBus.connect("activate_173", relocate)
 	SignalBus.connect("teleport_173_to_player", teleport_to_player)
@@ -35,66 +36,124 @@ func _ready() -> void:
 	$TenTimesASecond.connect("timeout", process_one)
 	$StoneScraping.connect("finished", play_scraping)
 
-func play_scraping():
-	if (players_blinking() or !players_looking()) and nearPlayer:
-		$StoneScraping.play(randf_range(0.0, 5.0))
 
 var nextPathPos := Vector3.ZERO
 func process_one():
-	if !multiplayer.is_server():
-		return
+	process_client()
+	process_server()
+	
+	return
 	
 	if GlobalPlayerVariables.debugInfo != null:
-		GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
-		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
+		#GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
+		#GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
 		GlobalPlayerVariables.debugInfo.nearPlayer173 = nearPlayer
 	
-	nearPlayer = true if playersInRadius.size() > 0 else false
-	#print("near player?: %s -- all players blinking?: %s -- all players looking away?: %s" % [nearPlayer, players_blinking(), !players_looking()])
-	
-	if (players_blinking() or !players_looking()) and nearPlayer:
+	if nearPlayer:
 		#try_kill_player(playerInKillRange)
 		
-		agent.target_position = find_closest_player().global_position
-		nextPathPos = agent.get_next_path_position() - global_position
-	
-		velocity = (nextPathPos.normalized() * speed)
-		
-		move_and_slide()
-		
-		self.look_at(agent.target_position)
-		self.rotation.x = 0
-		self.rotation.z = 0
-		
-		if !$StoneScraping.playing:
-			play_scraping()
-			if nearDoor != null and !waiting:
-				try_break_door()
 		
 		return
 	
 	$StoneScraping.stop()
 
 
-func players_blinking() -> bool: # Returns true if ALL players are blinking
-	for player: Player in playersInRadius:
-		if player.blinking != true:
-			return false
-		else:
-			return true
+func process_client():
+	var selfID: int = multiplayer.get_unique_id()
+	var onScreen: bool = $VisibleOnScreenNotifier3D.is_on_screen()
+	var blinking: bool = GlobalPlayerVariables.blinking
+	
+	for player in playersInRadius:
+		if player.get_multiplayer_authority() == multiplayer.get_unique_id():
+			send_to_server.rpc(selfID, onScreen, blinking)
+			return
+	
+	clear_state_of_player.rpc(multiplayer.get_unique_id())
+
+
+@rpc("any_peer", "call_local", "reliable")
+func clear_state_of_player(playerID: int):
+	playersState.erase(playerID)
+
+@rpc("any_peer", "call_local", "reliable")
+func send_to_server(selfID: int, onScreen: bool, blinking: bool):
+	playersState[selfID] = {"visible": onScreen, "blinking": blinking}
+
+
+func process_server():
+	if !multiplayer.is_server():
+		return
+	
+	#print("Players combination: %s" % players_combination())
+	#print("Players looking: %s" % players_looking())
+	#print("Players blinking: %s" % players_blinking())
+	
+	nearPlayer = true if playersInRadius.size() > 0 else false
+	if (players_blinking() or !players_looking() or players_combination()) and nearPlayer:
+		agent.target_position = find_closest_player().global_position
+		nextPathPos = agent.get_next_path_position() - global_position
+		velocity = (nextPathPos.normalized() * speed)
+		move_and_slide()
+		
+		self.look_at(agent.target_position)
+		self.rotation.x = 0
+		self.rotation.z = 0
+		
+		play_scraping.rpc()
+		if nearDoor != null and !waiting:
+			try_break_door()
+		
+		return
+	
+	stop_scraping.rpc()
+
+
+#region // CONDITIONALS
+func players_looking() -> bool:
+	for peer in return_peers_in_radius():
+		if playersState.get(peer) != null:
+			var playerDict: Dictionary = playersState.get(peer)
+			if playerDict.get("visible") == true:
+				return true
 	
 	return false
 
-func players_looking() -> bool: # Returns false if ALL players are looking away
-	playersLooking.clear()
-	on_screen_check.rpc()
-	if !playersLooking.has(true):
-		return false
+func players_blinking() -> bool:
+	for peer in return_peers_in_radius():
+		if playersState.get(peer) != null:
+			var playerDict: Dictionary = playersState.get(peer)
+			if playerDict.get("blinking") != true:
+				return false 
+	
 	return true
 
+func players_combination() -> bool:
+	for peer in return_peers_in_radius():
+		if playersState.get(peer) != null:
+			var playerDict: Dictionary = playersState.get(peer)
+			if playerDict.get("blinking") != true and playerDict.get("visible") == true:
+				return false
+	
+	return true
+#endregion
+
+
+func return_peers_in_radius() -> Array[int]:
+	var peerArray: Array[int]
+	for player in playersInRadius:
+		peerArray.append(player.get_multiplayer_authority())
+	return peerArray
+
+
 @rpc("any_peer", "call_local", "reliable")
-func on_screen_check():
-	playersLooking.append($VisibleOnScreenNotifier3D.is_on_screen())
+func play_scraping():
+	$StoneScraping.play(randf_range(0.0, 5.0))
+
+@rpc("any_peer", "call_local", "reliable")
+func stop_scraping():
+	$StoneScraping.stop()
+
+
 
 var waiting: bool = false
 func try_break_door():
@@ -171,7 +230,7 @@ func find_closest_player() -> Player:
 		var dist: float = self.global_position.distance_to(player.global_position)
 		
 		if dist < closestDist:
-			dist = closestDist
+			closestDist = dist
 			closestPlayer = player
 	
 	return closestPlayer
@@ -194,14 +253,14 @@ func _on_chase_radius_body_entered(body: Node3D) -> void:
 		playersInRadius.append(body)
 		
 		$"RelocateTimer".stop()
-
 func _on_chase_radius_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playersInRadius.erase(body)
 		
-		$"RelocateTimer".start()
-		await $"RelocateTimer".timeout
-		relocate(true)
+		if !nearPlayer:
+			$"RelocateTimer".start()
+			await $"RelocateTimer".timeout
+			relocate(true)
 
 
 func _on_neck_snap_area_body_entered(body: Node3D) -> void:

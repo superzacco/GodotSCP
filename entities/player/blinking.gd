@@ -6,8 +6,6 @@ var blinkHeld: bool
 
 func _ready() -> void:
 	GlobalPlayerVariables.add_blinking.bind(multiplayer.get_unique_id()).rpc()
-	GlobalPlayerVariables.ID = multiplayer.get_unique_id()
-	
 	self.hide()
 
 

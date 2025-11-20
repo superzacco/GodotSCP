@@ -144,8 +144,10 @@ expand_mode = 1
 
 [node name="Refining" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_mjqu1")
-volume_db = -12.0
+volume_db = -6.0
+max_distance = 30.0
 bus = &"Sound Effects"
+attenuation_filter_db = -6.0
 
 [node name="KnobTurn" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_5rrng")

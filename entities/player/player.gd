@@ -54,12 +54,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_multiplayer_authority():
+		blinking = GlobalPlayerVariables.blinking
+	
 	if !is_multiplayer_authority() or dead or !canMove:
 		return
+	
 	if GlobalPlayerVariables.consoleOpen:
 		moveSpeed = 0.0
-	
-	blinking = GlobalPlayerVariables.blinking
 	
 	#region MOVEMENT
 	linear_velocity *= 0.85

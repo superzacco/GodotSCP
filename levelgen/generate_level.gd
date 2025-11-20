@@ -118,7 +118,6 @@ func _ready() -> void:
 	generate_map()
 
 
-#region // SHAPE
 func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
 	await SignalBus.generate_level
@@ -149,6 +148,7 @@ func generate_map():
 	
 
 
+#region // SHAPE
 func generate_long_hall(zOffset):
 	var hallLength: int = rng.randi_range(mapWidth-3, mapWidth)
 	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)-1) 
@@ -371,8 +371,8 @@ func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
 		var roomToReplace: int = rng.randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
-			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
-			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms.")
+			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
+			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
 			break
 		
 		var replacedRoom: Node3D = replacableRoomArray[roomToReplace]

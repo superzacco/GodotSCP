@@ -6,6 +6,7 @@ var chasing: bool = false
 @export var minSpawnTime: int 
 @export var maxSpawnTime: int 
 
+var playersInRadius: Array[Player]
 @export var agent: NavigationAgent3D
 @export var animationPlayer: AnimationPlayer
 @export var corrosiveDecal: PackedScene
@@ -16,15 +17,11 @@ var chasing: bool = false
 @export var PDAmbiance: AudioStream
 
 var audioPlaybackGlobal: AudioStreamPlaybackPolyphonic
-var ambiance: AmbienceManager
 
 
 func _ready() -> void:
 	SignalBus.connect("activate_106", on_106_activated)
-	
 	$CollisionShape3D.position += Vector3(0, -15, 0)
-	
-	ambiance = GlobalPlayerVariables.ambienceManager
 	
 	await SignalBus.level_generation_finished
 	
@@ -39,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	if chasing == true:
 		var nextPathPos := Vector3.ZERO
 		
-		agent.target_position = GlobalPlayerVariables.playerPosition
+		agent.target_position = find_closest_player().global_position
 		nextPathPos = agent.get_next_path_position() - position
 		velocity = (nextPathPos.normalized() * speed)
 		
@@ -158,9 +155,30 @@ func stop_pd_ambiance():
 	ZFunc.fade_out($PDAmbiance, 5.0)
 
 
+func find_closest_player() -> Player:
+	var closestDist: float = INF
+	var closestPlayer: Player = null
+	
+	for player: Player in playersInRadius:
+		var dist: float = self.global_position.distance_to(player.global_position)
+		
+		if dist < closestDist:
+			closestDist = dist
+			closestPlayer = player
+	
+	return closestPlayer
+
+
+func _on_chase_radius_area_entered(area: Area3D) -> void:
+	if area.is_in_group("noclip_player_area"):
+		playersInRadius.append(area.get_parent())
+
 func _on_chase_radius_area_exited(area: Area3D) -> void:
-	if area.is_in_group("noclip_safe_player_area"):
-		end_chase()
+	if area.is_in_group("noclip_player_area"):
+		playersInRadius.erase(area.get_parent())
+		
+		if playersInRadius.size() <= 0:
+			end_chase()
 
 
 func _on_teleportzone_body_entered(body: Node3D) -> void:
