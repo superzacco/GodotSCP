@@ -15,7 +15,7 @@ func _ready() -> void:
 	if disabled:
 		queue_free()
 
-@rpc("reliable", "call_local", "any_peer")
+
 func on_pressed():
 	if extraToControl == null and doorsToControl.size() <= 0:
 		push_error("Button with unassigned things")
@@ -24,12 +24,11 @@ func on_pressed():
 	if wontOpen:
 		$Fail.play()
 		if GlobalPlayerVariables.interactionText != null:
-			if multiplayer.get_unique_id() == multiplayer.get_remote_sender_id():
-				GlobalPlayerVariables.interactionText.display(rejectionText)
+			GlobalPlayerVariables.interactionText.display(rejectionText)
 		return
 	
 	if buttonType == 0:
-		activate_things()
+		activate_things.rpc()
 		
 	elif buttonType == 1:
 		var equippedKeycard: Keycard

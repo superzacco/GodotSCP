@@ -90,6 +90,8 @@ func process_server():
 	
 	nearPlayer = true if playersInRadius.size() > 0 else false
 	if (players_blinking() or !players_looking() or players_combination()) and nearPlayer:
+		try_kill_player(playerInKillRange)
+		
 		agent.target_position = find_closest_player().global_position
 		nextPathPos = agent.get_next_path_position() - global_position
 		velocity = (nextPathPos.normalized() * speed)

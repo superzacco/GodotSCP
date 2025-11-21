@@ -160,10 +160,16 @@ func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET
 
 
 func sent_to_pocket_dimension():
+	if get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+	
 	$AnimationPlayer.play("death")
-	GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
+	
+	play_death_sound(deathsound_106)
+	#GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
 	
 	canMove = false
+	print("test %s , %s" % [get_multiplayer_authority(), multiplayer.get_unique_id()])
 	GlobalPlayerVariables.lookingEnabled = false
 	
 	await get_tree().create_timer(0.4)
@@ -188,6 +194,10 @@ func take_damage(damage: float, typeOfDamage: String = ""):
 	
 	if health <= 0.0:
 		on_death.rpc(self.get_multiplayer_authority()) # Add types later
+	
+	print("player: %s took %s damage!" % [get_multiplayer_authority(), damage])
+	print("player: %s health now %s." % [get_multiplayer_authority(), health])
+
 
 @rpc("any_peer", "call_local", "reliable")
 func on_death(dyingPLayerID: int):
@@ -211,3 +221,14 @@ func on_death(dyingPLayerID: int):
 	
 	print("player: %s has died!" % dyingPLayerID)
 	SignalBus.remove_player.emit(dyingPLayerID)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func play_model_death_animation():
+	modelAnimations.stop()
+	modelAnimations.play("death")
+
+
+func play_death_sound(stream: AudioStream):
+	$DeathSounds.stream = stream
+	$DeathSounds.play()

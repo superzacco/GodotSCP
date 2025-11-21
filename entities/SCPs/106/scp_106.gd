@@ -127,7 +127,7 @@ func spawn_repeating_decal():
 	$"Decal Timer".start(0.65)
 	await $"Decal Timer".timeout
 	
-	var randomSize = randf_range(1.0, 1.5)
+	var randomSize = randf_range(1.25, 1.75)
 	var corrode: CorrosiveDecal = corrosiveDecal.instantiate()
 	
 	get_tree().root.add_child(corrode)

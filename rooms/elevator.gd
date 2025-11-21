@@ -2,6 +2,7 @@ extends Node3D
 class_name Elevator
 
 var rng: RandomNumberGenerator
+var interactTxt: InteractionText
 
 var destination: Node3D
 var otherElevator: Elevator
@@ -21,6 +22,8 @@ var playersInElevator: Array[Player]
 func _ready() -> void:
 	rng = GameManager.rng
 	rng.seed = GameManager.rng.seed
+	
+	interactTxt = GlobalPlayerVariables.interactionText
 	
 	SignalBus.connect("connect_elevator", elevator_setup)
 	
@@ -47,10 +50,11 @@ func elevator_setup(passedElevator: Elevator):
 func activate():
 	print(moving)
 	if moving:
-		if ZFunc.randInPercent(10):
-			GlobalPlayerVariables.interactionText.display("Pressing the button more wont make the elevator come any faster.")
-		else:
-			GlobalPlayerVariables.interactionText.display("You pressed the button, but the elevator was already moving.")
+		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
+			if ZFunc.randInPercent(10):
+				interactTxt.display("Pressing the button more wont make the elevator come any faster.")
+			else:
+				interactTxt.display("You pressed the button, but the elevator was already moving.")
 		
 		return
 	
@@ -59,21 +63,25 @@ func activate():
 	elif atCurrentFloor and !door.doorOpen:
 		door.open()
 	elif atCurrentFloor and door.doorOpen:
-		if id == "":
-			door.close()
-			await get_tree().create_timer(1.5).timeout
-			movingPlayer.play()
-			GameManager.game_win()
-			return
+		match id:
+			"win":
+				door.close()
+				await get_tree().create_timer(1.5).timeout
+				movingPlayer.play()
+				GameManager.game_win()
+				return
+			"":
+				push_error("Elevator %s with no id!" % self.get_path())
 		
 		send_elevator()
 
 
 func move_elevator_to_floor():
-	GlobalPlayerVariables.interactionText.display("You called the elevator.")
+	interactTxt.display("You called the elevator.")
 	
 	moving = true
 	otherElevator.moving = true
+	otherElevator.send_elevator()
 	
 	movingPlayer.play()
 	await get_tree().create_timer(8).timeout

@@ -92,9 +92,11 @@ stream = ExtResource("3_u3wo6")
 attenuation_model = 2
 volume_db = -12.0
 max_distance = 64.0
+bus = &"Sound Effects"
 
 [node name="NeckSnap" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+bus = &"Sound Effects"
 
 [node name="RelocateTimer" type="Timer" parent="."]
 wait_time = 10.0

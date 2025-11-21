@@ -73,8 +73,8 @@
 [ext_resource type="PackedScene" uid="uid://bbs8e406nn8yo" path="res://rooms/heavy_containment/049_chamber.tscn" id="59_tm6hj"]
 [ext_resource type="AudioStream" uid="uid://cehc2bpgdxqkd" path="res://audio/scps/079/Broadcast6.ogg" id="60_ksmap"]
 [ext_resource type="AudioStream" uid="uid://bkak1kdex6dsy" path="res://audio/scps/079/Broadcast7.ogg" id="61_ygd8o"]
-[ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="63_ro3en"]
 [ext_resource type="NavigationMesh" uid="uid://w5dww2pihs38" path="res://levelgen/navmesh.tres" id="70_ksmap"]
+[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="71_ygd8o"]
 [ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
 [ext_resource type="Script" uid="uid://cjgxc8csbdga" path="res://scenes/items_node.gd" id="75_ygd8o"]
@@ -117,8 +117,12 @@ fillerEntTwoWayHalls = Array[PackedScene]([ExtResource("24_ty1g6")])
 fillerEntThreeWayHalls = Array[PackedScene]([ExtResource("25_bjg73")])
 fillerEntFourWayHalls = Array[PackedScene]([ExtResource("26_bu4jf")])
 fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
-connnectingHallLength = 2
-amountOfConnectingHalls = 3
+mapWidth = 15
+mapHeight = 20
+connnectingHallLength = 3
+amountOfConnectingHalls = 4
+LContoHConCheckpointLine = 6
+HContoEntranceCheckpointLine = 13
 
 [node name="SpectatorScreenManager" type="Node" parent="."]
 script = ExtResource("19_2f3dj")
@@ -205,8 +209,8 @@ spawn_path = NodePath("..")
 [node name="LConHall003" parent="Facility/FacilityRegion" instance=ExtResource("12_ids8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 
-[node name="keycard03" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("63_ro3en")]
-transform = Transform3D(0.993717, 0, -0.11192, 0, 1, 0, 0.11192, 0, 0.993717, 1.74119, -0.8283, 0.0472804)
+[node name="keycard01" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("71_ygd8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4501, -0.90118, 0.302447)
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
@@ -220,7 +224,7 @@ playerScene = ExtResource("20_5he1u")
 script = ExtResource("75_ygd8o")
 
 [node name="PlayerSpawn" type="Node3D" parent="Facility"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109, 2.15, -41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
 
 [node name="PocketDimension" parent="." instance=ExtResource("72_xrs0c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 23, -229)

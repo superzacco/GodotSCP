@@ -46,6 +46,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 4.8
 
 [node name="elevator" parent="." instance=ExtResource("8_uwywp")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.28098, 0.0476468, 3.90083)
+id = "win"
 
 [node name="BigDoor" parent="." instance=ExtResource("6_sgrtb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0447495, 0.343632, -2.71224)
