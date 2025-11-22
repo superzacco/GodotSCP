@@ -39,7 +39,8 @@ size_flags_vertical = 0
 text = "173 info:
 near player?: 
 all players blinking?: 
-all players looking away?: "
+all players looking away?:
+relocation timer: "
 label_settings = ExtResource("2_1gmre")
 
 [node name="106Debug" type="Label" parent="MarginContainer/HBoxContainer"]

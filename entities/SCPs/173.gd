@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 @export var tooCloseToPlayers: float 
 @export var tooFarFromPlayers: float 
+@export var breakDoorChance: float
 
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
@@ -32,6 +33,7 @@ func _ready() -> void:
 	
 	SignalBus.connect("activate_173", relocate)
 	SignalBus.connect("teleport_173_to_player", teleport_to_player)
+	SignalBus.connect("relocate_173", relocate)
 	
 	$TenTimesASecond.connect("timeout", process_one)
 	$StoneScraping.connect("finished", play_scraping)
@@ -84,6 +86,7 @@ func process_server():
 	if !multiplayer.is_server():
 		return
 	
+	GlobalPlayerVariables.debugInfo.relocationTimer = $RelocateTimer.time_left
 	#print("Players combination: %s" % players_combination())
 	#print("Players looking: %s" % players_looking())
 	#print("Players blinking: %s" % players_blinking())
@@ -140,13 +143,6 @@ func players_combination() -> bool:
 #endregion
 
 
-func return_peers_in_radius() -> Array[int]:
-	var peerArray: Array[int]
-	for player in playersInRadius:
-		peerArray.append(player.get_multiplayer_authority())
-	return peerArray
-
-
 @rpc("any_peer", "call_local", "reliable")
 func play_scraping():
 	$StoneScraping.play(randf_range(0.0, 5.0))
@@ -157,59 +153,57 @@ func stop_scraping():
 
 
 
-var waiting: bool = false
-func try_break_door():
-	if nearDoor.doorOpen:
-		return
-	
-	waiting = true
-	print("Trying to break through door!")
-	
-	await get_tree().create_timer(2).timeout
-	waiting = false
-	if ZFunc.randInPercent(25):
-		if nearDoor != null:
-			nearDoor.one_seven_three_open.rpc()
-			print("Broke through door!")
 
 
 func relocate(playAmbiance: bool = false):
-	var rooms = GlobalPlayerVariables.facilityManager.playerNearbyRooms
-	if rooms.size() <= 0:
-		print("no nearby rooms")
+	var roomsNearbyPlayers = []
+	
+	for player: Player in get_tree().get_nodes_in_group("player"):
+		roomsNearbyPlayers.append_array(player.return_nearby_rooms())
+	
+	if roomsNearbyPlayers.size() <= 0:
+		print("no nearby room!")
 		try_relocate()
 		return
 	
-	print("relocating!")
+	print("Relocating! -- Neary Rooms [ %s ]" % roomsNearbyPlayers.size())
 	relocating = true
 	
-	var room: Room = rooms[randi_range(0, rooms.size()-1)]
+	var room: Room = ZFunc.rand_from(roomsNearbyPlayers)
 	
-	if room != null and !room.position.distance_to(GlobalPlayerVariables.playerPosition) < 17:
-		if !room.can173Spawn:
-			try_relocate()
-		
-		if room.spawnPosFor173 == null:
-			self.global_position = room.global_position + Vector3(0, 0.25, 0)
-		else:
-			self.global_position = room.spawnPosFor173.global_position + Vector3(0, 0.25, 0)
-	
-	if playAmbiance == true:
-		GlobalPlayerVariables.ambienceManager.play_ambience(relocationSounds[randi_range(0, 1)])
-	
-	if self.position.distance_to(GlobalPlayerVariables.playerPosition) < 40:
-		print("close to player")
-		relocating = false
-		$"RelocateTimer".stop()
+	if !room.can173Spawn:
+		try_relocate()
 		return
 	
-	try_relocate()
+	if room.spawnPosFor173 == null:
+		self.global_position = room.global_position
+	else:
+		self.global_position = room.spawnPosFor173.global_position
+	
+	if distance_to_closest_player() > tooFarFromPlayers or distance_to_closest_player() < tooCloseToPlayers:
+		try_relocate()
+		return
+	
+	if playAmbiance == true:
+		GlobalPlayerVariables.ambienceManager.play_ambience(ZFunc.rand_from(relocationSounds))
+	
+	print("Found Room: %s! -- Distance: %sm" % [room.name, distance_to_closest_player()])
+	confirm_relocate()
+
+
+func confirm_relocate():
+	print("close to player")
+	relocating = false
+	$"RelocateTimer".stop()
 
 
 func try_relocate():
-	await $"RelocateTimer".timeout
+	self.global_position += Vector3(0, -100, 0)
+	
 	if $"RelocateTimer".is_stopped():
 		$"RelocateTimer".start()
+	
+	await $"RelocateTimer".timeout
 	relocate()
 
 
@@ -224,11 +218,29 @@ func try_kill_player(player: Player):
 	playerInKillRange = null
 
 
+var waiting: bool = false
+func try_break_door():
+	if nearDoor.doorOpen:
+		return
+	
+	waiting = true
+	print("Trying to break through door!")
+	
+	await get_tree().create_timer(2).timeout
+	waiting = false
+	if ZFunc.randInPercent(breakDoorChance):
+		if nearDoor != null:
+			nearDoor.one_seven_three_open.rpc()
+			print("Broke through door!")
+
+
 func find_closest_player() -> Player:
 	var closestDist: float = INF
 	var closestPlayer: Player
 	
-	for player: Player in playersInRadius:
+	var players = get_tree().get_nodes_in_group("player")
+	
+	for player: Player in players:
 		var dist: float = self.global_position.distance_to(player.global_position)
 		
 		if dist < closestDist:
@@ -236,6 +248,16 @@ func find_closest_player() -> Player:
 			closestPlayer = player
 	
 	return closestPlayer
+
+func distance_to_closest_player() -> float:
+	return self.global_position.distance_to(find_closest_player().global_position)
+
+
+func return_peers_in_radius() -> Array[int]:
+	var peerArray: Array[int]
+	for player in playersInRadius:
+		peerArray.append(player.get_multiplayer_authority())
+	return peerArray
 
 
 func teleport_to_player(position: Vector3):
@@ -255,11 +277,12 @@ func _on_chase_radius_body_entered(body: Node3D) -> void:
 		playersInRadius.append(body)
 		
 		$"RelocateTimer".stop()
+
 func _on_chase_radius_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playersInRadius.erase(body)
 		
-		if !nearPlayer:
+		if playersInRadius.size() <= 0:
 			$"RelocateTimer".start()
 			await $"RelocateTimer".timeout
 			relocate(true)

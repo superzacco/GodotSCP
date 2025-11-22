@@ -86,9 +86,8 @@ func toggle_room_culling():
 		for room in facilityManager.rooms:
 			if room != null:
 				room.hide()
-		for room in facilityManager.playerNearbyRooms:
-			if room != null:
-				room.show()
+		
+		SignalBus.emit_signal("show_hidden_rooms")
 
 @rpc("reliable", "call_local", "any_peer")
 func set_seed(seed: int):

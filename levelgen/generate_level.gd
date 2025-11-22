@@ -145,7 +145,6 @@ func generate_map():
 	make_layout_shape()
 	
 	replace_shape_with_halls()
-	#return
 	replace_filler_rooms()
 	
 	place_doors()

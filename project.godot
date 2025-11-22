@@ -75,6 +75,7 @@ spectatable=""
 roomlight=""
 corrosive=""
 noclip_player_area=""
+elevatorpassenger=""
 
 [input]
 

@@ -16,7 +16,7 @@ var otherElevator: Elevator
 
 var moving: bool = false
 @export var atCurrentFloor := false
-var playersInElevator: Array[Player]
+var passengersInElevator: Array[Node3D]
 
 
 func _ready() -> void:
@@ -110,14 +110,22 @@ func send_elevator():
 	otherElevator.movingPlayer.play()
 	await get_tree().create_timer(6).timeout
 	
-	for player in playersInElevator:
+	for passenger in passengersInElevator:
 		var fromTransform := ownDestination.global_transform
 		var toTransform := destination.global_transform
 		
-		var playerOffset := fromTransform.affine_inverse() * player.global_transform
-		player.global_transform = toTransform * playerOffset
+		var passengerOffset := fromTransform.affine_inverse() * passenger.global_transform
+		var finalTransform = toTransform * passengerOffset
 		
-		player.blinkinator.blink()
+		if passenger.is_in_group("player"):
+			var player: Player = passenger
+			
+			player.global_position = finalTransform.origin
+			player.stuffToRotate.global_basis = finalTransform.basis
+			player.blinkinator.blink()
+			
+		else:
+			passenger.global_transform = finalTransform
 	
 	await get_tree().create_timer(1).timeout
 	
@@ -133,8 +141,8 @@ func send_elevator():
 
 
 func _on_inside_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		playersInElevator.append(body)
+	if body.is_in_group("elevatorpassenger"):
+		passengersInElevator.append(body)
 func _on_inside_area_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		playersInElevator.erase(body)
+	if body.is_in_group("elevatorpassenger"):
+		passengersInElevator.erase(body)

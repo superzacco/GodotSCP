@@ -5,6 +5,7 @@ class_name DebugInfo
 var nearPlayer173: bool
 var blinking173: bool
 var looking173: bool
+var relocationTimer: float
 
 @export var debug106: Label
 var summonTimer: float
@@ -25,7 +26,8 @@ func update_info() -> void:
 	debug173.text = "173 info:
 					near player?: %s
 					all players blinking?: %s
-					all players looking away?: %s" % [nearPlayer173, blinking173, looking173]
+					all players looking away?: %s
+					relocation timer: %s" % [nearPlayer173, blinking173, looking173, relocationTimer]
 	
 	debug106.text = "106 info:
 					summon timer: %s" % summonTimer

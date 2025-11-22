@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=47 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -26,9 +26,9 @@
 [ext_resource type="Script" uid="uid://bwqlwuy5t4jhx" path="res://entities/player/nearby_lights.gd" id="18_mtric"]
 [ext_resource type="AudioStream" uid="uid://bdonxt4exxue4" path="res://audio/steps/StepPD2.ogg" id="18_wq0jh"]
 [ext_resource type="Script" uid="uid://da4jis578yhi0" path="res://entities/player/overhead_username.gd" id="21_221hk"]
-[ext_resource type="PackedScene" uid="uid://biw6cuxxw4kwk" path="res://entities/player/room_culler.tscn" id="21_eyb6c"]
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="22_221hk"]
 [ext_resource type="Script" uid="uid://ddqteij1ntt8f" path="res://entities/player/gas_mask_model.gd" id="22_t1t22"]
+[ext_resource type="Script" uid="uid://ctlq37v6sjov8" path="res://entities/player/room_culler.gd" id="26_gt4e4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -75,8 +75,12 @@ radius = 1.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_221hk"]
 radius = 15.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mtric"]
-radius = 40.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gt4e4"]
+height = 100.0
+radius = 35.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_24ehl"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_4jd7t"]
 length = 0.001
@@ -213,7 +217,7 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_eyb6c"]
 viewport_path = NodePath("OverheadUsername/SubViewport")
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations") groups=["player", "spectatable", "teslashockable"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -226,8 +230,8 @@ script = ExtResource("1_qccfk")
 stuffToRotate = NodePath("StuffToRotate")
 collider = NodePath("CollisionShape3D")
 camera = NodePath("StuffToRotate/CameraBobPivot/Camera3D")
-moveSpeedDesired = 25.0
-sprintSpeedDesired = 50.0
+moveSpeedDesired = 20.0
+sprintSpeedDesired = 40.0
 sprintDepletionRate = 20.0
 sprintReplenishRate = 15.0
 blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
@@ -296,34 +300,32 @@ eyeDrynessPerSecond = 7.5
 transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
-bones/0/position = Vector3(-0.000392899, 0.85, 1.38909e-09)
-bones/0/rotation = Quaternion(-0.0116533, 0, 0, 0.999932)
-bones/3/rotation = Quaternion(0.0265452, 0.0972024, 0.978736, 0.178669)
-bones/4/rotation = Quaternion(-0.251597, -0.00254429, 0.185572, 0.949871)
-bones/5/rotation = Quaternion(0.165581, -0.0571952, 0.117438, 0.977507)
-bones/6/rotation = Quaternion(-0.0209184, -0.00150574, 0.999566, 0.0206666)
-bones/6/scale = Vector3(0.999967, 1, 0.999999)
-bones/7/rotation = Quaternion(0.0802807, 0.00152674, 0.0114318, 0.996706)
-bones/8/rotation = Quaternion(-0.700607, 0.00955928, -0.0369276, 0.712528)
-bones/8/scale = Vector3(0.999989, 0.999999, 1)
-bones/9/rotation = Quaternion(-0.0265451, 0.0972024, 0.978736, -0.178669)
-bones/10/rotation = Quaternion(-0.251597, 0.00254432, -0.185572, 0.949871)
-bones/11/rotation = Quaternion(0.166125, 0.040686, -0.0773327, 0.982225)
-bones/12/rotation = Quaternion(0.0283778, 0.000627697, 0.999448, -0.017286)
-bones/12/scale = Vector3(0.999967, 1, 0.999999)
-bones/13/rotation = Quaternion(0.0761375, -0.00152724, -0.0108419, 0.997037)
-bones/14/rotation = Quaternion(-0.69879, -0.00515252, 0.0436028, 0.713978)
-bones/14/scale = Vector3(0.999989, 0.999999, 1)
-bones/15/position = Vector3(-0.106556, 0.467222, -0.497362)
-bones/15/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
-bones/16/position = Vector3(-0.143188, 0.053142, 0.0829738)
-bones/16/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
-bones/17/position = Vector3(0.0957707, 0.467222, -0.497362)
-bones/18/position = Vector3(0.138318, 0.0527456, 0.0829738)
-bones/18/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
+bones/0/position = Vector3(-0.000411818, 0.896675, 0.0695966)
+bones/0/rotation = Quaternion(0.0384142, 1.19121e-07, 4.57933e-09, 0.999262)
+bones/1/rotation = Quaternion(-0.0997562, -7.39078e-14, -2.37838e-08, 0.995012)
+bones/2/rotation = Quaternion(-0.0886509, -1.1874e-07, -1.0568e-08, 0.996063)
+bones/4/rotation = Quaternion(0.0280318, 0.0488557, 0.989286, 0.134688)
+bones/5/rotation = Quaternion(-0.261065, 0.0294689, 0.191028, 0.945772)
+bones/6/rotation = Quaternion(0.151687, -0.102705, -0.029428, 0.982638)
+bones/7/rotation = Quaternion(-0.0280319, 0.0488557, 0.989286, -0.134688)
+bones/8/rotation = Quaternion(-0.261065, -0.0294689, -0.191028, 0.945772)
+bones/9/rotation = Quaternion(0.151687, 0.102705, 0.0294277, 0.982638)
+bones/10/rotation = Quaternion(-0.0199244, 0.0182526, 0.999412, 0.0211075)
+bones/11/rotation = Quaternion(0.0595497, 0.0015289, 0.00848036, 0.998188)
+bones/12/rotation = Quaternion(-0.66347, 0.00975411, -0.0313325, 0.747483)
+bones/13/rotation = Quaternion(0.0263593, 0.0209442, 0.999273, -0.0178751)
+bones/14/rotation = Quaternion(0.0543905, -0.00152952, -0.00774557, 0.998489)
+bones/15/rotation = Quaternion(-0.661297, -0.00583597, 0.0370799, 0.749184)
+bones/16/position = Vector3(-0.114577, 0.48972, -0.521312)
+bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
+bones/17/position = Vector3(-0.153241, 0.0560074, 0.0869693)
+bones/17/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
+bones/18/position = Vector3(0.103753, 0.48972, -0.521312)
+bones/19/position = Vector3(0.148333, 0.055611, 0.0869693)
+bones/19/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999194, 0, 0, 0, 0.999194, -5.96046e-08, 0, 8.9407e-08, 0.999194, -0.00790259, 1.6603, -0.11095)
+transform = Transform3D(1, 1.26343e-09, -4.23997e-09, -1.26344e-09, 1, 8.9407e-08, 4.23998e-09, -8.9407e-08, 1, -2.10421e-08, 0.00574493, 0.0695966)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, -0.00640416, 0)
@@ -334,7 +336,7 @@ script = ExtResource("22_t1t22")
 layers = 513
 
 [node name="AnimationPlayer" parent="StuffToRotate/classd001" index="1"]
-blend_times = [&"walk", &"walk", 0.15]
+playback_default_blend_time = 0.2
 
 [node name="NoclipPlayerArea" type="Area3D" parent="." groups=["noclip_player_area"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -391,9 +393,14 @@ shape = SubResource("SphereShape3D_221hk")
 script = ExtResource("18_b2kln")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyRooms"]
-shape = SubResource("SphereShape3D_mtric")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+shape = SubResource("CylinderShape3D_gt4e4")
 
-[node name="RoomCuller" parent="." instance=ExtResource("21_eyb6c")]
+[node name="RoomCuller" type="Area3D" parent="."]
+script = ExtResource("26_gt4e4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCuller"]
+shape = SubResource("SphereShape3D_24ehl")
 
 [node name="BodySlumpPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_gt4e4")
@@ -443,5 +450,7 @@ label_settings = ExtResource("22_221hk")
 [connection signal="area_exited" from="NearbyLights" to="NearbyLights" method="_on_area_exited"]
 [connection signal="area_entered" from="NearbyRooms" to="NearbyRooms" method="_on_area_entered"]
 [connection signal="area_exited" from="NearbyRooms" to="NearbyRooms" method="_on_area_exited"]
+[connection signal="area_entered" from="RoomCuller" to="RoomCuller" method="_on_area_entered"]
+[connection signal="area_exited" from="RoomCuller" to="RoomCuller" method="_on_area_exited"]
 
 [editable path="StuffToRotate/classd001"]

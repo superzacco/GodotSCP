@@ -99,18 +99,19 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.speed_scale = 1 
 	#endregion
 	
-	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
-		$AnimationPlayer.play()
-		
-		if sprinting and GlobalPlayerVariables.sprintJuice > 0:
-			#modelAnimations.play("run")
-			pass
-		else:
-			modelAnimations.play("walk")
-	else:
-		$AnimationPlayer.pause()
-		modelAnimations.play("idle")
-
+	#region // ANIMATIONS
+	#if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
+		#$AnimationPlayer.play()
+		#
+		#if sprinting and GlobalPlayerVariables.sprintJuice > 0:
+			##modelAnimations.play("run")
+			#pass
+		#else:
+			#modelAnimations.play("walk")
+	#else:
+		#$AnimationPlayer.pause()
+		#modelAnimations.play("idle")
+	#endregion
 
 #region CAMERA MOVEMENT
 func _input(event):
@@ -207,10 +208,13 @@ func on_death(dyingPLayerID: int):
 		canMove = false
 		$AnimationPlayer.play("death")
 	
-	#modelAnimations.play("death") // not animated yet
+	modelAnimations.play("death")
 	
-	await get_tree().create_timer(0.4)
+	await get_tree().create_timer(0.45).timeout
 	$BodySlumpPlayer.play()
+	
+	await modelAnimations.animation_finished
+	modelAnimations.play("dead")
 	
 	await get_tree().create_timer(2.5).timeout
 	print("dying player id: %s -- id runing code: %s" % [dyingPLayerID, selfID])
@@ -223,12 +227,17 @@ func on_death(dyingPLayerID: int):
 	SignalBus.remove_player.emit(dyingPLayerID)
 
 
-@rpc("any_peer", "call_local", "reliable")
-func play_model_death_animation():
-	modelAnimations.stop()
-	modelAnimations.play("death")
-
-
 func play_death_sound(stream: AudioStream):
 	$DeathSounds.stream = stream
 	$DeathSounds.play()
+
+
+
+func return_nearby_rooms():
+	var rooms = []
+	
+	for area: Area3D in $NearbyRooms.get_overlapping_areas():
+		if area.is_in_group("room"):
+			rooms.append(area.get_parent())
+	
+	return rooms
