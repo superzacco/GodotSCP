@@ -6,6 +6,8 @@ class_name Door
 @export var openSounds: Array[AudioStream]
 @export var closeSounds: Array[AudioStream]
 
+@export var openOnSpawn: bool = false
+
 @export var closableBy079: bool = false
 @export var openableBy173: bool = false
 var nonGenerated: bool = true
@@ -24,6 +26,9 @@ func _ready() -> void:
 	if multiplayer.is_server():
 		if ZFunc.randInPercent(2) and closableBy079 == true:
 			open.rpc()
+	
+	if openOnSpawn:
+		open()
 
 @rpc("reliable", "call_local", "any_peer")
 func toggle_door():

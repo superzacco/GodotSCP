@@ -94,6 +94,9 @@ func _input(event: InputEvent) -> void:
 					println("missing <room>", Commands.errorColor)
 				else:
 					Commands.teleport(commandStringArray[1])
+			"respawn":
+				print(get_multiplayer_authority())
+				SignalBus.spawn_player.emit(get_multiplayer_authority())
 		
 		inputField.clear()
 	

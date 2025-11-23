@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bxxnvxr1if2hq" path="res://rooms/Models/SpawnRoom.blend" id="3_xaeff"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="4_aslt0"]
 [ext_resource type="AudioStream" uid="uid://c8qr46gac7r6u" path="res://audio/ambient/Alarm0.ogg" id="9_lcceb"]
+[ext_resource type="PackedScene" uid="uid://b5pov58cv2r8a" path="res://entities/items/papers/documents/173_document.tscn" id="10_25uhd"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="10_88tpj"]
 [ext_resource type="Script" uid="uid://bxrqgyl7v0k40" path="res://entities/map/173_trigger.gd" id="11_up3nw"]
 [ext_resource type="PackedScene" uid="uid://hbsdij7dutfn" path="res://rooms/celldoor.tscn" id="12_g0g5g"]
-[ext_resource type="PackedScene" uid="uid://c8ym5kkq63x8p" path="res://entities/SCPs/485/485_item.tscn" id="14_6622i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lcceb"]
 radius = 30.0
@@ -110,12 +110,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.179, -7.5)
 [node name="Door" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3.02031, -6.8)
 
-[node name="doorside2_col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/Door" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -128,12 +122,6 @@ disabled = true
 
 [node name="Door2" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -22.4546, 3.02031, 0.700003)
-
-[node name="doorside2_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door2" index="1"]
 visible = false
@@ -148,12 +136,6 @@ wontOpen = true
 [node name="Door4" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -11.2994, 3.02031, 25.5)
 
-[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/Door4" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -166,12 +148,6 @@ disabled = true
 
 [node name="Door5" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -18.6269, 3.02031, 25.5)
-
-[node name="doorside2_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door5" index="1"]
 visible = false
@@ -186,20 +162,8 @@ wontOpen = true
 [node name="Door3" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-1, -4.37114e-08, 8.74227e-08, -4.37114e-08, 1, 4.37114e-08, -8.74227e-08, 4.37114e-08, -1, -14.9703, 3.02031, 8.17617)
 
-[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Door6" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(1.31134e-07, -4.37114e-08, 1, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 1.31134e-07, -7.47028, 3.02031, 0.688997)
-
-[node name="doorside2_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Cell" type="Node3D" parent="." node_paths=PackedStringArray("cellDoor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.8, 40.9)
@@ -223,8 +187,8 @@ collision_mask = 256
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("BoxShape3D_25uhd")
 
-[node name="SCP485" parent="." instance=ExtResource("14_6622i")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -14.865, 2.1109, 25.4577)
+[node name="Item" parent="." instance=ExtResource("10_25uhd")]
+transform = Transform3D(0.545488, 0, 0.838119, 0, 1, 0, -0.838119, 0, 0.545488, -14.8111, 2.1235, 25.6355)
 
 [connection signal="body_entered" from="173trigger" to="173trigger" method="_on_body_entered"]
 

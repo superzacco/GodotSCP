@@ -1,3 +1,5 @@
+res://entities/items/papers/documents
+res://entities/items/papers
 E:/Desktop/games or whatever/Game
 res://entities/ui
 res://levelgen
@@ -18,5 +20,3 @@ res://entities/items/cards
 E:/Desktop/games or whatever/templates
 res://rooms/entrance_zone
 res://rooms/heavy_containment
-res://rooms/Textures
-res://rooms/tesla

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsrwqrvf76xuk"]
+
+[ext_resource type="PackedScene" uid="uid://l5ha4pepguh0" path="res://entities/items/papers/document.tscn" id="1_pjxum"]
+[ext_resource type="Texture2D" uid="uid://b8x4s82rrgpb0" path="res://entities/items/papers/textures/doc_106.png" id="2_pjxum"]
+
+[node name="Item" instance=ExtResource("1_pjxum")]
+inventoryName = "106 Document"
+itemName = "106document"
+
+[node name="paper" parent="." index="2"]
+paper = ExtResource("2_pjxum")

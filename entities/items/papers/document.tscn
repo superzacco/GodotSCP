@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://l5ha4pepguh0"]
+
+[ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_mwij8"]
+[ext_resource type="Texture2D" uid="uid://06torb81vpqm" path="res://entities/items/papers/inventory_icon.png" id="2_hd8g4"]
+[ext_resource type="PackedScene" uid="uid://dipxcsvgbuqqf" path="res://entities/items/papers/paper.blend" id="2_iaehq"]
+[ext_resource type="Script" uid="uid://bidjswrel87gr" path="res://entities/items/papers/document.gd" id="3_7vppq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7vppq"]
+size = Vector3(0.46, 0.05, 0.6)
+
+[node name="Item" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_mwij8")]
+inventorySprite = ExtResource("2_hd8g4")
+equippable = true
+functionItem = NodePath("paper")
+
+[node name="paper" parent="." index="2" instance=ExtResource("2_iaehq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("3_7vppq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("BoxShape3D_7vppq")

@@ -299,33 +299,8 @@ eyeDrynessPerSecond = 7.5
 [node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
 transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
-bones/0/position = Vector3(-0.000411818, 0.896675, 0.0695966)
-bones/0/rotation = Quaternion(0.0384142, 1.19121e-07, 4.57933e-09, 0.999262)
-bones/1/rotation = Quaternion(-0.0997562, -7.39078e-14, -2.37838e-08, 0.995012)
-bones/2/rotation = Quaternion(-0.0886509, -1.1874e-07, -1.0568e-08, 0.996063)
-bones/4/rotation = Quaternion(0.0280318, 0.0488557, 0.989286, 0.134688)
-bones/5/rotation = Quaternion(-0.261065, 0.0294689, 0.191028, 0.945772)
-bones/6/rotation = Quaternion(0.151687, -0.102705, -0.029428, 0.982638)
-bones/7/rotation = Quaternion(-0.0280319, 0.0488557, 0.989286, -0.134688)
-bones/8/rotation = Quaternion(-0.261065, -0.0294689, -0.191028, 0.945772)
-bones/9/rotation = Quaternion(0.151687, 0.102705, 0.0294277, 0.982638)
-bones/10/rotation = Quaternion(-0.0199244, 0.0182526, 0.999412, 0.0211075)
-bones/11/rotation = Quaternion(0.0595497, 0.0015289, 0.00848036, 0.998188)
-bones/12/rotation = Quaternion(-0.66347, 0.00975411, -0.0313325, 0.747483)
-bones/13/rotation = Quaternion(0.0263593, 0.0209442, 0.999273, -0.0178751)
-bones/14/rotation = Quaternion(0.0543905, -0.00152952, -0.00774557, 0.998489)
-bones/15/rotation = Quaternion(-0.661297, -0.00583597, 0.0370799, 0.749184)
-bones/16/position = Vector3(-0.114577, 0.48972, -0.521312)
-bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
-bones/17/position = Vector3(-0.153241, 0.0560074, 0.0869693)
-bones/17/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
-bones/18/position = Vector3(0.103753, 0.48972, -0.521312)
-bones/19/position = Vector3(0.148333, 0.055611, 0.0869693)
-bones/19/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
-
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.26343e-09, -4.23997e-09, -1.26344e-09, 1, 8.9407e-08, 4.23998e-09, -8.9407e-08, 1, -2.10421e-08, 0.00574493, 0.0695966)
+transform = Transform3D(1, 1.26342e-09, -4.24e-09, -1.26344e-09, 1, 1.19209e-07, 4.24003e-09, -1.19209e-07, 1, -2.10421e-08, 2.38419e-07, 6.14673e-08)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, -0.00640416, 0)

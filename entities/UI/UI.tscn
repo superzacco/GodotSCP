@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://xrdd7v6d2fs"]
+[gd_scene load_steps=24 format=3 uid="uid://xrdd7v6d2fs"]
 
 [ext_resource type="Texture2D" uid="uid://ltthbch67w2c" path="res://entities/items/tools/gasmaskoverlay.png" id="1_1viem"]
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://dd05lm145jayr" path="res://entities/ui/win_screen.gd" id="16_ks708"]
 [ext_resource type="PackedScene" uid="uid://bxli2atpce1tr" path="res://entities/ui/debug_info.tscn" id="18_svwow"]
 [ext_resource type="LabelSettings" uid="uid://c34uqg2lfcw6k" path="res://entities/ui/label_bigger.tres" id="18_xuvmb"]
+[ext_resource type="Script" uid="uid://bqv6bc03wmokh" path="res://entities/ui/redable_papers_ui.gd" id="22_kltyd"]
+[ext_resource type="Texture2D" uid="uid://ccfkheedbiu6b" path="res://entities/items/papers/textures/doc_173.png" id="23_kltyd"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -39,6 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("9_rqao8")
 expand_mode = 1
 
@@ -50,9 +53,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_1viem")
 expand_mode = 2
 script = ExtResource("3_xfjp2")
+
+[node name="RedablePapersUI" type="Control" parent="." node_paths=PackedStringArray("paper", "point")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("22_kltyd")
+paper = NodePath("Scale/Paper")
+point = NodePath("Scale")
+
+[node name="Scale" type="Control" parent="RedablePapersUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+
+[node name="Paper" type="TextureRect" parent="RedablePapersUI/Scale"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = -409.5
+offset_right = 290.5
+offset_bottom = 409.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(290.5, 409.5)
+texture = ExtResource("23_kltyd")
+stretch_mode = 2
 
 [node name="Meters" type="Control" parent="." node_paths=PackedStringArray("blinkMeter", "sprintMeter", "blinkIcon")]
 layout_mode = 1
@@ -177,6 +222,7 @@ offset_right = 24.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("3_rqao8")
 expand_mode = 1
 
@@ -190,6 +236,7 @@ grow_vertical = 2
 expand_mode = 2
 
 [node name="DebugInfo" parent="." instance=ExtResource("18_svwow")]
+visible = false
 layout_mode = 1
 
 [node name="InventoryScreen" parent="." node_paths=PackedStringArray("equippedItemFrame") instance=ExtResource("2_suasf")]
@@ -249,3 +296,6 @@ layout_mode = 1
 
 [node name="VersionInfo" parent="." instance=ExtResource("6_xuvmb")]
 layout_mode = 1
+
+[connection signal="mouse_entered" from="RedablePapersUI/Scale/Paper" to="RedablePapersUI" method="_on_paper_mouse_entered"]
+[connection signal="mouse_exited" from="RedablePapersUI/Scale/Paper" to="RedablePapersUI" method="_on_paper_mouse_exited"]

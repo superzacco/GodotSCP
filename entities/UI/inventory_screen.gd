@@ -21,6 +21,8 @@ var iconOriginPoint: Vector2
 
 func _ready() -> void:
 	SignalBus.connect("toggle_gas_mask", close_inventory)
+	SignalBus.connect("hide_inventory", close_inventory)
+	
 	ItemManager.connect("update_slot_ui", clear_slot_ui)
 	
 	for i in slotsNode.get_children().size():
@@ -97,6 +99,9 @@ func _process(delta: float) -> void:
 
 
 func open_inventory():
+	if inventoryOpen:
+		return
+	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	GlobalPlayerVariables.lookingEnabled = false
 	
@@ -107,6 +112,9 @@ func open_inventory():
 
 
 func close_inventory():
+	if !inventoryOpen:
+		return
+	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalPlayerVariables.lookingEnabled = true
 	
@@ -166,6 +174,7 @@ func equip_item(item: Item):
 			item.equipped = false
 		else:
 			item.equipped = true
+		
 		close_inventory()
 		return
 	

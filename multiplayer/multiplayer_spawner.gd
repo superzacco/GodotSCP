@@ -8,11 +8,28 @@ func _ready() -> void:
 	SignalBus.player_disconnected.connect(on_player_disconnect)
 	SignalBus.remove_player.connect(remove_player_entity)
 	
+	SignalBus.spawn_player.connect(call_respawn)
+	
 	if is_multiplayer_authority():
 		spawn(1)
 		
 		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(on_player_disconnect)
+
+
+func call_respawn(id: int):
+	print("call respawn")
+	respawn_player.rpc(id)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func respawn_player(id: int):
+	print("test both %s " % multiplayer.get_unique_id())
+	if !multiplayer.is_server():
+		return
+	
+	print("Is server!")
+	spawn(id)
 
 
 func spawn_player(playerID: int):

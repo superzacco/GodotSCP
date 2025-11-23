@@ -86,10 +86,11 @@ func process_server():
 	if !multiplayer.is_server():
 		return
 	
-	GlobalPlayerVariables.debugInfo.relocationTimer = $RelocateTimer.time_left
-	#print("Players combination: %s" % players_combination())
-	#print("Players looking: %s" % players_looking())
-	#print("Players blinking: %s" % players_blinking())
+	if GlobalPlayerVariables.debugInfo != null:
+		GlobalPlayerVariables.debugInfo.relocationTimer = $RelocateTimer.time_left
+		#print("Players combination: %s" % players_combination())
+		#print("Players looking: %s" % players_looking())
+		#print("Players blinking: %s" % players_blinking())
 	
 	nearPlayer = true if playersInRadius.size() > 0 else false
 	if (players_blinking() or !players_looking() or players_combination()) and nearPlayer:

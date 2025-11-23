@@ -75,9 +75,16 @@ func _physics_process(delta: float) -> void:
 		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.1
 	else:
 		moveDir = -camera.global_basis.z * wishDir.z + -camera.global_basis.x * wishDir.x
-		self.position += (moveDir.normalized() * moveSpeed) * delta * 0.5
+		
+		var speedMultiplier
+		if Input.is_action_pressed("crouch"):
+			speedMultiplier = 0.1
+		else:
+			speedMultiplier = 0.5
 		if Input.is_action_pressed("blink"):
-			apply_force(stuffToRotate.transform.basis.y * moveSpeed * 5)
+			apply_force(stuffToRotate.transform.basis.y * (moveSpeed * speedMultiplier) * 10)
+		
+		self.position += (moveDir.normalized() * (moveSpeed * speedMultiplier)) * delta 
 	
 	GlobalPlayerVariables.playerPosition = self.global_position
 	#endregion
@@ -100,17 +107,17 @@ func _physics_process(delta: float) -> void:
 	#endregion
 	
 	#region // ANIMATIONS
-	#if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
-		#$AnimationPlayer.play()
-		#
-		#if sprinting and GlobalPlayerVariables.sprintJuice > 0:
-			##modelAnimations.play("run")
-			#pass
-		#else:
-			#modelAnimations.play("walk")
-	#else:
-		#$AnimationPlayer.pause()
-		#modelAnimations.play("idle")
+	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
+		$AnimationPlayer.play()
+		
+		if sprinting and GlobalPlayerVariables.sprintJuice > 0:
+			#modelAnimations.play("run")
+			pass
+		else:
+			modelAnimations.play("walk")
+	else:
+		$AnimationPlayer.pause()
+		modelAnimations.play("idle")
 	#endregion
 
 #region CAMERA MOVEMENT
