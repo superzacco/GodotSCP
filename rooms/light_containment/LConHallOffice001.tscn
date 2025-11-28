@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://b88uvhs20lxyn"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_0oga3"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_co1fu"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_6vsds"]
+[ext_resource type="PackedScene" uid="uid://bg8s3ptjar70v" path="res://rooms/Models/LConHallOffices001.blend" id="5_0oga3"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_khers"]
+[ext_resource type="PackedScene" uid="uid://bk6sp4pjff341" path="res://rooms/Models/props/officechair.blend" id="6_co1fu"]
+[ext_resource type="PackedScene" uid="uid://bogo1qqfqjh7y" path="res://rooms/Models/props/filecabinet.blend" id="6_e4mrw"]
+[ext_resource type="PackedScene" uid="uid://bko55qdmctjdd" path="res://rooms/Models/props/shelf02.blend" id="7_3i1cp"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="7_6vsds"]
+[ext_resource type="PackedScene" uid="uid://ddd37kr5i5jjw" path="res://rooms/Models/props/computer_monitor.blend" id="10_f3rda"]
+[ext_resource type="PackedScene" uid="uid://ccajjv5le4hk2" path="res://rooms/Models/props/computer_tower.blend" id="11_dgoxn"]
+[ext_resource type="PackedScene" uid="uid://b5pov58cv2r8a" path="res://entities/items/papers/documents/173_document.tscn" id="12_f3rda"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="13_dgoxn"]
+
+[node name="LConHall001" type="Node3D" groups=["room"]]
+script = ExtResource("1_0oga3")
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point1" parent="Points" instance=ExtResource("3_co1fu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+
+[node name="point2" parent="Points" instance=ExtResource("3_co1fu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_6vsds")]
+
+[node name="LConHallOffices001" parent="." instance=ExtResource("5_0oga3")]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("5_khers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.85405, -4)
+omniBrightness = 0.05
+
+[node name="Light2" parent="Lights" instance=ExtResource("5_khers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.85405, 4)
+omniBrightness = 0.05
+
+[node name="Light3" parent="Lights" instance=ExtResource("5_khers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.85405, -4)
+omniBrightness = 0.05
+
+[node name="Light4" parent="Lights" instance=ExtResource("5_khers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.85405, 4)
+omniBrightness = 0.05
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="computer_monitor" parent="props" instance=ExtResource("10_f3rda")]
+transform = Transform3D(-0.866069, 0, -0.499924, 0, 1, 0, 0.499924, 0, -0.866069, 1.7343, -0.0644823, -0.388313)
+
+[node name="computer_tower" parent="props" instance=ExtResource("11_dgoxn")]
+transform = Transform3D(-0.981853, 0, -0.189644, 0, 1, 0, 0.189644, 0, -0.981853, 0.971963, -0.261437, -0.394752)
+
+[node name="table5" parent="props" instance=ExtResource("7_6vsds")]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 1.48985, -0.721579, 2.6616)
+
+[node name="filecabinet" parent="props" instance=ExtResource("6_e4mrw")]
+transform = Transform3D(0.995683, 0, -0.0928224, 0, 1, 0, 0.0928224, 0, 0.995683, -0.332628, -0.661791, 0.308495)
+
+[node name="filecabinet2" parent="props" instance=ExtResource("6_e4mrw")]
+transform = Transform3D(0.993066, 0, 0.117555, 0, 1, 0, -0.117555, 0, 0.993066, 0.267291, -0.661791, 0.308495)
+
+[node name="shelf02" parent="props" instance=ExtResource("7_3i1cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43647, -0.793727, 6.8995)
+
+[node name="shelf03" parent="props" instance=ExtResource("7_3i1cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93647, -0.793727, 6.8995)
+
+[node name="shelf04" parent="props" instance=ExtResource("7_3i1cp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.21434, -0.793728, -3.78416)
+
+[node name="shelf05" parent="props" instance=ExtResource("7_3i1cp")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.21434, -0.793728, -5.28416)
+
+[node name="officechair" parent="props" instance=ExtResource("6_co1fu")]
+transform = Transform3D(0.936971, 0, 0.349406, 0, 1, 0, -0.349406, 0, 0.936971, -1.59944, -1.13972, 1.06137)
+
+[node name="officechair2" parent="props" instance=ExtResource("6_co1fu")]
+transform = Transform3D(-0.938559, 0, -0.345118, 0, 1, 0, 0.345118, 0, -0.938559, 1.40056, -1.13972, -1.08382)
+
+[node name="table" parent="props" instance=ExtResource("7_6vsds")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.49858, -0.734349, -0.51428)
+
+[node name="table2" parent="props" instance=ExtResource("7_6vsds")]
+transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, -2.28299, -0.734349, 0.54348)
+
+[node name="table3" parent="props" instance=ExtResource("7_6vsds")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.601425, -0.734349, -0.51428)
+
+[node name="table4" parent="props" instance=ExtResource("7_6vsds")]
+transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 2.60143, -0.734349, 0.54348)
+
+[node name="173 document" parent="." instance=ExtResource("12_f3rda")]
+transform = Transform3D(0.572318, 0, -0.820032, 0, 1, 0, 0.820032, 0, 0.572318, 1.24466, -0.247521, 1.62464)
+
+[node name="keycard00" parent="." instance=ExtResource("13_dgoxn")]
+transform = Transform3D(0.662999, 0, 0.74862, 0, 1, 0, -0.74862, 0, 0.662999, -2.08539, -0.357165, -0.841805)

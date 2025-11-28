@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://d55xcqpsiny2"]
+
+[ext_resource type="Script" uid="uid://bhnpgo7r5w2ue" path="res://entities/SCPs/049/049.gd" id="1_jpdk5"]
+[ext_resource type="PackedScene" uid="uid://7clnw4cwuaqu" path="res://entities/SCPs/049/049.blend" id="1_ulh24"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jpdk5"]
+radius = 0.3
+height = 1.8
+
+[node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("modelAnimations", "agent")]
+collision_layer = 257
+collision_mask = 257
+script = ExtResource("1_jpdk5")
+speed = 20
+modelAnimations = NodePath("049/AnimationPlayer")
+agent = NodePath("NavigationAgent3D")
+
+[node name="049" parent="." instance=ExtResource("1_ulh24")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="049/Armature" index="0"]
+bones/0/position = Vector3(0, 0.912581, -0.0154685)
+bones/0/rotation = Quaternion(-0.0260252, 0, 0, 0.999661)
+bones/1/rotation = Quaternion(-0.0429193, 1.19099e-07, -5.11638e-09, 0.999079)
+bones/2/rotation = Quaternion(0.196801, 2.17415e-14, 4.69211e-08, 0.980443)
+bones/3/rotation = Quaternion(-0.00477735, -0.0687403, 0.995223, -0.0691685)
+bones/4/rotation = Quaternion(0.0379321, -0.000122533, 0.00256343, 0.999277)
+bones/5/rotation = Quaternion(0.0154371, -0.00529287, -0.12679, 0.991795)
+bones/6/rotation = Quaternion(0.00469171, -0.0687462, 0.995308, 0.0679322)
+bones/7/rotation = Quaternion(0.0363558, -0.000497552, 0.00909482, 0.999297)
+bones/8/rotation = Quaternion(0.0248238, 0.00318947, 0.177018, 0.983889)
+bones/9/rotation = Quaternion(-0.000968501, 0.0285825, 0.999513, -0.0124492)
+bones/10/rotation = Quaternion(-0.0904295, -0.000222433, -0.0319302, 0.995391)
+bones/11/rotation = Quaternion(0.428967, 0.498582, 0.548929, 0.51583)
+bones/12/rotation = Quaternion(0.000968501, 0.0285825, 0.999513, 0.0124492)
+bones/13/rotation = Quaternion(-0.0905068, 0.000126959, 0.0105945, 0.99584)
+bones/14/rotation = Quaternion(0.440495, -0.490277, -0.537066, 0.526452)
+
+[node name="AnimationPlayer" parent="049" index="1"]
+speed_scale = 1.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("CapsuleShape3D_jpdk5")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+radius = 0.6
+debug_enabled = true
+
+[editable path="049"]

@@ -36,16 +36,13 @@ _subresources={
 "nodes": {
 "PATH:Elev1": {
 "generate/physics": true,
-"physics/layer": 3,
-"physics/mask": 3
-},
-"PATH:Elev1_001": {
-"generate/physics": true,
+"mesh_instance/layers": 9,
 "physics/layer": 3,
 "physics/mask": 3
 },
 "PATH:middle": {
 "generate/physics": true,
+"mesh_instance/layers": 9,
 "physics/layer": 3,
 "physics/mask": 3
 }

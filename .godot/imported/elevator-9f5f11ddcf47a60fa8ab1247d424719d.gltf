@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -16,6 +17,10 @@
 		{
 			"mesh":0,
 			"name":"elevator-col"
+		},
+		{
+			"mesh":1,
+			"name":"rails"
 		}
 	],
 	"materials":[
@@ -44,6 +49,17 @@
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":2
+				},
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Material.006",
+			"pbrMetallicRoughness":{
+				"baseColorTexture":{
+					"index":3
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -85,6 +101,21 @@
 					"material":2
 				}
 			]
+		},
+		{
+			"name":"Cylinder",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":15,
+						"NORMAL":16,
+						"TEXCOORD_0":17,
+						"TANGENT":18
+					},
+					"indices":19,
+					"material":3
+				}
+			]
 		}
 	],
 	"textures":[
@@ -99,6 +130,10 @@
 		{
 			"sampler":0,
 			"source":2
+		},
+		{
+			"sampler":0,
+			"source":3
 		}
 	],
 	"images":[
@@ -116,6 +151,11 @@
 			"mimeType":"image/jpeg",
 			"name":"crtbev.jpg",
 			"uri":"../../rooms/Textures/crtbev.jpg"
+		},
+		{
+			"mimeType":"image/jpeg",
+			"name":"dirtymetal.jpg",
+			"uri":"../../rooms/Textures/dirtymetal.jpg"
 		}
 	],
 	"accessors":[
@@ -238,6 +278,46 @@
 			"componentType":5123,
 			"count":42,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":15,
+			"componentType":5126,
+			"count":160,
+			"max":[
+				1.80837082862854,
+				-0.1644522249698639,
+				0.9036813974380493
+			],
+			"min":[
+				-1.80837082862854,
+				-0.42083030939102173,
+				-2.6419239044189453
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":16,
+			"componentType":5126,
+			"count":160,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":17,
+			"componentType":5126,
+			"count":160,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":18,
+			"componentType":5126,
+			"count":160,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":19,
+			"componentType":5123,
+			"count":240,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -330,6 +410,36 @@
 			"byteLength":84,
 			"byteOffset":3828,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1920,
+			"byteOffset":3912,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1920,
+			"byteOffset":5832,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1280,
+			"byteOffset":7752,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2560,
+			"byteOffset":9032,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":480,
+			"byteOffset":11592,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -340,7 +450,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":3912,
+			"byteLength":12072,
 			"uri":"elevator-9f5f11ddcf47a60fa8ab1247d424719d.bin"
 		}
 	]

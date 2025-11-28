@@ -1,5 +1,7 @@
 extends Control
 
+@export var zoomRate: float
+
 @export var paper: TextureRect
 @export var point: Control
 
@@ -25,15 +27,15 @@ func _input(event: InputEvent) -> void:
 		if paper.scale.x >= maxSize:
 			return
 		
-		paper.scale.x += paper.scale.x * 0.05
-		paper.scale.y += paper.scale.y * 0.05
+		paper.scale.x += paper.scale.x * zoomRate
+		paper.scale.y += paper.scale.y * zoomRate
 	
 	if event.is_action("mwheeldown") and self.visible:
 		if paper.scale.x <= defaultSize:
 			return
 		
-		paper.scale.x -= paper.scale.x * 0.05
-		paper.scale.y -= paper.scale.y * 0.05
+		paper.scale.x -= paper.scale.x * zoomRate
+		paper.scale.y -= paper.scale.y * zoomRate
 	
 	if event.is_action_pressed("interact"):
 		clicking = true

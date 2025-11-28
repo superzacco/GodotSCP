@@ -8,8 +8,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7vppq"]
 size = Vector3(0.46, 0.05, 0.6)
 
-[node name="Item" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_mwij8")]
+[node name="document" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_mwij8")]
 inventorySprite = ExtResource("2_hd8g4")
+itemType = 1
 equippable = true
 functionItem = NodePath("paper")
 

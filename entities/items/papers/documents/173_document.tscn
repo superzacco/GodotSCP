@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://l5ha4pepguh0" path="res://entities/items/papers/document.tscn" id="1_34t1f"]
 [ext_resource type="Texture2D" uid="uid://ccfkheedbiu6b" path="res://entities/items/papers/textures/doc_173.png" id="2_eob1x"]
 
-[node name="Item" instance=ExtResource("1_34t1f")]
+[node name="173 document" instance=ExtResource("1_34t1f")]
 inventoryName = "173 Document"
 itemName = "173document"
 

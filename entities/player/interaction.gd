@@ -79,12 +79,18 @@ func on_click_interactable():
 			return
 	
 	if nearestInteractable.is_in_group("button"):
+		press_button(nearestInteractable)
+		return
+	
+	if nearestInteractable.is_in_group("interactables"):
 		interact(nearestInteractable)
 		return
 
+func press_button(button):
+	button.on_pressed()
 
 func interact(interactable):
-	interactable.on_pressed()
+	interactable.interact()
 
 
 @rpc("reliable", "call_local", "any_peer")
@@ -104,4 +110,8 @@ func request_item_pickup(itemName):
 	if is_multiplayer_authority():
 		if item != null:
 			GlobalPlayerVariables.inventory.on_pickup_item(item)
-			$PickItem.play()
+			
+			if item.itemType == item.ItemType.type_paper:
+				$PickItemPaper.play()
+			else:
+				$PickItem.play()

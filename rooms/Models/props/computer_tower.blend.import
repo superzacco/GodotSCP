@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ccajjv5le4hk2"
-valid=false
+path="res://.godot/imported/computer_tower.blend-439be2ecb1b1acdef3cc085b40be02c0.scn"
 
 [deps]
 
 source_file="res://rooms/Models/props/computer_tower.blend"
+dest_files=["res://.godot/imported/computer_tower.blend-439be2ecb1b1acdef3cc085b40be02c0.scn"]
 
 [params]
 

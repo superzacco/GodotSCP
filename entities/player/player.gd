@@ -33,6 +33,10 @@ var specMgr: SpectatorManager
 
 var multiplayerAuthorityID: int 
 
+var skeleton: Skeleton3D
+var upperBodyBone
+var headBone
+
 func _ready() -> void:
 	camera.current = is_multiplayer_authority()
 	playerModel.visible = !is_multiplayer_authority()
@@ -40,6 +44,10 @@ func _ready() -> void:
 		$UI.hide()
 		$UI.set_process(false)
 		return
+	
+	skeleton = $StuffToRotate/classd001/Armature/Skeleton3D
+	upperBodyBone = $StuffToRotate/classd001/Armature/Skeleton3D.find_bone("bodyupper")
+	headBone = $StuffToRotate/classd001/Armature/Skeleton3D.find_bone("head")
 	
 	GlobalPlayerVariables.player = self
 	GameManager.clear_state()
@@ -129,6 +137,8 @@ func _input(event):
 		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * GlobalPlayerVariables.sensitivity * 0.1))
 		camera.rotate_x(deg_to_rad(-event.relative.y * GlobalPlayerVariables.sensitivity * 0.1))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		
+		#skeleton.set_bone_pose_rotation(upperBodyBone, Quaternion(camera.rotation.x, 0, 0, 1))
 	
 	if Input.is_action_just_pressed("noclip"):
 		toggle_noclip()

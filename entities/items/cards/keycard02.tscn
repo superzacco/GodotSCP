@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://drgsi3kpmyncf"]
+[gd_scene load_steps=8 format=3 uid="uid://drgsi3kpmyncf"]
 
 [ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_sgidu"]
 [ext_resource type="Texture2D" uid="uid://b0o0fcnxqgg0p" path="res://entities/items/cards/card2itemicon.png" id="2_k15mp"]
 [ext_resource type="Script" uid="uid://db44vl6v1ousg" path="res://entities/items/cards/keycard.gd" id="3_550t8"]
-[ext_resource type="PackedScene" uid="uid://dabgjqfcpe4ih" path="res://entities/items/cards/models/keycard2.blend" id="4_k15mp"]
+[ext_resource type="PackedScene" uid="uid://7qke47ahhb3a" path="res://entities/items/cards/models/keycard0.blend" id="4_k15mp"]
+[ext_resource type="Texture2D" uid="uid://bbuc1gm7vbkra" path="res://entities/items/cards/models/textures/key_card_lvl_2.png" id="5_x7gwq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_550t8"]
+albedo_texture = ExtResource("5_x7gwq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k15mp"]
-size = Vector3(0.3, 0.1, 0.4)
+size = Vector3(0.2, 0.1, 0.25)
 
 [node name="keycard02" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_sgidu")]
 inventorySprite = ExtResource("2_k15mp")
@@ -20,5 +24,10 @@ keycardLevel = 2
 
 [node name="keycard2" parent="keycard" index="0" instance=ExtResource("4_k15mp")]
 
+[node name="Plane" parent="keycard/keycard2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_550t8")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 shape = SubResource("BoxShape3D_k15mp")
+
+[editable path="keycard/keycard2"]

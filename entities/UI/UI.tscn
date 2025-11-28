@@ -59,6 +59,7 @@ expand_mode = 2
 script = ExtResource("3_xfjp2")
 
 [node name="RedablePapersUI" type="Control" parent="." node_paths=PackedStringArray("paper", "point")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,6 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("22_kltyd")
+zoomRate = 0.075
 paper = NodePath("Scale/Paper")
 point = NodePath("Scale")
 

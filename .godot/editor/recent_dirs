@@ -1,3 +1,9 @@
+res://entities
+res://entities/decals
+res://entities/items/cards/models
+res://entities/bodies
+res://entities/SCPs/049
+res://rooms
 res://entities/items/papers/documents
 res://entities/items/papers
 E:/Desktop/games or whatever/Game
@@ -5,7 +11,6 @@ res://entities/ui
 res://levelgen
 res://rooms/pocket_dimension
 res://util
-res://rooms
 res://scenes
 res://shaders
 res://entities/SCPs/106
@@ -16,7 +21,4 @@ res://multiplayer
 res://rooms/light_containment
 res://
 E:/Desktop/games or whatever
-res://entities/items/cards
 E:/Desktop/games or whatever/templates
-res://rooms/entrance_zone
-res://rooms/heavy_containment

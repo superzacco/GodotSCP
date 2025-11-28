@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0deiow2xb1i3"]
+
+[ext_resource type="Script" uid="uid://dhr0e1tk0l8ra" path="res://entities/step_zone.gd" id="1_n4inq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bwdx1"]
+radius = 0.2
+
+[node name="StepZone" type="Area3D" node_paths=PackedStringArray("ray")]
+script = ExtResource("1_n4inq")
+ray = NodePath("RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bwdx1")
+
+[node name="Check" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true

@@ -5,6 +5,12 @@ class_name Item
 @export var inventoryName: String
 @export var itemName: String
 
+@export var itemType: ItemType = ItemType.type_generic
+enum ItemType { 
+	type_generic,
+	type_paper
+}
+
 @export var chanceToSpawn: float = 100
 @export var equippable: bool = false
 var equipped: bool = false

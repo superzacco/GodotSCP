@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2ubs0d7q4xbr"]
+[gd_scene load_steps=9 format=3 uid="uid://b2ubs0d7q4xbr"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_frg2d"]
 [ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_ee4n3"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_ee4n3"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_3bxvg"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_1nm3e"]
+[ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="6_sv0yn"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="7_tc5cy"]
+[ext_resource type="PackedScene" uid="uid://dpq8gq38rdpod" path="res://entities/decals/blood01.tscn" id="8_5m4ag"]
 
 [node name="LCon3Way002" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -30,3 +33,23 @@ brightness = 1.0
 omniBrightness = 0.25
 
 [node name="LCon3Way001" parent="." instance=ExtResource("2_ee4n3")]
+
+[node name="Body" parent="." instance=ExtResource("6_sv0yn")]
+transform = Transform3D(-0.793013, 0, 0.609204, 0, 1, 0, -0.609204, 0, -0.793013, -0.175167, -1.17947, 0.216792)
+chanceToSpawn = 25.0
+
+[node name="body" parent="Body" index="0"]
+transform = Transform3D(0.999701, 0.0244485, -0.000389218, -0.0244485, 0.999194, -0.031825, -0.000389159, 0.031825, 0.999493, 0, 0.0266135, 0)
+
+[node name="gasmask" parent="Body/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.981177, 0.0468674, 0.187336, 0.190931, -0.38075, -0.904751, 0.0289246, 0.923489, -0.382531, -0.0721372, 0.735784, 0.235337)
+
+[node name="Decal" parent="Body/body/Armature/Skeleton3D" index="2" instance=ExtResource("8_5m4ag")]
+transform = Transform3D(0.675822, 0, -0.737065, 0, 1, 0, 0.737065, 0, 0.675822, 0.133039, 0.454697, 1.24482)
+cull_mask = 5
+
+[node name="keycard00" parent="Body" instance=ExtResource("7_tc5cy")]
+transform = Transform3D(-0.356983, 0, -0.934111, 0, 1, 0, 0.934111, 0, -0.356983, 0.615646, 0.113429, 0.820808)
+
+[editable path="Body"]
+[editable path="Body/body"]

@@ -13,6 +13,7 @@ signal hide_main_menu
 signal equip_paper(texture: Texture2D)
 signal setup_pd_release_point(point: PDReleasePoint)
 signal connect_elevator(elevator: Elevator)
+signal setup_body(id: String)
 signal reparent_item(item: Item)
 signal hide_inventory
 

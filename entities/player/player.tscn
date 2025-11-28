@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=49 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" uid="uid://da4jis578yhi0" path="res://entities/player/overhead_username.gd" id="21_221hk"]
 [ext_resource type="LabelSettings" uid="uid://danhs6c1qv82j" path="res://entities/ui/defaultlabel.tres" id="22_221hk"]
 [ext_resource type="Script" uid="uid://ddqteij1ntt8f" path="res://entities/player/gas_mask_model.gd" id="22_t1t22"]
+[ext_resource type="AudioStream" uid="uid://b14dgdp83yep6" path="res://audio/interaction/PickItemPaper.ogg" id="24_24ehl"]
 [ext_resource type="Script" uid="uid://ctlq37v6sjov8" path="res://entities/player/room_culler.gd" id="26_gt4e4"]
+[ext_resource type="PackedScene" uid="uid://c0deiow2xb1i3" path="res://entities/step_zone.tscn" id="31_bwdx1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
 friction = 10.0
@@ -271,10 +273,11 @@ mouse_filter = 2
 [node name="Camera3D" type="Camera3D" parent="StuffToRotate/CameraBobPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73195e-14, 1.65, -2.23517e-08)
 cull_mask = 1048063
-fov = 90.0
+fov = 80.0
 
 [node name="GrabbySprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+layers = 2
 double_sided = false
 no_depth_test = true
 texture = ExtResource("5_7cger")
@@ -299,16 +302,42 @@ eyeDrynessPerSecond = 7.5
 [node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
 transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
+bones/0/position = Vector3(-0.000411819, 0.880781, 2.4877e-09)
+bones/0/rotation = Quaternion(0.0384114, -0.000466496, -0.012138, 0.999188)
+bones/1/rotation = Quaternion(-0.1, 0, 0, 1)
+bones/2/rotation = Quaternion(-0.0878199, -0.00887103, 0.0100005, 0.996047)
+bones/4/rotation = Quaternion(0.0201327, 0.0440922, 0.981983, 0.182645)
+bones/5/rotation = Quaternion(-0.251597, -0.00254419, 0.185572, 0.949871)
+bones/6/rotation = Quaternion(0.165581, -0.0571952, 0.117438, 0.977507)
+bones/7/rotation = Quaternion(-0.0353648, 0.0490271, 0.982329, -0.177133)
+bones/8/rotation = Quaternion(-0.251597, 0.00254422, -0.185572, 0.949871)
+bones/9/rotation = Quaternion(0.166125, 0.0406861, -0.0773329, 0.982225)
+bones/10/rotation = Quaternion(-0.0237063, -0.0980857, 0.994726, 0.0183861)
+bones/11/rotation = Quaternion(0.192168, 0.00150255, 0.0273661, 0.980979)
+bones/12/rotation = Quaternion(-0.690126, 0.009411, -0.040173, 0.722513)
+bones/13/rotation = Quaternion(0.0343267, -0.164518, 0.98423, -0.055189)
+bones/14/rotation = Quaternion(0.519366, -0.0013043, -0.0739611, 0.851344)
+bones/15/rotation = Quaternion(-0.721902, -0.0243224, 0.0571573, 0.689202)
+bones/16/position = Vector3(-0.114577, 0.48972, -0.521312)
+bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
+bones/17/position = Vector3(-0.153348, 0.0602773, -0.0619747)
+bones/17/rotation = Quaternion(0.034828, 0.692901, 0.719409, 0.0335447)
+bones/18/position = Vector3(0.103753, 0.48972, -0.521312)
+bones/19/position = Vector3(0.142708, 0.172086, 0.113161)
+bones/19/rotation = Quaternion(-0.0258224, 0.844487, 0.533388, -0.0408833)
+
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.26342e-09, -4.24e-09, -1.26344e-09, 1, 1.19209e-07, 4.24003e-09, -1.19209e-07, 1, -2.10421e-08, 2.38419e-07, 6.14673e-08)
+transform = Transform3D(0.999913, 0.00100027, -0.0131735, -0.00102663, 0.999997, -0.00199348, 0.0131714, 0.00200689, 0.999911, 0.0150097, -0.0103607, -0.00299683)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, -0.00640416, 0)
 visible = false
+layers = 512
 script = ExtResource("22_t1t22")
 
 [node name="class_d" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="1"]
-layers = 513
+layers = 768
 
 [node name="AnimationPlayer" parent="StuffToRotate/classd001" index="1"]
 playback_default_blend_time = 0.2
@@ -351,6 +380,15 @@ shape = SubResource("CylinderShape3D_smri4")
 [node name="PickItem" type="AudioStreamPlayer3D" parent="InteractionZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = ExtResource("8_26q78")
+attenuation_model = 3
+volume_db = -6.0
+max_polyphony = 3
+bus = &"Sound Effects"
+attenuation_filter_db = 0.0
+
+[node name="PickItemPaper" type="AudioStreamPlayer3D" parent="InteractionZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+stream = ExtResource("24_24ehl")
 attenuation_model = 3
 volume_db = -6.0
 max_polyphony = 3
@@ -416,6 +454,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "mlgcatwiththepenjamin"
 label_settings = ExtResource("22_221hk")
+
+[node name="StepZone" parent="." instance=ExtResource("31_bwdx1")]
 
 [connection signal="area_entered" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_entered"]
 [connection signal="area_exited" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_exited"]
