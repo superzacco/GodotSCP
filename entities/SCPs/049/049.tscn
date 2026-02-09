@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d55xcqpsiny2"]
+[gd_scene load_steps=5 format=3 uid="uid://d55xcqpsiny2"]
 
 [ext_resource type="Script" uid="uid://bhnpgo7r5w2ue" path="res://entities/SCPs/049/049.gd" id="1_jpdk5"]
 [ext_resource type="PackedScene" uid="uid://7clnw4cwuaqu" path="res://entities/SCPs/049/049.blend" id="1_ulh24"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jpdk5"]
 radius = 0.3
 height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jpdk5"]
+radius = 30.0
 
 [node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("modelAnimations", "agent")]
 collision_layer = 257
@@ -46,5 +49,13 @@ shape = SubResource("CapsuleShape3D_jpdk5")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 radius = 0.6
 debug_enabled = true
+
+[node name="ChaseArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea"]
+shape = SubResource("SphereShape3D_jpdk5")
+
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
 
 [editable path="049"]

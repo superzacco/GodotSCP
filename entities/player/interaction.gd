@@ -72,7 +72,7 @@ func on_click_interactable():
 	
 	if nearestInteractable.is_in_group("item"):
 		if GlobalPlayerVariables.inventory.return_empty_slots() <= 0:
-			GlobalPlayerVariables.interactionText.display("You cannot hold any more items.")
+			SignalBus.show_interaction_text.emit("You cannot hold any more items.")
 			return
 		else:
 			request_item_pickup.rpc(nearestInteractable.name)

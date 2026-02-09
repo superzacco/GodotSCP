@@ -47,15 +47,9 @@ func process_one():
 	return
 	
 	if GlobalPlayerVariables.debugInfo != null:
-		#GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
-		#GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
+		GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
+		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
 		GlobalPlayerVariables.debugInfo.nearPlayer173 = nearPlayer
-	
-	if nearPlayer:
-		#try_kill_player(playerInKillRange)
-		
-		
-		return
 	
 	$StoneScraping.stop()
 

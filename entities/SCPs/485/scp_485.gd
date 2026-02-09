@@ -17,5 +17,5 @@ var texts: Dictionary[String, int] = {
 
 
 func equip():
-	GlobalPlayerVariables.interactionText.display(ZFunc.pick_from_list(texts))
+	SignalBus.show_interaction_text.emit(ZFunc.pick_from_list(texts))
 	GlobalPlayerVariables.ambienceManager.play_sound(clickSounds[randi_range(0, clickSounds.size()-1)])

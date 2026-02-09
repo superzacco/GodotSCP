@@ -10,6 +10,7 @@ signal hide_main_menu
 
 
 # // COMMUNICATION // #
+signal show_interaction_text(text: String)
 signal equip_paper(texture: Texture2D)
 signal setup_pd_release_point(point: PDReleasePoint)
 signal connect_elevator(elevator: Elevator)

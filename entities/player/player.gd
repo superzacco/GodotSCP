@@ -33,9 +33,12 @@ var specMgr: SpectatorManager
 
 var multiplayerAuthorityID: int 
 
-var skeleton: Skeleton3D
-var upperBodyBone
-var headBone
+@export var skeleton: Skeleton3D
+var upperBodyBone: int
+var headBone: int
+const normalBodyAngle := -0.1
+const lowBodyAngle := -0.5
+const highBodyAngle := -0.4
 
 func _ready() -> void:
 	camera.current = is_multiplayer_authority()
@@ -44,10 +47,10 @@ func _ready() -> void:
 		$UI.hide()
 		$UI.set_process(false)
 		return
-	
+
 	skeleton = $StuffToRotate/classd001/Armature/Skeleton3D
-	upperBodyBone = $StuffToRotate/classd001/Armature/Skeleton3D.find_bone("bodyupper")
-	headBone = $StuffToRotate/classd001/Armature/Skeleton3D.find_bone("head")
+	upperBodyBone = skeleton.find_bone("bodyupper")
+	headBone = skeleton.find_bone("head")
 	
 	GlobalPlayerVariables.player = self
 	GameManager.clear_state()
@@ -64,6 +67,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		blinking = GlobalPlayerVariables.blinking
+		bend_upper_body.rpc(camera.rotation_degrees.x)
 	
 	if !is_multiplayer_authority() or dead or !canMove:
 		return
@@ -127,6 +131,16 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.pause()
 		modelAnimations.play("idle")
 	#endregion
+
+
+@rpc("any_peer")
+func bend_upper_body(cameraAngle: float):
+	if skeleton == null:
+		return
+	
+	var angle: float = remap(cameraAngle, -90, 90, lowBodyAngle, highBodyAngle)
+	skeleton.set_bone_pose_rotation(upperBodyBone, Quaternion(angle, 0, 0, 1.0))  
+
 
 #region CAMERA MOVEMENT
 func _input(event):

@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var playersInRadius: Array[Player] = []
+
+var enabled: bool = false
 @export var speed: int
 
 @export var modelAnimations: AnimationPlayer
@@ -8,11 +11,15 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	modelAnimations.play("walk")
+	
+	await SignalBus.level_generation_finished
+	enabled = true
 
 
 var nextPathPos := Vector3.ZERO
 func _physics_process(delta: float) -> void:
-	await SignalBus.level_generation_finished
+	if !enabled or playersInRadius.size() < 1:
+		return
 	
 	agent.target_position = find_closest_player().global_position
 	nextPathPos = agent.get_next_path_position() - global_position
@@ -38,3 +45,12 @@ func find_closest_player() -> Player:
 			closestPlayer = player
 	
 	return closestPlayer
+
+
+func _on_chase_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		playersInRadius.append(body)
+
+func _on_chase_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		playersInRadius.erase(body)

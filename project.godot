@@ -185,10 +185,10 @@ common/physics_interpolation=true
 
 [rendering]
 
-lights_and_shadows/directional_shadow/size=16264
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
+lights_and_shadows/directional_shadow/size=16384
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
 lights_and_shadows/directional_shadow/16_bits=false
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=4
 environment/ssao/quality=3
@@ -196,7 +196,6 @@ environment/ssil/quality=3
 anti_aliasing/quality/msaa_3d=1
 lightmapping/primitive_meshes/texel_size=0.1
 global_illumination/sdfgi/frames_to_converge=0
-lights_and_shadows/tighter_shadow_caster_culling=false
 lightmapping/bake_quality/low_quality_ray_count=64
 lightmapping/bake_quality/medium_quality_ray_count=256
 lightmapping/bake_quality/high_quality_ray_count=1024

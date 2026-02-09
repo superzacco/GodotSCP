@@ -8,7 +8,7 @@ func _ready() -> void:
 		hide()
 		return
 	
-	GlobalPlayerVariables.interactionText = self
+	SignalBus.connect("show_interaction_text", display)
 
 @warning_ignore("shadowed_variable_base_class")
 func display(text: String):

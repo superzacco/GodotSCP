@@ -30,7 +30,7 @@ func on_start_game():
 	cellDoor.open()
 "
 
-[node name="Node3D" type="Node3D"]
+[node name="Spawnroom" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 script = ExtResource("1_njtbk")
 
@@ -107,12 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.179, -7.5)
 [node name="Door" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3.02031, -6.8)
 
-[node name="doorside2_col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/Door" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -125,12 +119,6 @@ disabled = true
 
 [node name="Door2" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -22.4546, 3.02031, 0.700003)
-
-[node name="doorside2_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door2" index="1"]
 visible = false
@@ -145,12 +133,6 @@ wontOpen = true
 [node name="Door4" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -11.2994, 3.02031, 25.5)
 
-[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/Door4" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -163,12 +145,6 @@ disabled = true
 
 [node name="Door5" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 1, 4.37114e-08, 1, 4.37114e-08, -4.37114e-08, -18.6269, 3.02031, 25.5)
-
-[node name="doorside2_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door5/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door5" index="1"]
 visible = false
@@ -183,20 +159,8 @@ wontOpen = true
 [node name="Door3" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(-1, -4.37114e-08, 8.74227e-08, -4.37114e-08, 1, 4.37114e-08, -8.74227e-08, 4.37114e-08, -1, -14.9703, 3.02031, 8.17617)
 
-[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Door6" parent="Doors" instance=ExtResource("4_aslt0")]
 transform = Transform3D(1.31134e-07, -4.37114e-08, 1, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 1.31134e-07, -7.47028, 3.02031, 0.688997)
-
-[node name="doorside2_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door6/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Cell" type="Node3D" parent="." node_paths=PackedStringArray("cellDoor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.8, 40.9)

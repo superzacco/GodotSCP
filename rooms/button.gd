@@ -23,8 +23,7 @@ func on_pressed():
 	
 	if wontOpen:
 		$Fail.play()
-		if GlobalPlayerVariables.interactionText != null:
-			GlobalPlayerVariables.interactionText.display(rejectionText)
+		SignalBus.show_interaction_text.emit(rejectionText)
 		return
 	
 	if buttonType == 0:
@@ -34,14 +33,14 @@ func on_pressed():
 		var equippedKeycard: Keycard
 		
 		if GlobalPlayerVariables.inventory.equippedItem == null:
-			GlobalPlayerVariables.interactionText.display("You need a keycard to open this door.")
+			SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
 			$Button.play()
 			
 		elif GlobalPlayerVariables.inventory.equippedItem.functionItem != null:
 			equippedKeycard = GlobalPlayerVariables.inventory.equippedItem.functionItem
 			
 			if !equippedKeycard.keycardLevel >= keycardLevel:
-				GlobalPlayerVariables.interactionText.display("You need a higher level keycard to access this door.")
+				SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
 				$Fail.play()
 				
 			else:

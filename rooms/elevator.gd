@@ -2,7 +2,6 @@ extends Node3D
 class_name Elevator
 
 var rng: RandomNumberGenerator
-var interactTxt: InteractionText
 
 var destination: Node3D
 var otherElevator: Elevator
@@ -22,8 +21,6 @@ var passengersInElevator: Array[Node3D]
 func _ready() -> void:
 	rng = GameManager.rng
 	rng.seed = GameManager.rng.seed
-	
-	interactTxt = GlobalPlayerVariables.interactionText
 	
 	SignalBus.connect("connect_elevator", elevator_setup)
 	
@@ -52,9 +49,9 @@ func activate():
 	if moving:
 		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
 			if ZFunc.randInPercent(10):
-				interactTxt.display("Pressing the button more wont make the elevator come any faster.")
+				SignalBus.show_interaction_text.emit("Pressing the button more wont make the elevator come any faster.")
 			else:
-				interactTxt.display("You pressed the button, but the elevator was already moving.")
+				SignalBus.show_interaction_text.emit("You pressed the button, but the elevator was already moving.")
 		
 		return
 	
@@ -77,7 +74,7 @@ func activate():
 
 
 func move_elevator_to_floor():
-	interactTxt.display("You called the elevator.")
+	SignalBus.show_interaction_text.emit("You called the elevator.")
 	
 	moving = true
 	otherElevator.moving = true
@@ -115,13 +112,14 @@ func send_elevator():
 		var toTransform := destination.global_transform
 		
 		var passengerOffset := fromTransform.affine_inverse() * passenger.global_transform
-		var finalTransform = toTransform * passengerOffset
+		var finalTransform: Transform3D = toTransform * passengerOffset
 		
 		if passenger.is_in_group("player"):
 			var player: Player = passenger
+			var playerRotateBasis = player.stuffToRotate.basis
 			
-			player.global_position = finalTransform.origin
-			player.stuffToRotate.global_basis = finalTransform.basis
+			player.global_transform = finalTransform
+			player.stuffToRotate.basis = playerRotateBasis
 			player.blinkinator.blink()
 			
 		else:
