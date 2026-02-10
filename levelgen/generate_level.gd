@@ -400,6 +400,9 @@ func place_doors():
 		var point = connectionPoints[i]
 		point.position.y = -1.145
 		
+		point.position.x = snapped(point.position.x, 0.01)
+		point.position.z = snapped(point.position.z, 0.01)
+		
 		if !doorLocations.has(point.global_position):
 			var spawnedDoor: Door = door.instantiate()
 			doorsNode.add_child(spawnedDoor)
