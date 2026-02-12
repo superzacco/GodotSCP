@@ -109,3 +109,12 @@ func teleport(tpName: String):
 	
 	player.global_position = pos
 	player.stuffToRotate.global_rotation = rot
+
+var quiet: bool = false
+func stfu():
+	if quiet == false:
+		SignalBus.shut_up_sounds.emit()
+		quiet = true
+	else:
+		SignalBus.come_back_sounds.emit()
+		quiet = false

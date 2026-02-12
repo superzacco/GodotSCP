@@ -25,6 +25,8 @@ signal activate_173
 signal relocate_173
 signal activate_106
 signal show_hidden_rooms
+signal shut_up_sounds
+signal come_back_sounds
 
 signal generate_level
 signal level_generation_finished

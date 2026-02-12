@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=52 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://ddqteij1ntt8f" path="res://entities/player/gas_mask_model.gd" id="22_t1t22"]
 [ext_resource type="AudioStream" uid="uid://b14dgdp83yep6" path="res://audio/interaction/PickItemPaper.ogg" id="24_24ehl"]
 [ext_resource type="Script" uid="uid://ctlq37v6sjov8" path="res://entities/player/room_culler.gd" id="26_gt4e4"]
+[ext_resource type="Script" uid="uid://dis8x8spq20qr" path="res://entities/player/voice_chat_player.gd" id="29_vewsg"]
 [ext_resource type="PackedScene" uid="uid://c0deiow2xb1i3" path="res://entities/step_zone.tscn" id="31_bwdx1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uuhg5"]
@@ -83,6 +84,11 @@ radius = 35.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_24ehl"]
 radius = 12.0
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_vewsg"]
+mix_rate = 48000.0
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_vewsg"]
 
 [sub_resource type="Animation" id="Animation_4jd7t"]
 length = 0.001
@@ -417,6 +423,31 @@ script = ExtResource("26_gt4e4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCuller"]
 shape = SubResource("SphereShape3D_24ehl")
 
+[node name="StepZone" parent="." instance=ExtResource("31_bwdx1")]
+
+[node name="VoiceChat" type="Node3D" parent="." node_paths=PackedStringArray("input", "output")]
+script = ExtResource("29_vewsg")
+inputThreshold = 0.075
+voiceHoldDuration = 50.0
+input = NodePath("VoiceInput")
+output = NodePath("VoiceChatPlayer")
+
+[node name="VoiceChatPlayer" type="AudioStreamPlayer3D" parent="VoiceChat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+stream = SubResource("AudioStreamGenerator_vewsg")
+attenuation_model = 1
+unit_size = 5.0
+autoplay = true
+bus = &"Voice Chat"
+attenuation_filter_cutoff_hz = 4231.0
+attenuation_filter_db = -31.0
+doppler_tracking = 2
+
+[node name="VoiceInput" type="AudioStreamPlayer" parent="VoiceChat"]
+stream = SubResource("AudioStreamMicrophone_vewsg")
+autoplay = true
+bus = &"Voice Input"
+
 [node name="BodySlumpPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_gt4e4")
 bus = &"Sound Effects"
@@ -456,8 +487,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "mlgcatwiththepenjamin"
 label_settings = ExtResource("22_221hk")
-
-[node name="StepZone" parent="." instance=ExtResource("31_bwdx1")]
 
 [connection signal="area_entered" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_entered"]
 [connection signal="area_exited" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_exited"]

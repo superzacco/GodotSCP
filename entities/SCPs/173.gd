@@ -44,8 +44,6 @@ func process_one():
 	process_client()
 	process_server()
 	
-	return
-	
 	if GlobalPlayerVariables.debugInfo != null:
 		GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
 		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()

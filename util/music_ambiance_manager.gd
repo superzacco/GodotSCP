@@ -66,7 +66,7 @@ func play_music_ambiance(clip: AudioStream):
 	musicPlayerBPlayback.play_stream(clip)
 
 func cancel_current_music_ambiance(fadeDuration: float = 0.0):
-	if fadeDuration > 0:
+	if fadeDuration > 0.0:
 		fade_current_music_ambiance(fadeDuration)
 		return
 	

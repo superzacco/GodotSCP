@@ -40,7 +40,7 @@ func on_pressed():
 			equippedKeycard = GlobalPlayerVariables.inventory.equippedItem.functionItem
 			
 			if !equippedKeycard.keycardLevel >= keycardLevel:
-				SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
+				SignalBus.show_interaction_text.emit("You need a higher level keycard to open this door.")
 				$Fail.play()
 				
 			else:
