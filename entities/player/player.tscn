@@ -225,7 +225,7 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_eyb6c"]
 viewport_path = NodePath("OverheadUsername/SubViewport")
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations", "sprintTimer", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -247,6 +247,7 @@ playerModel = NodePath("StuffToRotate/classd001")
 modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
 bodyslump = ExtResource("2_gt4e4")
 deathsound_106 = ExtResource("2_wq0jh")
+sprintTimer = NodePath("SprintTimer")
 skeleton = NodePath("StuffToRotate/classd001/Armature/Skeleton3D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
@@ -488,6 +489,9 @@ grow_vertical = 2
 text = "mlgcatwiththepenjamin"
 label_settings = ExtResource("22_221hk")
 
+[node name="SprintTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_entered"]
 [connection signal="area_exited" from="PlayerStepSounds" to="PlayerStepSounds" method="_on_area_exited"]
 [connection signal="area_entered" from="InteractionZone" to="InteractionZone" method="_on_area_entered"]
@@ -498,5 +502,6 @@ label_settings = ExtResource("22_221hk")
 [connection signal="area_exited" from="NearbyRooms" to="NearbyRooms" method="_on_area_exited"]
 [connection signal="area_entered" from="RoomCuller" to="RoomCuller" method="_on_area_entered"]
 [connection signal="area_exited" from="RoomCuller" to="RoomCuller" method="_on_area_exited"]
+[connection signal="timeout" from="SprintTimer" to="." method="start_recharge"]
 
 [editable path="StuffToRotate/classd001"]

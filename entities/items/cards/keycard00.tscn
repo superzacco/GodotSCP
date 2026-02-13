@@ -12,6 +12,7 @@ size = Vector3(0.2, 0.1, 0.25)
 inventorySprite = ExtResource("2_x7rh8")
 inventoryName = "Level 0 Keycard"
 itemName = "keycard0"
+itemType = 3
 functionItem = NodePath("keycard")
 
 [node name="keycard" type="Node3D" parent="." index="2"]

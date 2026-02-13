@@ -1,4 +1,5 @@
 extends Control
+class_name Console
 
 var commandHistoryIdx: int
 var commandHistory: Array[PackedStringArray]
@@ -122,7 +123,7 @@ func _input(event: InputEvent) -> void:
 		inputField.caret_column = inputField.text.length()
 
 
-func println(text: String, color: String = "#FFFFFF"):
-			consoleOutput = consoleOutput + "[color="+color+"]" + "\n"+"]" + text + "[/color]"
-			consoleTextWindow.text = consoleOutput
-	
+func println(text: String, color := Color.WHITE):
+	var hex: String = color.to_html()
+	consoleOutput = consoleOutput + "[color="+hex+"]" + "\n"+"]" + text + "[/color]"
+	consoleTextWindow.text = consoleOutput

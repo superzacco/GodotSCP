@@ -59,6 +59,12 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -11.8829, 2.53492, 1.70
 [node name="KeycardDoor" parent="." instance=ExtResource("9_rynue")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.10324, 2.046, -0.00128013)
 
+[node name="doorside2_col" parent="KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="KeycardDoor" index="1"]
 keycardLevel = 4
 
@@ -75,7 +81,6 @@ transform = Transform3D(-0.605044, 0, -0.796192, 0, 1, 0, 0.796192, 0, -0.605044
 
 [node name="Item" parent="Items" instance=ExtResource("12_x5x77")]
 transform = Transform3D(0.170313, 0, -0.98539, 0, 1, 0, 0.98539, 0, 0.170313, -10.172, 1.77536, -0.90815)
-itemType = 0
 
 [editable path="KeycardDoor"]
 [editable path="KeycardDoor/door"]

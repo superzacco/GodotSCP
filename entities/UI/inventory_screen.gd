@@ -182,8 +182,8 @@ func swap_item(prevSlot: InventorySlot, newSlot: InventorySlot):
 
 
 func equip_item(item: Item):
-	if !item.equippable:
-		return
+	#if !item.equippable:
+		#return
 	
 	item.equipped = true
 	

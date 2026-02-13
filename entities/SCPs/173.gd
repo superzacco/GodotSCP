@@ -93,7 +93,7 @@ func process_server():
 		velocity = (nextPathPos.normalized() * speed)
 		move_and_slide()
 		
-		self.look_at(agent.target_position)
+		self.look_at(nextPathPos)
 		self.rotation.x = 0
 		self.rotation.z = 0
 		

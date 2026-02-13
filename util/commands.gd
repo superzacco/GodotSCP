@@ -1,8 +1,8 @@
 extends Node
 
-var console 
+var console: Console
 
-var errorColor: String = "FF0000"
+var errorColor := Color.RED
 
 
 func help():
@@ -45,40 +45,12 @@ func get_pos():
 
 
 @rpc("reliable", "call_local", "any_peer")
-func spawn_item(item: String):
-	var itemToSpawn
+func spawn_item(itemString: String):
+	if !ItemManager.items.has(itemString):
+		console.println("invalid item name", Commands.errorColor)
+		return
 	
-	match item:
-		"keycard0":
-			itemToSpawn = Items.keycard0
-		"keycard1":
-			itemToSpawn = Items.keycard1
-		"keycard2":
-			itemToSpawn = Items.keycard2
-		"keycard3":
-			itemToSpawn = Items.keycard3
-		"keycard4":
-			itemToSpawn = Items.keycard4
-		"keycard5":
-			itemToSpawn = Items.keycard5
-		"keycard6":
-			itemToSpawn = Items.keycard6
-		"keycardomni":
-			itemToSpawn = Items.keycardomni
-		"gasmask":
-			itemToSpawn = Items.gasmask
-			
-		# // Documents
-		"doc049":
-			itemToSpawn = Items.document049
-		"doc079":
-			itemToSpawn = Items.document079
-		"doc096":
-			itemToSpawn = Items.document096
-		"doc106":
-			itemToSpawn = Items.document106
-		"doc173":
-			itemToSpawn = Items.document173
+	var itemToSpawn: PackedScene = ItemManager.items[itemString]
 	
 	if itemToSpawn != null:
 		var spawnedItem: Item = itemToSpawn.instantiate()

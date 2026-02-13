@@ -65,6 +65,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.056723, 4.1)
 [node name="KeycardDoor" parent="doors" instance=ExtResource("7_4s1b0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.70825, 0.0549742, 5.79265)
 
+[node name="doorside2_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="doors/KeycardDoor" index="1"]
 keycardLevel = 2
 
@@ -73,6 +79,12 @@ keycardLevel = 2
 
 [node name="ElevatorDoor" parent="doors" instance=ExtResource("6_4wlki")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0.0573279, -1.5)
+
+[node name="doorside2-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -1.19209e-07, 0)
+
+[node name="doorside1-col" parent="doors/ElevatorDoor/elevator_door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-7.54979e-08, -1, 7.10543e-15, -1, 7.54979e-08, -1.50996e-07, 1.50996e-07, -7.10543e-15, -1, 1.5, 0.0105998, 0)
 
 [node name="Button" parent="doors/ElevatorDoor" index="4"]
 visible = false
@@ -104,12 +116,11 @@ weight = 50
 
 [node name="items" type="Node3D" parent="."]
 
-[node name="Item" parent="items" instance=ExtResource("13_lu20d")]
-transform = Transform3D(-0.365218, 0, -0.930922, 0, 1, 0, 0.930922, 0, -0.365218, -9.6818, 0.22413, 1.36204)
-itemType = 0
-
 [node name="keycard02" parent="items" instance=ExtResource("12_4s1b0")]
 transform = Transform3D(0.218399, 0, -0.97586, 0, 1, 0, 0.97586, 0, 0.218399, -6.7061, -0.306545, 3.31783)
+
+[node name="Item" parent="." instance=ExtResource("13_lu20d")]
+transform = Transform3D(-0.503518, 0, -0.863985, 0, 1, 0, 0.863985, 0, -0.503518, -9.79637, 0.243225, 1.36837)
 
 [editable path="doors/KeycardDoor"]
 [editable path="doors/KeycardDoor/door"]

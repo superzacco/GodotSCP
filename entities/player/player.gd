@@ -19,6 +19,8 @@ class_name Player
 @export var bodyslump: AudioStream
 @export var deathsound_106: AudioStream
 
+@export var sprintTimer: Timer
+
 var moveSpeed: float
 
 var wishDir: Vector3
@@ -161,6 +163,7 @@ func _input(event):
 		sprinting = true
 	
 	if Input.is_action_just_released("sprint"):
+		stop_recharge()
 		sprinting = false
 #endregion
 
@@ -181,15 +184,22 @@ func toggle_noclip():
 		Commands.console.println("noclip ON")
 		print("noclip ON")
 
-
+var canRechargeSprint: bool = true
 func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET 
-	await get_tree().create_timer(2).timeout
+	if !canRechargeSprint:
+		return
+	
 	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
 		GlobalPlayerVariables.sprintJuice += sprintReplenishRate * delta
 	
 	if GlobalPlayerVariables.sprintJuice > 100:
 		GlobalPlayerVariables.sprintJuice = 100
 
+func start_recharge():
+	canRechargeSprint = true
+func stop_recharge():
+	sprintTimer.start(2)
+	canRechargeSprint = false
 
 func sent_to_pocket_dimension():
 	if get_multiplayer_authority() != multiplayer.get_unique_id():

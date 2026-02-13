@@ -1,3 +1,4 @@
+Timer
 MultiplayerSynchronizer
 AudioStreamPlayer3D
 LightmapGI
@@ -9,7 +10,5 @@ Area3D
 VoxelGI
 NavigationAgent3D
 CharacterBody3D
-Timer
 RayCast3D
 Decal
-StaticBody3D

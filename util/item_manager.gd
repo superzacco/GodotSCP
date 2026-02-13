@@ -1,5 +1,26 @@
 extends Node
 
+@onready var items = {
+	"keycard0": preload("res://entities/items/cards/keycard00.tscn"),
+	"keycard1": preload("res://entities/items/cards/keycard01.tscn"),
+	"keycard2": preload("res://entities/items/cards/keycard02.tscn"),
+	"keycard3": preload("res://entities/items/cards/keycard03.tscn"),
+	"keycard4": preload("res://entities/items/cards/keycard04.tscn"),
+	"keycard5": preload("res://entities/items/cards/keycard05.tscn"),
+	"keycard6": preload("res://entities/items/cards/keycard06.tscn"),
+	"keycardomni": preload("res://entities/items/cards/keycardomni.tscn"),
+	
+	"gasmask": preload("res://entities/items/tools/gas_mask.tscn"),
+
+	"document049": preload("res://entities/items/papers/documents/049_document.tscn"),
+	"document079": preload("res://entities/items/papers/documents/079_document.tscn"),
+	"document096": preload("res://entities/items/papers/documents/096_document.tscn"),
+	"document106": preload("res://entities/items/papers/documents/106_document.tscn"),
+	"document173": preload("res://entities/items/papers/documents/173_document.tscn"),
+
+	"item485": preload("res://entities/SCPs/485/485_item.tscn")
+}
+
 #endregion
 signal update_slot_ui
 #region // DROPPING 

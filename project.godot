@@ -25,7 +25,6 @@ driver/enable_input=true
 ZFunc="*res://util/ZFunc.gd"
 VersionController="*res://util/version_controller.gd"
 Commands="*res://util/commands.gd"
-Items="*res://entities/items/items.gd"
 SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
 GameManager="*res://util/game_manager.tscn"

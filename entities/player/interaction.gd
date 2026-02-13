@@ -114,7 +114,6 @@ func request_item_pickup(itemName):
 			GlobalPlayerVariables.inventory.on_pickup_item(item)
 			
 			var itemTypes := Item.ItemType
-			
 			match item.itemType:
 				itemTypes.type_generic:
 					$PickItem.play()

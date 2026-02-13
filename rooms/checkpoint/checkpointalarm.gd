@@ -10,6 +10,8 @@ func activate():
 	if active:
 		return
 	
+	await get_tree().create_timer(0.5).timeout
+	
 	active = true
 	self.stream = checkpointSound
 	self.play()

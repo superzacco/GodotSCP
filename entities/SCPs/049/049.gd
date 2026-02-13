@@ -5,11 +5,14 @@ var playersInRadius: Array[Player] = []
 var enabled: bool = false
 @export var speed: int
 
+@export var timer: Timer
 @export var modelAnimations: AnimationPlayer
 @export var agent: NavigationAgent3D
 
 
 func _ready() -> void:
+	timer.timeout.connect(process_one)
+	
 	modelAnimations.play("walk")
 	
 	await SignalBus.level_generation_finished
@@ -17,18 +20,21 @@ func _ready() -> void:
 
 
 var nextPathPos := Vector3.ZERO
-func _physics_process(delta: float) -> void:
+func process_one() -> void:
 	if !enabled or playersInRadius.size() < 1:
 		return
 	
-	agent.target_position = find_closest_player().global_position
 	nextPathPos = agent.get_next_path_position() - global_position
 	velocity = (nextPathPos.normalized() * (speed * 0.1))
-	move_and_slide()
-	
-	self.look_at(agent.get_next_path_position())
+
+
+func _process(delta: float) -> void:
+	agent.target_position = find_closest_player().global_position
+	self.look_at(nextPathPos)
 	self.rotation.x = 0
 	self.rotation.z = 0
+	
+	move_and_slide()
 
 
 func find_closest_player() -> Player:
