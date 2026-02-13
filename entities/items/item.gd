@@ -20,6 +20,10 @@ var equipped: bool = false
 
 func _ready() -> void:
 	await SignalBus.level_generation_finished
+	setup_item()
+
+
+func setup_item():
 	if multiplayer.is_server():
 		var id: int = GameManager.rng.randi_range(000000, 999999)
 		set_name_id.rpc(id)

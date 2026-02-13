@@ -67,11 +67,24 @@ func spawn_item(item: String):
 			itemToSpawn = Items.keycardomni
 		"gasmask":
 			itemToSpawn = Items.gasmask
+			
+		# // Documents
+		"doc049":
+			itemToSpawn = Items.document049
+		"doc079":
+			itemToSpawn = Items.document079
+		"doc096":
+			itemToSpawn = Items.document096
+		"doc106":
+			itemToSpawn = Items.document106
+		"doc173":
+			itemToSpawn = Items.document173
 	
 	if itemToSpawn != null:
-		var spawnedItem: Node = itemToSpawn.instantiate()
+		var spawnedItem: Item = itemToSpawn.instantiate()
 		get_tree().root.add_child(spawnedItem)
 		spawnedItem.global_position = GlobalPlayerVariables.playerPosition + Vector3(0, 1, 0)
+		spawnedItem.setup_item()
 
 func toggle_room_culling():
 	var facilityManager = GlobalPlayerVariables.facilityManager
@@ -102,6 +115,7 @@ func kill_player():
 var teleportPoints: Dictionary[String, TeleportPoint]
 func teleport(tpName: String):
 	var point: TeleportPoint = teleportPoints.get(tpName)
+	if point == null: return
 	
 	var player: Player = GlobalPlayerVariables.player
 	var pos: Vector3 = point.global_position

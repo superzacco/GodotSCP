@@ -336,6 +336,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.751
 
 [node name="Lever" parent="lever_panel" instance=ExtResource("12_jueql")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.617901, 0.888441, 1.09486)
+lockAfterActivating = true
 
 [node name="Lever2" parent="lever_panel" instance=ExtResource("12_jueql")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.617901, 0.888441, 0.488937)

@@ -1,8 +1,8 @@
+AudioStreamPlayer3D
 LightmapGI
 FogVolume
 AudioStreamPlayer
 Node3D
-AudioStreamPlayer3D
 CollisionShape3D
 Area3D
 VoxelGI

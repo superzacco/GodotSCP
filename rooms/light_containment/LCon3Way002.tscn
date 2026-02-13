@@ -25,8 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 [node name="RoomArea" parent="." instance=ExtResource("3_qn1si")]
 
 [node name="Light2" parent="." instance=ExtResource("4_cdfxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31135e-07, 1.85731, -1.5)
-brightness = 1.0
-omniBrightness = 0.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31135e-07, 1.82672, -1.5)
+brightness = 0.5
 
 [node name="LCon3Way002" parent="." instance=ExtResource("5_xi4cy")]

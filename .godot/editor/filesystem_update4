@@ -1,3 +1,4 @@
+res://entities/default_bus_layout.tres
 res://entities/player/player.tscn
 res://rooms/Textures/gas_sprite.tres
 res://entities/graphics.tres
@@ -5,7 +6,7 @@ res://shaders/motion_blur.gdshader
 res://entities/ui/defaultlabel.tres
 res://entities/ui/label_bigger.tres
 res://levelgen/navmesh.tres
-res://entities/player/voice_chat_player.gd
+res://versioninfo.txt
 res://scenes/main.tscn
 res://rooms/light_containment/spawnroom.tscn
 res://rooms/heavy_containment/049_chamber.tscn
@@ -13,7 +14,16 @@ res://rooms/room_area.tscn
 res://rooms/light_containment/LconHallElevator001.tscn
 res://entities/SCPs/scp_173.tscn
 res://rooms/checkpoint/LConToHconCheckpoint.tscn
-res://versioninfo.txt
-res://entities/default_bus_layout.tres
-res://rooms/light_containment/lightmap_gi.gd
 res://entities/map/light.tscn
+res://rooms/light_containment/LCon3Way002.tscn
+res://util/global_player_variables.tscn
+res://rooms/lever.tscn
+res://entities/player/interaction.gd
+res://entities/items/papers/documents/079_document.tscn
+res://entities/items/items.gd
+res://util/commands.gd
+res://entities/items/papers/documents/106_document.tscn
+res://entities/items/papers/documents/096_document.tscn
+res://entities/items/papers/documents/049_document.tscn
+res://entities/items/papers/documents/173_document.tscn
+res://entities/items/item.gd

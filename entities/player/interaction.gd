@@ -86,6 +86,8 @@ func on_click_interactable():
 		interact(nearestInteractable)
 		return
 
+
+
 func press_button(button):
 	button.on_pressed()
 
@@ -111,7 +113,10 @@ func request_item_pickup(itemName):
 		if item != null:
 			GlobalPlayerVariables.inventory.on_pickup_item(item)
 			
-			if item.itemType == item.ItemType.type_paper:
-				$PickItemPaper.play()
-			else:
-				$PickItem.play()
+			var itemTypes := Item.ItemType
+			
+			match item.itemType:
+				itemTypes.type_generic:
+					$PickItem.play()
+				itemTypes.type_paper:
+					$PickItemPaper.play()

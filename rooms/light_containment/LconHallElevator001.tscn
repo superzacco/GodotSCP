@@ -18,10 +18,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="point1" parent="Points" instance=ExtResource("3_gpqgp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13512, 7.5)
 
 [node name="point2" parent="Points" instance=ExtResource("3_gpqgp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13431, -7.5)
 
 [node name="LConHallElevator001" parent="." instance=ExtResource("4_pwl8x")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

@@ -10,7 +10,7 @@ func _ready() -> void:
 	SignalBus.setup_pd_release_point.connect(add_release_point)
 
 func add_release_point(point: PDReleasePoint):
-	print("Point: %s -- %s" % [point, point.weight])
+	#print("Point: %s -- %s" % [point, point.weight])
 	releasePoints[point] = point.weight
 
 
