@@ -120,3 +120,5 @@ func request_item_pickup(itemName):
 					$PickItem.play()
 				itemTypes.type_paper:
 					$PickItemPaper.play()
+				_:
+					$PickItem.play()

@@ -11,6 +11,8 @@ var inventoryOpen: bool = false
 var clickHeld: bool = false
 var overDropArea: bool = false
 
+var equippedMask: Item
+
 var equippedItem: Item
 var heldItem: Item
 var hoveredSlotIdx: int
@@ -68,7 +70,7 @@ func _input(event: InputEvent) -> void:
 			currentSlotIcon.global_position = iconOriginPoint
 		
 		if heldItem != null and overDropArea and inventoryOpen:
-			ItemManager.request_item_drop.rpc(heldItem.name, hoveredSlotIdx)
+			drop_item()
 		
 		if GlobalPlayerVariables.hoveredSlot != null and heldItem != null:
 			swap_item(currentSlot, GlobalPlayerVariables.hoveredSlot)
@@ -132,6 +134,18 @@ func on_pickup_item(item: Item):
 			break
 
 
+func drop_item():
+	ItemManager.request_item_drop.rpc(heldItem.name, hoveredSlotIdx)
+	
+	var itemTypes := Item.ItemType
+	match heldItem.itemType:
+		itemTypes.type_mask:
+			clear_worn_mask()
+		itemTypes.type_paper:
+			clear_equip()
+		itemTypes.type_card:
+			clear_equip()
+
 
 @rpc("reliable", "call_local")
 func clear_slot_ui(slotIdx: int):
@@ -168,27 +182,44 @@ func swap_item(prevSlot: InventorySlot, newSlot: InventorySlot):
 
 
 func equip_item(item: Item):
-	if item.equippable == true:
-		item.functionItem.equip()
-		if item.equipped:
-			item.equipped = false
-		else:
-			item.equipped = true
-		
-		close_inventory()
+	if !item.equippable:
 		return
 	
-	equippedItemFrame.show()
+	item.equipped = true
 	
-	equippedItem = item
-	equippedItemIcon.texture = item.inventorySprite
+	var itemTypes := Item.ItemType
+	match item.itemType:
+		
+		itemTypes.type_card:
+			equippedItem = item
+			
+			equippedItemFrame.show()
+			equippedItemIcon.texture = item.inventorySprite
+		
+		itemTypes.type_mask:
+			equippedMask = item
+			item.functionItem.equip()
+		
+		itemTypes.type_paper:
+			equippedItem = item
+			item.functionItem.equip()
 	
 	close_inventory()
 
 
 func clear_equip():
 	equippedItemFrame.hide()
-	equippedItem = null
+	
+	if equippedItem != null:
+		equippedItem.equipped = false
+		equippedItem = null
+
+
+func clear_worn_mask():
+	equippedMask.functionItem.equip()
+	
+	equippedMask.equipped = false
+	equippedMask = null
 
 
 func return_empty_slots() -> int:

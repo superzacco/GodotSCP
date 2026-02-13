@@ -47,7 +47,7 @@ func _ready() -> void:
 		$UI.hide()
 		$UI.set_process(false)
 		return
-
+	
 	skeleton = $StuffToRotate/classd001/Armature/Skeleton3D
 	upperBodyBone = skeleton.find_bone("bodyupper")
 	headBone = skeleton.find_bone("head")

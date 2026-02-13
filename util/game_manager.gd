@@ -4,6 +4,7 @@ var startingCell
 var rng: RandomNumberGenerator
 var seed: int
 
+var registeredItemIDs: Array[int] = []
 var gameTime: float
 var gameStarted: bool = false
 
