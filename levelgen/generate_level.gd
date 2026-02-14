@@ -9,6 +9,7 @@ extends Node
 
 @export_group("Necessary Rooms")
 @export var spawnRoom: PackedScene
+@export var temporaryShapeRoom: PackedScene
 @export var LContoHConCheckpoint: PackedScene
 @export var HContoENTCheckpoint: PackedScene
 @export_subgroup("Light Containment")
@@ -34,25 +35,25 @@ extends Node
 
 @export_group("Filler Rooms")
 @export_subgroup("Light Containment")
-@export var fillerLConEndRooms: Array[PackedScene]
-@export var fillerLConTwoWayHalls: Array[PackedScene]
-@export var fillerLConThreeWayHalls: Array[PackedScene]
-@export var fillerLConFourWayHalls: Array[PackedScene]
-@export var fillerLConBends: Array[PackedScene]
+@export var fillerLConEndRooms: Dictionary[PackedScene, int]
+@export var fillerLConTwoWayHalls: Dictionary[PackedScene, int]
+@export var fillerLConThreeWayHalls: Dictionary[PackedScene, int]
+@export var fillerLConFourWayHalls: Dictionary[PackedScene, int]
+@export var fillerLConBends: Dictionary[PackedScene, int]
 
 @export_subgroup("Heavy Containment")
-@export var fillerHConEndRooms: Array[PackedScene]
-@export var fillerHConTwoWayHalls: Array[PackedScene]
-@export var fillerHConThreeWayHalls: Array[PackedScene]
-@export var fillerHConFourWayHalls: Array[PackedScene]
-@export var fillerHConBends: Array[PackedScene]
+@export var fillerHConEndRooms: Dictionary[PackedScene, int]
+@export var fillerHConTwoWayHalls: Dictionary[PackedScene, int]
+@export var fillerHConThreeWayHalls: Dictionary[PackedScene, int]
+@export var fillerHConFourWayHalls: Dictionary[PackedScene, int]
+@export var fillerHConBends: Dictionary[PackedScene, int]
 
 @export_subgroup("Entrance Zone")
-@export var fillerEntEndRooms: Array[PackedScene]
-@export var fillerEntTwoWayHalls: Array[PackedScene]
-@export var fillerEntThreeWayHalls: Array[PackedScene]
-@export var fillerEntFourWayHalls: Array[PackedScene]
-@export var fillerEntBends: Array[PackedScene]
+@export var fillerEntEndRooms: Dictionary[PackedScene, int]
+@export var fillerEntTwoWayHalls: Dictionary[PackedScene, int]
+@export var fillerEntThreeWayHalls: Dictionary[PackedScene, int]
+@export var fillerEntFourWayHalls: Dictionary[PackedScene, int]
+@export var fillerEntBends: Dictionary[PackedScene, int]
 
 var replacableLConEndRooms: Array
 var replacableLConTwoWayHalls: Array
@@ -138,10 +139,6 @@ func generate_map():
 	rng.seed = GameManager.seed
 	print("Generating with Seed: %s" % rng.seed)
 	
-	print(rng.randi_range(1,100))
-	print(rng.randi_range(1,100))
-	print(rng.randi_range(1,100))
-	
 	make_layout_shape()
 	
 	replace_shape_with_halls()
@@ -173,7 +170,7 @@ func generate_long_hall(zOffset):
 	var hallMaxExtent: Vector3 = Vector3(0, 0, 0)
 	
 	for x in hallLength:
-		var spawnedRoom: Node3D = spawn_room(fillerLConFourWayHalls[0], x + hallOffset, zOffset, true)
+		var spawnedRoom: Node3D = spawn_room(temporaryShapeRoom, x + hallOffset, zOffset, true)
 		
 		if x == 0:
 			hallMinExtent = spawnedRoom.global_position
@@ -200,7 +197,7 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 			return
 		
 		for i2 in connnectingHallLength:
-			spawn_room(fillerLConFourWayHalls[0], xPosition, zPosition + 1 + i2, true)
+			spawn_room(temporaryShapeRoom, xPosition, zPosition + 1 + i2, true)
 #endregion // SHAPE
 
 
@@ -264,51 +261,53 @@ func get_direction_bits(x, z) -> int:
 
 
 func replace_shape_rooms(tempRoom, bits: int, x: int, z: int):
-	if bits == 1 and x == mapWidth/2 and z == 0:
+	if bits == 1 and x == mapWidth/2 and z == 0: # dont replace the spawnroom
 		return
 	
-	var zoneRoomArraysDict = return_zone_room_arrays_dict(z)
+	var zoneDepthDict: Dictionary = return_zone_room_arrays_dict(z)
+	var zoneRoomTypeList := []
 	
-	var targetRoomArrays = []
 	var timesToRotate: int = 0
 	
 	match bits:
 		# // DEAD END ROOMS // #
-		1: targetRoomArrays = zoneRoomArraysDict.ends; timesToRotate = 2
-		2: targetRoomArrays = zoneRoomArraysDict.ends; timesToRotate = 1
-		4: targetRoomArrays = zoneRoomArraysDict.ends; timesToRotate = 0
-		8: targetRoomArrays = zoneRoomArraysDict.ends; timesToRotate = 3
+		1: zoneRoomTypeList = zoneDepthDict.ends; timesToRotate = 2
+		2: zoneRoomTypeList = zoneDepthDict.ends; timesToRotate = 1
+		4: zoneRoomTypeList = zoneDepthDict.ends; timesToRotate = 0
+		8: zoneRoomTypeList = zoneDepthDict.ends; timesToRotate = 3
 		
 		# // STRAIGHT HALLS // #
-		5: targetRoomArrays = zoneRoomArraysDict.halls; timesToRotate = 0
-		10: targetRoomArrays = zoneRoomArraysDict.halls; timesToRotate = 1
+		5: zoneRoomTypeList = zoneDepthDict.halls; timesToRotate = 0
+		10: zoneRoomTypeList = zoneDepthDict.halls; timesToRotate = 1
 		
 		# // BEND HALLS // #
-		3: targetRoomArrays = zoneRoomArraysDict.bends; timesToRotate = 2
-		6: targetRoomArrays = zoneRoomArraysDict.bends; timesToRotate = 1
-		12: targetRoomArrays = zoneRoomArraysDict.bends; timesToRotate = 0
-		9: targetRoomArrays = zoneRoomArraysDict.bends; timesToRotate = 3
+		3: zoneRoomTypeList = zoneDepthDict.bends; timesToRotate = 2
+		6: zoneRoomTypeList = zoneDepthDict.bends; timesToRotate = 1
+		12: zoneRoomTypeList = zoneDepthDict.bends; timesToRotate = 0
+		9: zoneRoomTypeList = zoneDepthDict.bends; timesToRotate = 3
 		
 		# // THREE WAYS // #
-		11: targetRoomArrays = zoneRoomArraysDict.threeway; timesToRotate = 0
-		13: targetRoomArrays = zoneRoomArraysDict.threeway; timesToRotate = 1
-		14: targetRoomArrays = zoneRoomArraysDict.threeway; timesToRotate = 2
-		7: targetRoomArrays = zoneRoomArraysDict.threeway; timesToRotate = 3
+		11: zoneRoomTypeList = zoneDepthDict.threeway; timesToRotate = 0
+		13: zoneRoomTypeList = zoneDepthDict.threeway; timesToRotate = 1
+		14: zoneRoomTypeList = zoneDepthDict.threeway; timesToRotate = 2
+		7: zoneRoomTypeList = zoneDepthDict.threeway; timesToRotate = 3
 		
 		# // FOUR WAYS // #
-		15: targetRoomArrays = zoneRoomArraysDict.fourway; timesToRotate = 0
+		15: zoneRoomTypeList = zoneDepthDict.fourway; timesToRotate = 0
 	
-	var fillerRoom = replace_shaperoom_with_fillerroom(targetRoomArrays[0], targetRoomArrays[1], x, z)
+	var fillerRoom = replace_shaperoom_with_fillerroom(zoneRoomTypeList[0], zoneRoomTypeList[1], x, z)
 	temporaryRooms[x][z].queue_free()
 	
 	if timesToRotate > 0:
 		rotate_room(fillerRoom, timesToRotate)
 
 
-func replace_shaperoom_with_fillerroom(fillerRoomArray: Array, replacableRoomArray: Array, x, z):
-	var fillerRoom = spawn_room(fillerRoomArray[rng.randi_range(0, fillerRoomArray.size()-1)], x, z)
+func replace_shaperoom_with_fillerroom(fillerRoomDict: Dictionary, replacableRoomArray: Array, x, z):
+	var fillerRoom = spawn_room(ZFunc.pick_from_list(fillerRoomDict), x, z)
+	
 	if !(z == LContoHConCheckpointLine or z == HContoEntranceCheckpointLine):
 		replacableRoomArray.append(fillerRoom)
+	
 	finishedRooms.append(fillerRoom)
 	finishedRoomGrid[x][z] = fillerRoom
 	

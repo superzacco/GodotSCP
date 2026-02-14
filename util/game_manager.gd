@@ -8,9 +8,9 @@ var registeredItemIDs: Array[int] = []
 var gameTime: float
 var gameStarted: bool = false
 
-var mainMenu: PackedScene = load("res://scenes/menu.tscn")
-var devScene : PackedScene = load("res://scenes/dev.tscn")
-var facilityScene: PackedScene = load("res://scenes/main.tscn")
+var mainMenu: PackedScene = preload("res://scenes/menu.tscn")
+var devScene : PackedScene = preload("res://scenes/dev.tscn")
+var facilityScene: PackedScene = preload("res://scenes/main.tscn")
 
 
 func _ready() -> void:

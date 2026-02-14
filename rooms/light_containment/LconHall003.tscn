@@ -62,14 +62,10 @@ transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -3
 
 [node name="keycard00" parent="items" instance=ExtResource("3_rkwrc")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -3.38368, -0.0650055, -5.13172)
-collision_layer = 2
-collision_mask = 2
 chanceToSpawn = 50.0
 
 [node name="keycard01" parent="items" instance=ExtResource("3_rkwrc")]
 transform = Transform3D(0.972598, 0, 0.232495, 0, 1, 0, -0.232495, 0, 0.972598, -4.67776, -0.660448, 4.52471)
-collision_layer = 2
-collision_mask = 2
 chanceToSpawn = 50.0
 
 [editable path="LConHall003"]

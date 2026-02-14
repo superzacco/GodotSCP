@@ -34,17 +34,19 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent") groups=["elevatorpassenger", "spectatable"]]
+[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent", "relocateTimer", "stoneScrapingPlayer") groups=["elevatorpassenger", "spectatable"]]
 collision_layer = 256
 collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
-speed = 350.0
+speed = 375.0
 agent = NodePath("NavigationAgent3D")
-tooCloseToPlayers = 40.0
-tooFarFromPlayers = 50.0
+tooCloseToPlayers = 35.0
+tooFarFromPlayers = 55.0
 breakDoorChance = 15.0
+relocateTimer = NodePath("RelocateTimer")
+stoneScrapingPlayer = NodePath("StoneScraping")
 neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
@@ -96,7 +98,7 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 bus = &"Sound Effects"
 
 [node name="RelocateTimer" type="Timer" parent="."]
-wait_time = 25.0
+wait_time = 12.0
 
 [node name="TenTimesASecond" type="Timer" parent="."]
 process_callback = 0

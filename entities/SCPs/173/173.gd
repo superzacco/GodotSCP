@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var tooFarFromPlayers: float 
 @export var breakDoorChance: float
 
+@export var relocateTimer: Timer
+@export var stoneScrapingPlayer: AudioStreamPlayer3D
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
@@ -36,7 +38,7 @@ func _ready() -> void:
 	SignalBus.connect("relocate_173", relocate)
 	
 	$TenTimesASecond.connect("timeout", process_one)
-	$StoneScraping.connect("finished", play_scraping)
+	stoneScrapingPlayer.connect("finished", play_scraping)
 
 
 var nextPathPos := Vector3.ZERO
@@ -49,7 +51,7 @@ func process_one():
 		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
 		GlobalPlayerVariables.debugInfo.nearPlayer173 = nearPlayer
 	
-	$StoneScraping.stop()
+	stoneScrapingPlayer.stop()
 
 
 func process_client():
@@ -93,7 +95,7 @@ func process_server():
 		velocity = (nextPathPos.normalized() * speed)
 		move_and_slide()
 		
-		self.look_at(nextPathPos)
+		self.look_at(agent.target_position)
 		self.rotation.x = 0
 		self.rotation.z = 0
 		
@@ -136,14 +138,15 @@ func players_combination() -> bool:
 #endregion
 
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_local", "reliable")
 func play_scraping():
-	if !$StoneScraping.playing:
-		$StoneScraping.play(randf_range(0.0, 5.0))
+	print("j")
+	if !stoneScrapingPlayer.playing:
+		stoneScrapingPlayer.play(randf_range(0.0, 5.0))
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_local", "reliable")
 func stop_scraping():
-	$StoneScraping.stop()
+	stoneScrapingPlayer.stop()
 
 
 
@@ -188,16 +191,16 @@ func relocate(playAmbiance: bool = false):
 func confirm_relocate():
 	print("close to player")
 	relocating = false
-	$"RelocateTimer".stop()
+	relocateTimer.stop()
 
 
 func try_relocate():
 	self.global_position += Vector3(0, -100, 0)
 	
-	if $"RelocateTimer".is_stopped():
-		$"RelocateTimer".start()
+	if relocateTimer.is_stopped():
+		relocateTimer.start()
 	
-	await $"RelocateTimer".timeout
+	await relocateTimer.timeout
 	relocate()
 
 
@@ -270,15 +273,15 @@ func _on_chase_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playersInRadius.append(body)
 		
-		$"RelocateTimer".stop()
+		relocateTimer.stop()
 
 func _on_chase_radius_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		playersInRadius.erase(body)
 		
 		if playersInRadius.size() <= 0:
-			$"RelocateTimer".start()
-			await $"RelocateTimer".timeout
+			relocateTimer.start()
+			await relocateTimer.timeout
 			relocate(true)
 
 

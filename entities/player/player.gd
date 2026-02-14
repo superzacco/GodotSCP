@@ -211,10 +211,9 @@ func sent_to_pocket_dimension():
 	#GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
 	
 	canMove = false
-	print("test %s , %s" % [get_multiplayer_authority(), multiplayer.get_unique_id()])
 	GlobalPlayerVariables.lookingEnabled = false
 	
-	await get_tree().create_timer(0.4)
+	await get_tree().create_timer(0.4).timeout
 	$BodySlumpPlayer.play()
 	
 	await get_tree().create_timer(2.5).timeout

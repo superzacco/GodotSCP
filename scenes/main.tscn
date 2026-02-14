@@ -95,6 +95,7 @@ navigationRegion = NodePath("Facility/FacilityRegion")
 doorsNode = NodePath("Facility/Doors")
 door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
+temporaryShapeRoom = ExtResource("10_fv21b")
 LContoHConCheckpoint = ExtResource("4_fv21b")
 HContoENTCheckpoint = ExtResource("5_bu4jf")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
@@ -103,21 +104,58 @@ necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof"), ExtResource("16_j4bwh"), ExtResource("17_2s0kr")])
 necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
 necessaryEntTwoWayHalls = Array[PackedScene]([ExtResource("16_kf5aa")])
-fillerLConEndRooms = Array[PackedScene]([ExtResource("6_2wyq8")])
-fillerLConTwoWayHalls = Array[PackedScene]([ExtResource("7_vxglm"), ExtResource("8_2f3dj")])
-fillerLConThreeWayHalls = Array[PackedScene]([ExtResource("9_yq6so"), ExtResource("20_augu2")])
-fillerLConFourWayHalls = Array[PackedScene]([ExtResource("10_fv21b"), ExtResource("22_tm6hj")])
-fillerLConBends = Array[PackedScene]([ExtResource("11_tel4y")])
-fillerHConEndRooms = Array[PackedScene]([ExtResource("12_qkpxi")])
-fillerHConTwoWayHalls = Array[PackedScene]([ExtResource("13_5q0nq"), ExtResource("22_0loja"), ExtResource("30_gdvew")])
-fillerHConThreeWayHalls = Array[PackedScene]([ExtResource("14_dgi5k"), ExtResource("32_xljpf")])
-fillerHConFourWayHalls = Array[PackedScene]([ExtResource("15_j8jky")])
-fillerHConBends = Array[PackedScene]([ExtResource("16_kmb1v")])
-fillerEntEndRooms = Array[PackedScene]([ExtResource("23_nvyfr")])
-fillerEntTwoWayHalls = Array[PackedScene]([ExtResource("24_ty1g6")])
-fillerEntThreeWayHalls = Array[PackedScene]([ExtResource("25_bjg73")])
-fillerEntFourWayHalls = Array[PackedScene]([ExtResource("26_bu4jf")])
-fillerEntBends = Array[PackedScene]([ExtResource("27_o7ddy")])
+fillerLConEndRooms = Dictionary[PackedScene, int]({
+ExtResource("6_2wyq8"): 1
+})
+fillerLConTwoWayHalls = Dictionary[PackedScene, int]({
+ExtResource("7_vxglm"): 25,
+ExtResource("8_2f3dj"): 50,
+ExtResource("4_y6deb"): 5
+})
+fillerLConThreeWayHalls = Dictionary[PackedScene, int]({
+ExtResource("9_yq6so"): 25,
+ExtResource("20_augu2"): 15
+})
+fillerLConFourWayHalls = Dictionary[PackedScene, int]({
+ExtResource("10_fv21b"): 10,
+ExtResource("22_tm6hj"): 4
+})
+fillerLConBends = Dictionary[PackedScene, int]({
+ExtResource("11_tel4y"): 1
+})
+fillerHConEndRooms = Dictionary[PackedScene, int]({
+ExtResource("12_qkpxi"): 1
+})
+fillerHConTwoWayHalls = Dictionary[PackedScene, int]({
+ExtResource("13_5q0nq"): 5,
+ExtResource("22_0loja"): 50,
+ExtResource("30_gdvew"): 20
+})
+fillerHConThreeWayHalls = Dictionary[PackedScene, int]({
+ExtResource("14_dgi5k"): 15,
+ExtResource("32_xljpf"): 5
+})
+fillerHConFourWayHalls = Dictionary[PackedScene, int]({
+ExtResource("15_j8jky"): 1
+})
+fillerHConBends = Dictionary[PackedScene, int]({
+ExtResource("16_kmb1v"): 1
+})
+fillerEntEndRooms = Dictionary[PackedScene, int]({
+ExtResource("23_nvyfr"): 1
+})
+fillerEntTwoWayHalls = Dictionary[PackedScene, int]({
+ExtResource("24_ty1g6"): 1
+})
+fillerEntThreeWayHalls = Dictionary[PackedScene, int]({
+ExtResource("25_bjg73"): 1
+})
+fillerEntFourWayHalls = Dictionary[PackedScene, int]({
+ExtResource("26_bu4jf"): 1
+})
+fillerEntBends = Dictionary[PackedScene, int]({
+ExtResource("27_o7ddy"): 1
+})
 mapWidth = 15
 mapHeight = 20
 connnectingHallLength = 3
