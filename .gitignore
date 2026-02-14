@@ -13,8 +13,4 @@ export_credentials.cfg
 # Mono-specific ignores
 .mono/
 data_*/
-<<<<<<< Updated upstream
 mono_crash.*.json
-=======
-mono_crash.*.json
->>>>>>> Stashed changes
