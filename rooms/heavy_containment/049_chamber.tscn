@@ -397,7 +397,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.61790
 
 [node name="049" parent="." instance=ExtResource("16_nx7sk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67772, 0.251933, -10.8543)
-speed = 15
 
 [node name="RoomArea" parent="." instance=ExtResource("17_3lyrw")]
 

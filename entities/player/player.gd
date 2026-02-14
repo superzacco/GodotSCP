@@ -185,7 +185,7 @@ func toggle_noclip():
 		print("noclip ON")
 
 var canRechargeSprint: bool = true
-func recharge_sprint(delta): # FIX THE TIMER NOT BEING RESET 
+func recharge_sprint(delta): 
 	if !canRechargeSprint:
 		return
 	
@@ -227,7 +227,7 @@ func sent_to_pocket_dimension():
 	GlobalPlayerVariables.lookingEnabled = true
 
 
-func take_damage(damage: float, typeOfDamage: String = ""):
+func take_damage(damage: float, typeOfDamage: String = ""): # // Change to Damage.Type enum
 	health -= damage
 	
 	match typeOfDamage:
@@ -242,11 +242,12 @@ func take_damage(damage: float, typeOfDamage: String = ""):
 
 
 @rpc("any_peer", "call_local", "reliable")
-func on_death(dyingPLayerID: int):
+func on_death(dyingPlayerID: int):
 	var selfID: int = multiplayer.get_unique_id()
 	
-	if dyingPLayerID == selfID:
+	if dyingPlayerID == selfID:
 		canMove = false
+		dead = true
 		$AnimationPlayer.play("death")
 	
 	modelAnimations.play("death")
@@ -258,14 +259,13 @@ func on_death(dyingPLayerID: int):
 	modelAnimations.play("dead")
 	
 	await get_tree().create_timer(2.5).timeout
-	print("dying player id: %s -- id runing code: %s" % [dyingPLayerID, selfID])
+	print("dying player id: %s -- id runing code: %s" % [dyingPlayerID, selfID])
 	
-	if dyingPLayerID == selfID:
-		print("this should not show up twice")
-		specMgr.switch_player_to_spectator(dyingPLayerID)
+	if dyingPlayerID == selfID:
+		specMgr.switch_player_to_spectator(dyingPlayerID)
 	
-	print("player: %s has died!" % dyingPLayerID)
-	SignalBus.remove_player.emit(dyingPLayerID)
+	print("player: %s has died!" % dyingPlayerID)
+	SignalBus.remove_player.emit(dyingPlayerID)
 
 
 func play_death_sound(stream: AudioStream):

@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://bwbgwlp2jepq"]
 
-[ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173.gd" id="1_clhkt"]
+[ext_resource type="Script" uid="uid://cflhf3e1kwcfd" path="res://entities/SCPs/173/173.gd" id="1_clhkt"]
 [ext_resource type="AudioStream" uid="uid://btbq6q6uw7u4t" path="res://audio/scps/173/NeckSnap0.ogg" id="2_l0rpv"]
-[ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173.blend" id="2_tmptw"]
+[ext_resource type="PackedScene" uid="uid://bacoyfr8oi4si" path="res://entities/SCPs/173/173.blend" id="2_tmptw"]
 [ext_resource type="AudioStream" uid="uid://dtjj5b71cgmtr" path="res://audio/scps/173/NeckSnap1.ogg" id="3_l2l7v"]
 [ext_resource type="AudioStream" uid="uid://65psgc6dw2ah" path="res://audio/scps/173/StoneDrag.ogg" id="3_u3wo6"]
 [ext_resource type="AudioStream" uid="uid://1crfkgm2bowy" path="res://audio/scps/173/NeckSnap2.ogg" id="4_p8ad7"]

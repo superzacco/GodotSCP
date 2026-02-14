@@ -57,6 +57,7 @@ folder_colors={
 "res://fonts/": "orange",
 "res://levelgen/": "green",
 "res://multiplayer/": "purple",
+"res://resources/": "red",
 "res://rooms/": "blue",
 "res://util/": "gray"
 }

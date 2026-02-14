@@ -1,23 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://d55xcqpsiny2"]
+[gd_scene load_steps=6 format=3 uid="uid://d55xcqpsiny2"]
 
 [ext_resource type="Script" uid="uid://bhnpgo7r5w2ue" path="res://entities/SCPs/049/049.gd" id="1_jpdk5"]
 [ext_resource type="PackedScene" uid="uid://7clnw4cwuaqu" path="res://entities/SCPs/049/049.blend" id="1_ulh24"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jpdk5"]
-radius = 0.3
+radius = 0.2
 height = 1.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jpdk5"]
 radius = 30.0
 
-[node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_e6yrv"]
+resource_local_to_scene = true
+radius = 1.0
+
+[node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea")]
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_jpdk5")
-speed = 20
+enabled = true
+speed = 18.0
 timer = NodePath("Timer")
 modelAnimations = NodePath("049/AnimationPlayer")
 agent = NodePath("NavigationAgent3D")
+chaseArea = NodePath("ChaseArea")
+attackArea = NodePath("AttackArea")
 
 [node name="049" parent="." instance=ExtResource("1_ulh24")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
@@ -48,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 shape = SubResource("CapsuleShape3D_jpdk5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
 radius = 0.6
 debug_enabled = true
 
@@ -56,11 +64,13 @@ debug_enabled = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea"]
 shape = SubResource("SphereShape3D_jpdk5")
 
+[node name="AttackArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+shape = SubResource("SphereShape3D_e6yrv")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
-
-[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
-[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]
 
 [editable path="049"]

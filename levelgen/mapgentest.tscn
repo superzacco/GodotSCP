@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="11_gc7sq"]
 [ext_resource type="PackedScene" uid="uid://bnv1cjjk013a" path="res://rooms/heavy_containment/HConBend001.tscn" id="12_doq7x"]
 [ext_resource type="Script" uid="uid://db03c0j2wevjv" path="res://levelgen/facility_manager.gd" id="17_xvntj"]
-[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="19_gc7sq"]
+[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/173/scp_173.tscn" id="19_gc7sq"]
 
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_doq7x"]

@@ -33,5 +33,5 @@ signal level_generation_finished
 
 
 signal send_player_to_106(player: Player)
-signal toggle_gas_mask
+signal toggle_gas_mask_overlay
 signal toggle_gasmask_model

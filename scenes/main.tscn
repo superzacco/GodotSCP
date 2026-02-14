@@ -42,7 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://diugygficpf1s" path="res://rooms/light_containment/LCon3Way002.tscn" id="20_augu2"]
 [ext_resource type="AudioStream" uid="uid://cnvs2q0kqaot4" path="res://audio/horror/small_horror_03.ogg" id="20_y6deb"]
 [ext_resource type="PackedScene" uid="uid://ci25vwa1xs255" path="res://entities/player/spectatorCamera.tscn" id="20_yq6so"]
-[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/scp_173.tscn" id="21_5poiv"]
+[ext_resource type="PackedScene" uid="uid://bwbgwlp2jepq" path="res://entities/SCPs/173/scp_173.tscn" id="21_5poiv"]
 [ext_resource type="PackedScene" uid="uid://clegh7vjl7vod" path="res://rooms/heavy_containment/HConHall002.tscn" id="22_0loja"]
 [ext_resource type="PackedScene" uid="uid://orri5ldfyoc7" path="res://rooms/light_containment/LCon4Way002.tscn" id="22_tm6hj"]
 [ext_resource type="PackedScene" uid="uid://dasm70153x3ph" path="res://rooms/entrance_zone/EntEnd001.tscn" id="23_nvyfr"]

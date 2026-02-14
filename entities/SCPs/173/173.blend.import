@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bacoyfr8oi4si"
-path="res://.godot/imported/173.blend-260876d1e1d568ef8dfad38ea5830691.scn"
+path="res://.godot/imported/173.blend-ce878b3279803743b0bd02848fcdb056.scn"
 
 [deps]
 
-source_file="res://entities/SCPs/173.blend"
-dest_files=["res://.godot/imported/173.blend-260876d1e1d568ef8dfad38ea5830691.scn"]
+source_file="res://entities/SCPs/173/173.blend"
+dest_files=["res://.godot/imported/173.blend-ce878b3279803743b0bd02848fcdb056.scn"]
 
 [params]
 

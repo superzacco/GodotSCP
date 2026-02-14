@@ -1,7 +1,8 @@
+res://entities
+res://entities/SCPs
 E:/Desktop/games or whatever/Game
 res://rooms/lightmaps
 res://util
-res://entities
 res://entities/SCPs/049
 res://entities/decals
 res://entities/items/cards/models
@@ -19,4 +20,3 @@ res://entities/SCPs/485
 res://entities/player
 res://entities/items/tools
 res://multiplayer
-res://rooms/light_containment

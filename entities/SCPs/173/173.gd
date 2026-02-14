@@ -17,7 +17,7 @@ var playersInRadius: Array[Player]
 var nearPlayer: bool = false
 var relocating: bool = false
 
-var playerInKillRange: Player = null
+var playersInKillRange: Array[Player] = []
 var nearDoor: Door 
 
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
@@ -86,7 +86,7 @@ func process_server():
 	
 	nearPlayer = true if playersInRadius.size() > 0 else false
 	if (players_blinking() or !players_looking() or players_combination()) and nearPlayer:
-		try_kill_player(playerInKillRange)
+		try_kill_players()
 		
 		agent.target_position = find_closest_player().global_position
 		nextPathPos = agent.get_next_path_position() - global_position
@@ -138,7 +138,8 @@ func players_combination() -> bool:
 
 @rpc("any_peer", "call_local", "reliable")
 func play_scraping():
-	$StoneScraping.play(randf_range(0.0, 5.0))
+	if !$StoneScraping.playing:
+		$StoneScraping.play(randf_range(0.0, 5.0))
 
 @rpc("any_peer", "call_local", "reliable")
 func stop_scraping():
@@ -200,15 +201,15 @@ func try_relocate():
 	relocate()
 
 
-func try_kill_player(player: Player):
-	if playerInKillRange == null:
-		return
-	
-	$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
-	$NeckSnap.play()
-	
-	player.take_damage(9999)
-	playerInKillRange = null
+func try_kill_players():
+	for player in playersInKillRange:
+		if player.dead == true:
+			return
+		
+		$NeckSnap.stream = neckSnapSounds[randi_range(0, neckSnapSounds.size()-1)]
+		$NeckSnap.play()
+		
+		player.take_damage(9999)
 
 
 var waiting: bool = false
@@ -283,7 +284,7 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 
 func _on_neck_snap_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		playerInKillRange = body
+		playersInKillRange.append(body)
 func _on_neck_snap_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		playerInKillRange = null
+		playersInKillRange.erase(body)

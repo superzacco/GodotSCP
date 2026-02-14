@@ -14,6 +14,8 @@ func _ready() -> void:
 
 
 func switch_player_to_spectator(playerID: int):
+	var selfID = multiplayer.get_unique_id()
+	print("%s is running this code" % selfID)
 	print("Switching 'Player: %s' to Spectator..." % playerID)
 	
 	spectatorPivot = spectatorScene.instantiate()
@@ -22,7 +24,8 @@ func switch_player_to_spectator(playerID: int):
 	camera = spectatorPivot.camera
 	spectatorPivot.set_multiplayer_authority(playerID, true)
 	
-	camera.call_deferred("make_current") 
+	if is_multiplayer_authority():
+		camera.call_deferred("make_current") 
 
 
 func get_spectatable_objects():

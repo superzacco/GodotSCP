@@ -22,7 +22,7 @@ var currentSlotIcon: TextureRect
 var iconOriginPoint: Vector2
 
 func _ready() -> void:
-	SignalBus.connect("toggle_gas_mask", close_inventory)
+	SignalBus.connect("toggle_gas_mask_overlay", close_inventory)
 	SignalBus.connect("hide_inventory", close_inventory)
 	
 	ItemManager.connect("update_slot_ui", clear_slot_ui)
@@ -85,7 +85,13 @@ func _input(event: InputEvent) -> void:
 		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
 			var item = GlobalPlayerVariables.hoveredSlot.heldItem
 			if item != null:
-				equip_item(item)
+				if !item.equipped: equip_item(item); return
+				
+				if item.equipped:
+					if item.itemType == Item.ItemType.type_mask:
+						clear_worn_mask()
+					else:
+						clear_equip()
 		
 		await  get_tree().create_timer(0.25).timeout
 		clicki = 0
@@ -216,6 +222,9 @@ func clear_equip():
 
 
 func clear_worn_mask():
+	if equippedMask == null:
+		return
+	
 	equippedMask.functionItem.equip()
 	
 	equippedMask.equipped = false
