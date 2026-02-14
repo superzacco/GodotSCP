@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=84 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://7ro1b7portdx" path="res://rooms/heavy_containment/HConHall001.tscn" id="13_5q0nq"]
 [ext_resource type="PackedScene" uid="uid://bgye3c3incbt3" path="res://rooms/heavy_containment/HConTesla001.tscn" id="13_o7ddy"]
 [ext_resource type="PackedScene" uid="uid://d1awy2dnjptsq" path="res://rooms/heavy_containment/HCon3Way001.tscn" id="14_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://b88uvhs20lxyn" path="res://rooms/light_containment/LConHallOffice001.tscn" id="14_xaipn"]
 [ext_resource type="PackedScene" uid="uid://dmrarvt6khysl" path="res://rooms/heavy_containment/HCon049Hall.tscn" id="15_dnhof"]
 [ext_resource type="PackedScene" uid="uid://cjfp5f2ovtgme" path="res://rooms/heavy_containment/HCon4Way001.tscn" id="15_j8jky"]
 [ext_resource type="PackedScene" uid="uid://da131wpnhnun4" path="res://rooms/heavy_containment/HConHallElevatorStorage.tscn" id="16_j4bwh"]
@@ -99,7 +100,7 @@ temporaryShapeRoom = ExtResource("10_fv21b")
 LContoHConCheckpoint = ExtResource("4_fv21b")
 HContoENTCheckpoint = ExtResource("5_bu4jf")
 necessaryLConEndRooms = Array[PackedScene]([ExtResource("4_og1vs")])
-necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r")])
+necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r"), ExtResource("14_xaipn")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
 necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof"), ExtResource("16_j4bwh"), ExtResource("17_2s0kr")])
 necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
