@@ -1,3 +1,0 @@
-Shader
-StandardMaterial3D
-FogMaterial
