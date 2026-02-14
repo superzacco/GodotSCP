@@ -18,3 +18,17 @@ res://rooms/heavy_containment/HConHall003.tscn
 res://rooms/heavy_containment/HCon3Way002.tscn
 res://scenes/items_node.gd
 res://entities/items/papers/documents/096_document.tscn
+res://rooms/heavy_containment/049_chamber.tscn
+res://entities/bodies/body.tscn
+res://rooms/big_door.tscn
+res://rooms/lever.gd
+res://rooms/heavy_containment/049_chamber_events.gd
+res://rooms/room.gd
+res://entities/SCPs/monster.gd
+res://entities/SCPs/049/049.gd
+res://entities/SCPs/049/049.tscn
+res://entities/SCPs/049/049_2.tscn
+res://levelgen/navmesh.tres
+res://entities/ui/redable_papers_ui.gd
+res://rooms/button.gd
+res://entities/player/voice_chat_player.gd

@@ -1,6 +1,9 @@
 extends StaticBody3D
 class_name Lever
 
+signal lever_activated
+signal lever_deactivated
+
 @export var handle: MeshInstance3D
 @export var leverFlipPlayer: AudioStreamPlayer3D
 
@@ -48,12 +51,16 @@ func can_move() -> bool:
 
 
 func lock_handle_up():
+	lever_activated.emit()
+	
 	leverFlipPlayer.play()
 	leverActivated = true
 	interacting = false
 
 
 func lock_handle_down():
+	lever_deactivated.emit()
+	
 	leverFlipPlayer.play()
 	leverActivated = false
 	interacting = false

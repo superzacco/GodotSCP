@@ -47,7 +47,6 @@ bones/13/rotation = Quaternion(-0.244879, -0.0127418, 0.0279428, 0.969067)
 bones/14/rotation = Quaternion(0.768956, 0.130217, -0.0277281, 0.625285)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
 radius = 5.08
 debug_enabled = true
 

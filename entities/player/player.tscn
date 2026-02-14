@@ -312,32 +312,9 @@ transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
 modifier_callback_mode_process = 0
-bones/0/position = Vector3(-0.000411818, 0.863198, 5.95337e-09)
-bones/0/rotation = Quaternion(0.0384035, -0.000908945, -0.0236473, 0.998982)
-bones/1/rotation = Quaternion(-0.0997562, -7.39101e-14, -2.37838e-08, 0.995012)
-bones/2/rotation = Quaternion(-0.0879525, -0.0161426, 0.0151372, 0.995879)
-bones/4/rotation = Quaternion(0.00307576, 0.148514, 0.971743, 0.183436)
-bones/5/rotation = Quaternion(-0.251597, -0.00254419, 0.185572, 0.949871)
-bones/6/rotation = Quaternion(0.165581, -0.0571952, 0.117438, 0.977507)
-bones/7/rotation = Quaternion(-0.0532137, -0.0556706, 0.981975, -0.172609)
-bones/8/rotation = Quaternion(-0.251597, 0.00254422, -0.185572, 0.949871)
-bones/9/rotation = Quaternion(0.166125, 0.0406861, -0.0773329, 0.982225)
-bones/10/rotation = Quaternion(-0.0232786, -0.187355, 0.981957, 0.0107734)
-bones/11/rotation = Quaternion(0.220683, 0.00149315, 0.031427, 0.974838)
-bones/12/rotation = Quaternion(-0.662978, 0.0062333, -0.0418369, 0.747443)
-bones/13/rotation = Quaternion(0.0317944, -0.0151227, 0.997499, -0.0612849)
-bones/14/rotation = Quaternion(0.480133, -0.00133979, -0.0683741, 0.874526)
-bones/15/rotation = Quaternion(-0.743293, -0.0293149, 0.0554483, 0.666019)
-bones/16/position = Vector3(-0.114577, 0.48972, -0.521312)
-bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
-bones/17/position = Vector3(-0.15272, 0.0689255, -0.184804)
-bones/17/rotation = Quaternion(0.0354973, 0.675516, 0.735763, 0.032724)
-bones/18/position = Vector3(0.103753, 0.48972, -0.521312)
-bones/19/position = Vector3(0.141841, 0.183473, 0.296735)
-bones/19/rotation = Quaternion(-0.0227907, 0.880932, 0.470765, -0.0426476)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999622, 0.0109335, -0.0252274, -0.0109528, 0.99994, -0.000623882, 0.0252191, 0.000899971, 0.999681, 0.0150209, -0.0284266, -0.00141916)
+transform = Transform3D(1, 1.26342e-09, -4.24e-09, -1.26344e-09, 1, 1.19209e-07, 4.24003e-09, -1.19209e-07, 1, -2.10421e-08, 2.38419e-07, 6.14673e-08)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, -0.00640416, 0)
@@ -428,10 +405,11 @@ shape = SubResource("SphereShape3D_24ehl")
 
 [node name="VoiceChat" type="Node3D" parent="." node_paths=PackedStringArray("input", "output")]
 script = ExtResource("29_vewsg")
-inputThreshold = 0.075
+inputThreshold = 0.05
 voiceHoldDuration = 50.0
 input = NodePath("VoiceInput")
 output = NodePath("VoiceChatPlayer")
+sampleChunkLimit = 8192
 
 [node name="VoiceChatPlayer" type="AudioStreamPlayer3D" parent="VoiceChat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

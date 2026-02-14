@@ -1,4 +1,3 @@
-@tool
 extends CharacterBody3D
 class_name Monster
 
@@ -27,10 +26,6 @@ func _ready() -> void:
 	timer.timeout.connect(process_one)
 	
 	modelAnimations.speed_scale = animationSpeed
-	modelAnimations.play("walk")
-	
-	await SignalBus.level_generation_finished
-	enabled = true
 
 
 var nextPathPos := Vector3.ZERO
@@ -45,7 +40,7 @@ func _process(delta: float) -> void:
 	if !should_process(): return
 	
 	agent.target_position = find_closest_player().global_position
-	self.look_at(agent.target_position)
+	self.look_at(self.global_position + velocity)
 	self.rotation.x = 0
 	self.rotation.z = 0
 	
@@ -57,6 +52,11 @@ func should_process() -> bool:
 		return false
 	
 	return true
+
+
+func set_active():
+	enabled = true
+	modelAnimations.play("walk")
 
 
 func find_closest_player() -> Player:

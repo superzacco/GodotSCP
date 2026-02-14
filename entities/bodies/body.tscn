@@ -36,7 +36,7 @@ bones/19/position = Vector3(0.404988, 0.0701103, 0.184839)
 bones/19/rotation = Quaternion(-0.0483406, -0.0245828, 0.998528, 0.00119009)
 
 [node name="gasmask" parent="body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.981177, 0.0468674, 0.187336, 0.190931, -0.38075, -0.904751, 0.0289246, 0.923489, -0.382531, -0.0721372, 0.735784, 0.235337)
+transform = Transform3D(0.981177, 0.0468673, 0.187335, 0.190931, -0.380749, -0.904752, 0.0289245, 0.92349, -0.382531, -0.0721371, 0.735783, 0.235337)
 
 [node name="gasmask" parent="body/Armature/Skeleton3D/gasmask" index="0"]
 visible = false

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bogo1qqfqjh7y"
-path="res://.godot/imported/filecabinet.blend-d851d3b629605efb3302b868e59fe4b5.scn"
+uid="uid://cdvdvy4l5ouc7"
+path="res://.godot/imported/doorsign.blend-e044dea8a9b9892fab0109ba44fa0bc1.scn"
 
 [deps]
 
-source_file="res://rooms/Models/props/filecabinet.blend"
-dest_files=["res://.godot/imported/filecabinet.blend-d851d3b629605efb3302b868e59fe4b5.scn"]
+source_file="res://rooms/Models/props/doorsign.blend"
+dest_files=["res://.godot/imported/doorsign.blend-e044dea8a9b9892fab0109ba44fa0bc1.scn"]
 
 [params]
 
@@ -32,15 +32,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:col": {
-"generate/physics": true,
-"physics/layer": 3,
-"physics/mask": 3
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

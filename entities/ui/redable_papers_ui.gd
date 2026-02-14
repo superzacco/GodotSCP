@@ -62,6 +62,7 @@ func hide_paper():
 	
 	await get_tree().process_frame
 	GlobalPlayerVariables.inventory.close_inventory()
+	GlobalPlayerVariables.inventory.clear_equip()
 	GlobalPlayerVariables.immutableMenuOpen = false
 
 

@@ -28,25 +28,52 @@ func on_pressed():
 	
 	if buttonType == 0:
 		activate_things.rpc()
+		return
+	
+	if buttonType == 1:
+		var equippedKeycard: Keycard = get_keycard()
 		
-	elif buttonType == 1:
-		var equippedKeycard: Keycard
-		
-		if GlobalPlayerVariables.inventory.equippedItem == null:
+		if !equipped_item_is_keycard():
 			SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
 			$Button.play()
-			
-		elif GlobalPlayerVariables.inventory.equippedItem.functionItem != null:
-			equippedKeycard = GlobalPlayerVariables.inventory.equippedItem.functionItem
-			
-			if !equippedKeycard.keycardLevel >= keycardLevel:
-				SignalBus.show_interaction_text.emit("You need a higher level keycard to open this door.")
-				$Fail.play()
-				
-			else:
-				activate_things.rpc()
-			
-			GlobalPlayerVariables.inventory.clear_equip()
+			return
+		
+		GlobalPlayerVariables.inventory.clear_equip()
+		
+		if !equippedKeycard.keycardLevel >= keycardLevel:
+			SignalBus.show_interaction_text.emit("You need a higher level keycard to open this door.")
+			$Fail.play()
+			return
+		
+		activate_things.rpc()
+
+
+func equipped_item_is_keycard() -> bool:
+	var item: Item = GlobalPlayerVariables.inventory.equippedItem
+	
+	if item == null:
+		return false
+	
+	if item.itemType != item.ItemType.type_card:
+		return false
+	
+	return true
+
+
+func get_keycard() -> Keycard:
+	var item: Item = GlobalPlayerVariables.inventory.equippedItem
+	
+	if item == null:
+		return null
+	if item.itemType != item.ItemType.type_card:
+		return null
+	
+	var keycard: Keycard = item.functionItem
+	
+	if keycard == null:
+		return null
+	
+	return keycard
 
 
 @rpc("reliable", "call_local", "any_peer")
