@@ -41,6 +41,9 @@ chanceToSpawn = 25.0
 [node name="body" parent="Body" index="0"]
 transform = Transform3D(0.999701, 0.0244485, -0.000389218, -0.0244485, 0.999194, -0.031825, -0.000389159, 0.031825, 0.999493, 0, 0.0266135, 0)
 
+[node name="gasmask" parent="Body/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.981177, 0.0468674, 0.187336, 0.190931, -0.38075, -0.904751, 0.0289246, 0.923489, -0.382531, -0.0721372, 0.735784, 0.235337)
+
 [node name="keycard00" parent="Body" instance=ExtResource("7_tc5cy")]
 transform = Transform3D(-0.356983, 0, -0.934111, 0, 1, 0, 0.934111, 0, -0.356983, 0.615646, 0.113429, 0.820808)
 

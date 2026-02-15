@@ -13,7 +13,8 @@ var voiceHoldTimer := 0
 
 var recievedBuffer := PackedFloat32Array()
 var sendBuffer := PackedFloat32Array()
-@export var sampleChunkLimit: int = 1024
+@export var sampleChunkTarget: int = 2048
+@export var sampleChunkLimit: int = 8192
 
 func _ready() -> void:
 	set_multiplayer_authority(self.get_parent().get_multiplayer_authority())
@@ -27,8 +28,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_multiplayer_authority(): 
-		if Input.is_action_pressed("voicetransmit"):
-			process_mic_input(delta)
+		if GlobalPlayerVariables.usePTT:
+			if Input.is_action_pressed("voicetransmit"):
+				process_mic_input(delta)
+			
+		else: process_mic_input(delta)
+	
 	
 	process_voice_chat()
 
@@ -36,6 +41,10 @@ func _process(delta: float) -> void:
 func process_voice_chat():
 	if recievedBuffer.size() <= 0:
 		return
+	
+	if recievedBuffer.size() > sampleChunkLimit:
+		var excess = recievedBuffer.size() - sampleChunkTarget
+		recievedBuffer = recievedBuffer.slice(excess)
 	
 	var framesToPush = min(playback.get_frames_available(), recievedBuffer.size())
 	
@@ -63,7 +72,7 @@ func process_mic_input(delta: float):
 		else:
 			voiceHoldTimer -= delta
 	
-	if sendBuffer.size() >= sampleChunkLimit:
+	if sendBuffer.size() >= sampleChunkTarget:
 		if voiceHoldTimer > 0.0:
 			send_data.rpc(compress_audio(sendBuffer))
 		
@@ -76,7 +85,7 @@ func compress_audio(f32Data: PackedFloat32Array) -> PackedByteArray:
 	
 	for i in range(f32Data.size()):
 			var sample = clamp(f32Data[i], -1.0, 1.0)
-			byteData[i] = int((sample + 1.0) * 127.5)
+			byteData[i] = int((sample + 1.0) * 128)
 	
 	return byteData
 

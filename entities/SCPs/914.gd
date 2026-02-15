@@ -133,8 +133,9 @@ func activate():
 		print("914 Output Item: %s" % outputItem)
 		print("914 Input Item: %s -- Knob Setting: %s" % [inputItem, knobSetting])
 		if outputItem != null: 
-			var spawnedItem = outputItem.instantiate()
-			get_tree().root.add_child(spawnedItem)
+			var spawnedItem: Item = outputItem.instantiate()
+			self.add_child(spawnedItem)
+			spawnedItem.setup_item()
 			spawnedItem.global_position = outputPoint.global_position
 			inputItem.queue_free()
 			

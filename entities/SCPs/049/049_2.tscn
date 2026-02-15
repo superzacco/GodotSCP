@@ -15,10 +15,11 @@ radius = 10.0
 resource_local_to_scene = true
 radius = 1.0
 
-[node name="049-2" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea")]
+[node name="049-2" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["spectatable"]]
 script = ExtResource("1_o3xkt")
 enabled = true
-speed = 7.0
+speed = 8.0
+damage = 27.0
 animationSpeed = 1.5
 timer = NodePath("Timer")
 modelAnimations = NodePath("049-2/AnimationPlayer")

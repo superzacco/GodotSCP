@@ -38,6 +38,8 @@ func spawn_player(playerID: int):
 	player.set_multiplayer_authority(playerID, true)
 	print("player has spawned with playerID: %s" % playerID)
 	
+	GameManager.players = players
+	
 	return player
 
 func on_player_disconnect(playerID: int):
@@ -62,3 +64,4 @@ func remove_player_entity(playerID: int):
 func delete_player_data(playerID:int):
 	print("deleting player data of ID: %s" % playerID)
 	players.erase(playerID)
+	GameManager.players = players

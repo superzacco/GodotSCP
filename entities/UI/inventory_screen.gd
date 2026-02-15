@@ -22,16 +22,16 @@ var currentSlotIcon: TextureRect
 var iconOriginPoint: Vector2
 
 func _ready() -> void:
+	if !is_multiplayer_authority():
+		return
+	
+	GlobalPlayerVariables.inventory = self
+	
 	SignalBus.connect("toggle_gas_mask_overlay", close_inventory)
 	SignalBus.connect("hide_inventory", close_inventory)
 	
-	ItemManager.connect("update_slot_ui", clear_slot_ui)
-	
 	for i in slotsNode.get_children().size():
 		slots.append(slotsNode.get_child(i))
-	
-	if is_multiplayer_authority():
-		GlobalPlayerVariables.inventory = self
 	
 	equippedItemFrame = $"../HeldItemFrame"
 	equippedItemIcon = $"../HeldItemFrame/Item"
@@ -81,6 +81,9 @@ func _input(event: InputEvent) -> void:
 		heldItem = null
 	
 	if event.is_action_pressed("interact") and inventoryOpen:
+		if GlobalPlayerVariables.hoveredSlot != null and GlobalPlayerVariables.hoveredSlot.heldItem != null:
+			print(GlobalPlayerVariables.hoveredSlot.heldItem.equipped)
+		
 		clicki += 1
 		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
 			var item = GlobalPlayerVariables.hoveredSlot.heldItem
@@ -98,7 +101,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if !clickHeld or !is_multiplayer_authority():
+	if  !is_multiplayer_authority() or !clickHeld:
 		return
 	
 	var mousePosition: Vector2 = get_global_mouse_position()

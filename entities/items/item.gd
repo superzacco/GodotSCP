@@ -15,6 +15,7 @@ enum ItemType {
 
 @export var chanceToSpawn: float = 100
 @export var equippable: bool = false
+var firstSetupFinished = false
 var equipped: bool = false
 
 @export var functionItem: Node3D
@@ -30,10 +31,11 @@ func setup_item():
 		var id := get_id()
 		set_name_id.rpc(id)
 		
-		if !ZFunc.randInPercent(chanceToSpawn):
+		if !ZFunc.randInPercent(chanceToSpawn) and !firstSetupFinished:
 			delete_item.rpc()
 	
 	SignalBus.reparent_item.emit(self)
+	firstSetupFinished = true
 
 
 @rpc("authority", "call_local", "reliable")

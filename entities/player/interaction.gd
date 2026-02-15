@@ -97,6 +97,7 @@ func interact(interactable):
 
 @rpc("reliable", "call_local", "any_peer")
 func request_item_pickup(itemName):
+	print("id: %s recieving item: %s" % [multiplayer.get_unique_id(), itemName])
 	
 	var item: Item = get_tree().root.find_child(itemName, true, false)
 	if item == null:

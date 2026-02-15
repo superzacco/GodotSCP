@@ -5,6 +5,8 @@ class_name Player
 @export var collider: CollisionShape3D
 @export var camera: Camera3D
 
+@export var damageSoundsPlayer: AudioStreamPlayer3D
+
 @export var moveSpeedDesired: float
 @export var sprintSpeedDesired: float
 
@@ -12,12 +14,14 @@ class_name Player
 @export var sprintReplenishRate: float
 
 @export var blinkinator: PlayerBlinking
+var blinkQuickened: bool = false
 
 @export var playerModel: Node3D
 @export var modelAnimations: AnimationPlayer
 
 @export var bodyslump: AudioStream
 @export var deathsound_106: AudioStream
+@export var genericDamageSound: AudioStream
 
 @export var sprintTimer: Timer
 
@@ -25,8 +29,10 @@ var moveSpeed: float
 
 var wishDir: Vector3
 var sprinting: bool = false
+var sprintJuice: float = 100.0
 
 var blinking: bool = false
+var wearingGasMask: bool = false
 
 var health: float = 100.0
 var dead: bool = false
@@ -104,17 +110,18 @@ func _physics_process(delta: float) -> void:
 	#endregion
 	
 	#region SPRINTING
-	if GlobalPlayerVariables.sprintJuice > 0 and sprinting and moveDir != Vector3(0, 0, 0):
+	if sprintJuice > 0 and sprinting and moveDir != Vector3(0, 0, 0):
 		moveSpeed = sprintSpeedDesired
-		GlobalPlayerVariables.sprintJuice -= sprintDepletionRate * delta
+		if !GlobalPlayerVariables.noclipEnabled:
+			sprintJuice -= sprintDepletionRate * delta
 	else:
 		moveSpeed = moveSpeedDesired
 	
 	# recharge
-	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
+	if !sprinting and sprintJuice < 100:
 		recharge_sprint(delta)
 	
-	if sprinting and GlobalPlayerVariables.sprintJuice > 0:
+	if sprinting and sprintJuice > 0:
 		$AnimationPlayer.speed_scale = 1.35
 	else:
 		$AnimationPlayer.speed_scale = 1 
@@ -124,7 +131,7 @@ func _physics_process(delta: float) -> void:
 	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
 		$AnimationPlayer.play()
 		
-		if sprinting and GlobalPlayerVariables.sprintJuice > 0:
+		if sprinting and sprintJuice > 0:
 			#modelAnimations.play("run")
 			pass
 		else:
@@ -135,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 
-@rpc("any_peer")
+@rpc("authority", "call_remote", "unreliable")
 func bend_upper_body(cameraAngle: float):
 	if skeleton == null:
 		return
@@ -189,11 +196,11 @@ func recharge_sprint(delta):
 	if !canRechargeSprint:
 		return
 	
-	if !sprinting and GlobalPlayerVariables.sprintJuice < 100:
-		GlobalPlayerVariables.sprintJuice += sprintReplenishRate * delta
+	if !sprinting and sprintJuice < 100:
+		sprintJuice += sprintReplenishRate * delta
 	
-	if GlobalPlayerVariables.sprintJuice > 100:
-		GlobalPlayerVariables.sprintJuice = 100
+	if sprintJuice > 100:
+		sprintJuice = 100
 
 func start_recharge():
 	canRechargeSprint = true
@@ -206,9 +213,6 @@ func sent_to_pocket_dimension():
 		return
 	
 	$AnimationPlayer.play("death")
-	
-	play_death_sound(deathsound_106)
-	#GlobalPlayerVariables.ambienceManager.play_sound(deathsound_106)
 	
 	canMove = false
 	GlobalPlayerVariables.lookingEnabled = false
@@ -226,12 +230,20 @@ func sent_to_pocket_dimension():
 	GlobalPlayerVariables.lookingEnabled = true
 
 
-func take_damage(damage: float, typeOfDamage: String = ""): # // Change to Damage.Type enum
+func take_damage(damage: float, typeOfDamage: Damage.Types = Damage.Types.TYPE_GENERIC):
 	health -= damage
 	
+	var damageTypes := Damage.Types
 	match typeOfDamage:
-		"106":
+		damageTypes.TYPE_GENERIC:
+			damageSoundsPlayer.stream = genericDamageSound
+		
+		damageTypes.TYPE_106:
+			damageSoundsPlayer.stream = deathsound_106
+			
 			sent_to_pocket_dimension()
+	
+	damageSoundsPlayer.play()
 	
 	if health <= 0.0:
 		on_death.rpc(self.get_multiplayer_authority()) # Add types later
@@ -265,12 +277,6 @@ func on_death(dyingPlayerID: int):
 	
 	print("player: %s has died!" % dyingPlayerID)
 	SignalBus.remove_player.emit(dyingPlayerID)
-
-
-func play_death_sound(stream: AudioStream):
-	$DeathSounds.stream = stream
-	$DeathSounds.play()
-
 
 
 func return_nearby_rooms():

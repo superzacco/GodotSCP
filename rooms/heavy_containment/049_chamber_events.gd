@@ -18,7 +18,7 @@ func activate_049_sequence():
 	scp049.get_up()
 	
 	for zombie in scp049dash2:
-		activate_zombie(zombie, randf_range(15, 30))
+		activate_zombie(zombie, randf_range(10, 20))
 	
 	await get_tree().create_timer(5.0).timeout
 	

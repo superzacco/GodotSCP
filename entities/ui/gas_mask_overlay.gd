@@ -7,7 +7,5 @@ func  _ready() -> void:
 func toggle_overlay():
 	if !self.visible:
 		self.show()
-		GlobalPlayerVariables.wearingGasMask = true
 	else:
 		self.hide()
-		GlobalPlayerVariables.wearingGasMask = false

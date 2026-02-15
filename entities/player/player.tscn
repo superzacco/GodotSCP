@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dlv8rax26wj3y"]
+[gd_scene load_steps=53 format=3 uid="uid://dlv8rax26wj3y"]
 
 [ext_resource type="Script" uid="uid://cormyjlyl7rw7" path="res://entities/player/player.gd" id="1_qccfk"]
 [ext_resource type="PackedScene" uid="uid://tsvpxcht5mup" path="res://entities/player/models/classd001.blend" id="2_eyb6c"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://44x4u37hyj6i" path="res://audio/character/player/death_touched.ogg" id="2_wq0jh"]
 [ext_resource type="AudioStream" uid="uid://ckoi8hw6hjxog" path="res://audio/steps/Step0.ogg" id="2_yqrof"]
 [ext_resource type="AudioStream" uid="uid://cetjm8jhedpwh" path="res://audio/steps/Step1.ogg" id="3_3wlsy"]
+[ext_resource type="AudioStream" uid="uid://bp3awfsmu8yyc" path="res://audio/character/player/hit_generic.ogg" id="4_2soq1"]
 [ext_resource type="AudioStream" uid="uid://dvo4c6wm8maha" path="res://audio/steps/Step2.ogg" id="4_b2kln"]
 [ext_resource type="Script" uid="uid://mnm27fr2qpv8" path="res://entities/player/interaction.gd" id="4_jnjp4"]
 [ext_resource type="Texture2D" uid="uid://8m5vhfmc17jx" path="res://entities/ui/invslot.png" id="4_ma6qb"]
@@ -225,7 +226,7 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_eyb6c"]
 viewport_path = NodePath("OverheadUsername/SubViewport")
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "blinkinator", "playerModel", "modelAnimations", "sprintTimer", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "damageSoundsPlayer", "blinkinator", "playerModel", "modelAnimations", "sprintTimer", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -238,6 +239,7 @@ script = ExtResource("1_qccfk")
 stuffToRotate = NodePath("StuffToRotate")
 collider = NodePath("CollisionShape3D")
 camera = NodePath("StuffToRotate/CameraBobPivot/Camera3D")
+damageSoundsPlayer = NodePath("DamageSounds")
 moveSpeedDesired = 20.0
 sprintSpeedDesired = 40.0
 sprintDepletionRate = 20.0
@@ -247,6 +249,7 @@ playerModel = NodePath("StuffToRotate/classd001")
 modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
 bodyslump = ExtResource("2_gt4e4")
 deathsound_106 = ExtResource("2_wq0jh")
+genericDamageSound = ExtResource("4_2soq1")
 sprintTimer = NodePath("SprintTimer")
 skeleton = NodePath("StuffToRotate/classd001/Armature/Skeleton3D")
 
@@ -296,7 +299,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.99382e-08, 0, -0.8)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StuffToRotate/CameraBobPivot/Camera3D/GrabbySpriteEndPoint"]
 shape = SubResource("SphereShape3D_b2kln")
 
-[node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D"]
+[node name="BlinkSprite" type="Sprite3D" parent="StuffToRotate/CameraBobPivot/Camera3D" node_paths=PackedStringArray("player")]
 transform = Transform3D(7.5, 0, 0, 0, 5, 0, 0, 0, 5.465, 8.74228e-08, 0, -1)
 visible = false
 layers = 2
@@ -305,6 +308,7 @@ double_sided = false
 no_depth_test = true
 texture = ExtResource("4_ma6qb")
 script = ExtResource("5_lyn41")
+player = NodePath("../../../..")
 eyeDrynessPerSecond = 7.5
 
 [node name="classd001" parent="StuffToRotate" instance=ExtResource("2_eyb6c")]
@@ -409,7 +413,6 @@ inputThreshold = 0.05
 voiceHoldDuration = 50.0
 input = NodePath("VoiceInput")
 output = NodePath("VoiceChatPlayer")
-sampleChunkLimit = 8192
 
 [node name="VoiceChatPlayer" type="AudioStreamPlayer3D" parent="VoiceChat"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -434,6 +437,10 @@ bus = &"Sound Effects"
 [node name="DeathSounds" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 1
 volume_db = -6.0
+bus = &"Sound Effects"
+
+[node name="DamageSounds" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 3
 bus = &"Sound Effects"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

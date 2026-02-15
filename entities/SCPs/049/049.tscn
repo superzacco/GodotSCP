@@ -14,12 +14,14 @@ radius = 30.0
 resource_local_to_scene = true
 radius = 1.0
 
-[node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea")]
+[node name="Scp049" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["spectatable"]]
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_jpdk5")
 enabled = true
 speed = 18.0
+damage = 999.0
+typeOfDamage = 3
 timer = NodePath("Timer")
 modelAnimations = NodePath("049/AnimationPlayer")
 agent = NodePath("NavigationAgent3D")

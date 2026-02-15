@@ -84,14 +84,13 @@ bones/13/rotation = Quaternion(0.00222903, 0.0416597, 0.997116, -0.0633954)
 bones/14/rotation = Quaternion(0.0851236, -0.00152616, -0.0121222, 0.996296)
 bones/15/rotation = Quaternion(-0.700468, -0.00324621, -0.0102583, 0.713602)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
 bones/17/position = Vector3(-0.218809, 0.0623709, 0.0869693)
 bones/17/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
 bones/19/position = Vector3(0.217985, 0.0623709, 0.0869693)
 bones/19/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
 
 [node name="gasmask" parent="Events/DeadJanitor/DeadJanitor/body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.8097e-10, 5.85772e-11, -1.80988e-10, 1, 0, -5.85479e-11, 2.98023e-08, 1, 1.74623e-09, 3.57628e-07, -2.79397e-08)
+transform = Transform3D(1, 1.80944e-10, 5.76181e-11, -1.80954e-10, 1, 2.98023e-08, -5.76099e-11, 0, 1, 2.12458e-09, 7.15256e-07, -3.72529e-09)
 
 [node name="Elevators" type="Node3D" parent="."]
 
@@ -144,13 +143,13 @@ transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.201
 
 [node name="Keycardbutton2" parent="Doors/BigDoor" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
-rejectionText = "When you use the keycard, nothing happens.w"
+rejectionText = "When you use the keycard, nothing happens."
 wontOpen = true
 keycardLevel = 3
 
 [node name="Keycardbutton" parent="Doors/BigDoor" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.834308)
-rejectionText = "When you use the keycard, nothing happens.w"
+rejectionText = "When you use the keycard, nothing happens."
 wontOpen = true
 keycardLevel = 3
 

@@ -108,7 +108,7 @@ func end_chase():
 
 
 func on_send_player_to_pd(player: Player):
-	player.take_damage(25.0, "106")
+	player.take_damage(25.0, Damage.Types.TYPE_106)
 	$SendToPD.play()
 
 

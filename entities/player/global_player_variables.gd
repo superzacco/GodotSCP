@@ -15,12 +15,10 @@ var player: Player
 var playerPosition: Vector3 
 
 var lookingEnabled: bool = true
-var wearingGasMask: bool = false
 
 var sprintJuice: float = 100
 var blinkJuice: float = 100
 var sensitivity: float = 0.67
-var blinkQuickened: bool = false
 
 var nearbyRoomLights: Array[RoomLight]
 var inPocketDimension: bool = false
@@ -50,6 +48,7 @@ var blinking: bool = false
 # MULTIPLAYER
 var playersBlinkingIDs: Array[int]
 
+var usePTT: bool = true
 @export var playersBlinking: Array[bool]
 @export var OnScreen173: Array[bool]
 

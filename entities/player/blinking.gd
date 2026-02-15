@@ -1,7 +1,10 @@
 extends Sprite3D
 class_name PlayerBlinking
 
+@export var player: Player
+
 @export var eyeDrynessPerSecond: float
+var blinkJuice: float
 var blinkHeld: bool
 
 func _ready() -> void:
@@ -13,12 +16,12 @@ func _process(delta: float) -> void:
 	if !GlobalPlayerVariables.blinkingEnabled or !is_multiplayer_authority():
 		return
 	
-	if GlobalPlayerVariables.blinkQuickened and !GlobalPlayerVariables.wearingGasMask:
-		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta * 4
+	if player.blinkQuickened and !player.wearingGasMask:
+		blinkJuice -= eyeDrynessPerSecond * delta * 4
 	else:
-		GlobalPlayerVariables.blinkJuice -= eyeDrynessPerSecond * delta
+		blinkJuice -= eyeDrynessPerSecond * delta
 	
-	if GlobalPlayerVariables.blinkJuice <= 0:
+	if blinkJuice <= 0:
 		self.show()
 		
 		GlobalPlayerVariables.blinking = true
@@ -40,14 +43,14 @@ func blink():
 	GlobalPlayerVariables.update_blinking.bind(multiplayer.get_unique_id(), false).rpc()
 	self.hide()
 	
-	GlobalPlayerVariables.blinkJuice = 100
+	blinkJuice = 100
 
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("blink"):
 		blinkHeld = true
 		GlobalPlayerVariables.blinking = true
-		GlobalPlayerVariables.blinkJuice = 0
+		blinkJuice = 0
 	
 	if Input.is_action_just_released("blink"):
 		blinkHeld = false

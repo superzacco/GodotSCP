@@ -5,6 +5,7 @@ var rng: RandomNumberGenerator
 var seed: int
 
 var registeredItemIDs: Array[int] = []
+var players: Dictionary[int, Player]
 var gameTime: float
 var gameStarted: bool = false
 
@@ -20,6 +21,15 @@ func _ready() -> void:
 	rng.seed = seed
 
 
+func _physics_process(delta: float) -> void:
+	if gameStarted:
+		gameTime += delta
+
+
+func get_player_by_id(id: int) -> Player:
+	return players.get(id)
+
+
 func quit_to_menu():
 	gameStarted = false
 	
@@ -27,11 +37,6 @@ func quit_to_menu():
 	Lobby.leave_lobby()
 	
 	get_tree().change_scene_to_packed(mainMenu)
-
-
-func _physics_process(delta: float) -> void:
-	if gameStarted:
-		gameTime += delta
 
 
 func clear_state():

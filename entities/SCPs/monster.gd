@@ -7,6 +7,13 @@ var playersInChaseRadius: Array[Player] = []
 var playersInAttackArea: Array[Player] = []
 
 @export var speed: float
+
+@export var damage: float
+@export var typeOfDamage: Damage.Types
+@export var attackCooldown: float = 1.0
+var attackTimer := Timer.new()
+var canAttack := true
+
 @export var animationSpeed: float = 1.0
 
 @export var timer: Timer
@@ -24,6 +31,7 @@ func _ready() -> void:
 	attackArea.body_exited.connect(_on_attack_area_body_exited)
 	
 	timer.timeout.connect(process_one)
+	self.add_child(attackTimer)
 	
 	modelAnimations.speed_scale = animationSpeed
 
@@ -31,6 +39,12 @@ func _ready() -> void:
 var nextPathPos := Vector3.ZERO
 func process_one() -> void:
 	if !should_process(): return
+	
+	if find_closest_player() == null:
+		modelAnimations.play("idle")
+	
+	if playersInAttackArea.size() > 0:
+		attack()
 	
 	nextPathPos = agent.get_next_path_position() - global_position
 	velocity = (nextPathPos.normalized() * (speed * 0.1))
@@ -47,6 +61,20 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
+func attack():
+	if !canAttack:
+		return
+	
+	for player: Player in playersInAttackArea:
+		player.take_damage(damage, typeOfDamage)
+		
+		canAttack = false
+		attackTimer.start(attackCooldown)
+
+func reset_attack():
+	canAttack = true
+
+
 func should_process() -> bool:
 	if !enabled or playersInChaseRadius.size() < 1 or find_closest_player() == null:
 		return false
@@ -61,7 +89,7 @@ func set_active():
 
 func find_closest_player() -> Player:
 	var closestDist: float = INF
-	var closestPlayer: Player
+	var closestPlayer: Player = null
 	
 	var players = get_tree().get_nodes_in_group("player")
 	

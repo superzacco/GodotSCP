@@ -1,12 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://bckxtfpowonvq"]
+[gd_scene load_steps=19 format=3 uid="uid://bckxtfpowonvq"]
 
 [ext_resource type="Script" uid="uid://dvckw1oge0tu" path="res://rooms/light_containment/gas_chamber_room.gd" id="1_x8qef"]
 [ext_resource type="PackedScene" uid="uid://4cvr143oel6j" path="res://rooms/Models/LConBendGas001.blend" id="2_nsxgj"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_diou6"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_p6u35"]
+[ext_resource type="PackedScene" uid="uid://c6o17sfrmg3fe" path="res://entities/map/gas_area.tscn" id="5_q8o8c"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="5_s7ko5"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="6_diou6"]
-[ext_resource type="Script" uid="uid://cqdxpnyaufsuy" path="res://rooms/light_containment/gas_area.gd" id="7_p6u35"]
 [ext_resource type="AudioStream" uid="uid://br54nn7we8st2" path="res://audio/rooms/gaslock/Hiss0.ogg" id="8_3o8j2"]
 [ext_resource type="Material" uid="uid://fgd23wb2x4tx" path="res://rooms/Textures/gas_sprite.tres" id="9_xytxk"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="12_t658x"]
@@ -16,9 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="18_clspc"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="19_u6j3f"]
 [ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="20_u6j3f"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_diou6"]
-size = Vector3(9.8, 3, 9.8)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3o8j2"]
 angular_velocity_min = -30.32
@@ -59,13 +56,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 [node name="RoomArea" parent="." instance=ExtResource("4_p6u35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
-[node name="GasArea" type="Area3D" parent="."]
+[node name="GasArea" parent="." instance=ExtResource("5_q8o8c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
-script = ExtResource("7_p6u35")
-enabled = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GasArea"]
-shape = SubResource("BoxShape3D_diou6")
 
 [node name="Button" parent="." node_paths=PackedStringArray("extraToControl") instance=ExtResource("16_ps7mm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62393, 0.0881014, -4.33935)
@@ -90,8 +82,6 @@ bus = &"Sound Effects"
 
 [node name="GasMask" parent="." instance=ExtResource("20_u6j3f")]
 transform = Transform3D(-0.905894, 0, -0.423504, 0, 1, 0, 0.423504, 0, -0.905894, -2.76953, 0.0439878, -2.4507)
-collision_layer = 2
-collision_mask = 2
 
 [node name="Gas Emitters" type="Node3D" parent="."]
 
@@ -136,6 +126,12 @@ draw_pass_1 = SubResource("QuadMesh_l30ap")
 [node name="KeycardDoor" parent="Doors" instance=ExtResource("5_s7ko5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7, 0.0221875, -5.8)
 
+[node name="doorside2_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 3
 
@@ -145,6 +141,12 @@ keycardLevel = 3
 [node name="KeycardDoor2" parent="Doors" instance=ExtResource("5_s7ko5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0.0244782, -1.7)
 
+[node name="doorside2_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
 keycardLevel = 3
 
@@ -153,6 +155,12 @@ keycardLevel = 3
 
 [node name="Door3" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09619, 0.0331171, -2.11391)
+
+[node name="doorside2_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door3/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door3" index="1"]
 visible = false
@@ -164,6 +172,12 @@ disabled = true
 
 [node name="Door4" parent="Doors" instance=ExtResource("12_t658x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.18552, 0.0331171, 5.91612)
+
+[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door4" index="1"]
 visible = false
@@ -209,8 +223,6 @@ tpName = "gas"
 
 [connection signal="body_entered" from="RoomArea" to="." method="_on_room_area_body_entered"]
 [connection signal="body_exited" from="RoomArea" to="." method="_on_room_area_body_exited"]
-[connection signal="body_entered" from="GasArea" to="GasArea" method="_on_body_entered"]
-[connection signal="body_exited" from="GasArea" to="GasArea" method="_on_body_exited"]
 
 [editable path="Doors/KeycardDoor"]
 [editable path="Doors/KeycardDoor/door"]

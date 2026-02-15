@@ -32,6 +32,11 @@ var resolutionsDict: Dictionary = {
 
 
 func _ready() -> void:
+	masterBus = AudioServer.get_bus_index("Master")
+	sfxBus = AudioServer.get_bus_index("Sound Effects")
+	musicBus = AudioServer.get_bus_index("Music")
+	vcBus = AudioServer.get_bus_index("Voice Chat")
+	
 	%WinText.text = str(displayModesArr[0])
 	%ResText.text = str(resolutionsArr[3])
 
@@ -82,18 +87,38 @@ func _on_res_advance_pressed() -> void:
 
 
 func _on_sens_slider_value_changed(value: float) -> void:
-	GlobalPlayerVariables.sensitivity = ZFunc.remap(value, 0.1, 2.0)
+	GlobalPlayerVariables.sensitivity = remap(value, 0.0, 100.0, 0.1, 2.0)
 	%SensNumber.text = str(GlobalPlayerVariables.sensitivity)
 
 
+func _on_use_ptt_button_toggled(toggled_on: bool) -> void:
+	GlobalPlayerVariables.usePTT = toggled_on
+
+
+#region // AUDIO
+var masterBus: int
+var sfxBus: int
+var musicBus: int
+var vcBus: int
+
+@export var masterNumber: Label
+@export var sfxNumber: Label
+@export var musicNumber: Label
+@export var vcNumber: Label
+
 func _on_master_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0, linear_to_db(ZFunc.remap(value, 0.0, 1.0)))
-	%MasterNumber.text = str(value) + "%"
+	AudioServer.set_bus_volume_db(masterBus, linear_to_db(remap(value, 0.0, 100.0, 0.0, 1.0)))
+	masterNumber.text = str(value) + "%"
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(1, linear_to_db(ZFunc.remap(value, 0.0, 1.0)))
-	%SFXNumber.text = str(value) + "%"
+	AudioServer.set_bus_volume_db(sfxBus, linear_to_db(remap(value, 0.0, 100.0, 0.0, 1.0)))
+	sfxNumber.text = str(value) + "%"
 
 func _on_music_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(2, linear_to_db(ZFunc.remap(value, 0.0, 1.0)))
-	%MusicNumber.text = str(value) + "%"
+	AudioServer.set_bus_volume_db(musicBus, linear_to_db(remap(value, 0.0, 100.0, 0.0, 1.0)))
+	musicNumber.text = str(value) + "%"
+
+func _on_vc_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(vcBus, linear_to_db(remap(value, 0.0, 100.0, 0.0, 1.0)))
+	vcNumber.text = str(value) + "%"
+#endregion
