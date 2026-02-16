@@ -15,6 +15,7 @@ enum ItemType {
 
 @export var chanceToSpawn: float = 100
 @export var equippable: bool = false
+
 var firstSetupFinished = false
 var equipped: bool = false
 
@@ -23,7 +24,9 @@ var equipped: bool = false
 
 func _ready() -> void:
 	await SignalBus.level_generation_finished
-	setup_item()
+	
+	if !firstSetupFinished:
+		setup_item()
 
 
 func setup_item():
@@ -31,8 +34,9 @@ func setup_item():
 		var id := get_id()
 		set_name_id.rpc(id)
 		
-		if !ZFunc.randInPercent(chanceToSpawn) and !firstSetupFinished:
+		if !ZFunc.randInPercent(chanceToSpawn):
 			delete_item.rpc()
+	
 	
 	SignalBus.reparent_item.emit(self)
 	firstSetupFinished = true
@@ -42,6 +46,7 @@ func setup_item():
 func set_name_id(id: int):
 	GameManager.registeredItemIDs.append(id)
 	self.name = self.name + "_" + str(id)
+	print("%s setting id" % multiplayer.get_unique_id())
 
 @rpc("authority", "call_local", "reliable")
 func delete_item():
@@ -50,7 +55,6 @@ func delete_item():
 
 func get_id() -> int:
 	var id: int = GameManager.rng.randi_range(000000, 999999)
-	if GameManager.registeredItemIDs.has(id):
-		return (id + randi_range(1, 999999)) # whatever even the fuck this is. bro, idc anymore
-	
+	while GameManager.registeredItemIDs.has(id):
+		id = GameManager.rng.randi_range(000000, 999999)
 	return id
