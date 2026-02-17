@@ -404,11 +404,16 @@ func place_doors():
 		
 		if !doorLocations.has(point.global_position):
 			var spawnedDoor: Door = door.instantiate()
+			
+			spawnedDoor.generatedDoor = true
+			spawnedDoor.closableBy079 = true
+			
 			doorsNode.add_child(spawnedDoor)
+			
 			spawnedDoor.global_position = point.global_position
 			spawnedDoor.global_basis = point.global_basis
 			spawnedDoor.global_position.y += 1.2
-			spawnedDoor.nonGenerated = false
+			
 			doorLocations.append(point.global_position)
 
 

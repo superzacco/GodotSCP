@@ -111,7 +111,7 @@ ExtResource("6_2wyq8"): 1
 fillerLConTwoWayHalls = Dictionary[PackedScene, int]({
 ExtResource("7_vxglm"): 25,
 ExtResource("8_2f3dj"): 50,
-ExtResource("4_y6deb"): 5
+ExtResource("14_xaipn"): 5
 })
 fillerLConThreeWayHalls = Dictionary[PackedScene, int]({
 ExtResource("9_yq6so"): 25,
@@ -262,6 +262,9 @@ playerScene = ExtResource("20_5he1u")
 
 [node name="Items" type="Node3D" parent="Facility"]
 script = ExtResource("75_ygd8o")
+
+[node name="ItemSpawner" type="MultiplayerSpawner" parent="Facility/Items"]
+spawn_path = NodePath("..")
 
 [node name="PlayerSpawn" type="Node3D" parent="Facility"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)

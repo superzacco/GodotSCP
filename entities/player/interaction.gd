@@ -75,7 +75,7 @@ func on_click_interactable():
 			SignalBus.show_interaction_text.emit("You cannot hold any more items.")
 			return
 		else:
-			request_item_pickup.rpc(nearestInteractable.name)
+			request_item_pickup.rpc(nearestInteractable.itemID)
 			return
 	
 	if nearestInteractable.is_in_group("button"):
@@ -96,13 +96,13 @@ func interact(interactable):
 
 
 @rpc("reliable", "call_local", "any_peer")
-func request_item_pickup(itemName):
-	print("id: %s recieving item: %s" % [multiplayer.get_unique_id(), itemName])
-	
-	var item: Item = get_tree().root.find_child(itemName, true, false)
+func request_item_pickup(itemID: int):
+	var item: Item = ItemManager.itemDict.get(itemID)
 	if item == null:
 		push_error("item was found to be null!")
 		return
+	
+	print("id: %s picking up item: %s_%s" % [multiplayer.get_unique_id(), item.name, item.itemID])
 	
 	var syncNode: MultiplayerSynchronizer = item.multiplayerSyncrhonizer
 	syncNode.set_process_mode(Node.PROCESS_MODE_DISABLED)
@@ -111,14 +111,13 @@ func request_item_pickup(itemName):
 	item.hide()
 	
 	if is_multiplayer_authority():
-		if item != null:
-			GlobalPlayerVariables.inventory.on_pickup_item(item)
-			
-			var itemTypes := Item.ItemType
-			match item.itemType:
-				itemTypes.type_generic:
-					$PickItem.play()
-				itemTypes.type_paper:
-					$PickItemPaper.play()
-				_:
-					$PickItem.play()
+		GlobalPlayerVariables.inventory.on_pickup_item(item)
+		
+		var itemTypes := Item.ItemType
+		match item.itemType:
+			itemTypes.type_generic:
+				$PickItem.play()
+			itemTypes.type_paper:
+				$PickItemPaper.play()
+			_:
+				$PickItem.play()

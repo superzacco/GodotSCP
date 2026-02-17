@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2ubs0d7q4xbr"]
+[gd_scene load_steps=14 format=3 uid="uid://b2ubs0d7q4xbr"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_frg2d"]
 [ext_resource type="PackedScene" uid="uid://daw4vr32tl8u7" path="res://rooms/Models/LCon3Way001.blend" id="2_ee4n3"]
@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_3bxvg"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_1nm3e"]
 [ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="6_sv0yn"]
+[ext_resource type="Texture2D" uid="uid://bfae2gkgq8kym" path="res://entities/bodies/body(2).png" id="7_5m4ag"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="7_tc5cy"]
 [ext_resource type="PackedScene" uid="uid://dpq8gq38rdpod" path="res://entities/decals/blood01.tscn" id="8_5m4ag"]
+[ext_resource type="Texture2D" uid="uid://dg76v3icqa284" path="res://entities/bodies/body.png" id="8_ndv3d"]
+[ext_resource type="Texture2D" uid="uid://biveb80kpytin" path="res://entities/bodies/janitor.png" id="9_pvrun"]
+[ext_resource type="PackedScene" uid="uid://creh2w11ba6rg" path="res://entities/items/item_spawner.tscn" id="10_ndv3d"]
+[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="12_pvrun"]
 
 [node name="LCon3Way002" type="Node3D" groups=["room"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -36,13 +41,18 @@ omniBrightness = 0.25
 
 [node name="Body" parent="." instance=ExtResource("6_sv0yn")]
 transform = Transform3D(-0.793013, 0, 0.609204, 0, 1, 0, -0.609204, 0, -0.793013, -0.175167, -1.17947, 2.3282)
+texturesToUse = Array[CompressedTexture2D]([ExtResource("7_5m4ag"), ExtResource("8_ndv3d"), ExtResource("9_pvrun")])
 chanceToSpawn = 25.0
 
 [node name="body" parent="Body" index="0"]
 transform = Transform3D(0.999701, 0.0244485, -0.000389218, -0.0244485, 0.999194, -0.031825, -0.000389159, 0.031825, 0.999493, 0, 0.0266135, 0)
 
-[node name="keycard00" parent="Body" instance=ExtResource("7_tc5cy")]
-transform = Transform3D(-0.356983, 0, -0.934111, 0, 1, 0, 0.934111, 0, -0.356983, 0.615646, 0.113429, 0.820808)
+[node name="ItemSpawner" parent="Body" instance=ExtResource("10_ndv3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.754396, 0.496775, 0.934435)
+itemsToSpawn = Dictionary[PackedScene, int]({
+ExtResource("7_tc5cy"): 125,
+ExtResource("12_pvrun"): 25
+})
 
 [node name="Decal" parent="Body" instance=ExtResource("8_5m4ag")]
 transform = Transform3D(0.675333, 0.0244485, -0.737108, -0.0399799, 0.999194, -0.0034879, 0.736428, 0.031825, 0.675766, 0.143631, -0.163903, 1.25861)

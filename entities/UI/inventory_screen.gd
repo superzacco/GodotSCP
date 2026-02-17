@@ -81,9 +81,6 @@ func _input(event: InputEvent) -> void:
 		heldItem = null
 	
 	if event.is_action_pressed("interact") and inventoryOpen:
-		if GlobalPlayerVariables.hoveredSlot != null and GlobalPlayerVariables.hoveredSlot.heldItem != null:
-			print(GlobalPlayerVariables.hoveredSlot.heldItem.equipped)
-		
 		clicki += 1
 		if clicki >= 2 and GlobalPlayerVariables.hoveredSlot != null:
 			var item = GlobalPlayerVariables.hoveredSlot.heldItem
@@ -144,7 +141,8 @@ func on_pickup_item(item: Item):
 
 
 func drop_item():
-	ItemManager.request_item_drop.rpc(heldItem.name, hoveredSlotIdx)
+	ItemManager.request_item_drop.rpc(heldItem.itemID)
+	clear_slot_ui(hoveredSlotIdx)
 	
 	var itemTypes := Item.ItemType
 	match heldItem.itemType:
@@ -156,7 +154,6 @@ func drop_item():
 			clear_equip()
 
 
-@rpc("reliable", "call_local")
 func clear_slot_ui(slotIdx: int):
 	if slotIdx < 0 or slotIdx >= slots.size():
 		return

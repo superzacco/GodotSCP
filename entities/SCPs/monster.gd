@@ -31,6 +31,8 @@ func _ready() -> void:
 	attackArea.body_exited.connect(_on_attack_area_body_exited)
 	
 	timer.timeout.connect(process_one)
+	attackTimer.timeout.connect(reset_attack)
+	
 	self.add_child(attackTimer)
 	
 	modelAnimations.speed_scale = animationSpeed

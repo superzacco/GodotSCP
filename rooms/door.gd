@@ -10,7 +10,7 @@ class_name Door
 
 @export var closableBy079: bool = false
 @export var openableBy173: bool = false
-var nonGenerated: bool = true
+var generatedDoor: bool = false
 
 var doorOpen: bool = false
 var opening: bool = false
@@ -20,7 +20,7 @@ func _ready() -> void:
 	self.global_position += Vector3(0, 3, 0)
 	await SignalBus.level_generation_finished
 	
-	if nonGenerated == true:
+	if generatedDoor == false:
 		self.global_position += Vector3(0, -3, 0)
 	
 	if multiplayer.is_server():

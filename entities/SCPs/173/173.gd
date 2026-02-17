@@ -50,8 +50,6 @@ func process_one():
 		GlobalPlayerVariables.debugInfo.blinking173 = players_blinking()
 		GlobalPlayerVariables.debugInfo.looking173 = !players_looking()
 		GlobalPlayerVariables.debugInfo.nearPlayer173 = nearPlayer
-	
-	stoneScrapingPlayer.stop()
 
 
 func process_client():
@@ -100,6 +98,7 @@ func process_server():
 		self.rotation.z = 0
 		
 		play_scraping.rpc()
+		
 		if nearDoor != null and !waiting:
 			try_break_door()
 		
@@ -140,16 +139,12 @@ func players_combination() -> bool:
 
 @rpc("authority", "call_local", "reliable")
 func play_scraping():
-	print("j")
 	if !stoneScrapingPlayer.playing:
 		stoneScrapingPlayer.play(randf_range(0.0, 5.0))
 
 @rpc("authority", "call_local", "reliable")
 func stop_scraping():
 	stoneScrapingPlayer.stop()
-
-
-
 
 
 func relocate(playAmbiance: bool = false):
@@ -271,8 +266,10 @@ func _on_door_detection_area_body_exited(body: Node3D) -> void:
 
 func _on_chase_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		playersInRadius.append(body)
+		if body.dead == true:
+			return
 		
+		playersInRadius.append(body)
 		relocateTimer.stop()
 
 func _on_chase_radius_body_exited(body: Node3D) -> void:

@@ -231,6 +231,10 @@ func sent_to_pocket_dimension():
 
 
 func take_damage(damage: float, typeOfDamage: Damage.Types = Damage.Types.TYPE_GENERIC):
+	if is_dead():
+		print_debug("player: %s is already dead!" % get_multiplayer_authority())
+		return
+	
 	health -= damage
 	
 	var damageTypes := Damage.Types
@@ -252,9 +256,16 @@ func take_damage(damage: float, typeOfDamage: Damage.Types = Damage.Types.TYPE_G
 	print("player: %s health now %s." % [get_multiplayer_authority(), health])
 
 
+func is_dead() -> bool:
+	if dead or GameManager.get_player_by_id(get_multiplayer_authority()).dead: return true
+	return false
+
+
 @rpc("any_peer", "call_local", "reliable")
 func on_death(dyingPlayerID: int):
 	var selfID: int = multiplayer.get_unique_id()
+	if is_dead():
+		return
 	
 	if dyingPlayerID == selfID:
 		canMove = false

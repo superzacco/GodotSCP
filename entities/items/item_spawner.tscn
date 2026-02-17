@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://creh2w11ba6rg"]
+
+[ext_resource type="Script" uid="uid://bifmnp3n3i6ly" path="res://entities/items/item_spawner.gd" id="1_vokji"]
+
+[node name="ItemSpawner" type="Node3D"]
+script = ExtResource("1_vokji")

@@ -1,7 +1,7 @@
 extends Node
 
 func randInPercent(percent: float):
-	var r = randf_range(0, 100)
+	var r = GameManager.rng.randf_range(0, 100)
 	if r <= percent:
 		return true
 	else:
@@ -17,9 +17,9 @@ func pick_from_list(weightedDict: Dictionary):
 	var totalWeight: int
 	
 	for weight in weightedDict.values():
-		totalWeight +=  weight
+		totalWeight += weight
 	
-	var randomWeight: int = randi_range(0, totalWeight-1)
+	var randomWeight: int = GameManager.rng.randi_range(0, totalWeight-1)
 	var currentWeight: int = 0
 	
 	for option in weightedDict.keys():

@@ -18,7 +18,7 @@ radius = 1.0
 [node name="049-2" type="CharacterBody3D" node_paths=PackedStringArray("timer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["spectatable"]]
 script = ExtResource("1_o3xkt")
 enabled = true
-speed = 8.0
+speed = 7.0
 damage = 27.0
 animationSpeed = 1.5
 timer = NodePath("Timer")
