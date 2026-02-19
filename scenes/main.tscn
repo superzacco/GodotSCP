@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=85 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -80,6 +80,7 @@
 [ext_resource type="PackedScene" uid="uid://djwk83tg7nipm" path="res://scenes/pocket_dimension.tscn" id="72_xrs0c"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="73_kjtvk"]
 [ext_resource type="Script" uid="uid://cjgxc8csbdga" path="res://scenes/items_node.gd" id="75_ygd8o"]
+[ext_resource type="PackedScene" uid="uid://6icr8b8e7lkb" path="res://entities/SCPs/096/scp_096.tscn" id="81_ndrjj"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ksmap"]
 
@@ -253,7 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4501, -0.90118, 0.302447)
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -14, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40261, -34.428, 0)
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="Facility"]
 spawn_path = NodePath("../PlayerSpawn")
@@ -275,7 +276,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 23, -229)
 [node name="SCPs" type="Node3D" parent="."]
 
 [node name="scp106" parent="SCPs" instance=ExtResource("73_kjtvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5351, -14.6862, -56.4552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.9081, -16.6328, -63.3693)
 
 [node name="Scp173" parent="SCPs" instance=ExtResource("21_5poiv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5662, -16.5584, -55.1885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.877, -16.5584, -63.1381)
+
+[node name="SCP096" parent="SCPs" instance=ExtResource("81_ndrjj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.3109, -15.3643, -63.7093)

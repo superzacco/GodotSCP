@@ -88,6 +88,8 @@ func _input(event: InputEvent) -> void:
 				SignalBus.activate_106.emit()
 			"173":
 				SignalBus.teleport_173_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0, 0.5, 0))
+			"096":
+				SignalBus.teleport_096_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0.1, 1.5, 0))
 			"relocate":
 				SignalBus.emit_signal("relocate_173")
 			"tp":
@@ -96,7 +98,6 @@ func _input(event: InputEvent) -> void:
 				else:
 					Commands.teleport(commandStringArray[1])
 			"respawn":
-				print(get_multiplayer_authority())
 				SignalBus.spawn_player.emit(get_multiplayer_authority())
 			"stfu":
 				Commands.stfu()

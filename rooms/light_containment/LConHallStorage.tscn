@@ -22,6 +22,12 @@ spawnPosFor173 = NodePath("173Pos")
 [node name="Door" parent="." instance=ExtResource("2_a7uwg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.29803, 0.0519333, 0.00818944)
 
+[node name="doorside2_col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
 [node name="Points" type="Node3D" parent="."]
 
 [node name="point1" parent="Points" instance=ExtResource("10_jgo1u")]
@@ -38,10 +44,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 [node name="Props" type="Node3D" parent="."]
 
 [node name="table" parent="Props" instance=ExtResource("4_ovpt2")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.448057, -0.597524, -2.65368)
+transform = Transform3D(-0.8, 0, 6.99382e-08, 0, 0.8, 0, -6.99382e-08, 0, -0.8, -0.448057, -0.715207, -2.65368)
 
 [node name="table2" parent="Props" instance=ExtResource("4_ovpt2")]
-transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 4.34193, -0.597524, 1.56366)
+transform = Transform3D(1.04907e-07, 0, 0.8, 0, 0.8, 0, -0.8, 0, 1.04907e-07, 4.34193, -0.728159, 1.56366)
 
 [node name="shelf01" parent="Props" instance=ExtResource("5_5bsik")]
 transform = Transform3D(-0.7, 0, 6.1196e-08, 0, 0.7, 0, -6.1196e-08, 0, -0.7, 4.49791, 0.531952, -0.942202)

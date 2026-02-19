@@ -18,7 +18,6 @@ func _ready() -> void:
 
 
 func call_respawn(id: int):
-	print("call respawn")
 	respawn_player.rpc(id)
 
 
@@ -43,16 +42,15 @@ func spawn_player(playerID: int):
 	return player
 
 func on_player_disconnect(playerID: int):
-	print("gay")
+	print("player (ID: %s) has disconneted" % playerID)
 	if playerID == 1:
 		quit_all.rpc()
 	
 	remove_player_entity.rpc(playerID)
 	delete_player_data.rpc(playerID)
 
-@rpc("authority", "reliable")
+@rpc("authority", "call_remote", "reliable")
 func quit_all():
-	print("serv")
 	GameManager.quit_to_menu()
 
 @rpc("authority", "call_local", "reliable")

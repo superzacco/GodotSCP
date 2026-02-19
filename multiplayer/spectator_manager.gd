@@ -10,6 +10,7 @@ var camera: Camera3D
 
 
 func _ready() -> void:
+	SignalBus.spawn_player.connect(remove_spectator)
 	GlobalPlayerVariables.spectatorManager = self
 
 
@@ -24,8 +25,13 @@ func switch_player_to_spectator(playerID: int):
 	camera = spectatorPivot.camera
 	spectatorPivot.set_multiplayer_authority(playerID, true)
 	
-	if is_multiplayer_authority():
-		camera.call_deferred("make_current") 
+	camera.call_deferred("make_current") 
+
+
+func remove_spectator(playerID: int):
+	for child in self.get_children():
+		if child.get_multiplayer_authority() == playerID:
+			child.queue_free()
 
 
 func get_spectatable_objects():

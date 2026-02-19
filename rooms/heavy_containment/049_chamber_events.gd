@@ -25,7 +25,6 @@ func activate_049_sequence():
 	cellDoor.open()
 
 
-func activate_zombie(instance: Monster, time: float):
+func activate_zombie(instance: SCP049DASH2, time: float):
 	await get_tree().create_timer(time).timeout
-	instance.set_active()
-	
+	instance.get_up()

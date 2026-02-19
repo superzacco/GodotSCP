@@ -67,31 +67,6 @@ cull_mask = 12
 [node name="DeadJanitor" parent="Events/DeadJanitor" instance=ExtResource("18_a5ggg")]
 transform = Transform3D(-0.835606, 0, -0.549329, 0, 1, 0, 0.549329, 0, -0.835606, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Events/DeadJanitor/DeadJanitor/body/Armature" index="0"]
-bones/0/position = Vector3(-0.000411818, 0.890931, 0)
-bones/0/rotation = Quaternion(0.0384142, 1.19121e-07, 4.57933e-09, 0.999262)
-bones/2/rotation = Quaternion(-0.0886509, -1.1874e-07, -1.0568e-08, 0.996063)
-bones/4/rotation = Quaternion(0.0571017, 0.046152, 0.950448, 0.302091)
-bones/5/rotation = Quaternion(-0.373655, -0.02545, 0.183728, 0.908834)
-bones/6/rotation = Quaternion(0.155777, -0.152883, 0.350741, 0.910681)
-bones/7/rotation = Quaternion(-0.0571019, 0.0461521, 0.950448, -0.302091)
-bones/8/rotation = Quaternion(-0.373655, 0.02545, -0.183728, 0.908834)
-bones/9/rotation = Quaternion(0.155777, 0.152883, -0.350742, 0.910681)
-bones/10/rotation = Quaternion(-0.0022297, 0.0416598, 0.997116, 0.0633954)
-bones/11/rotation = Quaternion(0.0851236, 0.00152601, 0.0121223, 0.996296)
-bones/12/rotation = Quaternion(-0.700468, 0.00324596, 0.010258, 0.713602)
-bones/13/rotation = Quaternion(0.00222903, 0.0416597, 0.997116, -0.0633954)
-bones/14/rotation = Quaternion(0.0851236, -0.00152616, -0.0121222, 0.996296)
-bones/15/rotation = Quaternion(-0.700468, -0.00324621, -0.0102583, 0.713602)
-bones/15/scale = Vector3(1, 1, 1)
-bones/17/position = Vector3(-0.218809, 0.0623709, 0.0869693)
-bones/17/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
-bones/19/position = Vector3(0.217985, 0.0623709, 0.0869693)
-bones/19/rotation = Quaternion(-0.0341924, 0.70628, 0.70628, -0.0341924)
-
-[node name="gasmask" parent="Events/DeadJanitor/DeadJanitor/body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.80944e-10, 5.76181e-11, -1.80954e-10, 1, 2.98023e-08, -5.76099e-11, 0, 1, 2.12458e-09, 7.15256e-07, -3.72529e-09)
-
 [node name="Elevators" type="Node3D" parent="."]
 
 [node name="elevator" parent="Elevators" instance=ExtResource("2_7pyr0")]
@@ -111,12 +86,6 @@ openOnSpawn = true
 [node name="KeycardDoor" parent="Doors" instance=ExtResource("12_cqydt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.44816, 0.0432857, -2.19525)
 
-[node name="doorside2_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 3
 
@@ -126,12 +95,6 @@ keycardLevel = 3
 [node name="KeycardDoor2" parent="Doors" instance=ExtResource("12_cqydt")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.5482, 0.0432857, -5.99525)
 
-[node name="doorside2_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
 keycardLevel = 3
 
@@ -140,12 +103,6 @@ keycardLevel = 3
 
 [node name="BigDoor" parent="Doors" instance=ExtResource("4_p17to")]
 transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, -0.010938, 0.191216, -2.20131)
-
-[node name="DoorR-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
-
-[node name="DoorL-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
 
 [node name="Keycardbutton2" parent="Doors/BigDoor" index="1"]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 4, 0, 0.743334)
@@ -162,12 +119,6 @@ keycardLevel = 3
 [node name="unopenable" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22518, 0.0495537, 10.71)
 
-[node name="doorside2_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/unopenable" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -178,12 +129,6 @@ wontOpen = true
 
 [node name="unopenable2" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0005, 0.0461754, -20.4807)
-
-[node name="doorside2_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/unopenable2" index="1"]
 rejectionText = "The door appears to be locked..."
@@ -196,12 +141,6 @@ wontOpen = true
 [node name="unopenable3" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.06701, 0.0461754, -16.7265)
 
-[node name="doorside2_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable3/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/unopenable3" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -212,12 +151,6 @@ wontOpen = true
 
 [node name="cellDoor" parent="Doors" instance=ExtResource("12_cqydt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74644, 0.0542459, -8.19866)
-
-[node name="doorside2_col" parent="Doors/cellDoor/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/cellDoor/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Keycardbutton" parent="Doors/cellDoor" index="1"]
 keycardLevel = 3
@@ -237,12 +170,6 @@ openOnSpawn = true
 [node name="unopenable4" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.47578, 0.0461754, 17.7763)
 
-[node name="doorside2_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/unopenable4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-
 [node name="Button" parent="Doors/unopenable4" index="1"]
 rejectionText = "The door appears to be locked..."
 wontOpen = true
@@ -253,12 +180,6 @@ wontOpen = true
 
 [node name="Door4" parent="Doors" instance=ExtResource("5_m6l6y")]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -15.0154, 0.049715, 3.94661)
-
-[node name="doorside2_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="Doors/Door4/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 
 [node name="Button" parent="Doors/Door4" index="1"]
 visible = false
@@ -443,11 +364,11 @@ transform = Transform3D(-0.581939, 0, 0.813233, 0, 1, 0, -0.813233, 0, -0.581939
 enabled = false
 
 [node name="049-2" parent="Enemies" instance=ExtResource("20_qjqyu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4004, -0.233925, -5.23996)
+transform = Transform3D(-0.998473, 0, -0.0552465, 0, 1, 0, 0.0552465, 0, -0.998473, 11.3879, -0.632574, -7.6806)
 enabled = false
 
 [node name="049-3" parent="Enemies" instance=ExtResource("20_qjqyu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210375, -0.233925, 8.17817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210375, -0.642372, 10.089)
 enabled = false
 
 [node name="HCon049Chamber" parent="." instance=ExtResource("1_eeosu")]

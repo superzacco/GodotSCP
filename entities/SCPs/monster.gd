@@ -16,7 +16,7 @@ var canAttack := true
 
 @export var animationSpeed: float = 1.0
 
-@export var timer: Timer
+@export var processTimer: Timer
 @export var modelAnimations: AnimationPlayer
 @export var agent: NavigationAgent3D
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 	attackArea.body_entered.connect(_on_attack_area_body_entered)
 	attackArea.body_exited.connect(_on_attack_area_body_exited)
 	
-	timer.timeout.connect(process_one)
+	processTimer.timeout.connect(process_one)
 	attackTimer.timeout.connect(reset_attack)
 	
 	self.add_child(attackTimer)
@@ -56,9 +56,12 @@ func _process(delta: float) -> void:
 	if !should_process(): return
 	
 	agent.target_position = find_closest_player().global_position
-	self.look_at(self.global_position + velocity)
-	self.rotation.x = 0
-	self.rotation.z = 0
+	
+	var lookatPos = self.global_position + velocity
+	if lookatPos != self.global_position:
+		self.look_at(lookatPos)
+		self.rotation.x = 0
+		self.rotation.z = 0
 	
 	move_and_slide()
 
