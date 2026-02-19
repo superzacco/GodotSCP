@@ -34,9 +34,9 @@ func remove_spectator(playerID: int):
 			child.queue_free()
 
 
-func get_spectatable_objects():
-	var spectatables = get_tree().get_nodes_in_group("spectatable")
+func refresh_spectatable_objects():
 	spectatableThings.clear()
+	var spectatables = get_tree().get_nodes_in_group("spectatable")
 	
 	for spectatable in spectatables:
 		if spectatable != null:

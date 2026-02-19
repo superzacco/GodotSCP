@@ -27,7 +27,10 @@ func _input(event: InputEvent) -> void:
 		verticalPivot.rotation.x = clamp(verticalPivot.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 	
 	if event.is_action_pressed("interact"):
-		switch_spectating()
+		forward_spec()
+	
+	if event.is_action_pressed("rightclick"):
+		backward_spec()
 
 
 func _process(delta: float) -> void:
@@ -36,15 +39,27 @@ func _process(delta: float) -> void:
 	
 	if specManager.spectatableThings.size() > 0:
 		if specManager.spectatableThings[specIdx] == null:
-			specManager.get_spectatable_objects()
-			switch_spectating()
+			specManager.refresh_spectatable_objects()
+			forward_spec()
 		else:
 			self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.1)
 
-func switch_spectating():
-	specManager.get_spectatable_objects()
+
+func forward_spec():
+	switch_spectating()
 	
-	if specIdx == specManager.spectatableThings.size()-1:
+	specIdx += 1
+	if specIdx >= specManager.spectatableThings.size()-1:
 		specIdx = 0
+
+func backward_spec():
+	switch_spectating()
 	
+	specIdx -= 1
+	if specIdx <= -1:
+		specIdx = specManager.spectatableThings.size()-1
+
+
+func switch_spectating():
+	specManager.refresh_spectatable_objects()
 	associatedUI.set_label("Spectating: %s" % specManager.spectatableThings[specIdx].name)

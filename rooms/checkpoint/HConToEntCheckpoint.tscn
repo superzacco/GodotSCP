@@ -55,6 +55,12 @@ spot_angle = 75.0
 [node name="Checkpoint" parent="." instance=ExtResource("4_4k0ch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00530711, -0.0134288, -0.000239134)
 
+[node name="Keycardbutton" parent="Checkpoint" index="0"]
+keycardLevel = 4
+
+[node name="Keycardbutton2" parent="Checkpoint" index="1"]
+keycardLevel = 4
+
 [node name="CheckpointAlarm" parent="Checkpoint" index="3" node_paths=PackedStringArray("doors")]
 doors = [NodePath("../doors/Door"), NodePath("../doors/Door2")]
 

@@ -17,3 +17,11 @@ res://entities/SCPs/096/scp_096.gd
 res://entities/ui/console.gd
 res://multiplayer/multiplayer_spawner.gd
 res://multiplayer/spectator_manager.gd
+res://entities/step_zone.tscn
+res://entities/player/step_zone.tscn
+res://rooms/checkpoint.tscn
+res://rooms/checkpoint/HConToEntCheckpoint.tscn
+res://rooms/checkpoint/LConToHconCheckpoint.tscn
+res://entities/ui/spectator_ui.tscn
+res://entities/player/spectatorCamera.tscn
+res://entities/player/spectator_camera.gd
