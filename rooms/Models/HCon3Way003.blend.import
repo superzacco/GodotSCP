@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://daw4vr32tl8u7"
-path="res://.godot/imported/LCon3Way001.blend-64cd78599fd31d08253485ccfcae3475.scn"
+uid="uid://46shb701ppa5"
+path="res://.godot/imported/HCon3Way003.blend-dce457ec00fcd6d150d7667418ded073.scn"
 
 [deps]
 
-source_file="res://rooms/Models/LCon3Way001.blend"
-dest_files=["res://.godot/imported/LCon3Way001.blend-64cd78599fd31d08253485ccfcae3475.scn"]
+source_file="res://rooms/Models/HCon3Way003.blend"
+dest_files=["res://.godot/imported/HCon3Way003.blend-dce457ec00fcd6d150d7667418ded073.scn"]
 
 [params]
 
@@ -32,15 +32,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:room": {
-"generate/physics": true,
-"physics/layer": 3,
-"physics/mask": 3
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

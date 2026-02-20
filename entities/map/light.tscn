@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfpkrpoexgo65"]
+[gd_scene load_steps=13 format=3 uid="uid://dfpkrpoexgo65"]
 
 [ext_resource type="Script" uid="uid://cb7v26egokpp2" path="res://entities/map/light.gd" id="1_gghi3"]
 [ext_resource type="AudioStream" uid="uid://c0j61fvejxs66" path="res://audio/rooms/Light0.ogg" id="2_hxvnp"]
 [ext_resource type="AudioStream" uid="uid://deryhtky2s77l" path="res://audio/rooms/Light1.ogg" id="3_a1pd1"]
 [ext_resource type="AudioStream" uid="uid://cbnuxtx4nx5yn" path="res://audio/rooms/Light2.ogg" id="4_hr5o2"]
 [ext_resource type="PackedScene" uid="uid://dj80x648oqo2y" path="res://rooms/Models/props/emergencylight.blend" id="5_a1pd1"]
+[ext_resource type="Script" uid="uid://co8qc0uung4ub" path="res://entities/map/light_glow_sprite.gd" id="6_bvp15"]
 [ext_resource type="Texture2D" uid="uid://dgf3vd7h386tb" path="res://rooms/Textures/lightsprite.png" id="6_hr5o2"]
 
 [sub_resource type="Animation" id="Animation_gghi3"]
@@ -84,7 +85,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite3D:transparency")
+tracks/3/path = NodePath("LightGlowSprite:transparency")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -138,7 +139,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite3D:transparency")
+tracks/3/path = NodePath("LightGlowSprite:transparency")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -161,19 +162,21 @@ _data = {
 script = ExtResource("1_gghi3")
 spotlight = NodePath("SpotLight3D")
 omnilight = NodePath("SpotLight3D/OmniLight3D")
-sprite = NodePath("Sprite3D")
+sprite = NodePath("LightGlowSprite")
 lightColor = Color(1, 1, 1, 1)
 flickerSounds = Array[AudioStream]([ExtResource("2_hxvnp"), ExtResource("3_a1pd1"), ExtResource("4_hr5o2")])
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0836751, 0)
+[node name="LightGlowSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0624244, 0)
 cast_shadow = 0
-modulate = Color(1, 1, 1, 0.784314)
+modulate = Color(1, 1, 1, 0.662745)
 pixel_size = 0.004
 billboard = 1
 double_sided = false
+no_depth_test = true
 texture_filter = 0
 texture = ExtResource("6_hr5o2")
+script = ExtResource("6_bvp15")
 
 [node name="emergencylight" parent="." instance=ExtResource("5_a1pd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)

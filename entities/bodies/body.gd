@@ -1,5 +1,7 @@
 extends Node3D
 
+signal setup_finished
+
 @export var texturesToUse: Array[CompressedTexture2D]
 @export var chanceToSpawn: float = 100
 
@@ -12,6 +14,7 @@ func _ready() -> void:
 	if multiplayer.is_server():
 		if !ZFunc.randInPercent(chanceToSpawn):
 			delete_item.rpc()
+			return
 		
 		setup_body()
 
@@ -23,6 +26,8 @@ func setup_body():
 		var newMat := StandardMaterial3D.new()
 		newMat.albedo_texture = ZFunc.rand_from(texturesToUse)
 		bodyModel.set_surface_override_material(0, newMat)
+	
+	setup_finished.emit()
 
 
 @rpc("authority", "call_local", "reliable")

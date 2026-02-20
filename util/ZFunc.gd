@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 func randInPercent(percent: float):
 	var r = GameManager.rng.randf_range(0, 100)
@@ -45,3 +45,10 @@ func fade_out(player: Node, duration: float):
 	
 	player.stop()
 	player.volume_db = curr_vol
+
+
+func get_ray_collider(fromPos: Vector3, toPos: Vector3) -> Node3D:
+	var spaceState = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(fromPos, toPos)
+	var result = spaceState.intersect_ray(query)
+	return result.get("collider")

@@ -47,16 +47,22 @@ chanceToSpawn = 25.0
 [node name="body" parent="Body" index="0"]
 transform = Transform3D(0.999701, 0.0244485, -0.000389218, -0.0244485, 0.999194, -0.031825, -0.000389159, 0.031825, 0.999493, 0, 0.0266135, 0)
 
+[node name="gasmask" parent="Body/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.981177, 0.0468674, 0.187336, 0.190931, -0.38075, -0.904751, 0.0289246, 0.923489, -0.382531, -0.0721372, 0.735784, 0.235337)
+
 [node name="ItemSpawner" parent="Body" instance=ExtResource("10_ndv3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.754396, 0.496775, 0.934435)
 itemsToSpawn = Dictionary[PackedScene, int]({
 ExtResource("7_tc5cy"): 125,
 ExtResource("12_pvrun"): 25
 })
+waitForSignal = true
 
 [node name="Decal" parent="Body" instance=ExtResource("8_5m4ag")]
 transform = Transform3D(0.675333, 0.0244485, -0.737108, -0.0399799, 0.999194, -0.0034879, 0.736428, 0.031825, 0.675766, 0.143631, -0.163903, 1.25861)
 cull_mask = 5
+
+[connection signal="setup_finished" from="Body" to="Body/ItemSpawner" method="spawn_items"]
 
 [editable path="Body"]
 [editable path="Body/body"]

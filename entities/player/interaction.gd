@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 	if !is_multiplayer_authority():
 		return
 	
-	if event.is_action_pressed("interact") and interactablesInRange.size() != 0:
+	if event.is_action_pressed("interact") and nearestInteractable != null:
 		on_click_interactable()
 
 
@@ -33,42 +33,72 @@ func _process(delta: float) -> void:
 	
 	if nearestInteractable != null:
 		interactionSprite.global_position = spriteEndPoint.global_position.lerp(nearestInteractable.global_position, 0.5)
+		show_sprite()
+	else:
+		hide_sprite()
 	
 	if interactablesInRange.size() > 0:
 		find_nearest_interactable()
 
 
+func show_sprite():
+	if !interactionSprite.visible:
+		interactionSprite.show()
+
+func hide_sprite():
+	if interactionSprite.visible:
+		interactionSprite.hide()
+
+
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
+		if !area.visible:
+			return
+		
 		interactablesInRange.append(area.get_parent())
 		find_nearest_interactable()
-		for i in 3:
-			await get_tree().process_frame
-		interactionSprite.show()
+
 func _on_area_exited(area: Area3D) -> void:
 	if area.is_in_group("interactables"):
-		interactablesInRange.erase(area.get_parent())
+		if !area.visible:
+			return
 		
+		interactablesInRange.erase(area.get_parent())
 		if interactablesInRange.size() == 0:
+			nearestInteractable = null
 			interactionSprite.hide()
-
 
 func find_nearest_interactable():
 	var lowestDistance = INF
+	nearestInteractable = null
 	
 	for interactable in interactablesInRange:
-		var distance = interactable.global_position.distance_to(spriteEndPoint.global_position)
+		if !interactable.visible or is_interactable_obscured(interactable):
+			continue
 		
+		var distance = interactable.global_position.distance_to(spriteEndPoint.global_position)
 		if distance < lowestDistance:
 			nearestInteractable = interactable
 			lowestDistance = distance
 
 
-func on_click_interactable():
-	if GlobalPlayerVariables.inventory.inventoryOpen:
-		return
+func is_interactable_obscured(interactable: Node3D) -> bool:
+	var playerCam = GlobalPlayerVariables.player.camera
+	var resultNode: Node3D = ZFunc.get_ray_collider(playerCam.global_position, interactable.global_position)
 	
+	
+	if resultNode == interactable:
+		print(false)
+		return false
+	else:
+		print(true)
+		return true
+
+
+func on_click_interactable():
 	find_nearest_interactable()
+	if GlobalPlayerVariables.inventory.inventoryOpen or nearestInteractable == null:
+		return
 	
 	if nearestInteractable.is_in_group("item"):
 		if GlobalPlayerVariables.inventory.return_empty_slots() <= 0:

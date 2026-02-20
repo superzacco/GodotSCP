@@ -67,6 +67,9 @@ cull_mask = 12
 [node name="DeadJanitor" parent="Events/DeadJanitor" instance=ExtResource("18_a5ggg")]
 transform = Transform3D(-0.835606, 0, -0.549329, 0, 1, 0, 0.549329, 0, -0.835606, 0, 0, 0)
 
+[node name="gasmask" parent="Events/DeadJanitor/DeadJanitor/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.981177, 0.0468674, 0.187336, 0.190931, -0.38075, -0.904751, 0.0289246, 0.923489, -0.382531, -0.0721372, 0.735784, 0.235337)
+
 [node name="Elevators" type="Node3D" parent="."]
 
 [node name="elevator" parent="Elevators" instance=ExtResource("2_7pyr0")]

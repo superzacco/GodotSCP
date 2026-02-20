@@ -23,17 +23,17 @@ fineDict = Dictionary[String, PackedScene]({
 "keycard1": ExtResource("3_jjtnl"),
 "keycard2": ExtResource("4_yokc0")
 })
-doorL = NodePath("DoorL")
-doorR = NodePath("DoorR")
+doorL = NodePath("InputChamber/DoorL")
+doorR = NodePath("OutputChamber/DoorR")
 refiningAudioPlayer = NodePath("Refining")
 knob = NodePath("914model/Knob")
 key = NodePath("914model/Key")
 turningKnobUI = NodePath("KnobUI/TextureRect")
-outputPoint = NodePath("OutputPoint")
+outputPoint = NodePath("OutputChamber/OutputPoint")
 
 [node name="914model" parent="." instance=ExtResource("2_rw2e6")]
 
-[node name="Key" parent="914model" index="4"]
+[node name="Key" parent="914model" index="2"]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.270788, -1.63126)
 
 [node name="KnobArea" type="Area3D" parent="."]
@@ -47,64 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.51444, -1.4)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeyArea"]
 shape = SubResource("BoxShape3D_tpx0i")
-
-[node name="Input" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.5)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Input"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0860291, 0, -0.223279)
-shape = SubResource("BoxShape3D_rw2e6")
-
-[node name="DoorL" parent="." instance=ExtResource("16_jjtnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28688, -0.0480342, -0.648507)
-openableBy173 = false
-
-[node name="doorframe" parent="DoorL/door" index="0"]
-visible = false
-
-[node name="doorside1_col" parent="DoorL/door/Armature/Skeleton3D" index="1"]
-visible = false
-
-[node name="Button" parent="DoorL" index="1"]
-visible = false
-disabled = true
-
-[node name="Button2" parent="DoorL" index="2"]
-visible = false
-disabled = true
-
-[node name="DoorR" parent="." instance=ExtResource("16_jjtnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71312, -0.0480342, -0.648507)
-openableBy173 = false
-
-[node name="doorframe" parent="DoorR/door" index="0"]
-visible = false
-
-[node name="doorside1_col" parent="DoorR/door/Armature/Skeleton3D" index="1"]
-visible = false
-
-[node name="Button" parent="DoorR" index="1"]
-visible = false
-disabled = true
-
-[node name="Button2" parent="DoorR" index="2"]
-visible = false
-disabled = true
-
-[node name="OutputPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0.4)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.9, 0.3)
-light_energy = 0.2
-light_specular = 0.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0.3)
-light_energy = 0.2
-light_specular = 0.0
 
 [node name="KnobUI" type="Control" parent="."]
 layout_mode = 3
@@ -146,6 +88,76 @@ stream = ExtResource("9_5rrng")
 volume_db = -12.0
 max_polyphony = 2
 
+[node name="InputChamber" type="Node3D" parent="."]
+
+[node name="Input" type="Area3D" parent="InputChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.5)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputChamber/Input"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0860291, 0, -0.223279)
+shape = SubResource("BoxShape3D_rw2e6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="InputChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.9, 0.3)
+light_energy = 0.2
+light_specular = 0.0
+
+[node name="DoorL" parent="InputChamber" instance=ExtResource("16_jjtnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28688, -0.0480342, -0.648507)
+openableBy173 = false
+
+[node name="doorframe" parent="InputChamber/DoorL/door" index="0"]
+visible = false
+
+[node name="doorside2_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+visible = false
+
+[node name="Button" parent="InputChamber/DoorL" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="InputChamber/DoorL" index="2"]
+visible = false
+disabled = true
+
+[node name="OutputChamber" type="Node3D" parent="."]
+
+[node name="OutputPoint" type="Node3D" parent="OutputChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0.4)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="OutputChamber"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.9, 0.3)
+light_energy = 0.2
+light_specular = 0.0
+
+[node name="DoorR" parent="OutputChamber" instance=ExtResource("16_jjtnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71312, -0.0480342, -0.648507)
+openableBy173 = false
+
+[node name="doorframe" parent="OutputChamber/DoorR/door" index="0"]
+visible = false
+
+[node name="doorside2_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="doorside1_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+visible = false
+
+[node name="Button" parent="OutputChamber/DoorR" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="OutputChamber/DoorR" index="2"]
+visible = false
+disabled = true
+
 [connection signal="area_entered" from="KnobArea" to="." method="_on_knob_area_area_entered"]
 [connection signal="area_exited" from="KnobArea" to="." method="_on_knob_area_area_exited"]
 [connection signal="body_entered" from="KnobArea" to="." method="_on_knob_area_body_entered"]
@@ -154,11 +166,11 @@ max_polyphony = 2
 [connection signal="area_exited" from="KeyArea" to="." method="_on_key_area_area_exited"]
 [connection signal="body_entered" from="KeyArea" to="." method="_on_knob_area_body_entered"]
 [connection signal="body_exited" from="KeyArea" to="." method="_on_knob_area_body_exited"]
-[connection signal="body_entered" from="Input" to="." method="_on_input_body_entered"]
-[connection signal="body_exited" from="Input" to="." method="_on_input_body_exited"]
+[connection signal="body_entered" from="InputChamber/Input" to="." method="_on_input_body_entered"]
+[connection signal="body_exited" from="InputChamber/Input" to="." method="_on_input_body_exited"]
 
 [editable path="914model"]
-[editable path="DoorL"]
-[editable path="DoorL/door"]
-[editable path="DoorR"]
-[editable path="DoorR/door"]
+[editable path="InputChamber/DoorL"]
+[editable path="InputChamber/DoorL/door"]
+[editable path="OutputChamber/DoorR"]
+[editable path="OutputChamber/DoorR/door"]

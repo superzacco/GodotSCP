@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=86 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -64,6 +64,7 @@
 [ext_resource type="AudioStream" uid="uid://clbr6345jrfgm" path="res://audio/ambient/general/Ambient9.ogg" id="34_bu4jf"]
 [ext_resource type="AudioStream" uid="uid://dnjktgqqin8ai" path="res://audio/ambient/general/Ambient10.ogg" id="35_o7ddy"]
 [ext_resource type="AudioStream" uid="uid://beh0bjchplonr" path="res://audio/ambient/general/Ambient11.ogg" id="36_0loja"]
+[ext_resource type="PackedScene" uid="uid://q8e3pdinf228" path="res://rooms/heavy_containment/HCon3Way003.tscn" id="36_ih3m7"]
 [ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
 [ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
 [ext_resource type="AudioStream" uid="uid://ceabcywibvtxy" path="res://audio/scps/079/Broadcast0.ogg" id="54_a82wo"]
@@ -134,8 +135,9 @@ ExtResource("22_0loja"): 50,
 ExtResource("30_gdvew"): 20
 })
 fillerHConThreeWayHalls = Dictionary[PackedScene, int]({
-ExtResource("14_dgi5k"): 15,
-ExtResource("32_xljpf"): 5
+ExtResource("14_dgi5k"): 5,
+ExtResource("32_xljpf"): 15,
+ExtResource("36_ih3m7"): 50
 })
 fillerHConFourWayHalls = Dictionary[PackedScene, int]({
 ExtResource("15_j8jky"): 1
