@@ -5,6 +5,17 @@ class_name RoomLight
 @export var omnilight: OmniLight3D
 @export var sprite: Sprite3D
 
+
+@export_range(0.0, 1.0, 0.01) var attenuation: float = 0.5:
+	set(value):
+		attenuation = value
+		
+		if spotlight != null:
+			spotlight.spot_attenuation = attenuation
+		if omnilight != null:
+			omnilight.omni_attenuation = attenuation
+
+
 @export var lightColor: Color = Color(255, 255, 255):
 	set(value):
 		lightColor = value

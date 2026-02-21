@@ -190,7 +190,8 @@ func confirm_relocate():
 
 
 func try_relocate():
-	self.global_position += Vector3(0, -100, 0)
+	if self.global_position.y < -200:
+		self.global_position += Vector3(0, -100, 0)
 	
 	if relocateTimer.is_stopped():
 		relocateTimer.start()
