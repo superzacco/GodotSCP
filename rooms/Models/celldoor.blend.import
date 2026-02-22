@@ -36,6 +36,7 @@ _subresources={
 "nodes": {
 "PATH:Cube": {
 "generate/physics": true,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 }
