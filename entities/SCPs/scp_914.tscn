@@ -16,7 +16,7 @@ size = Vector3(1.055, 0.5, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
 size = Vector3(3.27211, 2.21802, 1.65759)
 
-[node name="scp914" type="StaticBody3D" node_paths=PackedStringArray("doorL", "doorR", "refiningAudioPlayer", "knob", "key", "turningKnobUI", "outputPoint")]
+[node name="scp914" type="StaticBody3D" node_paths=PackedStringArray("doorL", "doorR", "refiningAudioPlayer", "knob", "key", "turningKeyUI", "outputPoint")]
 script = ExtResource("1_tpx0i")
 fineDict = Dictionary[String, PackedScene]({
 "keycard0": ExtResource("2_fwluj"),
@@ -28,27 +28,27 @@ doorR = NodePath("OutputChamber/DoorR")
 refiningAudioPlayer = NodePath("Refining")
 knob = NodePath("914model/Knob")
 key = NodePath("914model/Key")
-turningKnobUI = NodePath("KnobUI/TextureRect")
+turningKeyUI = NodePath("KeyUI/TextureRect")
 outputPoint = NodePath("OutputChamber/OutputPoint")
 
-[node name="914model" parent="." instance=ExtResource("2_rw2e6")]
-
-[node name="Key" parent="914model" index="2"]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.270788, -1.63126)
-
 [node name="KnobArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279554, -1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479554, -1.6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KnobArea"]
 shape = SubResource("BoxShape3D_tpx0i")
 
 [node name="KeyArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.51444, -1.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11444, -1.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeyArea"]
 shape = SubResource("BoxShape3D_tpx0i")
 
-[node name="KnobUI" type="Control" parent="."]
+[node name="914model" parent="." instance=ExtResource("2_rw2e6")]
+
+[node name="Key" parent="914model" index="2"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.1, -1.59416)
+
+[node name="KeyUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +59,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="KnobUI"]
+[node name="TextureRect" type="TextureRect" parent="KeyUI"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -114,7 +114,11 @@ openableBy173 = false
 [node name="doorframe" parent="InputChamber/DoorL/door" index="0"]
 visible = false
 
+[node name="doorside2_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
 [node name="doorside1_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="InputChamber/DoorL" index="1"]
@@ -145,7 +149,11 @@ openableBy173 = false
 [node name="doorframe" parent="OutputChamber/DoorR/door" index="0"]
 visible = false
 
+[node name="doorside2_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
 [node name="doorside1_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="OutputChamber/DoorR" index="1"]

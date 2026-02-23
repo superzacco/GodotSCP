@@ -36,15 +36,34 @@ chaseArea = NodePath("ChaseArea")
 attackArea = NodePath("AttackArea")
 
 [node name="096" parent="." instance=ExtResource("1_q15mk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="096/Armature" index="0"]
-bones/3/rotation = Quaternion(0.171372, -0.00492361, 0.899995, -0.400769)
+bones/0/position = Vector3(-4.44089e-16, -0.311736, -0.0193056)
+bones/0/rotation = Quaternion(0.0283549, 1.19161e-07, 3.38016e-09, 0.999598)
+bones/1/rotation = Quaternion(-0.0681652, 3.54433e-14, -1.62518e-08, 0.997674)
+bones/2/rotation = Quaternion(0.216962, -1.41775e-14, 5.17278e-08, 0.97618)
+bones/3/position = Vector3(0.174592, 0.376914, 0.0163802)
+bones/3/rotation = Quaternion(0.171372, -0.00492362, 0.899995, -0.400769)
+bones/4/rotation = Quaternion(0.0453968, 4.02877e-05, -0.0626615, 0.997002)
+bones/5/rotation = Quaternion(0.0218685, -0.00712269, -0.0881386, 0.995843)
+bones/6/position = Vector3(-0.174592, 0.376914, 0.0163801)
+bones/6/rotation = Quaternion(-0.171372, -0.00492373, 0.899995, 0.400769)
+bones/7/rotation = Quaternion(0.0453968, -4.02723e-05, 0.0626615, 0.997002)
+bones/8/rotation = Quaternion(0.0218685, 0.00712268, 0.0881386, 0.995843)
+bones/9/rotation = Quaternion(0.998339, 0.00631474, 0.000460399, 0.0572699)
+bones/10/rotation = Quaternion(0.104373, 1.46738e-05, 0.00853478, 0.994502)
+bones/12/rotation = Quaternion(0.998339, -0.00631474, -0.000460153, 0.0572699)
+bones/13/rotation = Quaternion(0.104373, -1.46749e-05, -0.00853476, 0.994502)
+bones/14/rotation = Quaternion(-0.659932, -0.0770427, 0.239884, 0.707821)
 
 [node name="ProcessTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = -1.0
+debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.344765, 0)
@@ -56,7 +75,7 @@ shape = SubResource("CapsuleShape3D_g3s03")
 shape = SubResource("SphereShape3D_g3s03")
 
 [node name="AttackArea" type="Area3D" parent="."]
-visible = false
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.2)

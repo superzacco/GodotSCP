@@ -15,30 +15,44 @@ extends StaticBody3D
 
 @export var doorL: Door
 @export var doorR: Door
-@export var refiningAudioPlayer: AudioStreamPlayer3D
 
+@export var refiningAudioPlayer: AudioStreamPlayer3D
 @export var knob: MeshInstance3D
 @export var key: MeshInstance3D
-@export var turningKnobUI: TextureRect
+@export var turningKeyUI: TextureRect
 
 var interactionScript: Interaction
 var nearControls: bool = false
 var nearKnob: bool = false
 var nearKey: bool = false
 
-var fakeNearKnob: bool = false
-var fakeNearKey: bool = false
+var clickingOnKnob: bool = false
+var clickingOnKey: bool = false
 var keyJuice: float = 0
 var refining: bool = false
 
 var itemsInInput: Array[Item]
 @export var outputPoint: Node3D
 
+var relativeMouseMotion := Vector2.ZERO
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKnob and !refining:
-		knob.rotate_z(event.relative.x * 0.005) 
-	if event is InputEventMouseMotion and Input.is_action_pressed("interact") and fakeNearKey and !refining:
-		keyJuice += abs(event.relative.x)
+	if event is InputEventMouseMotion:
+		relativeMouseMotion = event.relative
+	
+	if event.is_action_pressed("interact"):
+		keyJuice = 0
+		
+		if clickingOnKey and !refining:
+			turningKeyUI.show()
+			interactionScript.interactionSprite.hide()
+		
+		clickingOnKnob = nearKnob
+		clickingOnKey = nearKey
+	
+	if event.is_action_released("interact"):
+		turningKeyUI.hide()
+		keyJuice = 0
+
 
 
 func _ready() -> void:
@@ -49,21 +63,18 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if keyJuice > 500 and fakeNearKey and !refining:
-		fakeNearKey = false
-		turningKnobUI.hide()
+	if Input.is_action_pressed("interact"):
+		if clickingOnKnob and !refining:
+			knob.rotate_z(relativeMouseMotion.x * 0.005) 
+		
+		if clickingOnKey and !refining:
+			keyJuice += abs(relativeMouseMotion.x)
+	
+	if keyJuice > 500 and clickingOnKey and !refining:
+		clickingOnKey = false
+		turningKeyUI.hide()
 		activate.rpc()
 	
-	if Input.is_action_just_pressed("interact"):
-		keyJuice = 0
-		fakeNearKnob = nearKnob
-		fakeNearKey = nearKey
-		if fakeNearKey and !refining:
-			turningKnobUI.show()
-			interactionScript.interactionSprite.hide()
-	if Input.is_action_just_released("interact"):
-		keyJuice = 0
-		turningKnobUI.hide()
 	
 	var angle = knob.rotation_degrees.z
 	
@@ -116,19 +127,19 @@ func activate():
 		match knobSetting:
 			0:
 				if roughDict.has(inputItem.itemName):
-					outputItem = roughDict[inputItem.itemName]
+					outputItem = roughDict.get(inputItem.itemName)
 			1:
 				if coarseDict.has(inputItem.itemName):
-					outputItem = coarseDict[inputItem.itemName]
+					outputItem = coarseDict.get(inputItem.itemName)
 			2:
 				if onetooneDict.has(inputItem.itemName):
-					outputItem = onetooneDict[inputItem.itemName]
+					outputItem = onetooneDict.get(inputItem.itemName)
 			3:
 				if fineDict.has(inputItem.itemName):
-					outputItem = fineDict[inputItem.itemName]
+					outputItem = fineDict.get(inputItem.itemName)
 			4:
 				if veryFineDict.has(inputItem.itemName):
-					outputItem = veryFineDict[inputItem.itemName]
+					outputItem = veryFineDict.get(inputItem.itemName)
 		
 		print("914 Output Item: %s" % outputItem)
 		print("914 Input Item: %s -- Knob Setting: %s" % [inputItem, knobSetting])
@@ -166,9 +177,14 @@ func _on_knob_area_body_exited(body: Node3D) -> void:
 
 func _on_input_body_entered(body: Node3D) -> void:
 	if body.is_in_group("item"):
+		var item: Item = body
+		item.get_id()
+		
 		itemsInInput.append(body)
 func _on_input_body_exited(body: Node3D) -> void:
 	if body.is_in_group("item"):
+		var item: Item = body
+		
 		itemsInInput.erase(body)
 
 

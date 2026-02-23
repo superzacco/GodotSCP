@@ -37,7 +37,7 @@ func setup_item():
 		return
 	
 	if multiplayer.is_server():
-		var id := get_id()
+		var id := make_id()
 		set_id.rpc(id)
 		
 		if !ZFunc.randInPercent(chanceToSpawn):
@@ -59,6 +59,10 @@ func delete_item():
 
 
 func get_id() -> int:
+	return itemID
+
+
+func make_id() -> int:
 	var id: int = randi_range(0, 99999999)
 	
 	while ItemManager.itemDict.has(id):
