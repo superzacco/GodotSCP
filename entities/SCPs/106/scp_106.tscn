@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bclsa0mrujt1x"]
 
-[ext_resource type="Script" uid="uid://bjl6a80c4rqvc" path="res://entities/SCPs/106/scp_106.gd" id="1_breko"]
+[ext_resource type="Script" uid="uid://bjl6a80c4rqvc" path="res://entities/SCPs/106/106.gd" id="1_breko"]
 [ext_resource type="PackedScene" uid="uid://dy0ygrxxdim7s" path="res://entities/SCPs/106/corrosive.tscn" id="2_hx8ni"]
 [ext_resource type="PackedScene" uid="uid://b2uxfcpo61s0o" path="res://entities/SCPs/106/106.blend" id="2_i88jd"]
 [ext_resource type="AudioStream" uid="uid://bgbxvsg0605mo" path="res://audio/scps/106/Decay1.ogg" id="3_62ji8"]

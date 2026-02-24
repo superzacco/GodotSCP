@@ -6,8 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_g01h6"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_knqes"]
 
-[node name="HCon4Way001" type="Node3D"]
+[node name="HCon4Way001" type="Node3D" node_paths=PackedStringArray("spawnPosFor173")]
 script = ExtResource("1_ial4u")
+spawnPosFor173 = NodePath("173point")
+
+[node name="173point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49691e-07, 0.3, -4)
 
 [node name="HCon4Way001" parent="." instance=ExtResource("1_m68ag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)

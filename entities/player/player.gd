@@ -231,6 +231,10 @@ func sent_to_pocket_dimension():
 
 
 func take_damage(damage: float, typeOfDamage: Damage.Types = Damage.Types.TYPE_GENERIC):
+	if GlobalPlayerVariables.godEnabled:
+		print("god saved player: %s" % get_multiplayer_authority())
+		return
+	
 	if is_dead():
 		print_debug("player: %s is already dead!" % get_multiplayer_authority())
 		return

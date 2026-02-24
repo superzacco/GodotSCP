@@ -14,7 +14,7 @@ script = ExtResource("1_e1tag")
 [node name="Points" type="Node3D" parent="."]
 
 [node name="point2" parent="Points" instance=ExtResource("2_v57yt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.29026, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_ui3rw")]
 

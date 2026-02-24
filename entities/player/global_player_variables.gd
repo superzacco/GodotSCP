@@ -39,6 +39,7 @@ var consoleOpen: bool = false
 var immutableMenuOpen: bool = false
 
 var noclipEnabled: bool = false
+var godEnabled: bool = false
 var blinkingEnabled: bool = true
 var roomCullingEnabled: bool = true
 

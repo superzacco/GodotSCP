@@ -64,7 +64,6 @@ folder_colors={
 
 [global_group]
 
-roomconnectionpoints=""
 player=""
 interactables=""
 item=""
@@ -78,6 +77,7 @@ roomlight=""
 corrosive=""
 noclip_player_area=""
 elevatorpassenger=""
+roomconnectionpoints=""
 
 [input]
 

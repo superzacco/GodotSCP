@@ -58,7 +58,6 @@ func shock():
 	
 	if thingsInKillBox.size() > 0:
 		for player: Player in thingsInKillBox:
-			print("Tesla: %s" % self.get_multiplayer_authority())
 			print("Shocking Player: %s in Tesla Gate!" % player.get_multiplayer_authority())
 			player.take_damage(999)
 

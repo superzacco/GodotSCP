@@ -8,3 +8,10 @@ class_name Room
 
 func _init() -> void:
 	self.add_to_group("room")
+
+
+func return_173_spawn_point() -> Vector3:
+	if spawnPosFor173 != null:
+		return spawnPosFor173.global_position
+	
+	return self.global_position

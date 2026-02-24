@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d12eugvcfftyc"]
+[gd_scene load_steps=13 format=3 uid="uid://d12eugvcfftyc"]
 
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="1_ol6ec"]
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="2_oic51"]
@@ -15,6 +15,8 @@ size = Vector3(1.747, 9, 0.568)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o7dva"]
 size = Vector3(0.498, 9, 0.123)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_73gmf"]
 
 [node name="BigDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer")]
 collision_layer = 0
@@ -63,5 +65,9 @@ shape = SubResource("BoxShape3D_o7dva")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75875, 0.210999, -0.00421143)
 shape = SubResource("BoxShape3D_o7dva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+shape = SubResource("BoxShape3D_73gmf")
 
 [editable path="big_door"]

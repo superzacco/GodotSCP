@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 			specManager.refresh_spectatable_objects()
 			forward_spec()
 		else:
-			self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.1)
+			self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.25)
 
 
 func forward_spec():

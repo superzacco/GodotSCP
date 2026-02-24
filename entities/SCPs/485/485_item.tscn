@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_bisa4"]
 [ext_resource type="Texture2D" uid="uid://chchd7lkljr7u" path="res://entities/SCPs/485/485_invsprite.png" id="2_rfcwx"]
 [ext_resource type="PackedScene" uid="uid://mltuukui1sdu" path="res://entities/SCPs/485/485.blend" id="2_xgiph"]
-[ext_resource type="Script" uid="uid://cimq0g6cdyhhk" path="res://entities/SCPs/485/scp_485.gd" id="4_ykb0r"]
+[ext_resource type="Script" uid="uid://cimq0g6cdyhhk" path="res://entities/SCPs/485/485.gd" id="4_ykb0r"]
 [ext_resource type="AudioStream" uid="uid://dlifw6qir0crr" path="res://audio/scps/485/485click-01.ogg" id="5_bxhxy"]
 [ext_resource type="AudioStream" uid="uid://bwv2wddjg5mct" path="res://audio/scps/485/485click-02.ogg" id="6_7cprn"]
 [ext_resource type="AudioStream" uid="uid://cp3mtlj3jdtiy" path="res://audio/scps/485/485click-03.ogg" id="7_8fxqa"]

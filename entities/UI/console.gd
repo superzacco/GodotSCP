@@ -101,6 +101,8 @@ func _input(event: InputEvent) -> void:
 				SignalBus.spawn_player.emit(get_multiplayer_authority())
 			"stfu":
 				Commands.stfu()
+			"god":
+				Commands.god()
 		
 		inputField.clear()
 	

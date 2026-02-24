@@ -42,11 +42,7 @@ var nextPathPos := Vector3.ZERO
 func process_one() -> void:
 	if !should_process(): return
 	
-	if find_closest_player() == null:
-		modelAnimations.play("idle")
-	
-	if playersInAttackArea.size() > 0:
-		attack()
+	attack_player()
 	
 	nextPathPos = agent.get_next_path_position() - global_position
 	velocity = (nextPathPos.normalized() * (speed * 0.1))
@@ -55,15 +51,28 @@ func process_one() -> void:
 func _process(delta: float) -> void:
 	if !should_process(): return
 	
-	agent.target_position = find_closest_player().global_position
+	target_player()
+	look_at_pos(self.global_position + velocity)
 	
-	var lookatPos = self.global_position + velocity
+	move_and_slide()
+
+
+func attack_player():
+	if playersInAttackArea.size() > 0:
+		attack()
+
+func target_player():
+	agent.target_position = find_closest_player().global_position
+
+func look_at_pos(pos: Vector3):
+	if global_position.is_equal_approx(agent.target_position):
+		return
+	
+	var lookatPos = pos
 	if lookatPos != self.global_position:
 		self.look_at(lookatPos)
 		self.rotation.x = 0
 		self.rotation.z = 0
-	
-	move_and_slide()
 
 
 func attack():
@@ -81,6 +90,9 @@ func reset_attack():
 
 
 func should_process() -> bool:
+	if !multiplayer.is_server():
+		return false
+	
 	if !enabled or playersInChaseRadius.size() < 1 or find_closest_player() == null:
 		return false
 	

@@ -108,3 +108,12 @@ func stfu():
 	else:
 		SignalBus.come_back_sounds.emit()
 		quiet = false
+
+
+func god():
+	if GlobalPlayerVariables.godEnabled:
+		GlobalPlayerVariables.godEnabled = false
+		console.println("GOD MODE off")
+	else:
+		GlobalPlayerVariables.godEnabled = true
+		console.println("GOD MODE on")

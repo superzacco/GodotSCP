@@ -12,7 +12,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ds5uy"]
 
-[node name="KeycardDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer")]
+[node name="KeycardDoor" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("1_ofwoi")

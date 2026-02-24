@@ -276,12 +276,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124, 2.15, -41)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 23, -229)
 
 [node name="SCPs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9918, 1.52588e-05, 64.7607)
 
 [node name="scp106" parent="SCPs" instance=ExtResource("73_kjtvk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.9081, -16.6328, -63.3693)
 
 [node name="Scp173" parent="SCPs" instance=ExtResource("21_5poiv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.877, -16.5584, -63.1381)
 
 [node name="SCP096" parent="SCPs" instance=ExtResource("81_ndrjj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.3109, -15.3643, -63.7093)

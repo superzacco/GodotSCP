@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ywd465j3m17b"]
 
-[sub_resource type="GDScript" id="GDScript_ct1fg"]
-script/source = "extends Node3D
-"
+[ext_resource type="Script" uid="uid://3mbmotb74dlh" path="res://levelgen/roomconnectionpoint.gd" id="1_2a32u"]
 
-[node name="point1" type="Node3D" groups=["roomconnectionpoints"]]
-script = SubResource("GDScript_ct1fg")
+[node name="point1" type="Node3D"]
+script = ExtResource("1_2a32u")
