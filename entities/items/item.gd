@@ -19,6 +19,9 @@ enum ItemType {
 	type_card
 }
 
+@export var onlyOneCanExist: bool = false
+@export var onlyOneString: String
+
 @export var chanceToSpawn: float = 100
 @export var equippable: bool = false
 
@@ -29,7 +32,15 @@ var equipped: bool = false
 
 
 func _ready() -> void:
+	check_if_only_one()
 	setup_item()
+
+
+func check_if_only_one():
+	if ItemManager.onlyOneArray.has(onlyOneString):
+		delete_item.rpc()
+	else:
+		ItemManager.onlyOneArray.append(onlyOneString)
 
 
 func setup_item():

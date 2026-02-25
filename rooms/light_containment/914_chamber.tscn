@@ -130,19 +130,19 @@ canFlicker = false
 brightness = 0.5
 
 [node name="Light3" parent="lights" instance=ExtResource("7_dch4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16775, 4.30165, 3.76157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16775, 4.42859, 3.76157)
 attenuation = 0.2
 brightness = 1.0
 omniBrightness = 0.25
 
 [node name="Light5" parent="lights" instance=ExtResource("7_dch4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16775, 4.30165, 7.76157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16775, 4.42859, 7.76157)
 attenuation = 0.35
 brightness = 1.0
 omniBrightness = 0.25
 
 [node name="Light4" parent="lights" instance=ExtResource("7_dch4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75495, 4.30165, 3.76157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75495, 4.42859, 3.76157)
 attenuation = 0.2
 brightness = 1.0
 omniBrightness = 0.25

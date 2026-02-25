@@ -36,6 +36,9 @@ var itemsInInput: Array[Item]
 
 var relativeMouseMotion := Vector2.ZERO
 func _input(event: InputEvent) -> void:
+	if !nearControls:
+		return
+	
 	if event is InputEventMouseMotion:
 		relativeMouseMotion = event.relative
 	
@@ -96,7 +99,7 @@ func _process(delta: float) -> void:
 	elif angle < -67:
 		knobSetting = 0
 	
-	if !Input.is_action_pressed("interact") and nearControls:
+	if !Input.is_action_pressed("interact"):
 		if angle > 67:
 			knob.rotation_degrees.z = lerp(knob.rotation_degrees.z, 90.0, 0.25)
 		elif angle < 67 and !angle < 23:
@@ -209,3 +212,13 @@ func _on_key_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKey = false
 		hide_interaction_sprite()
+
+
+func _on_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		if body.get_multiplayer_authority() == multiplayer.get_unique_id():
+			nearControls = true
+func _on_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		if body.get_multiplayer_authority() == multiplayer.get_unique_id():
+			nearControls = false

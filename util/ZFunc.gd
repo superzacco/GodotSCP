@@ -1,21 +1,29 @@
+@tool
 extends Node3D
 
+func remap(value: float, min_value: float, max_value: float, min_slider: float = 0, max_slider: float = 100): 
+	return (value - min_slider) / (max_slider - min_slider) * (max_value - min_value) + min_value
+
+@onready var UtilRNG := RandomNumberGenerator.new()
 func randInPercent(percent: float):
-	var r = GameManager.rng.randf_range(0, 100)
+	if UtilRNG.seed == 0:
+		UtilRNG.seed = GameManager.seed
+	
+	var r = UtilRNG.randf_range(0, 100)
 	if r <= percent:
 		return true
 	else:
 		return false 
 
-func remap(value: float, min_value: float, max_value: float, min_slider: float = 0, max_slider: float = 100): 
-	return (value - min_slider) / (max_slider - min_slider) * (max_value - min_value) + min_value
-
 func rand_from(array: Array):
-	return array[GameManager.rng.randi_range(0, array.size()-1)]
+	if UtilRNG.seed == 0:
+		UtilRNG.seed = GameManager.seed
+	
+	return array[UtilRNG.randi_range(0, array.size()-1)]
 
-func pick_from_list(weightedDict: Dictionary):
-	var rng := RandomNumberGenerator.new()
-	rng.seed = GameManager.seed
+func pick_from_list(weightedDict: Dictionary, rng: RandomNumberGenerator = UtilRNG):
+	if rng.seed == 0:
+		rng.seed = GameManager.seed
 	
 	var sortedKeys: Array = weightedDict.keys()
 	sortedKeys.sort_custom(func(a,b): return a.resource_path < b.resource_path)

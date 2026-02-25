@@ -31,6 +31,10 @@ var resolutionsDict: Dictionary = {
 }
 
 
+func initialize_settings():
+	_on_master_slider_value_changed(25.0)
+
+
 func _ready() -> void:
 	masterBus = AudioServer.get_bus_index("Master")
 	sfxBus = AudioServer.get_bus_index("Sound Effects")
@@ -39,6 +43,8 @@ func _ready() -> void:
 	
 	%WinText.text = str(displayModesArr[0])
 	%ResText.text = str(resolutionsArr[3])
+	
+	initialize_settings()
 
 
 #region // DISPLAY & RESOLUTION

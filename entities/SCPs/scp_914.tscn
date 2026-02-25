@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckpckhl646a40"]
+[gd_scene load_steps=11 format=3 uid="uid://ckpckhl646a40"]
 
 [ext_resource type="Script" uid="uid://byljttceuoaka" path="res://entities/SCPs/914.gd" id="1_tpx0i"]
 [ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/Models/914.blend" id="2_rw2e6"]
@@ -8,13 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="16_jjtnl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mjqu1"]
-size = Vector3(0.3, 0.3, 0.4)
+size = Vector3(0.3, 0.3, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rrng"]
-size = Vector3(0.4, 0.4, 0.5)
+size = Vector3(0.4, 0.4, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
 size = Vector3(3.27211, 2.21802, 1.65759)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bqhuw"]
+radius = 5.0
 
 [node name="scp914" type="StaticBody3D" node_paths=PackedStringArray("doorL", "doorR", "refiningAudioPlayer", "knob", "key", "turningKeyUI", "outputPoint")]
 script = ExtResource("1_tpx0i")
@@ -35,12 +38,14 @@ outputPoint = NodePath("OutputChamber/OutputPoint")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479554, -1.6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KnobArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)
 shape = SubResource("BoxShape3D_mjqu1")
 
 [node name="KeyArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11444, -1.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 shape = SubResource("BoxShape3D_5rrng")
 
 [node name="914model" parent="." instance=ExtResource("2_rw2e6")]
@@ -156,6 +161,11 @@ disabled = true
 visible = false
 disabled = true
 
+[node name="914Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="914Area"]
+shape = SubResource("SphereShape3D_bqhuw")
+
 [connection signal="area_entered" from="KnobArea" to="." method="_on_knob_area_area_entered"]
 [connection signal="area_exited" from="KnobArea" to="." method="_on_knob_area_area_exited"]
 [connection signal="body_entered" from="KnobArea" to="." method="_on_knob_area_body_entered"]
@@ -166,6 +176,8 @@ disabled = true
 [connection signal="body_exited" from="KeyArea" to="." method="_on_knob_area_body_exited"]
 [connection signal="body_entered" from="InputChamber/Input" to="." method="_on_input_body_entered"]
 [connection signal="body_exited" from="InputChamber/Input" to="." method="_on_input_body_exited"]
+[connection signal="body_entered" from="914Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="914Area" to="." method="_on_area_body_exited"]
 
 [editable path="914model"]
 [editable path="InputChamber/DoorL"]

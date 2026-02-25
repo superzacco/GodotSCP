@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b88uvhs20lxyn"]
+[gd_scene load_steps=15 format=3 uid="uid://b88uvhs20lxyn"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_0oga3"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_co1fu"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ccajjv5le4hk2" path="res://rooms/Models/props/computer_tower.blend" id="11_dgoxn"]
 [ext_resource type="PackedScene" uid="uid://b5pov58cv2r8a" path="res://entities/items/papers/documents/173_document.tscn" id="12_f3rda"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="13_dgoxn"]
+[ext_resource type="PackedScene" uid="uid://c8ym5kkq63x8p" path="res://entities/SCPs/485/485_item.tscn" id="14_dgoxn"]
 
 [node name="LConHall001" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
 script = ExtResource("1_0oga3")
@@ -95,11 +96,16 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.601425, -0.734349, -0
 [node name="table4" parent="props" instance=ExtResource("7_6vsds")]
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 2.60143, -0.734349, 0.54348)
 
-[node name="173 document" parent="." instance=ExtResource("12_f3rda")]
-transform = Transform3D(0.572318, 0, -0.820032, 0, 1, 0, 0.820032, 0, 0.572318, 1.24466, -0.247521, 1.62464)
-
-[node name="keycard00" parent="." instance=ExtResource("13_dgoxn")]
-transform = Transform3D(0.662999, 0, 0.74862, 0, 1, 0, -0.74862, 0, 0.662999, -2.08539, -0.357165, -0.841805)
-
 [node name="173Point" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.1, 4)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="173 document" parent="Items" instance=ExtResource("12_f3rda")]
+transform = Transform3D(0.572318, 0, -0.820032, 0, 1, 0, 0.820032, 0, 0.572318, 1.24466, -0.247521, 1.62464)
+
+[node name="keycard00" parent="Items" instance=ExtResource("13_dgoxn")]
+transform = Transform3D(0.662999, 0, 0.74862, 0, 1, 0, -0.74862, 0, 0.662999, -2.08539, -0.357165, -0.841805)
+
+[node name="SCP485" parent="." instance=ExtResource("14_dgoxn")]
+transform = Transform3D(0.833346, 0, 0.552752, 0, 1, 0, -0.552752, 0, 0.833346, -0.545249, -0.31492, -0.707771)

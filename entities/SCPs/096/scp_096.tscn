@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dh52hpemdn21d" path="res://entities/SCPs/096/096.blend" id="1_q15mk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3s03"]
-radius = 0.25
+radius = 0.2
 height = 2.25
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g3s03"]

@@ -1,7 +1,7 @@
 extends Node3D
 class_name Elevator
 
-var rng: RandomNumberGenerator
+@onready var rng := RandomNumberGenerator.new()
 
 var destination: Node3D
 var otherElevator: Elevator
@@ -19,9 +19,7 @@ var passengersInElevator: Array[Node3D]
 
 
 func _ready() -> void:
-	rng = GameManager.rng
-	rng.seed = GameManager.rng.seed
-	
+	rng.seed = GameManager.seed
 	SignalBus.connect("connect_elevator", elevator_setup)
 	
 	await SignalBus.level_generation_finished

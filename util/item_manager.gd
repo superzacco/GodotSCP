@@ -21,8 +21,7 @@ extends Node
 	"item485": load("res://entities/SCPs/485/485_item.tscn")
 }
 
-
-
+var onlyOneArray: Array[String] = []
 var itemDict: Dictionary[int, Item] = {}
 
 func add_item_to_dict(item: Item):

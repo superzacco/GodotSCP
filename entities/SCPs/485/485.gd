@@ -11,10 +11,10 @@ var texts: Dictionary[String, int] = {
 	"Your cat has perished...": 15,
 	"Your cat has died...": 15,
 	"Your friend has perished...": 25,
-	"Regalis has died...": 10,
-	"You feel that someone you know has passed...": 50
+	"Regalis has died...": 2,
+	"Wyatt has died...": 2,
+	"You feel that someone you know has passed...": 150
 }
-
 
 func equip():
 	SignalBus.show_interaction_text.emit(ZFunc.pick_from_list(texts))

@@ -87,8 +87,6 @@ func toggle_room_culling():
 func set_seed(seed: int):
 	GameManager.seed = seed
 	GameManager.rng.seed = GameManager.seed
-	
-	print(GameManager.rng.seed)
 
 func kill_player():
 	GlobalPlayerVariables.player.take_damage(999)

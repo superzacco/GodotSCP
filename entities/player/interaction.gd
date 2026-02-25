@@ -46,10 +46,14 @@ func _process(delta: float) -> void:
 
 
 func show_sprite():
+	if !is_multiplayer_authority():
+		return
 	if !interactionSprite.visible:
 		interactionSprite.show()
 
 func hide_sprite():
+	if !is_multiplayer_authority():
+		return
 	if interactionSprite.visible:
 		interactionSprite.hide()
 

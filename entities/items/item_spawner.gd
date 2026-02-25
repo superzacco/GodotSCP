@@ -21,4 +21,3 @@ func spawn_items():
 		var scn: PackedScene = ZFunc.pick_from_list(itemsToSpawn)
 		var item: Item = scn.instantiate()
 		self.add_child(item)
-		print("f")

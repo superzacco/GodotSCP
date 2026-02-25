@@ -301,7 +301,7 @@ func replace_shape_rooms(tempRoom, bits: int, x: int, z: int):
 
 
 func replace_shaperoom_with_fillerroom(fillerRoomDict: Dictionary, replacableRoomArray: Array, x, z):
-	var fillerRoom = spawn_room(ZFunc.pick_from_list(fillerRoomDict), x, z)
+	var fillerRoom = spawn_room(ZFunc.pick_from_list(fillerRoomDict, mapRNG), x, z)
 	
 	if !(z == LContoHConCheckpointLine or z == HContoEntranceCheckpointLine):
 		replacableRoomArray.append(fillerRoom)
