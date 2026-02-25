@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bsj3727s0ov5a"]
 
-[ext_resource type="Script" uid="uid://cckne1anqoi7u" path="res://entities/items/tools/gas_mask.gd" id="1_a6wn5"]
+[ext_resource type="Script" uid="uid://cckne1anqoi7u" path="res://entities/items/tools/gasmask/gas_mask.gd" id="1_a6wn5"]
 [ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_xbdxb"]
-[ext_resource type="Texture2D" uid="uid://cnw24ijiobckv" path="res://entities/items/tools/gasmaskicon.png" id="2_2ye86"]
-[ext_resource type="PackedScene" uid="uid://c2thf6xs7eiym" path="res://entities/items/tools/gasmask.blend" id="3_xbdxb"]
+[ext_resource type="Texture2D" uid="uid://cnw24ijiobckv" path="res://entities/items/tools/gasmask/gasmaskicon.png" id="2_2ye86"]
+[ext_resource type="PackedScene" uid="uid://c2thf6xs7eiym" path="res://entities/items/tools/gasmask/gasmask.blend" id="3_xbdxb"]
 [ext_resource type="AudioStream" uid="uid://cnbgyyjeoubke" path="res://audio/interaction/PickItemBig.ogg" id="5_kaxvi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jibb8"]

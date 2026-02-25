@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="7_okp0a"]
 [ext_resource type="PackedScene" uid="uid://c8lv7q65uttuj" path="res://entities/items/cards/keycard05.tscn" id="8_nstg6"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="9_rynue"]
-[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="10_nwb02"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="10_nwb02"]
 [ext_resource type="PackedScene" uid="uid://b621tjxsfnpsj" path="res://entities/items/papers/documents/079_document.tscn" id="12_x5x77"]
 
 [node name="EntHall001" type="Node3D"]

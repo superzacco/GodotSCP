@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="6_ywymj"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="7_71gor"]
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="8_ywymj"]
-[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="9_71gor"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="9_71gor"]
 [ext_resource type="PackedScene" uid="uid://bk6sp4pjff341" path="res://rooms/Models/props/officechair.blend" id="9_ew2lu"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="10_i5yya"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="11_jtb8w"]

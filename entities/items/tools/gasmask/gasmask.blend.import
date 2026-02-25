@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c2thf6xs7eiym"
-path="res://.godot/imported/gasmask.blend-d39abacbb3a41e70fe7f34823127ed90.scn"
+path="res://.godot/imported/gasmask.blend-2c98df199f2a6302ad8cdd6e30066f5a.scn"
 
 [deps]
 
-source_file="res://entities/items/tools/gasmask.blend"
-dest_files=["res://.godot/imported/gasmask.blend-d39abacbb3a41e70fe7f34823127ed90.scn"]
+source_file="res://entities/items/tools/gasmask/gasmask.blend"
+dest_files=["res://.godot/imported/gasmask.blend-2c98df199f2a6302ad8cdd6e30066f5a.scn"]
 
 [params]
 

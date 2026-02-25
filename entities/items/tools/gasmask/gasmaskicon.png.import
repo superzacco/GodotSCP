@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ltthbch67w2c"
-path="res://.godot/imported/gasmaskoverlay.png-e2b85eb3e74dbc2b8bf532d33ee180d9.ctex"
+uid="uid://cnw24ijiobckv"
+path="res://.godot/imported/gasmaskicon.png-488a4cfc9d8b027345d17783279a8faf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/items/tools/gasmaskoverlay.png"
-dest_files=["res://.godot/imported/gasmaskoverlay.png-e2b85eb3e74dbc2b8bf532d33ee180d9.ctex"]
+source_file="res://entities/items/tools/gasmask/gasmaskicon.png"
+dest_files=["res://.godot/imported/gasmaskicon.png-488a4cfc9d8b027345d17783279a8faf.ctex"]
 
 [params]
 

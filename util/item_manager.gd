@@ -59,5 +59,9 @@ func request_item_drop(itemID: int):
 @rpc("reliable", "call_local", "any_peer")
 func update_item_position(itemID: int, position: Vector3):
 	var item: Item = itemDict.get(itemID)
+	if item == null:
+		push_error("item was found to be null!")
+		return
+	
 	item.global_position = position
 #endregion

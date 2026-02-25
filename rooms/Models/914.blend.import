@@ -40,13 +40,13 @@ _subresources={
 "physics/layer": 3,
 "physics/mask": 3
 },
-"PATH:914_001": {
+"PATH:Input-Chamber": {
 "generate/physics": true,
 "mesh_instance/layers": 3,
 "physics/layer": 3,
 "physics/mask": 3
 },
-"PATH:Cube": {
+"PATH:betweens": {
 "generate/physics": true,
 "mesh_instance/layers": 3,
 "physics/layer": 3,

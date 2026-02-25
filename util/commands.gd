@@ -49,17 +49,22 @@ func spawn_item(itemString: String):
 	if !ItemManager.items.has(itemString):
 		console.println("invalid item name", Commands.errorColor)
 		return
-	 
+	
+	if !multiplayer.is_server():
+		return
+	
 	var senderID := multiplayer.get_remote_sender_id()
 	var player: Player = GameManager.get_player_by_id(senderID)
+	var spawnPos: Vector3 = (player.global_position + Vector3(0, 1, 0))
+	
+	make_item.rpc(itemString, spawnPos)
+ 
+@rpc("any_peer", "call_local", "reliable")
+func make_item(itemString: String, spawnPos: Vector3):
 	var itemToSpawn: PackedScene = ItemManager.items[itemString]
 	var spawnedItem: Item = itemToSpawn.instantiate()
-	
 	get_tree().root.add_child(spawnedItem)
-	
-	print("cringe %s" % multiplayer.get_unique_id())
-	spawnedItem.setup_item()
-	spawnedItem.global_position = player.global_position + Vector3(0, 1, 0)
+	spawnedItem.global_position = spawnPos
 
 
 func toggle_room_culling():

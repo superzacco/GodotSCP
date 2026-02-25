@@ -27,8 +27,6 @@ func pick_from_list(weightedDict: Dictionary):
 	var randomWeight: int = rng.randi_range(0, totalWeight-1)
 	var currentWeight: int = 0
 	
-	print_debug("player: %s -- using seed %s" % [multiplayer.get_unique_id(), GameManager.rng.seed])
-	
 	for key in sortedKeys:
 		currentWeight += weightedDict[key]
 		if randomWeight < currentWeight:

@@ -42,6 +42,9 @@ func _on_run_timer_timeout() -> void:
 
 
 func go_kill_random_npc():
+	if !multiplayer.is_server():
+		return
+	
 	var facilityManager = GlobalPlayerVariables.facilityManager
 	var finishedRooms = facilityManager.rooms
 	var randomRooms: Array[Room] = []
@@ -52,6 +55,11 @@ func go_kill_random_npc():
 	var startPos: Vector3 = randomRooms[0].return_173_spawn_point()
 	var targetPos: Vector3 = randomRooms[1].return_173_spawn_point()
 	
+	send_096.rpc(startPos, targetPos)
+
+
+@rpc("authority", "call_local", "reliable")
+func send_096(startPos: Vector3, targetPos: Vector3):
 	global_position = startPos
 	agent.target_position = targetPos
 

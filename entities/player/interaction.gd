@@ -6,7 +6,11 @@ class_name Interaction
 @export var interactionSprite: Sprite3D
 @export var spriteEndPoint: Node3D
 
-var interactablesInRange := []
+var interactablesInRange := []:
+	set(v):
+		interactablesInRange = v
+		print(interactablesInRange)
+
 var nearestInteractable: Node3D = null
 
 
@@ -88,10 +92,8 @@ func is_interactable_obscured(interactable: Node3D) -> bool:
 	
 	
 	if resultNode == interactable:
-		print(false)
 		return false
 	else:
-		print(true)
 		return true
 
 

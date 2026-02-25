@@ -62,9 +62,12 @@ func get_id() -> int:
 
 
 func make_id() -> int:
-	var id: int = randi_range(0, 99999999)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = GameManager.seed
+	
+	var id: int = rng.randi_range(0, 99999999)
 	
 	while ItemManager.itemDict.has(id):
-		id = randi_range(0, 99999999)
+		id = rng.randi_range(0, 99999999)
 	
 	return id

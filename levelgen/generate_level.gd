@@ -393,9 +393,8 @@ func place_doors():
 	var connectionPoints: Array = get_tree().get_nodes_in_group("roomconnectionpoints")
 	var doorLocations: Array
 	
-	for i in connectionPoints.size():
-		var point = connectionPoints[i]
-		point.position.y = -1.145
+	for point in connectionPoints:
+		point.global_position.y = -1.145
 		
 		point.position.x = snapped(point.position.x, 0.01)
 		point.position.z = snapped(point.position.z, 0.01)

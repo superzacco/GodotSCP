@@ -6,12 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_kl62i"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_0blqf"]
 
-[node name="HConBend001" type="Node3D"]
+[node name="HConBend001" type="Node3D" node_paths=PackedStringArray("spawnPosFor173")]
 script = ExtResource("1_v5p33")
+spawnPosFor173 = NodePath("173Point")
 
 [node name="HConBend001" parent="." instance=ExtResource("1_le3ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="point1" parent="Points" instance=ExtResource("2_03w7c")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, -1.37512, 0)
@@ -20,12 +23,15 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.37524, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_kl62i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225505, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425505, 0)
 
 [node name="Light" parent="." instance=ExtResource("4_0blqf")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.9, 1.847, -1.9)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.9, 2.047, -1.9)
 brightness = 0.5
 
 [node name="Light2" parent="." instance=ExtResource("4_0blqf")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.9, 1.847, -5.9)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.9, 2.047, -5.9)
 brightness = 0.5
+
+[node name="173Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)

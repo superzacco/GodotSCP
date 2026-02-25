@@ -5,7 +5,7 @@
 
 [node name="079document" instance=ExtResource("1_s55wl")]
 inventoryName = "079 Document"
-itemName = "079document"
+itemName = "document079"
 
 [node name="paper" parent="." index="2"]
 paper = ExtResource("2_s55wl")

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="10_loha8"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="11_xwq50"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="12_q4prx"]
-[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="13_p2qkg"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="13_p2qkg"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="14_do5x0"]
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="15_a8h6k"]
 

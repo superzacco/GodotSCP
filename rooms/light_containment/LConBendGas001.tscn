@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="16_x8qef"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="18_clspc"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="19_u6j3f"]
-[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="20_u6j3f"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="20_u6j3f"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3o8j2"]
 angular_velocity_min = -30.32

@@ -10,16 +10,19 @@
 script = ExtResource("1_e1tag")
 
 [node name="HConEnd001" parent="." instance=ExtResource("1_ds7vn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="point2" parent="Points" instance=ExtResource("2_v57yt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.29026, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("3_ui3rw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Light" parent="." instance=ExtResource("4_1w3h6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69896, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79896, 0)
 lightColor = Color(1, 0.431904, 0.390018, 1)
 brightness = 4.0
 omniBrightness = 1.0

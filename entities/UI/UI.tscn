@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://xrdd7v6d2fs"]
 
-[ext_resource type="Texture2D" uid="uid://ltthbch67w2c" path="res://entities/items/tools/gasmaskoverlay.png" id="1_1viem"]
+[ext_resource type="Texture2D" uid="uid://ltthbch67w2c" path="res://entities/items/tools/gasmask/gasmaskoverlay.png" id="1_1viem"]
 [ext_resource type="PackedScene" uid="uid://wp2hdd66ssek" path="res://entities/ui/console.tscn" id="1_oefnm"]
 [ext_resource type="PackedScene" uid="uid://in88povndonb" path="res://entities/ui/inventory_screen.tscn" id="2_suasf"]
 [ext_resource type="PackedScene" uid="uid://byhqb7aruaxym" path="res://entities/ui/pause_menu.tscn" id="3_djdyh"]

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="5_5bsik"]
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="6_0010q"]
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="7_7adat"]
-[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gas_mask.tscn" id="8_jgo1u"]
+[ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="8_jgo1u"]
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="9_7adat"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="10_jgo1u"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="11_2fks4"]

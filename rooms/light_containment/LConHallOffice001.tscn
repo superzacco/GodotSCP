@@ -14,8 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://b5pov58cv2r8a" path="res://entities/items/papers/documents/173_document.tscn" id="12_f3rda"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="13_dgoxn"]
 
-[node name="LConHall001" type="Node3D" groups=["room"]]
+[node name="LConHall001" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
 script = ExtResource("1_0oga3")
+spawnPosFor173 = NodePath("173Point")
 
 [node name="Points" type="Node3D" parent="."]
 
@@ -99,3 +100,6 @@ transform = Transform3D(0.572318, 0, -0.820032, 0, 1, 0, 0.820032, 0, 0.572318, 
 
 [node name="keycard00" parent="." instance=ExtResource("13_dgoxn")]
 transform = Transform3D(0.662999, 0, 0.74862, 0, 1, 0, -0.74862, 0, 0.662999, -2.08539, -0.357165, -0.841805)
+
+[node name="173Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.1, 4)

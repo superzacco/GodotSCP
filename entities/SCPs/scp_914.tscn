@@ -1,27 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckpckhl646a40"]
+[gd_scene load_steps=10 format=3 uid="uid://ckpckhl646a40"]
 
 [ext_resource type="Script" uid="uid://byljttceuoaka" path="res://entities/SCPs/914.gd" id="1_tpx0i"]
-[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="2_fwluj"]
 [ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/Models/914.blend" id="2_rw2e6"]
-[ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="3_jjtnl"]
 [ext_resource type="Texture2D" uid="uid://bhdxr61b0sktg" path="res://entities/ui/914.png" id="3_rw2e6"]
-[ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="4_yokc0"]
 [ext_resource type="AudioStream" uid="uid://bubr0tua8g3a1" path="res://audio/interaction/button.ogg" id="9_5rrng"]
 [ext_resource type="AudioStream" uid="uid://fm2w87eck4xq" path="res://audio/scps/914/Refining.ogg" id="10_mjqu1"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="16_jjtnl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tpx0i"]
-size = Vector3(1.055, 0.5, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjqu1"]
+size = Vector3(0.3, 0.3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rrng"]
+size = Vector3(0.4, 0.4, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
 size = Vector3(3.27211, 2.21802, 1.65759)
 
 [node name="scp914" type="StaticBody3D" node_paths=PackedStringArray("doorL", "doorR", "refiningAudioPlayer", "knob", "key", "turningKeyUI", "outputPoint")]
 script = ExtResource("1_tpx0i")
-fineDict = Dictionary[String, PackedScene]({
-"keycard0": ExtResource("2_fwluj"),
-"keycard1": ExtResource("3_jjtnl"),
-"keycard2": ExtResource("4_yokc0")
+fineDict = Dictionary[String, String]({
+"keycard0": "keycard1",
+"keycard1": "keycard2",
+"keycard2": "keycard3"
 })
 doorL = NodePath("InputChamber/DoorL")
 doorR = NodePath("OutputChamber/DoorR")
@@ -35,13 +35,13 @@ outputPoint = NodePath("OutputChamber/OutputPoint")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479554, -1.6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KnobArea"]
-shape = SubResource("BoxShape3D_tpx0i")
+shape = SubResource("BoxShape3D_mjqu1")
 
 [node name="KeyArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11444, -1.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeyArea"]
-shape = SubResource("BoxShape3D_tpx0i")
+shape = SubResource("BoxShape3D_5rrng")
 
 [node name="914model" parent="." instance=ExtResource("2_rw2e6")]
 
@@ -78,7 +78,7 @@ expand_mode = 1
 
 [node name="Refining" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_mjqu1")
-volume_db = -6.0
+volume_db = -10.0
 max_distance = 30.0
 bus = &"Sound Effects"
 attenuation_filter_db = -6.0

@@ -7,11 +7,11 @@ extends StaticBody3D
 		
 		knobSetting = val
 
-@export var veryFineDict: Dictionary[String, PackedScene]
-@export var fineDict: Dictionary[String, PackedScene]
-@export var onetooneDict: Dictionary[String, PackedScene]
-@export var coarseDict: Dictionary[String, PackedScene]
-@export var roughDict: Dictionary[String, PackedScene]
+@export var veryFineDict: Dictionary[String, String]
+@export var fineDict: Dictionary[String, String]
+@export var onetooneDict: Dictionary[String, String]
+@export var coarseDict: Dictionary[String, String]
+@export var roughDict: Dictionary[String, String]
 
 @export var doorL: Door
 @export var doorR: Door
@@ -42,16 +42,24 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		keyJuice = 0
 		
-		if clickingOnKey and !refining:
-			turningKeyUI.show()
-			interactionScript.interactionSprite.hide()
-		
 		clickingOnKnob = nearKnob
 		clickingOnKey = nearKey
+		
+		if clickingOnKnob:
+			show_interaction_sprite(knob)
+		
+		if clickingOnKey and !refining:
+			turningKeyUI.show()
+			hide_interaction_sprite()
 	
 	if event.is_action_released("interact"):
-		turningKeyUI.hide()
 		keyJuice = 0
+		
+		clickingOnKnob = false
+		clickingOnKey = false
+		
+		hide_interaction_sprite()
+		turningKeyUI.hide()
 
 
 
@@ -70,11 +78,10 @@ func _process(delta: float) -> void:
 		if clickingOnKey and !refining:
 			keyJuice += abs(relativeMouseMotion.x)
 	
-	if keyJuice > 500 and clickingOnKey and !refining:
+	if keyJuice > 700 and clickingOnKey and !refining:
 		clickingOnKey = false
 		turningKeyUI.hide()
 		activate.rpc()
-	
 	
 	var angle = knob.rotation_degrees.z
 	
@@ -121,37 +128,7 @@ func activate():
 	doorR.close()
 	await get_tree().create_timer(13.5).timeout
 	
-	for inputItem in itemsInInput:
-		var outputItem: PackedScene = null
-		
-		match knobSetting:
-			0:
-				if roughDict.has(inputItem.itemName):
-					outputItem = roughDict.get(inputItem.itemName)
-			1:
-				if coarseDict.has(inputItem.itemName):
-					outputItem = coarseDict.get(inputItem.itemName)
-			2:
-				if onetooneDict.has(inputItem.itemName):
-					outputItem = onetooneDict.get(inputItem.itemName)
-			3:
-				if fineDict.has(inputItem.itemName):
-					outputItem = fineDict.get(inputItem.itemName)
-			4:
-				if veryFineDict.has(inputItem.itemName):
-					outputItem = veryFineDict.get(inputItem.itemName)
-		
-		print("914 Output Item: %s" % outputItem)
-		print("914 Input Item: %s -- Knob Setting: %s" % [inputItem, knobSetting])
-		if outputItem != null: 
-			var spawnedItem: Item = outputItem.instantiate()
-			self.add_child(spawnedItem)
-			spawnedItem.setup_item()
-			spawnedItem.global_position = outputPoint.global_position
-			inputItem.queue_free()
-			
-		else:
-			inputItem.global_position = outputPoint.global_position
+	process_items()
 	
 	doorL.open()
 	doorR.open()
@@ -159,33 +136,59 @@ func activate():
 	refining = false
 
 
-func show_interaction_sprite(onWhat: Node3D):
-	if !refining:
-		interactionScript.interactionSprite.show()
-		interactionScript.nearestInteractable = onWhat
-
-
-func _on_knob_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		show_interaction_sprite(knob)
-		nearControls = true
-func _on_knob_area_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		interactionScript.interactionSprite.hide()
-		nearControls = false
+func process_items():
+	if !multiplayer.is_server():
+		return
+	
+	for inputItem in itemsInInput:
+		var outputItemName: String = ""
+		
+		match knobSetting:
+			0:
+				if roughDict.has(inputItem.itemName):
+					outputItemName = roughDict.get(inputItem.itemName)
+			1:
+				if coarseDict.has(inputItem.itemName):
+					outputItemName = coarseDict.get(inputItem.itemName)
+			2:
+				if onetooneDict.has(inputItem.itemName):
+					outputItemName = onetooneDict.get(inputItem.itemName)
+			3:
+				if fineDict.has(inputItem.itemName):
+					outputItemName = fineDict.get(inputItem.itemName)
+			4:
+				if veryFineDict.has(inputItem.itemName):
+					outputItemName = veryFineDict.get(inputItem.itemName)
+		
+		print(outputItemName)
+		if outputItemName == null or outputItemName == "":
+			ItemManager.update_item_position.rpc(inputItem.itemID, outputPoint.global_position)
+			continue
+		
+		Commands.make_item.rpc(outputItemName, outputPoint.global_position)
+		print("914 Input Item: %s -- Knob Setting: %s" % [inputItem, knobSetting])
+		print("914 Output Item: %s" % outputItemName)
+		
+		inputItem.queue_free()
 
 
 func _on_input_body_entered(body: Node3D) -> void:
 	if body.is_in_group("item"):
-		var item: Item = body
-		item.get_id()
-		
 		itemsInInput.append(body)
 func _on_input_body_exited(body: Node3D) -> void:
 	if body.is_in_group("item"):
-		var item: Item = body
-		
 		itemsInInput.erase(body)
+
+
+func show_interaction_sprite(onWhat: Node3D):
+	if !refining:
+		interactionScript.show_sprite()
+		interactionScript.nearestInteractable = onWhat
+
+func hide_interaction_sprite():
+	if !clickingOnKnob and !nearKey and !nearKnob:
+		interactionScript.hide_sprite()
+		interactionScript.nearestInteractable = null
 
 
 func _on_knob_area_area_entered(area: Area3D) -> void:
@@ -195,7 +198,7 @@ func _on_knob_area_area_entered(area: Area3D) -> void:
 func _on_knob_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKnob = false
-		interactionScript.interactionSprite.hide()
+		hide_interaction_sprite()
 
 
 func _on_key_area_area_entered(area: Area3D) -> void:
@@ -205,4 +208,4 @@ func _on_key_area_area_entered(area: Area3D) -> void:
 func _on_key_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("grabbypoint"):
 		nearKey = false
-		interactionScript.interactionSprite.hide()
+		hide_interaction_sprite()
