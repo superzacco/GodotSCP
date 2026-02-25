@@ -11,21 +11,28 @@ func remap(value: float, min_value: float, max_value: float, min_slider: float =
 	return (value - min_slider) / (max_slider - min_slider) * (max_value - min_value) + min_value
 
 func rand_from(array: Array):
-	return array[randi_range(0, array.size()-1)]
+	return array[GameManager.rng.randi_range(0, array.size()-1)]
 
 func pick_from_list(weightedDict: Dictionary):
-	var totalWeight: int
+	var rng := RandomNumberGenerator.new()
+	rng.seed = GameManager.seed
 	
-	for weight in weightedDict.values():
-		totalWeight += weight
+	var sortedKeys: Array = weightedDict.keys()
+	sortedKeys.sort_custom(func(a,b): return a.resource_path < b.resource_path)
 	
-	var randomWeight: int = GameManager.rng.randi_range(0, totalWeight-1)
+	var totalWeight: int = 0
+	for key in sortedKeys:
+		totalWeight += weightedDict[key]
+	
+	var randomWeight: int = rng.randi_range(0, totalWeight-1)
 	var currentWeight: int = 0
 	
-	for option in weightedDict.keys():
-		currentWeight += weightedDict[option]
+	print_debug("player: %s -- using seed %s" % [multiplayer.get_unique_id(), GameManager.rng.seed])
+	
+	for key in sortedKeys:
+		currentWeight += weightedDict[key]
 		if randomWeight < currentWeight:
-			return option
+			return key
 
 
 func fade_in(player: Node, duration: float):

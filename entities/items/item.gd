@@ -51,7 +51,6 @@ func setup_item():
 @rpc("authority", "call_local", "reliable")
 func set_id(id: int):
 	self.itemID = id
-	print("%s setting id" % multiplayer.get_unique_id())
 
 @rpc("authority", "call_local", "reliable")
 func delete_item():

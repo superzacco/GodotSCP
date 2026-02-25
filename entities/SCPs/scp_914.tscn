@@ -114,11 +114,7 @@ openableBy173 = false
 [node name="doorframe" parent="InputChamber/DoorL/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="InputChamber/DoorL" index="1"]
@@ -149,11 +145,7 @@ openableBy173 = false
 [node name="doorframe" parent="OutputChamber/DoorR/door" index="0"]
 visible = false
 
-[node name="doorside2_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
 [node name="doorside1_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
 visible = false
 
 [node name="Button" parent="OutputChamber/DoorR" index="1"]

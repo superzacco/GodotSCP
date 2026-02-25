@@ -93,7 +93,6 @@ var finishedRoomGrid = []
 
 var xSize: int
 var zSize: int
-var rng: RandomNumberGenerator
 var navMesh: NavigationMesh 
 var navRegion: NavigationRegion3D
 
@@ -105,8 +104,6 @@ const WEST: int = 8
 
 
 func _ready() -> void:
-	GameManager.rng.seed = randi_range(-999999999, 999999999)
-	
 	navRegion = $Facility/FacilityRegion
 	navMesh = $Facility/FacilityRegion.navigation_mesh
 	
@@ -131,13 +128,14 @@ func _ready() -> void:
 	generate_map()
 
 
+var mapRNG: RandomNumberGenerator
 func generate_map():
 	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
 	await SignalBus.generate_level
 	
-	rng = GameManager.rng
-	rng.seed = GameManager.seed
-	print("Generating with Seed: %s" % rng.seed)
+	mapRNG = RandomNumberGenerator.new()
+	mapRNG.seed = GameManager.seed
+	print("Generating with Seed: %s" % mapRNG.seed)
 	
 	make_layout_shape()
 	
@@ -163,8 +161,8 @@ func make_layout_shape():
 
 
 func generate_long_hall(zOffset):
-	var hallLength: int = rng.randi_range(mapWidth-3, mapWidth)
-	var hallOffset: int = rng.randi_range(0, abs(mapWidth-hallLength)-1) 
+	var hallLength: int = mapRNG.randi_range(mapWidth-3, mapWidth)
+	var hallOffset: int = mapRNG.randi_range(0, abs(mapWidth-hallLength)-1) 
 	
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
 	var hallMaxExtent: Vector3 = Vector3(0, 0, 0)
@@ -189,8 +187,8 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 	
 	for i in amountOfConnectingHalls:
 		
-		var distanceAddedBetween: int = rng.randi_range(1,3) + rng.randi_range(1,3)
-		if i == 0: distanceAddedBetween = rng.randi_range(0,2)
+		var distanceAddedBetween: int = mapRNG.randi_range(1,3) + mapRNG.randi_range(1,3)
+		if i == 0: distanceAddedBetween = mapRNG.randi_range(0,2)
 		
 		xPosition += distanceAddedBetween
 		if xPosition > endingPoint:
@@ -366,7 +364,7 @@ func replace_filler_rooms():
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
-		var roomToReplace: int = rng.randi_range(0, replacableRoomArray.size()-1)
+		var roomToReplace: int = mapRNG.randi_range(0, replacableRoomArray.size()-1)
 		if roomToReplace == -1 or replacableRoomArray.size() == 0:
 			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
 			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
