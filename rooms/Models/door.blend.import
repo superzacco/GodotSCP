@@ -36,16 +36,19 @@ _subresources={
 "nodes": {
 "PATH:Armature/Skeleton3D/doorside1_col/doorside1": {
 "generate/physics": true,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 },
 "PATH:Armature/Skeleton3D/doorside2_col/doorside2": {
 "generate/physics": true,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 },
 "PATH:doorframe": {
 "generate/physics": true,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 }

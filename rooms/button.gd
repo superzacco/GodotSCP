@@ -8,8 +8,14 @@ extends Node3D
 @export var extraToControl: Node3D
 
 # button 0, keycardbutton 1
-@export_enum("Button", "KeycardButton") var buttonType: int = 0
+@export var buttonType: ButtonTypes = ButtonTypes.BUTTON
+enum ButtonTypes {
+	BUTTON,
+	KEYCARD,
+	CODE
+}
 @export var keycardLevel: int = 0
+@export var keypadCode: int = 1111
 
 func _ready() -> void:
 	if disabled:

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw2qer7dre5cs"]
+
+[ext_resource type="Script" uid="uid://bim4xj0veqqml" path="res://rooms/button.gd" id="1_s85wg"]
+[ext_resource type="PackedScene" uid="uid://6n58al6lmtqi" path="res://rooms/Models/code_button.blend" id="2_s85wg"]
+[ext_resource type="AudioStream" uid="uid://dik34y7uc2hu4" path="res://audio/interaction/keycard.ogg" id="3_0kcnx"]
+[ext_resource type="AudioStream" uid="uid://bubr0tua8g3a1" path="res://audio/interaction/button.ogg" id="4_co7ll"]
+[ext_resource type="AudioStream" uid="uid://cv8klmw5ma6d3" path="res://audio/interaction/keycard_fail.ogg" id="5_4hhs8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pc1fu"]
+size = Vector3(0.25, 0.25, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_of0dn"]
+size = Vector3(0.25, 0.4, 0.1)
+
+[node name="codeKeypad" type="StaticBody3D" groups=["button"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_s85wg")
+buttonType = 2
+
+[node name="code_button" parent="." instance=ExtResource("2_s85wg")]
+
+[node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -5.96046e-08)
+shape = SubResource("BoxShape3D_pc1fu")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0kcnx")
+attenuation_model = 3
+volume_db = -6.0
+max_polyphony = 3
+bus = &"Sound Effects"
+
+[node name="Button" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_co7ll")
+volume_db = -6.0
+max_polyphony = 3
+bus = &"Sound Effects"
+
+[node name="Fail" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_4hhs8")
+volume_db = -6.0
+max_polyphony = 3
+bus = &"Sound Effects"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018982, 0.0022583, 0.0112529)
+shape = SubResource("BoxShape3D_of0dn")

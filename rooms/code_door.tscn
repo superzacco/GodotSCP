@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://4mrm0vkiudr6"]
+
+[ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_j6hv4"]
+[ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="2_bbc0l"]
+[ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="3_5qu0i"]
+[ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="4_f0b8f"]
+[ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="5_4nvya"]
+[ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="6_y7rbc"]
+[ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_vu625"]
+[ext_resource type="PackedScene" uid="uid://cgyhorsk5854i" path="res://rooms/Models/door.blend" id="8_vaui2"]
+[ext_resource type="PackedScene" uid="uid://cw2qer7dre5cs" path="res://rooms/codekeypad.tscn" id="9_j6hv4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ds5uy"]
+
+[node name="code_door" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer") groups=["door"]]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_j6hv4")
+animationPlayer = NodePath("door/AnimationPlayer")
+openSounds = Array[AudioStream]([ExtResource("2_bbc0l"), ExtResource("3_5qu0i"), ExtResource("4_f0b8f")])
+closeSounds = Array[AudioStream]([ExtResource("5_4nvya"), ExtResource("6_y7rbc"), ExtResource("7_vu625")])
+
+[node name="door" parent="." instance=ExtResource("8_vaui2")]
+
+[node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+
+[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="codeKeypad2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("9_j6hv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11442, -0.0207565, -0.2)
+doorsToControl = [NodePath("..")]
+
+[node name="codeKeypad" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("9_j6hv4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.09112, -0.0196725, 0.190237)
+doorsToControl = [NodePath("..")]
+
+[node name="Open" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_bbc0l")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_4nvya")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_ds5uy")
+
+[editable path="door"]

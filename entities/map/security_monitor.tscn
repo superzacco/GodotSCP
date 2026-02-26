@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://mguj1yqfypu2"]
+
+[ext_resource type="Script" uid="uid://ds2rqbmrn7ul8" path="res://entities/map/security_monitor.gd" id="1_l6mf1"]
+[ext_resource type="PackedScene" uid="uid://cvl82lpwq2pq4" path="res://rooms/Models/props/camera_monitor.blend" id="2_ui6nl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajohq"]
+size = Vector3(1.37122, 0.81897, 0.120801)
+
+[node name="Monitor" type="StaticBody3D" node_paths=PackedStringArray("screen")]
+script = ExtResource("1_l6mf1")
+screen = NodePath("ScreenSprite")
+
+[node name="camera_monitor" parent="." instance=ExtResource("2_ui6nl")]
+
+[node name="ScreenSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1.21918, 0, 0, 0, 0.933588, 0, 0, 0, 1, 0, 0.0127544, 0.0207649)
+pixel_size = 0.001
+shaded = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022583, 0.0120239, -0.0104004)
+shape = SubResource("BoxShape3D_ajohq")

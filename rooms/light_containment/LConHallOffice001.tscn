@@ -109,3 +109,5 @@ transform = Transform3D(0.662999, 0, 0.74862, 0, 1, 0, -0.74862, 0, 0.662999, -2
 
 [node name="SCP485" parent="." instance=ExtResource("14_dgoxn")]
 transform = Transform3D(0.833346, 0, 0.552752, 0, 1, 0, -0.552752, 0, 0.833346, -0.545249, -0.31492, -0.707771)
+onlyOneCanExist = true
+onlyOneString = "485"

@@ -27,12 +27,12 @@ VersionController="*res://util/version_controller.gd"
 Commands="*res://util/commands.gd"
 SteamManager="*res://multiplayer/steam_manager.gd"
 Lobby="*res://multiplayer/lobby.gd"
-GameManager="*res://util/game_manager.tscn"
 SignalBus="*res://util/signal_bus.gd"
-GlobalPlayerVariables="*res://util/global_player_variables.tscn"
 Networking="*res://multiplayer/networking.gd"
 ItemManager="*res://util/item_manager.gd"
 AudioManager="*res://util/audio_manager.gd"
+GlobalPlayerVariables="*res://entities/player/global_player_variables.gd"
+GameManager="*res://util/game_manager.gd"
 
 [debug]
 

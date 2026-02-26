@@ -24,9 +24,9 @@ func rand_from(array: Array):
 func pick_from_list(weightedDict: Dictionary, rng: RandomNumberGenerator = UtilRNG):
 	if rng.seed == 0:
 		rng.seed = GameManager.seed
-	
+		
+	weightedDict.keys().sort()
 	var sortedKeys: Array = weightedDict.keys()
-	sortedKeys.sort_custom(func(a,b): return a.resource_path < b.resource_path)
 	
 	var totalWeight: int = 0
 	for key in sortedKeys:

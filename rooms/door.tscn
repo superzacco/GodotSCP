@@ -32,8 +32,16 @@ openableBy173 = true
 [node name="doorside2_col" parent="door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
 
+[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside2_col/doorside2" index="0"]
+collision_layer = 256
+collision_mask = 256
+
 [node name="doorside1_col" parent="door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+
+[node name="StaticBody3D" parent="door/Armature/Skeleton3D/doorside1_col/doorside1" index="0"]
+collision_layer = 256
+collision_mask = 256
 
 [node name="Button" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_4wl2e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.190434)
@@ -65,9 +73,11 @@ attenuation_model = 1
 volume_db = -6.0
 unit_size = 5.0
 max_distance = 64.0
+bus = &"Sound Effects"
 
 [node name="079Close" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("11_i7sdm")
+bus = &"Sound Effects"
 
 [node name="079 Close Area" type="Area3D" parent="."]
 script = ExtResource("11_ivvos")

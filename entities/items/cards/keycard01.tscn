@@ -17,6 +17,7 @@ inventorySprite = ExtResource("2_6akv6")
 inventoryName = "Level 1 Keycard"
 itemName = "keycard1"
 itemType = 3
+equippable = true
 functionItem = NodePath("keycard")
 
 [node name="keycard" type="Node3D" parent="." index="2"]

@@ -188,8 +188,8 @@ func swap_item(prevSlot: InventorySlot, newSlot: InventorySlot):
 
 
 func equip_item(item: Item):
-	#if !item.equippable:
-		#return
+	if !item.equippable:
+		return
 	
 	item.equipped = true
 	
@@ -209,6 +209,10 @@ func equip_item(item: Item):
 		itemTypes.type_paper:
 			equippedItem = item
 			item.functionItem.equip()
+		
+		_:
+			item.functionItem.equip()
+			item.equipped = false
 	
 	close_inventory()
 

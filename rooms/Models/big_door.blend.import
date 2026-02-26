@@ -36,21 +36,21 @@ _subresources={
 "nodes": {
 "PATH:Armature/Skeleton3D/DoorL-col/DoorL": {
 "generate/physics": true,
-"mesh_instance/layers": 3,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 },
 "PATH:Armature/Skeleton3D/DoorR-col/DoorR": {
 "generate/physics": true,
-"mesh_instance/layers": 3,
+"mesh_instance/layers": 256,
 "physics/layer": 256,
 "physics/mask": 256
 },
 "PATH:Frame": {
 "generate/physics": true,
-"mesh_instance/layers": 3,
-"physics/layer": 259,
-"physics/mask": 259
+"mesh_instance/layers": 256,
+"physics/layer": 258,
+"physics/mask": 258
 }
 }
 }

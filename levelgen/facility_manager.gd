@@ -1,6 +1,11 @@
 extends Node
 class_name FacilityManager
 
+@export var lightFlickerTimer: Timer
+
+var LConTOHConCheckpointOnLockdown := true
+var HConTOEntCheckpointOnLockdown := true
+
 var rooms: Array
 var playerNearbyRooms: Array[Room]
 
@@ -9,21 +14,28 @@ var scp106: CharacterBody3D
 
 
 func _ready() -> void:
+	lightFlickerTimer.timeout.connect(flicker_all_nearby_lights)
 	GlobalPlayerVariables.facilityManager = self 
-	flicker_nearby_lights()
+
+
+#region // PROGRESSION
+@rpc("any_peer", "call_local", "reliable")
+func unlock_heavy_containment_lockdown():
+	LConTOHConCheckpointOnLockdown = false
+#endregion
+
+
+
 
 
 func flicker_nearby_lights():
-	$LightTimer.start(randf_range(30, 90))
-	await $LightTimer.timeout
-	
 	var playerNearbyLights = GlobalPlayerVariables.nearbyRoomLights
+	
 	if playerNearbyLights.size() != 0:
-		playerNearbyLights[randi_range(0, playerNearbyLights.size()-1)].start_flicker()
-		if ZFunc.randInPercent(50):
-			playerNearbyLights[randi_range(0, playerNearbyLights.size()-1)].start_flicker()
-		
-		flicker_nearby_lights()
+		while ZFunc.randInPercent(50):
+			ZFunc.rand_from(playerNearbyLights).start_flicker()
+	
+	lightFlickerTimer.start(randf_range(30, 90))
 
 
 func flicker_all_nearby_lights():

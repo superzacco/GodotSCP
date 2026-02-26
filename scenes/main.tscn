@@ -172,12 +172,16 @@ HContoEntranceCheckpointLine = 13
 script = ExtResource("19_2f3dj")
 spectatorScene = ExtResource("20_yq6so")
 
-[node name="Facility Manager" type="Node" parent="."]
+[node name="Facility Manager" type="Node" parent="." node_paths=PackedStringArray("lightFlickerTimer")]
 script = ExtResource("17_fuf3a")
+lightFlickerTimer = NodePath("Timer")
 
 [node name="OtherPlayer" type="AudioStreamPlayer" parent="Facility Manager"]
 
-[node name="LightTimer" type="Timer" parent="Facility Manager"]
+[node name="Timer" type="Timer" parent="Facility Manager"]
+wait_time = 90.0
+one_shot = true
+autostart = true
 
 [node name="MusicAmbienceManager" type="Node" parent="." node_paths=PackedStringArray("musicPlayerA", "musicPlayerB", "soundsPlayerA", "soundsPlayerB", "ambiencePlayerA", "ambiencePlayerB", "ambiencePlayerC")]
 script = ExtResource("18_pm3ni")

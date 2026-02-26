@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0tm412a5g3hj"]
+
+[ext_resource type="Script" uid="uid://c8elyo2fggdat" path="res://entities/map/checkpoint_lockdown_screen.gd" id="1_p1yda"]
+[ext_resource type="PackedScene" uid="uid://cvl82lpwq2pq4" path="res://rooms/Models/props/camera_monitor.blend" id="2_p1yda"]
+[ext_resource type="Texture2D" uid="uid://xa6je0h5fgmx" path="res://rooms/Textures/lockdown_lcon.png" id="3_p1yda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1yda"]
+atlas = ExtResource("3_p1yda")
+region = Rect2(0, 0, 1024, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc4le"]
+atlas = ExtResource("3_p1yda")
+region = Rect2(2048, 0, 1024, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l8wq"]
+atlas = ExtResource("3_p1yda")
+region = Rect2(3072, 0, 1024, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nksej"]
+atlas = ExtResource("3_p1yda")
+region = Rect2(1024, 0, 1024, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kcyk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1yda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc4le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l8wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nksej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nksej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l8wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc4le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1yda")
+}],
+"loop": true,
+"name": &"LConLockdown",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajohq"]
+size = Vector3(1.37122, 0.81897, 0.120801)
+
+[node name="LockdownSCreen" type="StaticBody3D"]
+script = ExtResource("1_p1yda")
+
+[node name="camera_monitor" parent="." instance=ExtResource("2_p1yda")]
+
+[node name="ScreenSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.21918, 0, 0, 0, 0.933588, 0, 0, 0, 1, 0, 0.0127544, 0.0207649)
+pixel_size = 0.001
+shaded = true
+sprite_frames = SubResource("SpriteFrames_2kcyk")
+animation = &"LConLockdown"
+autoplay = "LConLockdown"
+frame_progress = 0.331975
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022583, 0.0120239, -0.0104004)
+shape = SubResource("BoxShape3D_ajohq")
