@@ -16,12 +16,7 @@ var doorOpen: bool = false
 var opening: bool = false
 
 func _ready() -> void:
-	# // TO-DO -- FIX THIS SHIT
-	self.global_position += Vector3(0, 3, 0)
 	await SignalBus.level_generation_finished
-	
-	if generatedDoor == false:
-		self.global_position += Vector3(0, -3, 0)
 	
 	if multiplayer.is_server():
 		if ZFunc.randInPercent(2) and closableBy079 == true:

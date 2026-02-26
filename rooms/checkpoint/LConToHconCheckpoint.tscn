@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0ltomxgby0du"]
+[gd_scene load_steps=10 format=3 uid="uid://c0ltomxgby0du"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_sw30i"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_s063j"]
 [ext_resource type="PackedScene" uid="uid://bk6r6ajo4iybs" path="res://rooms/Models/LConToHconCheckpoint.blend" id="3_udisy"]
-[ext_resource type="PackedScene" uid="uid://jnxvnc3ohjw2" path="res://rooms/checkpoint.tscn" id="4_jfxcs"]
+[ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="4_1pim1"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="5_jal28"]
+[ext_resource type="Script" uid="uid://cphyc6nao2p6s" path="res://rooms/checkpoint/checkpointalarm.gd" id="6_8mxrf"]
+[ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/door/DoorCheckpoint.ogg" id="7_xwyhf"]
+[ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="8_46p4f"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="9_e1tsy"]
 
-[node name="LCon4Way001" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
+[node name="LConToHConCheckpoint" type="Node3D" node_paths=PackedStringArray("spawnPosFor173") groups=["room"]]
 script = ExtResource("1_sw30i")
 spawnPosFor173 = NodePath("173point")
 
@@ -15,69 +20,68 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.006
 [node name="RoomArea" parent="." instance=ExtResource("3_s063j")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.00622366, 0, -3.37167e-05)
 
-[node name="Checkpoint" parent="." instance=ExtResource("4_jfxcs")]
+[node name="Checkpoint" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.1, 0.0168042, 3.3)
 
-[node name="doorside2_col" parent="Checkpoint/doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+[node name="Keycardbutton" parent="Checkpoint" node_paths=PackedStringArray("extraToControl") instance=ExtResource("4_1pim1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0010417, 0.31021, 1.54017)
+extraToControl = NodePath("../CheckpointAlarm")
+keycardLevel = 3
 
-[node name="doorside1_col" parent="Checkpoint/doors/Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+[node name="Keycardbutton2" parent="Checkpoint" node_paths=PackedStringArray("extraToControl") instance=ExtResource("4_1pim1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010417, 0.31021, -1.5509)
+extraToControl = NodePath("../CheckpointAlarm")
+keycardLevel = 3
 
-[node name="doorside2_col" parent="Checkpoint/doors/Door2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
+[node name="doors" type="Node3D" parent="Checkpoint"]
 
-[node name="doorside1_col" parent="Checkpoint/doors/Door2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
+[node name="Door" parent="Checkpoint/doors" instance=ExtResource("5_jal28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00417, 0.0426216, 0.00045833)
 
-[node name="CheckpointAlarm" parent="Checkpoint" index="3" node_paths=PackedStringArray("doors")]
+[node name="Button" parent="Checkpoint/doors/Door" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="Checkpoint/doors/Door" index="2"]
+visible = false
+disabled = true
+
+[node name="Door2" parent="Checkpoint/doors" instance=ExtResource("5_jal28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40961, 0.0426216, 0.000458717)
+
+[node name="Button" parent="Checkpoint/doors/Door2" index="1"]
+visible = false
+disabled = true
+
+[node name="Button2" parent="Checkpoint/doors/Door2" index="2"]
+visible = false
+disabled = true
+
+[node name="CheckpointAlarm" type="AudioStreamPlayer3D" parent="Checkpoint" node_paths=PackedStringArray("doors")]
+script = ExtResource("6_8mxrf")
+checkpointSound = ExtResource("7_xwyhf")
+checkpointAlarm = ExtResource("8_46p4f")
 doors = [NodePath("../doors/Door"), NodePath("../doors/Door2")]
+
+[node name="Extra" type="AudioStreamPlayer3D" parent="Checkpoint/CheckpointAlarm"]
 
 [node name="lights" type="Node3D" parent="."]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="lights"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, -3.20003)
-light_color = Color(0.999913, 0.460798, 0.395356, 1)
-light_energy = 2.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 12.0
-spot_angle = 75.0
+[node name="Light" parent="lights" instance=ExtResource("9_e1tsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12605, 5.84837, 2.94017)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="lights"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.99378, 4.46065, 3.19997)
-light_color = Color(0.999904, 0.443464, 0.377857, 1)
-light_energy = 2.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 12.0
-spot_angle = 75.0
+[node name="Light2" parent="lights" instance=ExtResource("9_e1tsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12605, 5.84837, -4.05983)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="lights"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, -3.20003)
-light_color = Color(0.999913, 0.460798, 0.395356, 1)
-light_energy = 2.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 12.0
-spot_angle = 75.0
+[node name="Light3" parent="lights" instance=ExtResource("9_e1tsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87395, 5.84837, -4.05983)
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="lights"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -3.00622, 4.46065, 3.19997)
-light_color = Color(0.999904, 0.443464, 0.377857, 1)
-light_energy = 2.0
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 12.0
-spot_angle = 75.0
+[node name="Light4" parent="lights" instance=ExtResource("9_e1tsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.87395, 5.84837, 3.94017)
 
 [node name="173point" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.49691e-07, 0.5, 4)
 
-[editable path="Checkpoint"]
 [editable path="Checkpoint/doors/Door"]
 [editable path="Checkpoint/doors/Door/door"]
 [editable path="Checkpoint/doors/Door2"]

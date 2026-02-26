@@ -10,7 +10,7 @@ extends Node
 	"keycard6": load("res://entities/items/cards/keycard06.tscn"),
 	"keycardomni": load("res://entities/items/cards/keycardomni.tscn"),
 	
-	"gasmask": load("res://entities/items/tools/gas_mask.tscn"),
+	"gasmask": load("res://entities/items/tools/gasmask/gas_mask.tscn"),
 	
 	"document049": load("res://entities/items/papers/documents/049_document.tscn"),
 	"document079": load("res://entities/items/papers/documents/079_document.tscn"),

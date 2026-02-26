@@ -1,7 +1,8 @@
 res://entities/default_bus_layout.tres
-res://scenes/main.tscn
+res://scenes/menu.tscn
 res://entities/graphics.tres
 res://levelgen/navmesh.tres
+res://scenes/main.tscn
 res://entities/player/player.tscn
 res://rooms/light_containment/LConHallSecurity.tscn
 res://entities/SCPs/096/scp_096.tscn
@@ -12,6 +13,11 @@ res://rooms/entrance_zone/EntHallOffice001.tscn
 res://entities/SCPs/485/485_item.tscn
 res://rooms/light_containment/LConHallOffice001.tscn
 res://entities/items/item_spawner.tscn
+res://scenes/dev.tscn
+res://rooms/checkpoint/LConToHconCheckpoint.tscn
+res://entities/items/tools/gasmask/gas_mask.tscn
+res://entities/items/item.tscn
+res://rooms/light_containment/spawnroom.tscn
+res://entities/items/papers/documents/173_document.tscn
 res://versioninfo.txt
-res://util/ZFunc.gd
-res://levelgen/generate_level.gd
+res://entities/items/item.gd

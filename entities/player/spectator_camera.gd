@@ -7,6 +7,7 @@ class_name SpectatorCamera
 @export var verticalPivot: Node3D
 
 var specManager: SpectatorManager
+var spectatedThing: Node3D
 var specIdx: int
 
 
@@ -14,7 +15,7 @@ func _ready() -> void:
 	camera.current = is_multiplayer_authority()
 	
 	specManager = GlobalPlayerVariables.spectatorManager
-	switch_spectating()
+	forward_spec()
 
 
 func _input(event: InputEvent) -> void:
@@ -34,32 +35,34 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or !specManager.spectatableThings.size() > 0:
 		return
 	
-	if specManager.spectatableThings.size() > 0:
-		if specManager.spectatableThings[specIdx] == null:
-			specManager.refresh_spectatable_objects()
-			forward_spec()
-		else:
-			self.global_position = lerp(self.global_position, specManager.spectatableThings[specIdx].global_position, 0.25)
+	if spectatedThing == null:
+		forward_spec()
+	else:
+		self.global_position = lerp(self.global_position, spectatedThing.global_position, 0.25)
 
 
 func forward_spec():
-	switch_spectating()
+	specManager.refresh_spectatable_objects()
 	
 	specIdx += 1
-	if specIdx >= specManager.spectatableThings.size()-1:
+	if specIdx > specManager.spectatableThings.size()-1:
 		specIdx = 0
+	
+	switch_spectating()
 
 func backward_spec():
-	switch_spectating()
+	specManager.refresh_spectatable_objects()
 	
 	specIdx -= 1
-	if specIdx <= -1:
+	if specIdx < 0:
 		specIdx = specManager.spectatableThings.size()-1
+	
+	switch_spectating()
 
 
 func switch_spectating():
-	specManager.refresh_spectatable_objects()
-	associatedUI.set_label("Spectating: %s" % specManager.spectatableThings[specIdx].name)
+	spectatedThing = specManager.spectatableThings[specIdx]
+	associatedUI.set_label("Spectating: %s" % spectatedThing.name)

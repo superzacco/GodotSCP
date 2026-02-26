@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var enabled := true
 @export var speed: float
 var chasing: bool = false
 
@@ -30,6 +31,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !enabled:
+		return
+	
 	if GlobalPlayerVariables.debugInfo != null:
 		GlobalPlayerVariables.debugInfo.summonTimer = $SummonTimer.time_left
 	

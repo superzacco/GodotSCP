@@ -37,6 +37,9 @@ func _ready() -> void:
 
 
 func check_if_only_one():
+	if !onlyOneCanExist:
+		return
+	
 	if ItemManager.onlyOneArray.has(onlyOneString):
 		delete_item.rpc()
 	else:

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dfpv7tws4gwgv"]
+
+[ext_resource type="FontFile" uid="uid://bctoxrpor4uxp" path="res://fonts/monospace.medium.ttf" id="1_c1y1j"]
+[ext_resource type="FontFile" uid="uid://c7notye3b6ea3" path="res://fonts/courier-typewriter.ttf" id="2_ck7n8"]
+
+[resource]
+Button/font_sizes/font_size = 19
+Button/fonts/font = ExtResource("1_c1y1j")
+TextEdit/colors/font_outline_color = Color(1, 1, 1, 1)
+TextEdit/fonts/font = ExtResource("2_ck7n8")
