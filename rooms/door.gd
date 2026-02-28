@@ -1,6 +1,7 @@
 extends StaticBody3D
 class_name Door
 
+@export var doorPanel:PackedScene
 @export var animationPlayer: AnimationPlayer
 
 @export var openSounds: Array[AudioStream]
@@ -12,6 +13,7 @@ class_name Door
 @export var openableBy173: bool = false
 var generatedDoor: bool = false
 
+var broken: bool = false
 var doorOpen: bool = false
 var opening: bool = false
 
@@ -36,7 +38,7 @@ func toggle_door():
 
 @rpc("reliable", "call_local", "any_peer")
 func open():
-	if doorOpen:
+	if doorOpen or broken:
 		return
 	
 	if openSounds.size() > 0:
@@ -48,7 +50,7 @@ func open():
 
 @rpc("reliable", "call_local", "any_peer")
 func close():
-	if !doorOpen:
+	if !doorOpen or broken:
 		return
 	
 	if openSounds.size() > 0:
@@ -58,9 +60,11 @@ func close():
 	doorOpen = false
 
 
+
+
 @rpc("reliable", "call_local", "any_peer")
 func one_seven_three_open():
-	if !openableBy173:
+	if !openableBy173 or broken:
 		return
 	
 	$"173 Open".play()
@@ -70,7 +74,7 @@ func one_seven_three_open():
 
 @rpc("reliable", "call_local", "any_peer")
 func scp_079_close():
-	if !closableBy079 == true:
+	if !closableBy079 == true or broken:
 		return
 	
 	animationPlayer.speed_scale = 1.5
@@ -82,29 +86,30 @@ func scp_079_close():
 
 
 @export_group("Door Parts")
-@export var doorCol1: CollisionShape3D
-@export var doorCol2: CollisionShape3D
-@export var doorMesh1: MeshInstance3D
-@export var doorMesh2: MeshInstance3D
+@export var doorCols: Array[CollisionShape3D]
+@export var doorMeshes: Array[MeshInstance3D]
 @rpc("reliable", "call_local", "any_peer")
 func scp_096_break(pos: Vector3):
-	var rigidBody1 := RigidBody3D.new()
-	var rigidBody2 := RigidBody3D.new()
-	self.add_child(rigidBody1)
-	self.add_child(rigidBody2)
+	if broken or doorOpen:
+		return
 	
-	doorMesh1.reparent(rigidBody1)
-	doorCol1.reparent(rigidBody1)
-	doorMesh2.reparent(rigidBody2)
-	doorCol2.reparent(rigidBody2)
+	broken = true
 	
-	rigidBody1.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-	rigidBody2.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-	rigidBody1.global_position = doorCol1.global_position 
-	rigidBody2.global_position = doorCol2.global_position
+	$"096Break".play()
+	await get_tree().create_timer(0.15).timeout
 	
-	var dirTowardDoors := pos.direction_to(self.global_position)
-	rigidBody1.apply_impulse(dirTowardDoors * 5) 
-	rigidBody1.apply_torque(Vector3(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)))
-	rigidBody2.apply_torque(Vector3(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)))
-	rigidBody2.apply_impulse(dirTowardDoors * 5) 
+	for i in range(2):
+		if doorMeshes[i] != null:
+			doorMeshes[i].queue_free()
+		if doorCols[i] != null:
+			doorCols[i].queue_free()
+		
+		var dirToDoors = pos.direction_to(self.global_position)
+		var panel: RigidBody3D = doorPanel.instantiate()
+		
+		self.add_child(panel)
+		panel.global_position = self.global_position
+		panel.apply_impulse(dirToDoors * 10)
+		
+		if i == 2:
+			panel.rotation_degrees.y += 180

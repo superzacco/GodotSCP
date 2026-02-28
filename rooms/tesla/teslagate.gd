@@ -56,8 +56,9 @@ func shock():
 	if !multiplayer.is_server():
 		return
 	
-	if thingsInKillBox.size() > 0:
-		for player: Player in thingsInKillBox:
+	for thing in thingsInDetectionArea:
+		if thing.is_in_group("player"):
+			var player: Player = thing
 			print("Shocking Player: %s in Tesla Gate!" % player.get_multiplayer_authority())
 			player.take_damage(999)
 

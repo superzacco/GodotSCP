@@ -1,14 +1,18 @@
 extends Node3D
+class_name Body
 
 signal setup_finished
 
 @export var texturesToUse: Array[CompressedTexture2D]
 @export var chanceToSpawn: float = 100
 
+@export var startDead := true
 @export var bodyModel: MeshInstance3D
+@export var bodyAnims: AnimationPlayer
 
 func _ready() -> void:
-	$body/AnimationPlayer.play("dead")
+	if startDead:
+		bodyAnims.play("dead")
 	
 	await SignalBus.level_generation_finished
 	if multiplayer.is_server():
@@ -17,6 +21,12 @@ func _ready() -> void:
 			return
 		
 		setup_body()
+
+
+func play_dead():
+	bodyAnims.play("death")
+	await bodyAnims.animation_finished
+	bodyAnims.play("dead")
 
 
 @rpc("authority", "call_local", "reliable")

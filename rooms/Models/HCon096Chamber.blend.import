@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://buqtktitrm7uf"
-path="res://.godot/imported/HConHall003.blend-d069a63d9d5695c29ade4e653598a21c.scn"
+uid="uid://bh4hhndhupbmq"
+path="res://.godot/imported/HCon096Chamber.blend-8a360dda32842a10d884362c7083b1b6.scn"
 
 [deps]
 
-source_file="res://rooms/Models/HConHall003.blend"
-dest_files=["res://.godot/imported/HConHall003.blend-d069a63d9d5695c29ade4e653598a21c.scn"]
+source_file="res://rooms/Models/HCon096Chamber.blend"
+dest_files=["res://.godot/imported/HCon096Chamber.blend-8a360dda32842a10d884362c7083b1b6.scn"]
 
 [params]
 
@@ -32,20 +32,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:concrete_pillars": {
-"generate/physics": true,
-"physics/layer": 3,
-"physics/mask": 3
-},
-"PATH:metalhall": {
-"generate/physics": true,
-"physics/layer": 3,
-"physics/mask": 3
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

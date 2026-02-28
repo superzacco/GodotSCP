@@ -75,6 +75,7 @@ func look_at_pos(pos: Vector3):
 		self.rotation.z = 0
 
 
+@rpc("any_peer", "call_local", "reliable")
 func attack():
 	if !canAttack:
 		return

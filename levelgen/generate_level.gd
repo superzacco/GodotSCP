@@ -96,6 +96,8 @@ var zSize: int
 var navMesh: NavigationMesh 
 var navRegion: NavigationRegion3D
 
+var spawnRoomPosition := Vector2i.ZERO
+
 const NORTH: int = 1
 const EAST: int = 2
 const SOUTH: int = 4
@@ -122,6 +124,7 @@ func _ready() -> void:
 		for j in mapHeight:
 			finishedRoomGrid[i].append(null)
 	
+	spawnRoomPosition = Vector2i((mapWidth / 2), 0)
 	xSize = mapWidth - 1
 	zSize = mapHeight - 1
 	
@@ -130,7 +133,7 @@ func _ready() -> void:
 
 var mapRNG: RandomNumberGenerator
 func generate_map():
-	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, (mapWidth / 2), 0)
+	temporaryRooms[mapWidth/2][0] = spawn_room(spawnRoom, spawnRoomPosition.x, spawnRoomPosition.y)
 	await SignalBus.generate_level
 	
 	mapRNG = RandomNumberGenerator.new()
@@ -138,6 +141,7 @@ func generate_map():
 	print("Generating with Seed: %s" % mapRNG.seed)
 	
 	make_layout_shape()
+	check_if_rooms_fit()
 	
 	replace_shape_with_halls()
 	replace_filler_rooms()
@@ -215,10 +219,139 @@ func spawn_room(room, x, z, temp: bool = false) -> Node3D:
 	return spawnedRoom
 
 
-@rpc("call_local", "any_peer")
 func rotate_room(room: Node3D, timesToRotate):
 	for i in timesToRotate:
 		room.rotate(Vector3.UP, deg_to_rad(-90))
+
+
+#region // MAKE SURE ALL ROOMS CAN SPAWN
+func check_if_rooms_fit():
+	print("Checking room fits!")
+	
+	ensure_zone_has_ends(0, LContoHConCheckpointLine, necessaryLConEndRooms)
+	ensure_zone_has_ends(LContoHConCheckpointLine, HContoEntranceCheckpointLine, necessaryHConEndRooms)
+	ensure_zone_has_ends(HContoEntranceCheckpointLine, mapHeight, necessaryEntEndRooms)
+	
+	ensure_zone_has_bends(0, LContoHConCheckpointLine, necessaryLConBends)
+	ensure_zone_has_bends(LContoHConCheckpointLine, HContoEntranceCheckpointLine, necessaryHConBends)
+	ensure_zone_has_bends(HContoEntranceCheckpointLine, mapHeight, necessaryEntBends)
+
+func get_zone_room_positions(zMin: int, zMax: int) -> Dictionary:
+	var roomPositions := {
+		"ends":		[] as Array[Vector2i],
+		"bends":	[] as Array[Vector2i],
+		"halls":	[] as Array[Vector2i],
+		"threeway":	[] as Array[Vector2i],
+		"fourway":	[] as Array[Vector2i]
+	}
+	
+	for x in mapWidth:
+		for z in range(zMin, zMax):
+			if temporaryRooms[x][z] == null:
+				continue
+			if z == LContoHConCheckpointLine or z == HContoEntranceCheckpointLine:
+				continue
+			
+			var bits := get_direction_bits(x, z)
+			match bits:
+				1, 2, 4, 8:		roomPositions.ends.append(Vector2i(x,z))
+				3, 6, 9, 12:	roomPositions.bends.append(Vector2i(x,z))
+				5, 10:			roomPositions.halls.append(Vector2i(x,z))
+				7, 1, 13, 14:	roomPositions.threeway.append(Vector2i(x,z))
+				15:				roomPositions.fourway.append(Vector2i(x,z))
+	
+	return roomPositions
+
+func get_zone_empty_adjacent_cells(zMin: int, zMax: int) -> Array[Vector2i]:
+	var candidates: Array[Vector2i] = []
+	var seen := {} # // {[(2,3): false]} // Coordinates: HasRoom?
+	
+	for x in mapWidth:
+		for z in range(zMin, zMax):
+			if temporaryRooms[x][z] == null:
+				continue
+			if z == LContoHConCheckpointLine or z == HContoEntranceCheckpointLine:
+				continue
+			
+			var neighbors := [Vector2i(x, z+1), Vector2i(x, z-1), Vector2i(x+1, z), Vector2i(x-1, z)]
+			for nCoords in neighbors:
+				if seen.has(nCoords):
+					continue
+				
+				if nCoords.x < 0 or nCoords.x > mapWidth or nCoords.y < zMin or nCoords.y >= zMax:
+					continue
+				if nCoords.y == LContoHConCheckpointLine or nCoords.y == HContoEntranceCheckpointLine:
+					continue
+				
+				if temporaryRooms[nCoords.x][nCoords.y] == null:
+					candidates.append(nCoords)
+					seen[nCoords] = true
+	
+	return candidates
+
+func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
+	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).ends.size()
+	print("Ends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).ends, amtRequired])
+	if amtRequired <= 0:
+		return
+	
+	# // get every empty cell with nothing around it except for 1
+	var emptyCellsPositions: Array[Vector2i] = get_zone_empty_adjacent_cells(zMin, zMax)
+	var positionsWithOneNeighbor: Array[Vector2i] = []
+	for emptyPos: Vector2i in emptyCellsPositions:
+		var posBits: int = get_direction_bits(emptyPos.x, emptyPos.y)
+		if posBits == NORTH or posBits == SOUTH or posBits == WEST or posBits == EAST:
+			positionsWithOneNeighbor.append(emptyPos)
+	
+	var pick: Vector2i = ZFunc.rand_from(positionsWithOneNeighbor, mapRNG)
+	spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
+	print("End room was missing and placed!")
+
+
+func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
+	var safePositions := []
+	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).bends.size()
+	print("Bends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).bends, amtRequired])
+	if amtRequired <= 0:
+		return
+	
+	var endRoomCoords: Array[Vector2i] = get_zone_room_positions(zMin, zMax).ends
+	for endCoord: Vector2i in endRoomCoords:
+		var eX = endCoord.x
+		var eZ = endCoord.y
+		var endRoomBits := get_direction_bits(eX, eZ)
+		var isVertical := endRoomBits == NORTH or endRoomBits == SOUTH
+		var dirs := [Vector2i(eX, eZ+1), Vector2i(eX, eZ-1), Vector2i(eX+1, eZ), Vector2i(eX-1, eZ)]
+		
+		if endCoord == spawnRoomPosition:
+			continue
+		
+		var potentialEndPositions := []
+		
+		# // get the sides not the end
+		if isVertical:
+			if temporaryRooms[eX+1][eZ] == null:
+				potentialEndPositions.append(Vector2i(eX+1,eZ))
+			if temporaryRooms[eX-1][eZ] == null:
+				potentialEndPositions.append(Vector2i(eX-1,eZ))
+		else:
+			if temporaryRooms[eX][eZ+1] == null and eZ+1 != LContoHConCheckpointLine and eZ+1 != HContoEntranceCheckpointLine:
+				potentialEndPositions.append(Vector2i(eX,eZ+1))
+			if temporaryRooms[eX][eZ-1] == null and eZ-1 != LContoHConCheckpointLine and eZ-1 != HContoEntranceCheckpointLine:
+				potentialEndPositions.append(Vector2i(eX,eZ-1))
+		
+		# // look at every potential position
+		for pos: Vector2i in potentialEndPositions:
+			var posBits: int = get_direction_bits(pos.x, pos.y)
+			if posBits == NORTH or posBits == SOUTH or posBits == WEST or posBits == EAST:
+				safePositions.append(pos)
+	
+	var pick: Vector2i = ZFunc.rand_from(safePositions, mapRNG)
+	spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
+	print("Bend room was missing and placed!")
+#endregion
+
+
 
 
 #region // SPAWN CORRECT ROOMS FOR SHAPE
@@ -259,7 +392,7 @@ func get_direction_bits(x, z) -> int:
 
 
 func replace_shape_rooms(tempRoom, bits: int, x: int, z: int):
-	if bits == 1 and x == mapWidth/2 and z == 0: # dont replace the spawnroom
+	if bits == 1 and x == spawnRoomPosition.x and z == spawnRoomPosition.y: # dont replace the spawnroom
 		return
 	
 	var zoneDepthDict: Dictionary = return_zone_room_arrays_dict(z)
@@ -364,27 +497,25 @@ func replace_filler_rooms():
 
 func room_replacer(necessaryRoomArray: Array, replacableRoomArray: Array):
 	for i in necessaryRoomArray.size():
-		var roomToReplace: int = mapRNG.randi_range(0, replacableRoomArray.size()-1)
-		if roomToReplace == -1 or replacableRoomArray.size() == 0:
+		var roomToReplceIdx: int = mapRNG.randi_range(0, replacableRoomArray.size()-1)
+		if roomToReplceIdx == -1 or replacableRoomArray.size() == 0:
 			printerr("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
 			push_error("Missing some necessary rooms! There are more required rooms than there were replacable rooms. %s was not placed" % necessaryRoomArray[i])
 			break
 		
-		var replacedRoom: Node3D = replacableRoomArray[roomToReplace]
+		var replacedRoom: Node3D = replacableRoomArray[roomToReplceIdx]
 		var roomGettingPlaced = necessaryRoomArray[i]
 		
-		var roomToReplacePos: Vector3 = replacableRoomArray[roomToReplace].global_position
-		var r: Node3D = spawn_room(roomGettingPlaced, roomToReplacePos.x / 15, roomToReplacePos.z /15)
+		var roomToReplceIdxPos: Vector3 = replacableRoomArray[roomToReplceIdx].global_position
+		var r: Node3D = spawn_room(roomGettingPlaced, roomToReplceIdxPos.x / 15, roomToReplceIdxPos.z /15)
 		r.rotation.y = replacedRoom.rotation.y
 		
-		#print(str(multiplayer.get_unique_id()) + " - "  + str(roomToReplace) + ": " + r.name)
-		
-		replacableRoomArray.remove_at(roomToReplace)
+		replacableRoomArray.remove_at(roomToReplceIdx)
 		finishedRooms.erase(replacedRoom)
 		replacedRoom.queue_free()
 		
 		finishedRooms.append(r)
-		finishedRoomGrid[roomToReplacePos.x/15][roomToReplacePos.z/15] = r
+		finishedRoomGrid[roomToReplceIdxPos.x/15][roomToReplceIdxPos.z/15] = r
 #endregion
 
 

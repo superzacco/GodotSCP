@@ -9,8 +9,9 @@ signal ent_checkpoints_unlock
 var LConTOHConCheckpointOnLockdown := true
 var HConTOEntCheckpointOnLockdown := true
 
-var rooms: Array
-var playerNearbyRooms: Array[Room]
+var rooms: Array[Room] = []
+var playerNearbyRooms: Array[Room] = []
+var chamber096: Room = null
 
 var scp173: CharacterBody3D
 var scp106: CharacterBody3D
@@ -19,6 +20,12 @@ var scp106: CharacterBody3D
 func _ready() -> void:
 	lightFlickerTimer.timeout.connect(flicker_all_nearby_lights)
 	GlobalPlayerVariables.facilityManager = self 
+	
+	await SignalBus.level_generation_finished
+	for room: Room in rooms:
+		if room.roomName == "chamber096":
+			chamber096 = room
+	
 
 
 #region // PROGRESSION

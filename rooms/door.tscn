@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cut7dojaypgd5"]
+[gd_scene load_steps=17 format=3 uid="uid://cut7dojaypgd5"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_i3vr1"]
 [ext_resource type="PackedScene" uid="uid://urhahy80l7ot" path="res://rooms/Models/door_lcon.blend" id="1_w23wf"]
+[ext_resource type="PackedScene" uid="uid://dom3g02c3mgoa" path="res://entities/map/door_panel.tscn" id="2_w5vcm"]
 [ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="3_4wl2e"]
 [ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="3_r0iwn"]
 [ext_resource type="AudioStream" uid="uid://bns07jalibbvv" path="res://audio/door/DoorOpen0.ogg" id="4_1nf8s"]
@@ -12,24 +13,24 @@
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_w5vcm"]
 [ext_resource type="AudioStream" uid="uid://dajso7k31f8h2" path="res://audio/scps/079/079DoorClose.ogg" id="11_i7sdm"]
 [ext_resource type="Script" uid="uid://be7jc5jhm5co0" path="res://rooms/079_close_area.gd" id="11_ivvos"]
+[ext_resource type="AudioStream" uid="uid://d0h3la227wqia" path="res://entities/SCPs/096/DoorBreak.ogg" id="14_f58wl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i7sdm"]
 radius = 3.5
 
-[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer", "doorCol1", "doorCol2", "doorMesh1", "doorMesh2") groups=["door"]]
+[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("animationPlayer", "doorCols", "doorMeshes") groups=["door"]]
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("1_i3vr1")
+doorPanel = ExtResource("2_w5vcm")
 animationPlayer = NodePath("door/AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("4_1nf8s"), ExtResource("3_r0iwn"), ExtResource("4_ivvos")])
 closeSounds = Array[AudioStream]([ExtResource("5_pgugy"), ExtResource("6_i7sdm"), ExtResource("7_w5vcm")])
 openableBy173 = true
-doorCol1 = NodePath("door/Armature/Skeleton3D/door2-col/door2/StaticBody3D/CollisionShape3D")
-doorCol2 = NodePath("door/Armature/Skeleton3D/door-col/door/StaticBody3D/CollisionShape3D")
-doorMesh1 = NodePath("door/Armature/Skeleton3D/doorside_1/doorside_1")
-doorMesh2 = NodePath("door/Armature/Skeleton3D/doorside_2/doorside_2")
+doorCols = [NodePath("door/Armature/Skeleton3D/door2-col/door2/StaticBody3D/CollisionShape3D"), NodePath("door/Armature/Skeleton3D/door-col/door/StaticBody3D/CollisionShape3D")]
+doorMeshes = [NodePath("door/Armature/Skeleton3D/doorside_2/doorside_2"), NodePath("door/Armature/Skeleton3D/doorside_1/doorside_1")]
 
 [node name="door" parent="." instance=ExtResource("1_w23wf")]
 
@@ -58,12 +59,16 @@ collision_mask = 256
 transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00456333, 1.42873e-07)
 
 [node name="Button" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_4wl2e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.210323)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.1, 0, 0.215053)
 doorsToControl = [NodePath("..")]
 
 [node name="Button2" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_4wl2e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.207105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, -0.2142)
 doorsToControl = [NodePath("..")]
+
+[node name="DoorArea" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_pgugy")
 
 [node name="Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_1nf8s")
@@ -77,9 +82,10 @@ attenuation_model = 1
 volume_db = -12.0
 bus = &"Sound Effects"
 
-[node name="DoorArea" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_pgugy")
+[node name="096Break" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_f58wl")
+attenuation_model = 1
+bus = &"Sound Effects"
 
 [node name="173 Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_pgugy")

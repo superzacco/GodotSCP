@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://6icr8b8e7lkb"]
+[gd_scene load_steps=10 format=3 uid="uid://6icr8b8e7lkb"]
 
 [ext_resource type="Script" uid="uid://dv5m4a7op2ap3" path="res://entities/SCPs/096/096.gd" id="1_g3s03"]
 [ext_resource type="PackedScene" uid="uid://dh52hpemdn21d" path="res://entities/SCPs/096/096.blend" id="1_q15mk"]
+[ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="2_yyjhl"]
+[ext_resource type="AudioStream" uid="uid://bcmdmmdv6gxjo" path="res://audio/scps/096/Scream.ogg" id="3_0vb0u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3s03"]
 radius = 0.2
@@ -23,13 +25,14 @@ properties/1/replication_mode = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3s03"]
 size = Vector3(0.5, 5, 0.5)
 
-[node name="SCP096" type="CharacterBody3D" node_paths=PackedStringArray("processTimer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["elevatorpassenger", "spectatable", "teslashockable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+[node name="SCP096" type="CharacterBody3D" node_paths=PackedStringArray("screamPlayer", "processTimer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["elevatorpassenger", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_g3s03")
-enabled = true
-speed = 100.0
+body = ExtResource("2_yyjhl")
+screamPlayer = NodePath("ScreamPlayer")
+wanderSpeed = 12.0
+speed = 150.0
 damage = 200.0
 typeOfDamage = 4
 attackCooldown = 10.0
@@ -70,7 +73,9 @@ shape = SubResource("SphereShape3D_0vb0u")
 replication_config = SubResource("SceneReplicationConfig_g3s03")
 
 [node name="RunTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 10.0
+one_shot = true
+autostart = true
 
 [node name="DoorBreakRadius" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
@@ -79,6 +84,12 @@ collision_mask = 257
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorBreakRadius"]
 shape = SubResource("BoxShape3D_g3s03")
+
+[node name="ScreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0vb0u")
+attenuation_model = 1
+unit_size = 8.0
+bus = &"Sound Effects"
 
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="body_entered" from="DoorBreakRadius" to="." method="_on_door_break_radius_body_entered"]

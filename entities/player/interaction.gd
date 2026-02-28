@@ -94,7 +94,6 @@ func is_interactable_obscured(interactable: Node3D) -> bool:
 	var playerCam = GlobalPlayerVariables.player.camera
 	var resultNode: Node3D = ZFunc.get_ray_collider(playerCam.global_position, interactable.global_position)
 	
-	
 	if resultNode == interactable:
 		return false
 	else:

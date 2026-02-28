@@ -15,11 +15,11 @@ func randInPercent(percent: float):
 	else:
 		return false 
 
-func rand_from(array: Array):
-	if UtilRNG.seed == 0:
-		UtilRNG.seed = GameManager.seed
+func rand_from(array: Array, rng: RandomNumberGenerator = UtilRNG):
+	if rng.seed == 0:
+		rng.seed = GameManager.seed
 	
-	return array[UtilRNG.randi_range(0, array.size()-1)]
+	return array[rng.randi_range(0, array.size()-1)]
 
 func pick_from_list(weightedDict: Dictionary, rng: RandomNumberGenerator = UtilRNG):
 	if rng.seed == 0:

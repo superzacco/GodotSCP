@@ -43,6 +43,9 @@ func get_pos():
 	console.println(str(GlobalPlayerVariables.playerPosition))
 	print(GlobalPlayerVariables.playerPosition)
 
+#func set_pos(pos: Vector3):
+	#GlobalPlayerVariables.player.global_position = pos
+
 
 @rpc("any_peer", "call_local", "reliable")
 func spawn_item(itemString: String):

@@ -48,3 +48,8 @@ func open_checkpoint_doors():
 
 func reject():
 	SignalBus.show_interaction_text.emit("You insert your keycard into the slot, but nothing happens...")
+
+
+@export var overrideDoor: Door 
+func _on_big_door_lever_lever_activated() -> void:
+	overrideDoor.open.rpc()
