@@ -33,7 +33,8 @@ func elevator_setup(passedElevator: Elevator):
 			destination = otherElevator.ownDestination
 			
 			if atCurrentFloor == false:
-				atCurrentFloor = rng.randi_range(0, 1)
+				if ZFunc.randInPercent(20):
+					atCurrentFloor = true
 	
 	#print("")
 	#print("Elevator: %s" % self)

@@ -32,19 +32,15 @@ closeSounds = Array[AudioStream]([ExtResource("6_mkitg"), ExtResource("7_cwjtv")
 collision_layer = 258
 collision_mask = 258
 
-[node name="Skeleton3D" parent="big_door/Armature" index="0"]
-bones/0/position = Vector3(0, 0.0317345, 0)
-bones/2/position = Vector3(-2.39588e-09, -0.0317345, 6.21743e-24)
-
 [node name="DoorR-col" parent="big_door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.28173, 0)
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
 
 [node name="StaticBody3D" parent="big_door/Armature/Skeleton3D/DoorR-col/DoorR" index="0"]
 collision_layer = 256
 collision_mask = 256
 
 [node name="DoorL-col" parent="big_door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -0.0317346, 6.21743e-24)
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
 
 [node name="StaticBody3D" parent="big_door/Armature/Skeleton3D/DoorL-col/DoorL" index="0"]
 collision_layer = 256

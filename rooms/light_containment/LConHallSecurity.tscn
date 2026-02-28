@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwnm4r4t5d1r4"]
+[gd_scene load_steps=15 format=3 uid="uid://cwnm4r4t5d1r4"]
 
-[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_q2jgq"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="2_feel7"]
 [ext_resource type="PackedScene" uid="uid://yxdd6pk75vvr" path="res://rooms/Models/LConHallSecurity.blend" id="2_q2jgq"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_7poyc"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_nr1gn"]
@@ -12,9 +12,46 @@
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="9_avfiv"]
 [ext_resource type="PackedScene" uid="uid://bogo1qqfqjh7y" path="res://rooms/Models/props/filecabinet.blend" id="11_feel7"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="12_pp006"]
+[ext_resource type="PackedScene" uid="uid://gnt4w7c6am81" path="res://rooms/lever.tscn" id="13_avfiv"]
+[ext_resource type="Script" uid="uid://f7uakbpm57cu" path="res://rooms/light_containment/security_room.gd" id="13_feel7"]
 
 [node name="LConSecurityHall" type="Node3D" groups=["room"]]
-script = ExtResource("1_q2jgq")
+script = ExtResource("13_feel7")
+
+[node name="TeleportPoint" parent="." instance=ExtResource("2_feel7")]
+transform = Transform3D(-1, 0, -0.000331608, 0, 1, 0, 0.000331608, 0, -1, 0, 3.92034, 2)
+tpName = "sec"
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Light" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 4.85405, -4.2)
+omniBrightness = 0.05
+
+[node name="Light2" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 1.85405, 3.2)
+omniBrightness = 0.05
+
+[node name="Light7" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.64604, 1.85405, 2.75878)
+
+[node name="Light3" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 5.05405, -5.3)
+omniBrightness = 0.05
+
+[node name="Light4" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 5.05405, 3)
+attenuation = 0.1
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light5" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 5.05405, 2.1)
+omniBrightness = 0.05
+
+[node name="Light6" parent="Lights" instance=ExtResource("5_pndu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 5.05405, 5.7)
+omniBrightness = 0.05
 
 [node name="LConHallSecurity" parent="." instance=ExtResource("2_q2jgq")]
 
@@ -27,35 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, 7.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
 [node name="RoomArea" parent="." instance=ExtResource("4_nr1gn")]
-
-[node name="Light" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 4.85405, -4.2)
-omniBrightness = 0.05
-
-[node name="Light2" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 1.85405, 3.2)
-omniBrightness = 0.05
-
-[node name="Light7" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.64604, 1.85405, 2.75878)
-
-[node name="Light3" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 5.05405, -5.3)
-omniBrightness = 0.05
-
-[node name="Light4" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 5.05405, 3)
-attenuation = 0.1
-brightness = 0.5
-omniBrightness = 0.25
-
-[node name="Light5" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 5.05405, 2.1)
-omniBrightness = 0.05
-
-[node name="Light6" parent="." instance=ExtResource("5_pndu1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 5.05405, 5.7)
-omniBrightness = 0.05
 
 [node name="Props" type="Node3D" parent="."]
 
@@ -106,6 +114,14 @@ keycardLevel = 3
 [node name="Keycardbutton2" parent="Doors/KeycardDoor2" index="2"]
 transform = Transform3D(-2.18557e-07, 8.74228e-08, -1, 1.14641e-14, 1, 8.74228e-08, 1, 7.64274e-15, -2.18557e-07, -1.14463, 0, -0.850374)
 keycardLevel = 3
+
+[node name="SecurityRoom" type="Node3D" parent="."]
+
+[node name="Lever" parent="SecurityRoom" instance=ExtResource("13_avfiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59672, 3.32548, 7.25145)
+lockAfterActivating = true
+
+[connection signal="lever_activated" from="SecurityRoom/Lever" to="." method="checkpoint_unlock_lever_flipped"]
 
 [editable path="Doors/KeycardDoor"]
 [editable path="Doors/KeycardDoor/door"]

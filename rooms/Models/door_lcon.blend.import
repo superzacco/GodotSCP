@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cgyhorsk5854i"
-path="res://.godot/imported/door.blend-8e7962c4ffc507756338dc4c7f998de2.scn"
+uid="uid://urhahy80l7ot"
+path="res://.godot/imported/door_lcon.blend-7ef1a8fa698f1237e8fb1f3f8fd66a71.scn"
 
 [deps]
 
-source_file="res://rooms/Models/door.blend"
-dest_files=["res://.godot/imported/door.blend-8e7962c4ffc507756338dc4c7f998de2.scn"]
+source_file="res://rooms/Models/door_lcon.blend"
+dest_files=["res://.godot/imported/door_lcon.blend-7ef1a8fa698f1237e8fb1f3f8fd66a71.scn"]
 
 [params]
 
@@ -32,28 +32,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Armature/Skeleton3D/doorside1_col/doorside1": {
-"generate/physics": true,
-"mesh_instance/layers": 256,
-"physics/layer": 256,
-"physics/mask": 256
-},
-"PATH:Armature/Skeleton3D/doorside2_col/doorside2": {
-"generate/physics": true,
-"mesh_instance/layers": 256,
-"physics/layer": 256,
-"physics/mask": 256
-},
-"PATH:doorframe": {
-"generate/physics": true,
-"mesh_instance/layers": 256,
-"physics/layer": 256,
-"physics/mask": 256
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

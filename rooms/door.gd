@@ -79,4 +79,32 @@ func scp_079_close():
 	$"079Close".play()
 	await animationPlayer.animation_finished
 	animationPlayer.speed_scale = 1
+
+
+@export_group("Door Parts")
+@export var doorCol1: CollisionShape3D
+@export var doorCol2: CollisionShape3D
+@export var doorMesh1: MeshInstance3D
+@export var doorMesh2: MeshInstance3D
+@rpc("reliable", "call_local", "any_peer")
+func scp_096_break(pos: Vector3):
+	var rigidBody1 := RigidBody3D.new()
+	var rigidBody2 := RigidBody3D.new()
+	self.add_child(rigidBody1)
+	self.add_child(rigidBody2)
 	
+	doorMesh1.reparent(rigidBody1)
+	doorCol1.reparent(rigidBody1)
+	doorMesh2.reparent(rigidBody2)
+	doorCol2.reparent(rigidBody2)
+	
+	rigidBody1.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+	rigidBody2.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+	rigidBody1.global_position = doorCol1.global_position 
+	rigidBody2.global_position = doorCol2.global_position
+	
+	var dirTowardDoors := pos.direction_to(self.global_position)
+	rigidBody1.apply_impulse(dirTowardDoors * 5) 
+	rigidBody1.apply_torque(Vector3(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)))
+	rigidBody2.apply_torque(Vector3(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)))
+	rigidBody2.apply_impulse(dirTowardDoors * 5) 

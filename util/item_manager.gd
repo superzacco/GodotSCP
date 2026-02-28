@@ -9,6 +9,8 @@ extends Node
 	"keycard5": load("res://entities/items/cards/keycard05.tscn"),
 	"keycard6": load("res://entities/items/cards/keycard06.tscn"),
 	"keycardomni": load("res://entities/items/cards/keycardomni.tscn"),
+	"mastercard": load("res://entities/items/cards/mastercard.tscn"),
+	"mastercardgold": load("res://entities/items/cards/mastercardgold.tscn"),
 	
 	"gasmask": load("res://entities/items/tools/gasmask/gas_mask.tscn"),
 	

@@ -163,14 +163,14 @@ script = ExtResource("1_gghi3")
 spotlight = NodePath("SpotLight3D")
 omnilight = NodePath("SpotLight3D/OmniLight3D")
 sprite = NodePath("LightGlowSprite")
-spriteAlpha = 169.0
+spriteAlpha = 0.4
 lightColor = Color(1, 1, 1, 1)
 flickerSounds = Array[AudioStream]([ExtResource("2_hxvnp"), ExtResource("3_a1pd1"), ExtResource("4_hr5o2")])
 
 [node name="LightGlowSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0624244, 0)
+transparency = 0.4
 cast_shadow = 0
-modulate = Color(1, 1, 1, 0.662745)
 pixel_size = 0.004
 billboard = 1
 double_sided = false

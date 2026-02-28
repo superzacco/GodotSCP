@@ -23,12 +23,12 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if can_move():
-		handle.rotation_degrees.x = clamp(handle.rotation_degrees.x, 2.0, 178.0)
+		update_handle_pos.rpc(clamp(handle.rotation_degrees.x, 2.0, 178.0))
 	
-	if handle.rotation_degrees.x > 150.0 and !leverActivated:
-		lock_handle_up()
-	if handle.rotation_degrees.x < 30.0 and leverActivated:
-		lock_handle_down()
+	if handle.rotation_degrees.x > 160.0 and !leverActivated:
+		lock_handle_up.rpc()
+	if handle.rotation_degrees.x < 20.0 and leverActivated:
+		lock_handle_down.rpc()
 	
 	if !interacting:
 		if leverActivated:
@@ -43,6 +43,11 @@ func interact():
 	interacting = true
 
 
+@rpc("any_peer", "call_local", "unreliable")
+func update_handle_pos(angle: float):
+	handle.rotation_degrees.x = angle
+
+
 func can_move() -> bool:
 	if !interacting or (lockAfterActivating and leverActivated):
 		return false
@@ -50,6 +55,7 @@ func can_move() -> bool:
 	return true
 
 
+@rpc("any_peer", "call_local", "unreliable")
 func lock_handle_up():
 	lever_activated.emit()
 	
@@ -58,6 +64,7 @@ func lock_handle_up():
 	interacting = false
 
 
+@rpc("any_peer", "call_local", "unreliable")
 func lock_handle_down():
 	lever_deactivated.emit()
 	

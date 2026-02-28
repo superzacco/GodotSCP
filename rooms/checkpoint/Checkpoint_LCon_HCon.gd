@@ -25,20 +25,21 @@ func open_checkpoint_doors():
 	if active:
 		return
 	
+	active = true
+	
 	await get_tree().create_timer(0.5).timeout
 	
-	active = true
 	blarePlayer.play()
 	for door in doors:
 		door.open()
 	
 	await get_tree().create_timer(4).timeout
 	
-	blarePlayer.play()
+	alarmPlayer.play()
 	
 	await get_tree().create_timer(1).timeout
 	
-	alarmPlayer.play()
+	blarePlayer.play()
 	for door in doors:
 		door.close()
 	

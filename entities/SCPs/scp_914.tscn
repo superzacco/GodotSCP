@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckpckhl646a40"]
+[gd_scene load_steps=13 format=3 uid="uid://ckpckhl646a40"]
 
 [ext_resource type="Script" uid="uid://byljttceuoaka" path="res://entities/SCPs/914.gd" id="1_tpx0i"]
 [ext_resource type="PackedScene" uid="uid://pfbor7xbbdjn" path="res://rooms/Models/914.blend" id="2_rw2e6"]
@@ -16,6 +16,11 @@ size = Vector3(0.4, 0.4, 1.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rw2e6"]
 size = Vector3(3.27211, 2.21802, 1.65759)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7sdm"]
+radius = 3.5
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_bqhuw"]
 radius = 5.0
 
@@ -24,7 +29,19 @@ script = ExtResource("1_tpx0i")
 fineDict = Dictionary[String, String]({
 "keycard0": "keycard1",
 "keycard1": "keycard2",
-"keycard2": "keycard3"
+"keycard2": "keycard3",
+"keycard3": "mastercard",
+"mastercard": "keycard0"
+})
+onetooneDict = Dictionary[String, String]({
+"keycard0": "mastercard",
+"keycard1": "mastercard",
+"keycard2": "mastercard",
+"keycard3": "mastercard",
+"keycard4": "mastercard",
+"keycard5": "mastercard",
+"keycard6": "mastercard",
+"keycardomni": "mastercard"
 })
 doorL = NodePath("InputChamber/DoorL")
 doorR = NodePath("OutputChamber/DoorR")
@@ -114,17 +131,6 @@ omni_attenuation = 0.5
 
 [node name="DoorL" parent="InputChamber" instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28688, -0.0480342, -0.648507)
-openableBy173 = false
-
-[node name="doorframe" parent="InputChamber/DoorL/door" index="0"]
-visible = false
-
-[node name="doorside2_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="InputChamber/DoorL/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-visible = false
 
 [node name="Button" parent="InputChamber/DoorL" index="1"]
 visible = false
@@ -133,6 +139,12 @@ disabled = true
 [node name="Button2" parent="InputChamber/DoorL" index="2"]
 visible = false
 disabled = true
+
+[node name="DoorArea" parent="InputChamber/DoorL" index="5"]
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="CollisionShape3D" parent="InputChamber/DoorL/079 Close Area" index="0"]
+shape = SubResource("SphereShape3D_i7sdm")
 
 [node name="OutputChamber" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.50567, 0.149351, 1.037)
@@ -149,17 +161,6 @@ omni_attenuation = 0.5
 
 [node name="DoorR" parent="OutputChamber" instance=ExtResource("16_jjtnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71312, -0.0480342, -0.648507)
-openableBy173 = false
-
-[node name="doorframe" parent="OutputChamber/DoorR/door" index="0"]
-visible = false
-
-[node name="doorside2_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1.5, -2.38419e-07, 0)
-
-[node name="doorside1_col" parent="OutputChamber/DoorR/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 1.5, 5.96243e-09, 0)
-visible = false
 
 [node name="Button" parent="OutputChamber/DoorR" index="1"]
 visible = false
@@ -168,6 +169,12 @@ disabled = true
 [node name="Button2" parent="OutputChamber/DoorR" index="2"]
 visible = false
 disabled = true
+
+[node name="DoorArea" parent="OutputChamber/DoorR" index="5"]
+shape = SubResource("BoxShape3D_pgugy")
+
+[node name="CollisionShape3D" parent="OutputChamber/DoorR/079 Close Area" index="0"]
+shape = SubResource("SphereShape3D_i7sdm")
 
 [node name="914Area" type="Area3D" parent="."]
 

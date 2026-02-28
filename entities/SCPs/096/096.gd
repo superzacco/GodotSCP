@@ -74,4 +74,4 @@ func should_process() -> bool:
 
 func _on_door_break_radius_body_entered(body: Node3D) -> void:
 	if body.is_in_group("door"):
-		body.open()
+		body.scp_096_break.rpc(self.global_position)

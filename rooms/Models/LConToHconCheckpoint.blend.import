@@ -34,12 +34,17 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Cube": {
+"PATH:checkpoint": {
 "generate/physics": true,
 "physics/layer": 3,
 "physics/mask": 3
 },
-"PATH:checkpoint": {
+"PATH:room": {
+"generate/physics": true,
+"physics/layer": 3,
+"physics/mask": 3
+},
+"PATH:wall": {
 "generate/physics": true,
 "physics/layer": 3,
 "physics/mask": 3

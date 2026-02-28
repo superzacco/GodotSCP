@@ -44,6 +44,12 @@ func on_pressed():
 			$Button.play()
 			return
 		
+		if equippedKeycard == null:
+			SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
+			GlobalPlayerVariables.inventory.clear_equip()
+			$Fail.play()
+			return
+		
 		GlobalPlayerVariables.inventory.clear_equip()
 		
 		if !equippedKeycard.keycardLevel >= keycardLevel:

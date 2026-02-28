@@ -3,6 +3,9 @@ class_name FacilityManager
 
 @export var lightFlickerTimer: Timer
 
+signal hcon_checkpoints_unlock
+signal ent_checkpoints_unlock
+
 var LConTOHConCheckpointOnLockdown := true
 var HConTOEntCheckpointOnLockdown := true
 
@@ -22,6 +25,7 @@ func _ready() -> void:
 @rpc("any_peer", "call_local", "reliable")
 func unlock_heavy_containment_lockdown():
 	LConTOHConCheckpointOnLockdown = false
+	hcon_checkpoints_unlock.emit()
 #endregion
 
 

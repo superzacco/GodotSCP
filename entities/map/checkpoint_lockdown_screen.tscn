@@ -55,8 +55,9 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_ajohq"]
 size = Vector3(1.37122, 0.81897, 0.120801)
 
-[node name="LockdownSCreen" type="StaticBody3D"]
+[node name="LockdownSCreen" type="StaticBody3D" node_paths=PackedStringArray("screenSprite")]
 script = ExtResource("1_p1yda")
+screenSprite = NodePath("ScreenSprite")
 
 [node name="camera_monitor" parent="." instance=ExtResource("2_p1yda")]
 
