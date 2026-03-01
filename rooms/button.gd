@@ -32,11 +32,11 @@ func on_pressed():
 		SignalBus.show_interaction_text.emit(rejectionText)
 		return
 	
-	if buttonType == 0:
+	if buttonType == ButtonTypes.BUTTON:
 		activate_things.rpc()
 		return
 	
-	if buttonType == 1:
+	if buttonType == ButtonTypes.KEYCARD:
 		var equippedKeycard: Keycard = get_keycard()
 		
 		if !equipped_item_is_keycard():
@@ -58,6 +58,9 @@ func on_pressed():
 			return
 		
 		activate_things.rpc()
+	
+	if buttonType == ButtonTypes.CODE:
+		pass
 
 
 func equipped_item_is_keycard() -> bool:

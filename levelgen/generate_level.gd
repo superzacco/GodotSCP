@@ -283,6 +283,9 @@ func get_zone_empty_adjacent_cells(zMin: int, zMax: int) -> Array[Vector2i]:
 				if nCoords.y == LContoHConCheckpointLine or nCoords.y == HContoEntranceCheckpointLine:
 					continue
 				
+				if nCoords.x > temporaryRooms.size() or nCoords.x < 0:
+					continue
+				
 				if temporaryRooms[nCoords.x][nCoords.y] == null:
 					candidates.append(nCoords)
 					seen[nCoords] = true
@@ -291,7 +294,9 @@ func get_zone_empty_adjacent_cells(zMin: int, zMax: int) -> Array[Vector2i]:
 
 func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).ends.size()
-	print("Ends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).ends, amtRequired])
+	if zMin == 0: # // have to add 1 bc spawnroom
+		amtRequired += 1
+	print("Ends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).ends.size(), amtRequired])
 	if amtRequired <= 0:
 		return
 	
@@ -299,6 +304,8 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var emptyCellsPositions: Array[Vector2i] = get_zone_empty_adjacent_cells(zMin, zMax)
 	var positionsWithOneNeighbor: Array[Vector2i] = []
 	for emptyPos: Vector2i in emptyCellsPositions:
+		if emptyPos == spawnRoomPosition:
+			continue
 		var posBits: int = get_direction_bits(emptyPos.x, emptyPos.y)
 		if posBits == NORTH or posBits == SOUTH or posBits == WEST or posBits == EAST:
 			positionsWithOneNeighbor.append(emptyPos)
@@ -311,7 +318,7 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var safePositions := []
 	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).bends.size()
-	print("Bends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).bends, amtRequired])
+	print("Bends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).bends.size(), amtRequired])
 	if amtRequired <= 0:
 		return
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://smerb04nxfsx"]
+[gd_scene load_steps=10 format=3 uid="uid://smerb04nxfsx"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_4y327"]
 [ext_resource type="PackedScene" uid="uid://bh4hhndhupbmq" path="res://rooms/Models/HCon096Chamber.blend" id="2_4y327"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="2_q81vq"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_usxmi"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_73is8"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_q81vq"]
@@ -12,6 +13,10 @@
 [node name="HCon096Chamber" type="Node3D" groups=["room"]]
 script = ExtResource("1_4y327")
 roomName = "chamber096"
+
+[node name="TeleportPoint" parent="." instance=ExtResource("2_q81vq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.31134e-07, 0, -3)
+tpName = "096"
 
 [node name="HCon096Chamber" parent="." instance=ExtResource("2_4y327")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
@@ -33,10 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
 [node name="KeycardDoor" parent="Doors" instance=ExtResource("6_73is8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.13003, 0.255746, -3.2563)
-
-[node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
-bones/0/position = Vector3(0, 0.00166321, -1.83286e-07)
-bones/3/position = Vector3(-1.25574e-10, -0.00166321, 1.42401e-07)
 
 [node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
 transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)

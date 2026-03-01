@@ -354,7 +354,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_mhw3w")
 theme_override_font_sizes/font_size = 16
-text = "Music Volume"
+text = "Music/Ambient Volume"
 
 [node name="MusicNumber" type="Label" parent="Panel/OptionsContainer/AudioContainer/VBoxContainer/MusicVolume/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

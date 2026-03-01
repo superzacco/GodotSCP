@@ -43,7 +43,7 @@ func process_one() -> void:
 	if !should_process(): return
 	
 	attack_player()
-	
+	 
 	nextPathPos = agent.get_next_path_position() - global_position
 	velocity = (nextPathPos.normalized() * (speed * 0.1))
 

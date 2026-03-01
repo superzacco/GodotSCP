@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://6lqvdnc7dich" path="res://audio/door/DoorClose0.ogg" id="5_vqlka"]
 [ext_resource type="AudioStream" uid="uid://cbg8bi7wyqqc6" path="res://audio/door/DoorClose1.ogg" id="6_xcrkh"]
 [ext_resource type="AudioStream" uid="uid://cbw6tchvkoh1w" path="res://audio/door/DoorClose2.ogg" id="7_vbm6u"]
-[ext_resource type="AudioStream" uid="uid://d0h3la227wqia" path="res://entities/SCPs/096/DoorBreak.ogg" id="10_1p44s"]
+[ext_resource type="AudioStream" uid="uid://d0h3la227wqia" path="res://audio/scps/096/DoorBreak.ogg" id="10_1p44s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ds5uy"]
 

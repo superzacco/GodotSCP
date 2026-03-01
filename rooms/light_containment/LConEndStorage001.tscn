@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://b541p54qpvnts"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_8qwf2"]
+[ext_resource type="PackedScene" uid="uid://cyd1q2hvseuu1" path="res://rooms/Models/LConStorageEnd001.blend" id="2_u2ami"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_h8fgo"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_ojqvf"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_gg73u"]
+
+[node name="LConEndStorage001" type="Node3D" groups=["room"]]
+script = ExtResource("1_8qwf2")
+
+[node name="LConStorageEnd001" parent="." instance=ExtResource("2_u2ami")]
+
+[node name="Points" type="Node3D" parent="."]
+
+[node name="point2" parent="Points" instance=ExtResource("3_h8fgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_ojqvf")]
+
+[node name="Light" parent="." instance=ExtResource("5_gg73u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.85188, -5)

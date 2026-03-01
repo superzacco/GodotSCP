@@ -1,9 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://6icr8b8e7lkb"]
+[gd_scene load_steps=14 format=3 uid="uid://6icr8b8e7lkb"]
 
 [ext_resource type="Script" uid="uid://dv5m4a7op2ap3" path="res://entities/SCPs/096/096.gd" id="1_g3s03"]
 [ext_resource type="PackedScene" uid="uid://dh52hpemdn21d" path="res://entities/SCPs/096/096.blend" id="1_q15mk"]
 [ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="2_yyjhl"]
 [ext_resource type="AudioStream" uid="uid://bcmdmmdv6gxjo" path="res://audio/scps/096/Scream.ogg" id="3_0vb0u"]
+[ext_resource type="AudioStream" uid="uid://csf4t2enrxd8h" path="res://audio/scps/096/096IdleSounds.ogg" id="5_pikf5"]
+[ext_resource type="AudioStream" uid="uid://bp7cua6juw3xn" path="res://audio/scps/096/096Anger.ogg" id="6_i7mqr"]
+[ext_resource type="AudioStream" uid="uid://dr04c5ny6m330" path="res://audio/scps/096/096ChaseAmbiance.ogg" id="7_i7mqr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyjhl"]
+size = Vector3(0.149, 0.265, 0.200024)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g3s03"]
 radius = 0.2
@@ -25,13 +31,18 @@ properties/1/replication_mode = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3s03"]
 size = Vector3(0.5, 5, 0.5)
 
-[node name="SCP096" type="CharacterBody3D" node_paths=PackedStringArray("screamPlayer", "processTimer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["elevatorpassenger", "spectatable", "teslashockable"]]
+[node name="SCP096" type="CharacterBody3D" node_paths=PackedStringArray("chasePlayer", "screamPlayer", "idlePlayer", "angerPlayer", "faceVisibleNotifier", "processTimer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["elevatorpassenger", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_g3s03")
 body = ExtResource("2_yyjhl")
+chasePlayer = NodePath("ChaseAmbiance")
 screamPlayer = NodePath("ScreamPlayer")
+idlePlayer = NodePath("IdleSoundPlayer")
+angerPlayer = NodePath("AngeredPlayer")
+faceVisibleNotifier = NodePath("096/Armature/Skeleton3D/headpos/FaceNotifier")
 wanderSpeed = 12.0
+enabled = true
 speed = 150.0
 damage = 200.0
 typeOfDamage = 4
@@ -45,8 +56,51 @@ attackArea = NodePath("AttackArea")
 [node name="096" parent="." instance=ExtResource("1_q15mk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.6, 0)
 
+[node name="Skeleton3D" parent="096/Armature" index="0"]
+bones/0/position = Vector3(1.22004e-10, -0.321148, -0.0198399)
+bones/0/rotation = Quaternion(0.115368, 1.18413e-07, 1.37529e-08, 0.993323)
+bones/1/rotation = Quaternion(0.106115, 3.57492e-14, 2.52997e-08, 0.994354)
+bones/2/rotation = Quaternion(0.174175, -2.55351e-14, 4.15266e-08, 0.984715)
+bones/4/position = Vector3(0.174592, 0.376851, 0.0163068)
+bones/4/rotation = Quaternion(0.0624423, 0.794427, 0.595292, -0.10302)
+bones/5/rotation = Quaternion(0.0725717, 0.17273, -0.100984, 0.977087)
+bones/6/rotation = Quaternion(0.135301, 0.174092, 0.116402, 0.968419)
+bones/7/position = Vector3(-0.17459, 0.376356, 0.016855)
+bones/7/rotation = Quaternion(-0.0755995, 0.768938, 0.628803, 0.0873345)
+bones/8/rotation = Quaternion(0.0883256, 0.0360366, 0.0768647, 0.992468)
+bones/9/rotation = Quaternion(0.142726, -0.278932, -0.0705246, 0.947023)
+bones/10/rotation = Quaternion(0.943471, 0.016655, -0.00169727, -0.331032)
+bones/11/rotation = Quaternion(0.192776, 0.0253058, -0.00984378, 0.980867)
+bones/12/rotation = Quaternion(-0.671435, 0.0731683, -0.241074, 0.696925)
+bones/13/rotation = Quaternion(0.859991, -0.00895502, 0.0134232, 0.510054)
+bones/14/rotation = Quaternion(0.662363, -0.0380904, 0.0055871, 0.748193)
+bones/15/rotation = Quaternion(-0.719196, -0.0561573, 0.245485, 0.647565)
+
+[node name="headpos" parent="096/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.999995, -0.00254001, -0.0014934, 0.00276391, 0.984264, 0.17668, 0.00102113, -0.176683, 0.984267, -0.00473219, 0.560882, 0.39571)
+
+[node name="FaceNotifier" type="VisibleOnScreenNotifier3D" parent="096/Armature/Skeleton3D/headpos" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.909555, -0.415582, 0, 0.415582, 0.909555, 0.027636, -0.0828602, 0.0828663)
+aabb = AABB(-0.042, -0.018, -0.024, 0.038, 0.032, 0.008)
+
+[node name="HeadCol" type="StaticBody3D" parent="096/Armature/Skeleton3D/headpos" index="2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="096/Armature/Skeleton3D/headpos/HeadCol"]
+transform = Transform3D(1, -2.16587e-08, 5.82077e-11, -5.77711e-09, 0.848252, -0.529594, 7.43603e-09, 0.529594, 0.848251, -0.000176988, -0.018982, -0.00465053)
+shape = SubResource("BoxShape3D_yyjhl")
+
+[node name="AnimationPlayer" parent="096" index="1"]
+blend_times = [&"idle", &"idle", 0.3, &"idle", &"run", 0.3, &"idle", &"walk", 0.3, &"run", &"idle", 0.3, &"run", &"run", 0.3, &"run", &"walk", 0.3, &"walk", &"idle", 0.3, &"walk", &"run", 0.3, &"walk", &"walk", 0.3]
+
 [node name="ProcessTimer" type="Timer" parent="."]
 wait_time = 0.1
+autostart = true
+
+[node name="RunTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 autostart = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -72,11 +126,6 @@ shape = SubResource("SphereShape3D_0vb0u")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g3s03")
 
-[node name="RunTimer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
 [node name="DoorBreakRadius" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 collision_layer = 257
@@ -90,6 +139,22 @@ stream = ExtResource("3_0vb0u")
 attenuation_model = 1
 unit_size = 8.0
 bus = &"Sound Effects"
+
+[node name="IdleSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_pikf5")
+attenuation_model = 1
+unit_size = 8.0
+bus = &"Sound Effects"
+
+[node name="AngeredPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_i7mqr")
+attenuation_model = 1
+unit_size = 8.0
+bus = &"Sound Effects"
+
+[node name="ChaseAmbiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_i7mqr")
+bus = &"Music"
 
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="body_entered" from="DoorBreakRadius" to="." method="_on_door_break_radius_body_entered"]

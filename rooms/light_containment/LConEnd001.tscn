@@ -20,4 +20,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 [node name="RoomArea" parent="." instance=ExtResource("3_81jdv")]
 
 [node name="Light" parent="." instance=ExtResource("4_lteed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85188, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85188, -5)

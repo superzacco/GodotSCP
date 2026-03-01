@@ -19,7 +19,10 @@ func rand_from(array: Array, rng: RandomNumberGenerator = UtilRNG):
 	if rng.seed == 0:
 		rng.seed = GameManager.seed
 	
-	return array[rng.randi_range(0, array.size()-1)]
+	if array.size() > 0:
+		return array[rng.randi_range(0, array.size()-1)]
+	else:
+		return null
 
 func pick_from_list(weightedDict: Dictionary, rng: RandomNumberGenerator = UtilRNG):
 	if rng.seed == 0:
