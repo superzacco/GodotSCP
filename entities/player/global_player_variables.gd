@@ -36,6 +36,7 @@ var worldEnv: WorldEnvironment
 
 var consoleOpen: bool = false
 var immutableMenuOpen: bool = false
+var immutableNonMenuOpen: bool = false
 
 var noclipEnabled: bool = false
 var godEnabled: bool = false

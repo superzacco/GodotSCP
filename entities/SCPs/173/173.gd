@@ -253,6 +253,7 @@ func return_peers_in_radius() -> Array[int]:
 	return peerArray
 
 
+@rpc("any_peer", "call_local", "reliable")
 func teleport_to_player(position: Vector3):
 	self.global_position = position
 

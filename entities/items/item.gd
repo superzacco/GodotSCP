@@ -19,6 +19,7 @@ enum ItemType {
 	type_card
 }
 
+@export var otherSpawnPoints: Array[Node3D]
 @export var onlyOneCanExist: bool = false
 @export var onlyOneString: String
 
@@ -34,6 +35,7 @@ var equipped: bool = false
 func _ready() -> void:
 	check_if_only_one()
 	setup_item()
+
 
 
 func check_if_only_one():
@@ -56,10 +58,19 @@ func setup_item():
 		
 		if !ZFunc.randInPercent(chanceToSpawn):
 			delete_item.rpc()
+		if otherSpawnPoints.size() > 0:
+			otherSpawnPoints.append(self)
+			relocate_item.rpc(ZFunc.rand_from(otherSpawnPoints).global_position)
 		
 		ItemManager.add_item_to_dict(self)
 	
+	await SignalBus.level_generation_finished
 	SignalBus.reparent_item.emit(self)
+
+
+@rpc("authority", "call_local", "reliable")
+func relocate_item(pos: Vector3):
+	self.global_position = pos
 
 
 @rpc("authority", "call_local", "reliable")

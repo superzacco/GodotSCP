@@ -66,7 +66,6 @@ shape = SubResource("CapsuleShape3D_jpdk5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 radius = 1.0
-debug_enabled = true
 
 [node name="ChaseArea" type="Area3D" parent="."]
 

@@ -41,6 +41,7 @@ _subresources={
 },
 "PATH:room": {
 "generate/physics": true,
+"mesh_instance/layers": 513,
 "physics/layer": 3,
 "physics/mask": 3
 },

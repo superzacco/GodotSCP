@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw2qer7dre5cs"]
+[gd_scene load_steps=9 format=3 uid="uid://cw2qer7dre5cs"]
 
-[ext_resource type="Script" uid="uid://bim4xj0veqqml" path="res://rooms/button.gd" id="1_s85wg"]
+[ext_resource type="Script" uid="uid://bm6q272poe8ay" path="res://rooms/code_keypad.gd" id="1_s85wg"]
 [ext_resource type="PackedScene" uid="uid://6n58al6lmtqi" path="res://rooms/Models/code_button.blend" id="2_s85wg"]
 [ext_resource type="AudioStream" uid="uid://dik34y7uc2hu4" path="res://audio/interaction/keycard.ogg" id="3_0kcnx"]
 [ext_resource type="AudioStream" uid="uid://bubr0tua8g3a1" path="res://audio/interaction/button.ogg" id="4_co7ll"]
 [ext_resource type="AudioStream" uid="uid://cv8klmw5ma6d3" path="res://audio/interaction/keycard_fail.ogg" id="5_4hhs8"]
+
+[sub_resource type="Environment" id="Environment_s85wg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pc1fu"]
 size = Vector3(0.25, 0.25, 0.03)
@@ -12,13 +14,142 @@ size = Vector3(0.25, 0.25, 0.03)
 [sub_resource type="BoxShape3D" id="BoxShape3D_of0dn"]
 size = Vector3(0.25, 0.4, 0.1)
 
-[node name="codeKeypad" type="StaticBody3D" groups=["button"]]
+[node name="codeKeypad" type="StaticBody3D" node_paths=PackedStringArray("buttonsCamera") groups=["button"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_s85wg")
+buttonsCamera = NodePath("ButtonsCamera")
 buttonType = 2
 
+[node name="ButtonsCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.0995971, -0.314223)
+cull_mask = 1048064
+environment = SubResource("Environment_s85wg")
+projection = 1
+fov = 40.0
+size = 0.250493
+
 [node name="code_button" parent="." instance=ExtResource("2_s85wg")]
+
+[node name="0" type="StaticBody3D" parent="code_button/Buttons/0" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00116267, -0.173713, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/0/0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="1" type="StaticBody3D" parent="code_button/Buttons/1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0606668, -0.0385684, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/1/1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="2" type="StaticBody3D" parent="code_button/Buttons/2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000350147, -0.0375598, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/2/2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="3" type="StaticBody3D" parent="code_button/Buttons/3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0598543, -0.0380641, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/3/3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="4" type="StaticBody3D" parent="code_button/Buttons/4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0606667, -0.08244, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/4/4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="5" type="StaticBody3D" parent="code_button/Buttons/5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000154065, -0.08244, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/5/5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="6" type="StaticBody3D" parent="code_button/Buttons/6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05935, -0.08244, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/6/6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="7" type="StaticBody3D" parent="code_button/Buttons/7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0606667, -0.128329, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/7/7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="8" type="StaticBody3D" parent="code_button/Buttons/8" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000658307, -0.128329, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/8/8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="9" type="StaticBody3D" parent="code_button/Buttons/9" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0603586, -0.128329, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/9/9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="open" type="StaticBody3D" parent="code_button/Buttons/open" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0603586, -0.174218, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/open/open"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
+
+[node name="stop" type="StaticBody3D" parent="code_button/Buttons/stop" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0601624, -0.174218, -0.0421214)
+collision_layer = 2
+collision_mask = 2
+
+[node name="shape" type="CollisionPolygon3D" parent="code_button/Buttons/stop/stop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00680324)
+depth = 0.0
+polygon = PackedVector2Array(0.025, -0.02, 0.025, 0.02, -0.025, 0.02, -0.025, -0.02)
 
 [node name="Area3D" type="Area3D" parent="." groups=["interactables"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
@@ -51,3 +182,5 @@ bus = &"Sound Effects"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018982, 0.0022583, 0.0112529)
 shape = SubResource("BoxShape3D_of0dn")
+
+[editable path="code_button"]

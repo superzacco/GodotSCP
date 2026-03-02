@@ -60,7 +60,6 @@ bones/14/rotation = Quaternion(0.759805, -0.0922114, 0.139404, 0.6283)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 radius = 5.08
-debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395357, 0)

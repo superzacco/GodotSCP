@@ -2,6 +2,7 @@ extends Room
 
 @export var blarePlayer: AudioStreamPlayer3D
 @export var alarmPlayer: AudioStreamPlayer3D
+@export var lockedPlayer: AudioStreamPlayer3D
 
 @export var doors: Array[Door]
 var active: bool = false
@@ -11,10 +12,15 @@ var facility: FacilityManager = null
 func _ready() -> void:
 	await SignalBus.level_generation_finished
 	facility = GlobalPlayerVariables.facilityManager
+	facility.hcon_checkpoints_unlock.connect(stop_locked_alarm)
 
 
 func activate():
 	open_checkpoint_doors()
+
+
+func stop_locked_alarm():
+	lockedPlayer.stop()
 
 
 func open_checkpoint_doors():

@@ -32,7 +32,52 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Buttons/0": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/1": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/2": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/3": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/4": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/5": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/6": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/7": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/8": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/9": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/open": {
+"mesh_instance/layers": 513
+},
+"PATH:Buttons/stop": {
+"mesh_instance/layers": 513
+},
+"PATH:Cube": {
+"mesh_instance/layers": 513
+},
+"PATH:Cube_001": {
+"mesh_instance/layers": 513
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

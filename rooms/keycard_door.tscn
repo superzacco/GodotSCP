@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://7l4nci6wjc8r"]
+[gd_scene load_steps=13 format=3 uid="uid://7l4nci6wjc8r"]
 
 [ext_resource type="Script" uid="uid://b4hkt371bto7b" path="res://rooms/door.gd" id="1_ofwoi"]
 [ext_resource type="PackedScene" uid="uid://urhahy80l7ot" path="res://rooms/Models/door_lcon.blend" id="2_a3yfc"]
+[ext_resource type="PackedScene" uid="uid://dom3g02c3mgoa" path="res://entities/map/door_panel.tscn" id="2_xcrkh"]
 [ext_resource type="AudioStream" uid="uid://dtu8106k1a65n" path="res://audio/door/DoorOpen1.ogg" id="3_ds5uy"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="3_g8fdx"]
 [ext_resource type="AudioStream" uid="uid://bvp0vsw2n7u4n" path="res://audio/door/DoorOpen2.ogg" id="4_1p44s"]
@@ -17,6 +18,7 @@
 collision_layer = 256
 collision_mask = 256
 script = ExtResource("1_ofwoi")
+doorPanel = ExtResource("2_xcrkh")
 animationPlayer = NodePath("door/AnimationPlayer")
 openSounds = Array[AudioStream]([ExtResource("4_g8fdx"), ExtResource("3_ds5uy"), ExtResource("4_1p44s")])
 closeSounds = Array[AudioStream]([ExtResource("5_vqlka"), ExtResource("6_xcrkh"), ExtResource("7_vbm6u")])

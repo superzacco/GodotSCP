@@ -292,4 +292,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9918, 1.52588e-05, 64.760
 [node name="Scp173" parent="SCPs" instance=ExtResource("21_5poiv")]
 
 [node name="SCP096" parent="SCPs" instance=ExtResource("81_ndrjj")]
-enabled = true

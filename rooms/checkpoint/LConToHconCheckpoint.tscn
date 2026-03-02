@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0ltomxgby0du"]
+[gd_scene load_steps=20 format=3 uid="uid://c0ltomxgby0du"]
 
 [ext_resource type="Script" uid="uid://dhjj12djcrgin" path="res://rooms/checkpoint/Checkpoint_LCon_HCon.gd" id="1_xwyhf"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_s063j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="5_jal28"]
 [ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/door/DoorCheckpoint.ogg" id="7_xwyhf"]
 [ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="8_46p4f"]
+[ext_resource type="AudioStream" uid="uid://dn6wbxlxb5pwe" path="res://audio/rooms/checkpoint/locked-bleeps.ogg" id="9_5bi5x"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="9_e1tsy"]
 [ext_resource type="PackedScene" uid="uid://d12eugvcfftyc" path="res://rooms/big_door.tscn" id="10_jal28"]
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="11_8mxrf"]
@@ -22,10 +23,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_i7sdm"]
 radius = 3.5
 
-[node name="LConToHConCheckpoint" type="Node3D" node_paths=PackedStringArray("blarePlayer", "alarmPlayer", "doors", "overrideDoor", "spawnPosFor173") groups=["room"]]
+[node name="LConToHConCheckpoint" type="Node3D" node_paths=PackedStringArray("blarePlayer", "alarmPlayer", "lockedPlayer", "doors", "overrideDoor", "spawnPosFor173") groups=["room"]]
 script = ExtResource("1_xwyhf")
 blarePlayer = NodePath("Checkpoint/CheckpointBlare")
 alarmPlayer = NodePath("Checkpoint/CheckpointAlarm")
+lockedPlayer = NodePath("Checkpoint/LockedAlarmSound")
 doors = [NodePath("Checkpoint/doors/Door"), NodePath("Checkpoint/doors/Door2")]
 overrideDoor = NodePath("Doors/BigDoor")
 spawnPosFor173 = NodePath("173Point")
@@ -55,12 +57,12 @@ brightness = 0.5
 omniBrightness = 1.0
 
 [node name="Keycardbutton" parent="Checkpoint" node_paths=PackedStringArray("extraToControl") instance=ExtResource("4_1pim1")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.302401, 0.31021, 0.587234)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.302401, 0.11021, 0.587234)
 extraToControl = NodePath("../..")
 keycardLevel = 3
 
 [node name="Keycardbutton2" parent="Checkpoint" node_paths=PackedStringArray("extraToControl") instance=ExtResource("4_1pim1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.279637, 0.31021, -0.582366)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.279637, 0.11021, -0.582366)
 extraToControl = NodePath("../..")
 keycardLevel = 3
 
@@ -110,6 +112,14 @@ bus = &"Sound Effects"
 stream = ExtResource("8_46p4f")
 attenuation_model = 1
 volume_db = -6.0
+bus = &"Sound Effects"
+
+[node name="LockedAlarmSound" type="AudioStreamPlayer3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+stream = ExtResource("9_5bi5x")
+attenuation_model = 1
+volume_db = -15.0
+autoplay = true
 bus = &"Sound Effects"
 
 [node name="lights" type="Node3D" parent="."]
@@ -178,6 +188,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.25, 
 [node name="BigDoor" parent="Doors" instance=ExtResource("10_jal28")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.71676, 0.359164, 3.51056)
 
+[node name="DoorR-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
+
+[node name="DoorL-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
+
 [node name="Keycardbutton2" parent="Doors/BigDoor" index="1"]
 visible = false
 disabled = true
@@ -189,8 +205,17 @@ disabled = true
 [node name="code_door" parent="Doors" instance=ExtResource("12_46p4f")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.50219, 0.0591895, -5.10343)
 
+[node name="codeKeypad2" parent="Doors/code_door" index="1"]
+disabled = true
+
+[node name="ButtonsCamera" parent="Doors/code_door/codeKeypad" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.1, -0.212778)
+
 [node name="code_door2" parent="Doors" instance=ExtResource("12_46p4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8022, 0.0591895, 0.796565)
+
+[node name="codeKeypad2" parent="Doors/code_door2" index="1"]
+disabled = true
 
 [node name="big_door" parent="Doors" instance=ExtResource("11_8mxrf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.28231, 0.358, 3.405)
@@ -220,4 +245,10 @@ lockAfterActivating = true
 [editable path="Checkpoint/doors/Door2/door"]
 [editable path="Doors/BigDoor"]
 [editable path="Doors/BigDoor/big_door"]
+[editable path="Doors/code_door"]
+[editable path="Doors/code_door/door"]
+[editable path="Doors/code_door/codeKeypad"]
+[editable path="Doors/code_door/codeKeypad/code_button"]
+[editable path="Doors/code_door2"]
+[editable path="Doors/code_door2/door"]
 [editable path="Doors/big_door"]

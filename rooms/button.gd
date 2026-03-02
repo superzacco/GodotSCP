@@ -1,4 +1,5 @@
 extends Node3D
+class_name DoorButton
 
 @export var doorsToControl: Array[Door]
 @export var rejectionText: String
@@ -58,9 +59,7 @@ func on_pressed():
 			return
 		
 		activate_things.rpc()
-	
-	if buttonType == ButtonTypes.CODE:
-		pass
+		return
 
 
 func equipped_item_is_keycard() -> bool:

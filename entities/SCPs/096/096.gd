@@ -18,10 +18,11 @@ enum States {
 }
 
 var targetedPlayer: Player = null
-
 var facilityManager: FacilityManager = null
 var localPlayer: Player = null
 var playerCamera: Camera3D = null
+
+
 func _ready() -> void:
 	super()
 	SignalBus.teleport_096_to_player.connect(teleport_to)
@@ -41,19 +42,20 @@ func process_one() -> void:
 func process_server():
 	if playersInAttackArea.size() > 0 and state == States.CHASE:
 		attack.rpc()
+		stop_chase.rpc()
 	
 	if targetNPC != null:
 		var distToTargetNPC := targetNPC.global_position.distance_to(global_position)
-		if distToTargetNPC < 0.25 and state == States.CHASE:
+		if distToTargetNPC < 1.0 and state == States.CHASE:
 			stop_chase.rpc()
 			kill_npc.rpc()
+	if targetedPlayer != null:
+		update_target_pos(targetedPlayer.global_position)
 	
 	if state != States.ANGER:
 		nextPathPos = agent.get_next_path_position() - global_position
 	
 	var currSpeed = speed if state == States.CHASE else wanderSpeed
-	print(currSpeed)
-	
 	velocity = (nextPathPos.normalized() * (currSpeed * 0.1))
 
 
@@ -61,7 +63,7 @@ var faceJuice: int = 0
 func process_client():
 	if face_visible_to_camera():
 		faceJuice += 34
-		if faceJuice > 100:
+		if faceJuice > 100 and enabled:
 			if state == States.WANDER:
 				get_angry.rpc(multiplayer.get_unique_id())
 	else:
@@ -80,9 +82,14 @@ func process_client():
 func _process(delta: float) -> void:
 	if !should_process(): return
 	
-	look_at_pos(global_position + velocity)
-	move_and_slide()
+	if !agent.target_position.is_equal_approx(self.global_position):
+		look_at_pos(global_position + velocity)
+		move_and_slide()
 
+
+@rpc("any_peer", "call_local", "reliable")
+func update_target_pos(pos: Vector3):
+	agent.target_position = pos
 
 @rpc("any_peer", "call_local", "reliable")
 func set_state(states: States):
@@ -98,7 +105,7 @@ func face_visible_to_camera() -> bool:
 	
 	if ZFunc.get_ray_collider(camPos, facePos) == null: 
 		if faceVisibleNotifier.is_on_screen():
-			if !GlobalPlayerVariables.blinking:
+			if !GlobalPlayerVariables.blinking and !GlobalPlayerVariables.noclipEnabled:
 				return true
 	
 	return false
@@ -107,7 +114,10 @@ func face_visible_to_camera() -> bool:
 @rpc("any_peer", "call_local", "reliable")
 func get_angry(targetID: int):
 	print("096 is angry at player: %s" % targetID)
-	set_state.rpc(States.ANGER)
+	update_target_pos(self.global_position)
+	set_state(States.ANGER)
+	
+	idlePlayer.stop()
 	angerPlayer.play()
 	
 	await get_tree().create_timer(30).timeout
@@ -146,21 +156,24 @@ func go_kill_random_npc():
 
 @rpc("authority", "call_local", "reliable")
 func stop_chase():
-	agent.target_position = ZFunc.rand_from(facilityManager.rooms).global_position
-	set_state.rpc(States.WANDER)
+	update_target_pos(ZFunc.rand_from(facilityManager.rooms).global_position)
+	set_state(States.WANDER)
+	
 	targetedPlayer = null
 	idlePlayer.play()
+	chasePlayer.stop()
 	screamPlayer.stop()
 
 @rpc("authority", "call_local", "reliable")
 func send_096(target: Node3D, startPos: Vector3 = self.global_position):
 	var targetPos: Vector3 = target.global_position
-	set_state.rpc(States.CHASE)
+	set_state(States.CHASE)
 	
 	if target.is_in_group("player"):
 		var player: Player = target
 		var ID := player.get_multiplayer_authority()
 		if ID == multiplayer.get_remote_sender_id():
+			print("playingChase")
 			chasePlayer.play()
 		
 		targetedPlayer = player
@@ -180,6 +193,7 @@ func kill_npc():
 @rpc("authority", "call_local", "reliable")
 func setup_npc(targetPos: Vector3):
 	targetNPC = body.instantiate()
+	targetNPC.startDead = false
 	get_tree().root.add_child(targetNPC)
 	targetNPC.global_position = targetPos-Vector3(0,1,0)
 

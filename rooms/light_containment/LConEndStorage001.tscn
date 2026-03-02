@@ -1,22 +1,120 @@
-[gd_scene load_steps=6 format=3 uid="uid://b541p54qpvnts"]
+[gd_scene load_steps=11 format=3 uid="uid://b541p54qpvnts"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_8qwf2"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="2_ojqvf"]
 [ext_resource type="PackedScene" uid="uid://cyd1q2hvseuu1" path="res://rooms/Models/LConStorageEnd001.blend" id="2_u2ami"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_h8fgo"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_ojqvf"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_gg73u"]
+[ext_resource type="PackedScene" uid="uid://bko55qdmctjdd" path="res://rooms/Models/props/shelf02.blend" id="6_u2ami"]
+[ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="7_gg73u"]
+[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="9_2lo4i"]
+[ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="10_4hpky"]
 
 [node name="LConEndStorage001" type="Node3D" groups=["room"]]
 script = ExtResource("1_8qwf2")
 
+[node name="RoomArea" parent="." instance=ExtResource("4_ojqvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="KeycardDoor" parent="." instance=ExtResource("2_ojqvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110835, -3.1)
+
+[node name="Keycardbutton" parent="KeycardDoor" index="1"]
+keycardLevel = 1
+
+[node name="Keycardbutton2" parent="KeycardDoor" index="2"]
+keycardLevel = 1
+
 [node name="LConStorageEnd001" parent="." instance=ExtResource("2_u2ami")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="point2" parent="Points" instance=ExtResource("3_h8fgo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.14512, -7.5)
 
-[node name="RoomArea" parent="." instance=ExtResource("4_ojqvf")]
+[node name="Lights" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
-[node name="Light" parent="." instance=ExtResource("5_gg73u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.85188, -5)
+[node name="Light" parent="Lights" instance=ExtResource("5_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.2, 1.69961, -5.2)
+brightness = 1.0
+omniBrightness = 0.25
+
+[node name="Light2" parent="Lights" instance=ExtResource("5_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.9, 1.69961, -0.2)
+
+[node name="Light3" parent="Lights" instance=ExtResource("5_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.9, 1.69961, 3.4)
+
+[node name="Light4" parent="Lights" instance=ExtResource("5_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.7, 1.69961, -0.2)
+
+[node name="Light5" parent="Lights" instance=ExtResource("5_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.7, 1.69961, 3.4)
+
+[node name="Props" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="bench" parent="Props" instance=ExtResource("7_gg73u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.35068, -0.773593, -5.27695)
+
+[node name="shelf02" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.41979, -0.927264, 4.41936)
+
+[node name="shelf03" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.41979, -0.927264, 3.16237)
+
+[node name="shelf04" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.41979, -0.927264, 0.962371)
+
+[node name="shelf05" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.41979, -0.927264, -0.270868)
+
+[node name="shelf06" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.42349, -0.927264, 1.26717)
+
+[node name="shelf07" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.39623, -0.927264, 4.43841)
+
+[node name="shelf08" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.39623, -0.927264, 0.00517145)
+
+[node name="shelf09" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.39623, -0.927264, -1.22807)
+
+[node name="shelf10" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 3.82137e-15, -1, 8.74228e-08, 1, 0, 1, -8.74228e-08, -4.37114e-08, 0.996225, -0.927264, -0.528067)
+
+[node name="shelf11" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 3.82137e-15, -1, 8.74228e-08, 1, 0, 1, -8.74228e-08, -4.37114e-08, 0.996225, -0.927264, 0.771933)
+
+[node name="shelf12" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 3.82137e-15, -1, 8.74228e-08, 1, 0, 1, -8.74228e-08, -4.37114e-08, 0.996225, -0.927264, 2.07193)
+
+[node name="shelf13" parent="Props" instance=ExtResource("6_u2ami")]
+transform = Transform3D(-4.37114e-08, 3.82137e-15, -1, 8.74228e-08, 1, 0, 1, -8.74228e-08, -4.37114e-08, 0.996225, -0.927264, 3.37193)
+
+[node name="Item" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="keycard00" parent="Item" node_paths=PackedStringArray("otherSpawnPoints") instance=ExtResource("9_2lo4i")]
+transform = Transform3D(0.872436, 0, 0.488728, 0, 1, 0, -0.488728, 0, 0.872436, 0.879671, 0.141514, -0.168487)
+otherSpawnPoints = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
+
+[node name="Marker3D" type="Marker3D" parent="Item/keycard00"]
+transform = Transform3D(-0.120951, 0, -0.992659, 0, 1, 0, 0.992659, 0, -0.120951, -0.619452, -1, 1.10579)
+
+[node name="Marker3D2" type="Marker3D" parent="Item/keycard00"]
+transform = Transform3D(0.164721, 0, -0.986341, 0, 1, 0, 0.986341, 0, 0.164721, -1.01556, -0.5, 2.37398)
+
+[node name="Marker3D3" type="Marker3D" parent="Item/keycard00"]
+transform = Transform3D(-0.126857, 0, 0.991922, 0, 1, 0, -0.991922, 0, -0.126857, -1.73243, 0.519981, 3.63251)
+
+[node name="keycard01" parent="Item" instance=ExtResource("10_4hpky")]
+transform = Transform3D(-0.828793, 0, -0.559555, 0, 1, 0, 0.559555, 0, -0.828793, -2.32442, -0.34764, 3.49486)
+
+[editable path="KeycardDoor"]
+[editable path="KeycardDoor/door"]

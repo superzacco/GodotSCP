@@ -90,7 +90,7 @@ func scp_079_close():
 @export var doorMeshes: Array[MeshInstance3D]
 @rpc("reliable", "call_local", "any_peer")
 func scp_096_break(pos: Vector3):
-	if broken or doorOpen:
+	if broken or doorOpen or doorPanel == null:
 		return
 	
 	broken = true

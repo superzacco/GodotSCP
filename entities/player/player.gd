@@ -36,7 +36,6 @@ var wearingGasMask: bool = false
 
 var health: float = 100.0
 var dead: bool = false
-var canMove: bool = true
 var specMgr: SpectatorManager
 
 var multiplayerAuthorityID: int 
@@ -77,11 +76,13 @@ func _physics_process(delta: float) -> void:
 		blinking = GlobalPlayerVariables.blinking
 		bend_upper_body.rpc(camera.rotation_degrees.x)
 	
-	if !is_multiplayer_authority() or dead or !canMove:
+	if !is_multiplayer_authority() or dead:
 		return
 	
-	if GlobalPlayerVariables.consoleOpen:
-		moveSpeed = 0.0
+	if !can_move():
+		$AnimationPlayer.pause()
+		modelAnimations.play("idle")
+		return
 	
 	#region MOVEMENT
 	linear_velocity *= 0.85
@@ -122,13 +123,15 @@ func _physics_process(delta: float) -> void:
 		recharge_sprint(delta)
 	
 	if sprinting and sprintJuice > 0:
+		modelAnimations.speed_scale = 1.35
 		$AnimationPlayer.speed_scale = 1.35
 	else:
+		modelAnimations.speed_scale = 1 
 		$AnimationPlayer.speed_scale = 1 
 	#endregion
 	
 	#region // ANIMATIONS
-	if moveDir != Vector3(0, 0, 0) and !GlobalPlayerVariables.consoleOpen:
+	if moveDir != Vector3.ZERO:
 		$AnimationPlayer.play()
 		
 		if sprinting and sprintJuice > 0:
@@ -151,12 +154,29 @@ func bend_upper_body(cameraAngle: float):
 	skeleton.set_bone_pose_rotation(upperBodyBone, Quaternion(angle, 0, 0, 1.0))  
 
 
+func can_look() -> bool:
+	if !GlobalPlayerVariables.lookingEnabled or GlobalPlayerVariables.immutableNonMenuOpen:
+		return false
+	if GlobalPlayerVariables.consoleOpen:
+		return false
+	
+	return true
+
+
+func can_move() -> bool:
+	if GlobalPlayerVariables.immutableNonMenuOpen or GlobalPlayerVariables.consoleOpen or dead:
+		return false
+	
+	return true
+
+
+
 #region CAMERA MOVEMENT
 func _input(event):
-	if GlobalPlayerVariables.consoleOpen or !is_multiplayer_authority() or dead:
+	if !can_move() or !is_multiplayer_authority():
 		return
 	
-	if event is InputEventMouseMotion and GlobalPlayerVariables.lookingEnabled:
+	if event is InputEventMouseMotion and can_look():
 		stuffToRotate.rotate_y(deg_to_rad(-event.relative.x * GlobalPlayerVariables.sensitivity * 0.1))
 		camera.rotate_x(deg_to_rad(-event.relative.y * GlobalPlayerVariables.sensitivity * 0.1))
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
@@ -214,7 +234,6 @@ func sent_to_pocket_dimension():
 	
 	$AnimationPlayer.play("death")
 	
-	canMove = false
 	GlobalPlayerVariables.lookingEnabled = false
 	
 	await get_tree().create_timer(0.4).timeout
@@ -226,7 +245,6 @@ func sent_to_pocket_dimension():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("walking_Bob")
 	
-	canMove = true
 	GlobalPlayerVariables.lookingEnabled = true
 
 
@@ -272,7 +290,6 @@ func on_death(dyingPlayerID: int):
 		return
 	
 	if dyingPlayerID == selfID:
-		canMove = false
 		dead = true
 		$AnimationPlayer.play("death")
 	

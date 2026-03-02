@@ -283,7 +283,7 @@ func get_zone_empty_adjacent_cells(zMin: int, zMax: int) -> Array[Vector2i]:
 				if nCoords.y == LContoHConCheckpointLine or nCoords.y == HContoEntranceCheckpointLine:
 					continue
 				
-				if nCoords.x > temporaryRooms.size() or nCoords.x < 0:
+				if nCoords.x >= temporaryRooms.size() or nCoords.x < 0:
 					continue
 				
 				if temporaryRooms[nCoords.x][nCoords.y] == null:
@@ -291,6 +291,7 @@ func get_zone_empty_adjacent_cells(zMin: int, zMax: int) -> Array[Vector2i]:
 					seen[nCoords] = true
 	
 	return candidates
+
 
 func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).ends.size()
@@ -301,19 +302,62 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 		return
 	
 	# // get every empty cell with nothing around it except for 1
-	var emptyCellsPositions: Array[Vector2i] = get_zone_empty_adjacent_cells(zMin, zMax)
-	var positionsWithOneNeighbor: Array[Vector2i] = []
-	for emptyPos: Vector2i in emptyCellsPositions:
-		if emptyPos == spawnRoomPosition:
-			continue
-		var posBits: int = get_direction_bits(emptyPos.x, emptyPos.y)
-		if posBits == NORTH or posBits == SOUTH or posBits == WEST or posBits == EAST:
-			positionsWithOneNeighbor.append(emptyPos)
+	var allTwoWayHallLocations: Array[Vector2i] = get_zone_room_positions(zMin, zMax).halls
+	var placablePositions: Array[Vector2i] = []
 	
-	var pick: Vector2i = ZFunc.rand_from(positionsWithOneNeighbor, mapRNG)
-	spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
-	print("End room was missing and placed!")
+	# // find all empty sides of halls
+	for hallPos: Vector2i in allTwoWayHallLocations:
+		var hX: int = hallPos.x
+		var hZ: int = hallPos.y
+		var directionBits := get_direction_bits(hallPos.x, hallPos.y)
+		var isVertical := directionBits == (NORTH + SOUTH)
+		
+		if hX+1 >= mapWidth or hX-1 < 0 or hZ >= mapHeight or hZ < 0:
+			continue
+		
+		if isVertical:
+			if temporaryRooms[hX+1][hZ] == null:
+				var pos := Vector2i(hX+1, hZ)
+				if !is_surrounded_by_other_rooms(pos, hallPos):
+					placablePositions.append(pos)
+			if temporaryRooms[hX-1][hZ] == null:
+				var pos := Vector2i(hX-1, hZ)
+				if !is_surrounded_by_other_rooms(pos, hallPos):
+					placablePositions.append(pos)
+		else:
+			if hZ+1 != LContoHConCheckpointLine and hZ+1 != HContoEntranceCheckpointLine and temporaryRooms[hX][hZ+1] == null:
+				var pos := Vector2i(hX, hZ+1)
+				if !is_surrounded_by_other_rooms(pos, hallPos):
+					placablePositions.append(pos)
+			if hZ-1 != LContoHConCheckpointLine and hZ-1 != HContoEntranceCheckpointLine and temporaryRooms[hX][hZ-1] == null:
+				var pos := Vector2i(hX, hZ-1)
+				if !is_surrounded_by_other_rooms(pos, hallPos):
+					placablePositions.append(pos)
+	
+	# // narrow to all places that arent surrounded by any more
 
+	for i in amtRequired:
+		var randPos: Vector2i = ZFunc.rand_from(placablePositions, mapRNG)
+		var pick: Vector2i = randPos
+		placablePositions.erase(randPos)
+		spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
+		print("end room was missing and placed at: %s" % randPos)
+
+
+func is_surrounded_by_other_rooms(pos: Vector2i, excludePos := Vector2i(-1, -1)):
+	if pos.x+1 >= mapWidth or pos.x-1 < 0 or pos.y >= mapHeight or pos.y < 0:
+		return true
+	
+	if temporaryRooms[pos.x+1][pos.y] != null and Vector2i(pos.x+1, pos.y) != excludePos:
+		return true
+	if temporaryRooms[pos.x-1][pos.y] != null and Vector2i(pos.x-1, pos.y) != excludePos:
+		return true
+	if temporaryRooms[pos.x][pos.y+1] != null and Vector2i(pos.x, pos.y+1) != excludePos:
+		return true
+	if temporaryRooms[pos.x][pos.y-1] != null and Vector2i(pos.x, pos.y-1) != excludePos:
+		return true
+	
+	return false
 
 func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var safePositions := []

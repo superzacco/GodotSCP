@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://wymqic7fdd0x"]
+[gd_scene load_steps=21 format=3 uid="uid://wymqic7fdd0x"]
 
 [ext_resource type="Script" uid="uid://bcaxsm54phpgx" path="res://multiplayer/multiplayer_spawner.gd" id="1_608ji"]
 [ext_resource type="Texture2D" uid="uid://dptrpm4lkom3a" path="res://entities/gridd.png" id="1_vpqra"]
 [ext_resource type="PackedScene" uid="uid://dlv8rax26wj3y" path="res://entities/player/player.tscn" id="2_y4g5o"]
+[ext_resource type="PackedScene" uid="uid://4mrm0vkiudr6" path="res://rooms/code_door.tscn" id="4_vh7dr"]
 [ext_resource type="PackedScene" uid="uid://c5u47f2nm250v" path="res://rooms/elevator_door.tscn" id="4_vjqjj"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="5_xhce4"]
 [ext_resource type="PackedScene" uid="uid://bclsa0mrujt1x" path="res://entities/SCPs/106/scp_106.tscn" id="7_75b5l"]
@@ -65,6 +66,12 @@ playerScene = ExtResource("2_y4g5o")
 
 [node name="Doors" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.6919, -1, -13)
+
+[node name="code_door" parent="Doors" instance=ExtResource("4_vh7dr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.3, 2, 13.5653)
+
+[node name="code_door2" parent="Doors" instance=ExtResource("4_vh7dr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.3, 2, 16.5653)
 
 [node name="Door" parent="Doors" instance=ExtResource("9_3m8m1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 2, 10.5653)
