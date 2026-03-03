@@ -51,24 +51,25 @@ neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 1.02891, 0.885156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398404, 0.82891, 0.885156)
 aabb = AABB(-0.846248, -1.53184, -1.01123, 0.921496, 2.10968, 0.312465)
 
 [node name="Col1" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0156808, 0.452599, 0.0293652)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0156808, 0.252599, 0.0293652)
 shape = SubResource("CapsuleShape3D_p8ad7")
 
 [node name="Col2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0156808, 0.778009, 0.0293652)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0156808, 0.578009, 0.0293652)
 shape = SubResource("CapsuleShape3D_aqo5w")
 
 [node name="NeckSnapArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481132, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281132, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NeckSnapArea"]
 shape = SubResource("BoxShape3D_jahs6")
 
 [node name="DoorDetectionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 collision_layer = 257
 collision_mask = 257
 
@@ -77,15 +78,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 shape = SubResource("BoxShape3D_u3wo6")
 
 [node name="ChaseRadius" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseRadius"]
 shape = SubResource("SphereShape3D_p8ad7")
 
 [node name="173Model" parent="." instance=ExtResource("2_tmptw")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.347795, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.147795, 0)
 
 [node name="StoneScraping" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 stream = ExtResource("3_u3wo6")
 attenuation_model = 1
 volume_db = -12.0
@@ -94,7 +96,7 @@ max_distance = 64.0
 bus = &"Sound Effects"
 
 [node name="NeckSnap" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 bus = &"Sound Effects"
 
 [node name="RelocateTimer" type="Timer" parent="."]

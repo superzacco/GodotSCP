@@ -26,6 +26,8 @@ var playerCamera: Camera3D = null
 func _ready() -> void:
 	super()
 	SignalBus.teleport_096_to_player.connect(teleport_to)
+	SignalBus.summon_096.connect(go_kill_random_npc)
+	SignalBus.summon_096.connect(set_active)
 	
 	await get_tree().create_timer(0.1).timeout
 	localPlayer = GlobalPlayerVariables.player
@@ -34,8 +36,10 @@ func _ready() -> void:
 
 
 func process_one() -> void:
-	process_client()
 	if !should_process(): return
+	process_client()
+	
+	if !multiplayer.is_server(): return
 	process_server()
 
 
@@ -92,8 +96,8 @@ func update_target_pos(pos: Vector3):
 	agent.target_position = pos
 
 @rpc("any_peer", "call_local", "reliable")
-func set_state(states: States):
-	state = states
+func set_state(st: States):
+	state = st
 
 
 func face_visible_to_camera() -> bool:
@@ -137,14 +141,15 @@ func _on_run_timer_timeout() -> void:
 
 func go_kill_random_npc():
 	if !should_process(): return
+	if !multiplayer.is_server():
+		return
 	
-	var randomRooms: Array[Room] = []
+	var map: GenerateLevel = GameManager.map
+	var LConRooms: Array = map.get_rooms_in_slice(1, map.LContoHConCheckpointLine-1)
+	var randomRoom: Room = ZFunc.rand_from(LConRooms)
 	
-	for i in 2: 
-		randomRooms.append(ZFunc.rand_from(facilityManager.rooms))
-	
-	var startPos: Vector3 = self.global_position
-	var targetPosMarker: Node3D = randomRooms[1].return_173_spawn_point()
+	var startPos := Vector3(self.global_position)
+	var targetPosMarker: Node3D = randomRoom.return_173_spawn_point()
 	
 	if firstNPCKill:
 		firstNPCKill = false
@@ -163,6 +168,7 @@ func stop_chase():
 	idlePlayer.play()
 	chasePlayer.stop()
 	screamPlayer.stop()
+
 
 @rpc("authority", "call_local", "reliable")
 func send_096(target: Node3D, startPos: Vector3 = self.global_position):
@@ -200,7 +206,7 @@ func setup_npc(targetPos: Vector3):
 
 
 func should_process() -> bool:
-	if !enabled or !multiplayer.is_server():
+	if !enabled:
 		return false
 	
 	return true

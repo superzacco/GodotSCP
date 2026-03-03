@@ -14,6 +14,7 @@ extends Node
 	
 	"gasmask": load("res://entities/items/tools/gasmask/gas_mask.tscn"),
 	
+	"codenote": load("res://entities/items/papers/postit_note.tscn"),
 	"document049": load("res://entities/items/papers/documents/049_document.tscn"),
 	"document079": load("res://entities/items/papers/documents/079_document.tscn"),
 	"document096": load("res://entities/items/papers/documents/096_document.tscn"),

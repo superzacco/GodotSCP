@@ -16,7 +16,6 @@ enum ButtonTypes {
 	CODE
 }
 @export var keycardLevel: int = 0
-@export var keypadCode: int = 1111
 
 func _ready() -> void:
 	if disabled:

@@ -70,6 +70,12 @@ doorsToControl = [NodePath("..")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_pgugy")
 
+[node name="079 Close Area" type="Area3D" parent="."]
+script = ExtResource("11_ivvos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="079 Close Area"]
+shape = SubResource("SphereShape3D_i7sdm")
+
 [node name="Open" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_1nf8s")
 attenuation_model = 1
@@ -98,12 +104,6 @@ bus = &"Sound Effects"
 [node name="079Close" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("11_i7sdm")
 bus = &"Sound Effects"
-
-[node name="079 Close Area" type="Area3D" parent="."]
-script = ExtResource("11_ivvos")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="079 Close Area"]
-shape = SubResource("SphereShape3D_i7sdm")
 
 [connection signal="body_entered" from="079 Close Area" to="079 Close Area" method="_on_body_entered"]
 [connection signal="body_exited" from="079 Close Area" to="079 Close Area" method="_on_body_exited"]

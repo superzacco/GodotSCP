@@ -1,6 +1,7 @@
 extends RigidBody3D
 class_name Item
 
+@export_group("Item Setup")
 @export var itemID: int = 0:
 	set(v):
 		itemID = v
@@ -10,6 +11,10 @@ class_name Item
 @export var inventorySprite: Texture
 @export var inventoryName: String
 @export var itemName: String
+@export var equippable: bool = false
+
+@export var functionItem: Node3D
+@export var multiplayerSyncrhonizer: MultiplayerSynchronizer
 
 @export var itemType: ItemType = ItemType.type_generic
 enum ItemType { 
@@ -19,17 +24,14 @@ enum ItemType {
 	type_card
 }
 
+@export_group("Map Setup")
 @export var otherSpawnPoints: Array[Node3D]
-@export var onlyOneCanExist: bool = false
+@export var onlyThisAmtCanExist: int = 0
 @export var onlyOneString: String
-
 @export var chanceToSpawn: float = 100
-@export var equippable: bool = false
 
 var equipped: bool = false
 
-@export var functionItem: Node3D
-@export var multiplayerSyncrhonizer: MultiplayerSynchronizer
 
 
 func _ready() -> void:
@@ -39,13 +41,19 @@ func _ready() -> void:
 
 
 func check_if_only_one():
-	if !onlyOneCanExist:
+	if onlyThisAmtCanExist < 1:
 		return
 	
-	if ItemManager.onlyOneArray.has(onlyOneString):
-		delete_item.rpc()
-	else:
-		ItemManager.onlyOneArray.append(onlyOneString)
+	var amtSeen: int = 0
+	for string: String in ItemManager.onlyOneArray:
+		if string == onlyOneString:
+			if amtSeen >= onlyThisAmtCanExist:
+				delete_item.rpc()
+				return
+			else:
+				ItemManager.onlyOneArray.append(onlyOneString)
+			
+			amtSeen += 1
 
 
 func setup_item():

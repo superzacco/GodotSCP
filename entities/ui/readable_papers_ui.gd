@@ -12,10 +12,7 @@ var delay: bool = true
 var defaultSize = 1.0
 var maxSize = 2.2
 
-var startPos := Vector2.ZERO
-
 func _ready() -> void:
-	startPos = paper.position
 	SignalBus.connect("equip_paper", equip_paper)
 
 
@@ -43,7 +40,7 @@ func _input(event: InputEvent) -> void:
 		clicking = false
 	
 	if event is InputEventMouseMotion and can_move():
-		paper.position += Vector2(event.relative.x, event.relative.y)
+		paper.position += Vector2(event.relative.x, event.relative.y) * 1.2
 
 
 func can_move() -> bool:
@@ -60,27 +57,48 @@ func hide_paper():
 	self.hide()
 	paper.texture = null
 	
+	if paper.get_children().size() > 0:
+		for child in paper.get_children():
+			child.queue_free()
+	
 	await get_tree().process_frame
 	GlobalPlayerVariables.inventory.close_inventory()
 	GlobalPlayerVariables.inventory.clear_equip()
 	GlobalPlayerVariables.immutableMenuOpen = false
 
 
-func equip_paper(image: Texture2D):
+func equip_paper(document: Texture2D, otherDocument: PackedScene = null):
 	GlobalPlayerVariables.immutableMenuOpen = true
 	GlobalPlayerVariables.inventory.close_inventory()
-	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	GlobalPlayerVariables.lookingEnabled = false
 	
-	paper.set_position(startPos)
-	paper.scale = Vector2(defaultSize, defaultSize)
-	
 	self.show()
-	paper.texture = image
+	
+	if document:
+		show_paper_texture(document)
+	if otherDocument:
+		show_other_document(otherDocument)
 	
 	await get_tree().create_timer(0.2).timeout
 	delay = false
+
+
+
+func show_paper_texture(image: Texture2D):
+	paper.texture = image
+	paper.set_position(Vector2.ZERO - (paper.size/2))
+	paper.scale = Vector2(defaultSize, defaultSize)
+
+
+func show_other_document(document: PackedScene):
+	var doc: Control = document.instantiate()
+	
+	paper.set_size(doc.size)
+	paper.add_child(doc)
+	doc.set_position(Vector2.ZERO)
+	doc.z_index = 12
+	
 
 
 func _on_paper_mouse_entered() -> void:

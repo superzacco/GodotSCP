@@ -13,6 +13,7 @@ func _ready() -> void:
 	await SignalBus.level_generation_finished
 	facility = GlobalPlayerVariables.facilityManager
 	facility.hcon_checkpoints_unlock.connect(stop_locked_alarm)
+	facility.LConToHConCheckpoints.append(self)
 
 
 func activate():

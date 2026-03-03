@@ -263,6 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
 
 [node name="keycard01" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("71_ygd8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4501, -0.90118, 0.302447)
+equippable = false
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40261, -34.428, 0)
@@ -292,3 +293,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.9918, 1.52588e-05, 64.760
 [node name="Scp173" parent="SCPs" instance=ExtResource("21_5poiv")]
 
 [node name="SCP096" parent="SCPs" instance=ExtResource("81_ndrjj")]
+enabled = false

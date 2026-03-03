@@ -10,9 +10,9 @@ size = Vector3(0.46, 0.1, 0.6)
 
 [node name="document" node_paths=PackedStringArray("functionItem") instance=ExtResource("1_mwij8")]
 inventorySprite = ExtResource("2_hd8g4")
-itemType = 1
 equippable = true
 functionItem = NodePath("paper")
+itemType = 1
 
 [node name="paper" parent="." index="2" instance=ExtResource("2_iaehq")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

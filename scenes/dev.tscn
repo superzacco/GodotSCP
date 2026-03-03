@@ -89,7 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4808, 2.5, 10.1921)
 
 [node name="scp106" parent="SCPS" instance=ExtResource("7_75b5l")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.9242, 4.76837e-07, -1.66993)
-enabled = false
 
 [node name="Scp173" parent="SCPS" instance=ExtResource("8_vh7dr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.5653, 0.6, -4.10097)

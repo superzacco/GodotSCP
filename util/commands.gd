@@ -123,3 +123,9 @@ func god():
 	else:
 		GlobalPlayerVariables.godEnabled = true
 		console.println("GOD MODE on")
+
+func summon(target: String):
+	match target:
+		"096":
+			SignalBus.summon_096.emit()
+	

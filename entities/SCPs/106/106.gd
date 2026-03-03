@@ -1,14 +1,11 @@
-extends CharacterBody3D
+extends Monster
 
-@export var enabled := true
-@export var speed: float
 var chasing: bool = false
 
 @export var minSpawnTime: int 
 @export var maxSpawnTime: int 
 
 var playersInRadius: Array[Player]
-@export var agent: NavigationAgent3D
 @export var animationPlayer: AnimationPlayer
 @export var corrosiveDecal: PackedScene
 
@@ -31,8 +28,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if !enabled:
+	if !should_process():
 		return
+	
+	process_client()
+	if !multiplayer.is_server():
+		return
+	
+	process_server()
 	
 	if GlobalPlayerVariables.debugInfo != null:
 		GlobalPlayerVariables.debugInfo.summonTimer = $SummonTimer.time_left
@@ -41,17 +44,21 @@ func _physics_process(delta: float) -> void:
 		var nextPathPos := Vector3.ZERO
 		
 		agent.target_position = find_closest_player().global_position
-		nextPathPos = agent.get_next_path_position() - position
+		nextPathPos = agent.get_next_path_position() - global_position
 		velocity = (nextPathPos.normalized() * speed)
 		
-		if self.get_real_velocity().length() < 0.001:
-			self.global_position += velocity * 0.01
+		self.global_position += velocity * 0.01
 		
+		look_at_pos(global_position + velocity)
 		move_and_slide()
-		
-		self.look_at(agent.target_position)
-		self.rotation.x = 0
-		self.rotation.z = 0
+
+
+func process_client():
+	pass
+
+func process_server():
+	pass
+
 
 func on_106_activated():
 	rise.rpc(GlobalPlayerVariables.playerPosition)

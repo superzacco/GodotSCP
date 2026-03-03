@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0ltomxgby0du"]
+[gd_scene load_steps=21 format=3 uid="uid://c0ltomxgby0du"]
 
 [ext_resource type="Script" uid="uid://dhjj12djcrgin" path="res://rooms/checkpoint/Checkpoint_LCon_HCon.gd" id="1_xwyhf"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_s063j"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://clh1jetdbvjpl" path="res://rooms/Models/props/metal_detector.blend" id="12_xwyhf"]
 [ext_resource type="PackedScene" uid="uid://cdvdvy4l5ouc7" path="res://rooms/Models/props/doorsign.blend" id="15_4bbkt"]
 [ext_resource type="PackedScene" uid="uid://gnt4w7c6am81" path="res://rooms/lever.tscn" id="16_5bi5x"]
+[ext_resource type="PackedScene" uid="uid://g3isi4mbi1k" path="res://entities/map/door_code_generator.tscn" id="18_aff4i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pgugy"]
 
@@ -188,12 +189,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.25, 
 [node name="BigDoor" parent="Doors" instance=ExtResource("10_jal28")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.71676, 0.359164, 3.51056)
 
-[node name="DoorR-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
-
-[node name="DoorL-col" parent="Doors/BigDoor/big_door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
-
 [node name="Keycardbutton2" parent="Doors/BigDoor" index="1"]
 visible = false
 disabled = true
@@ -227,6 +222,10 @@ transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
 transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
 
 [node name="Override" type="Node3D" parent="."]
+
+[node name="DoorCodeGenerator" parent="Override" node_paths=PackedStringArray("kepads") instance=ExtResource("18_aff4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67574, 0.433661, -3.86973)
+kepads = [NodePath("../../Doors/code_door/codeKeypad"), NodePath("../../Doors/code_door2/codeKeypad")]
 
 [node name="doorsign" parent="Override" instance=ExtResource("15_4bbkt")]
 transform = Transform3D(-6.11959e-08, 0, 1.4, 0, 1.4, 0, -1.4, 0, -6.11959e-08, -10.6826, 0.575973, -1.73133)

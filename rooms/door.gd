@@ -1,7 +1,7 @@
 extends StaticBody3D
 class_name Door
 
-@export var doorPanel:PackedScene
+@export var doorPanel: PackedScene = null
 @export var animationPlayer: AnimationPlayer
 
 @export var openSounds: Array[AudioStream]
@@ -21,7 +21,7 @@ func _ready() -> void:
 	await SignalBus.level_generation_finished
 	
 	if multiplayer.is_server():
-		if ZFunc.randInPercent(2) and closableBy079 == true:
+		if ZFunc.randInPercent(4) and closableBy079 == true:
 			open.rpc()
 	
 	if openOnSpawn:
@@ -90,7 +90,11 @@ func scp_079_close():
 @export var doorMeshes: Array[MeshInstance3D]
 @rpc("reliable", "call_local", "any_peer")
 func scp_096_break(pos: Vector3):
-	if broken or doorOpen or doorPanel == null:
+	if broken or doorOpen:
+		return
+	
+	if doorPanel == null:
+		open.rpc()
 		return
 	
 	broken = true

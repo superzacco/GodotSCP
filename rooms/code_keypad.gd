@@ -3,7 +3,7 @@ extends DoorButton
 var onKeypad := false
 var playerCamera: Camera3D
 @export var buttonsCamera: Camera3D 
-
+@export var keypadCode: int = 1111
 
 var inputString: String = ""
 func _input(event: InputEvent) -> void:
@@ -28,13 +28,16 @@ func _input(event: InputEvent) -> void:
 			"7": inputString += str(7)
 			"8": inputString += str(8)
 			"9": inputString += str(9)
-			"stop": inputString = ""
+			"stop":
+				if inputString == "":
+					hide_keypad()
+				else:
+					inputString = ""
 			"open":
 				if int(inputString) == keypadCode:
-					hide_keypad()
 					activate_things.rpc()
 				
-				inputString = ""
+				hide_keypad()
 		
 		$Button.play()
 
@@ -60,7 +63,6 @@ func _physics_process(delta: float) -> void:
 
 
 func on_pressed():
-	super()
 	if buttonType == ButtonTypes.CODE:
 		playerCamera = GlobalPlayerVariables.player.camera
 		show_keypad()

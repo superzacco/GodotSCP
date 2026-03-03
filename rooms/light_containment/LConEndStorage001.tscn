@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b541p54qpvnts"]
+[gd_scene load_steps=18 format=3 uid="uid://b541p54qpvnts"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_8qwf2"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="2_ojqvf"]
@@ -10,6 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="7_gg73u"]
 [ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="9_2lo4i"]
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="10_4hpky"]
+[ext_resource type="PackedScene" uid="uid://c6vp8lw0ppmo2" path="res://entities/SCPs/049/049-2.blend" id="11_0exjv"]
+[ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="11_4hpky"]
+[ext_resource type="Texture2D" uid="uid://dtqdqr2knafmq" path="res://entities/bodies/guard.png" id="12_cykk4"]
+[ext_resource type="Texture2D" uid="uid://d25g35lo45lhu" path="res://entities/bodies/guard_helmet.png" id="13_3mggf"]
+[ext_resource type="PackedScene" uid="uid://dpq8gq38rdpod" path="res://entities/decals/blood01.tscn" id="14_kcmmn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6exok"]
+albedo_texture = ExtResource("12_cykk4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jguy7"]
+albedo_texture = ExtResource("13_3mggf")
 
 [node name="LConEndStorage001" type="Node3D" groups=["room"]]
 script = ExtResource("1_8qwf2")
@@ -19,6 +30,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="KeycardDoor" parent="." instance=ExtResource("2_ojqvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110835, -3.1)
+
+[node name="door2-col" parent="KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
+
+[node name="doorside_2" parent="KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
+
+[node name="door-col" parent="KeycardDoor/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -1.79464e-07)
+
+[node name="doorside_1" parent="KeycardDoor/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, 1.42401e-07)
 
 [node name="Keycardbutton" parent="KeycardDoor" index="1"]
 keycardLevel = 1
@@ -40,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Light" parent="Lights" instance=ExtResource("5_gg73u")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.2, 1.69961, -5.2)
-brightness = 1.0
+brightness = 0.5
 omniBrightness = 0.25
 
 [node name="Light2" parent="Lights" instance=ExtResource("5_gg73u")]
@@ -116,5 +139,52 @@ transform = Transform3D(-0.126857, 0, 0.991922, 0, 1, 0, -0.991922, 0, -0.126857
 [node name="keycard01" parent="Item" instance=ExtResource("10_4hpky")]
 transform = Transform3D(-0.828793, 0, -0.559555, 0, 1, 0, 0.559555, 0, -0.828793, -2.32442, -0.34764, 3.49486)
 
+[node name="Body" parent="." instance=ExtResource("11_4hpky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, -0.779894, 5.8)
+
+[node name="body" parent="Body" index="0"]
+visible = false
+
+[node name="gasmask" parent="Body/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.999868, -0.0161451, -0.00178352, 0.016143, 0.999869, -0.00115165, 0.00180188, 0.00112271, 0.999998, 0.0220502, 0.000148773, -0.00201524)
+
+[node name="GuardBody" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0876513, -0.416621, 0.11397)
+
+[node name="049-2" parent="Body/GuardBody" instance=ExtResource("11_0exjv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/GuardBody/049-2/Armature" index="0"]
+bones/0/position = Vector3(1.22002e-10, 0.115022, 0.0364691)
+bones/0/rotation = Quaternion(-0.107909, 0.00323999, -0.0390293, 0.993389)
+bones/1/rotation = Quaternion(0.151184, 0.00296214, -0.0762839, 0.985553)
+bones/2/rotation = Quaternion(0.0985435, 1.96307e-09, 2.61164e-08, 0.995133)
+bones/3/rotation = Quaternion(-0.133247, 0.0152299, 0.978146, -0.158883)
+bones/4/rotation = Quaternion(0.235854, -0.146709, 0.0101018, 0.960598)
+bones/5/rotation = Quaternion(0.420846, -0.132811, 0.0834901, 0.893465)
+bones/6/rotation = Quaternion(-0.0558769, 0.247863, 0.965999, 0.0478238)
+bones/7/rotation = Quaternion(0.221387, -0.267608, 0.201189, 0.915913)
+bones/8/rotation = Quaternion(0.0760958, 0.981585, 0.0483635, 0.16841)
+bones/9/position = Vector3(0.0964041, -0.0141647, 0.00302181)
+bones/9/rotation = Quaternion(0.292184, 0.705075, 0.64493, 0.0395441)
+bones/10/rotation = Quaternion(-0.251518, 0.0134738, -0.0291535, 0.96732)
+bones/11/rotation = Quaternion(0.734069, -0.165603, 0.0537267, 0.656378)
+bones/12/position = Vector3(-0.0964041, -0.0141647, 0.00302176)
+bones/12/rotation = Quaternion(-0.26661, 0.645408, 0.71529, 0.0269686)
+bones/13/rotation = Quaternion(-0.12335, 0.0330805, -0.0419861, 0.990923)
+bones/14/rotation = Quaternion(0.759805, -0.0922114, 0.139404, 0.6283)
+
+[node name="scp_049_2" parent="Body/GuardBody/049-2/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6exok")
+surface_material_override/1 = SubResource("StandardMaterial3D_jguy7")
+
+[node name="Decal" parent="Body/GuardBody" instance=ExtResource("14_kcmmn")]
+transform = Transform3D(1, 0, 0, 0, 0.867575, 0.497307, 0, -0.497307, 0.867575, -0.405902, 0.253016, -0.264768)
+upper_fade = 0.010769
+lower_fade = 0.0107691
+
 [editable path="KeycardDoor"]
 [editable path="KeycardDoor/door"]
+[editable path="Body"]
+[editable path="Body/body"]
+[editable path="Body/GuardBody/049-2"]

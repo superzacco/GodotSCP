@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://g3isi4mbi1k"]
+
+[ext_resource type="Script" uid="uid://bee4xns8cyftl" path="res://entities/map/door_code_generator.gd" id="1_ld2r1"]
+
+[node name="DoorCodeGenerator" type="Node3D"]
+script = ExtResource("1_ld2r1")

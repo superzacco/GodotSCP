@@ -91,9 +91,6 @@ func reset_attack():
 
 
 func should_process() -> bool:
-	if !multiplayer.is_server():
-		return false
-	
 	if !enabled or playersInChaseRadius.size() < 1 or find_closest_player() == null:
 		return false
 	
@@ -102,7 +99,6 @@ func should_process() -> bool:
 
 func set_active():
 	enabled = true
-	modelAnimations.play("walk")
 
 
 func find_closest_player() -> Player:

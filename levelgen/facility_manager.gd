@@ -11,6 +11,7 @@ var HConTOEntCheckpointOnLockdown := true
 
 var rooms: Array[Room] = []
 var playerNearbyRooms: Array[Room] = []
+var LConToHConCheckpoints: Array[Room] = []
 var chamber096: Room = null
 
 var scp173: CharacterBody3D

@@ -22,6 +22,7 @@ signal hide_inventory
 # // DEBUG/COMMANDS // #
 signal teleport_173_to_player(position: Vector3)
 signal teleport_096_to_player(position: Vector3)
+signal summon_096
 signal activate_173
 signal relocate_173
 signal activate_106

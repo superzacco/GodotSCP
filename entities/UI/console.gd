@@ -103,6 +103,11 @@ func _input(event: InputEvent) -> void:
 				Commands.stfu()
 			"god":
 				Commands.god()
+			"summon":
+				if commandStringArray.size() == 1:
+					println("missing <scp>", Commands.errorColor)
+				else:
+					Commands.summon(commandStringArray[1])
 		
 		inputField.clear()
 	

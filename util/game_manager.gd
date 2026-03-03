@@ -1,6 +1,7 @@
 extends Node
 
 var startingCell
+var map: GenerateLevel
 var rng: RandomNumberGenerator
 var seed: int
 

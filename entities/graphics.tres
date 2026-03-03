@@ -7,7 +7,6 @@ ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
 reflected_light_source = 1
 tonemap_mode = 1
-tonemap_exposure = 0.5
 tonemap_white = 0.2
 ssr_fade_in = 0.54075
 ssr_fade_out = 0.615572

@@ -1,4 +1,5 @@
 extends Node
+class_name GenerateLevel
 @export var facilityMultiplayerSpawner: MultiplayerSpawner
 @export var doorMultiplayerSpawner: MultiplayerSpawner
 
@@ -128,6 +129,7 @@ func _ready() -> void:
 	xSize = mapWidth - 1
 	zSize = mapHeight - 1
 	
+	GameManager.map = self
 	generate_map()
 
 
@@ -402,6 +404,19 @@ func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	print("Bend room was missing and placed!")
 #endregion
 
+
+
+func get_rooms_in_slice(zMin: int, zMax: int) -> Array[Room]:
+	var roomsInSlice: Array[Room] = []
+	
+	for x in mapWidth:
+		for z in range(zMin, zMax):
+			if finishedRoomGrid[x][z] == null:
+				continue
+			
+			roomsInSlice.append(finishedRoomGrid[x][z])
+	
+	return roomsInSlice
 
 
 
