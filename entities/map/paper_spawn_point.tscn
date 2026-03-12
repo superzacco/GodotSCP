@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkgdnc2h587aj"]
+
+[ext_resource type="Script" uid="uid://bst2o4g3lnlw2" path="res://entities/map/paper_spawn_point.gd" id="1_7ppq3"]
+
+[node name="PaperSpawnPoint" type="Marker3D"]
+script = ExtResource("1_7ppq3")

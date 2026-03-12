@@ -4,9 +4,10 @@ extends Node3D
 @export var code: int = 0
 
 func _ready() -> void:
-	await SignalBus.level_generation_finished
 	if !multiplayer.is_server():
 		return
+	
+	await SignalBus.level_generation_finished
 	
 	if code == 0:
 		code = make_code()

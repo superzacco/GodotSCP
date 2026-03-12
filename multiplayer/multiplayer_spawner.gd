@@ -23,11 +23,10 @@ func call_respawn(id: int):
 
 @rpc("any_peer", "call_local", "reliable")
 func respawn_player(id: int):
-	print("test both %s " % multiplayer.get_unique_id())
 	if !multiplayer.is_server():
 		return
 	
-	print("Is server!")
+	print("respawning player: %s" % id)
 	spawn(id)
 
 

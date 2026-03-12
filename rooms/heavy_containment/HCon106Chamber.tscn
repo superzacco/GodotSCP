@@ -1,0 +1,192 @@
+[gd_scene load_steps=13 format=3 uid="uid://dvb65pgdkem5x"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_aelrd"]
+[ext_resource type="PackedScene" uid="uid://b0sm1y2oko1rp" path="res://rooms/Models/HCon106Chamber.blend" id="2_aelrd"]
+[ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="2_qwkvv"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_w8jdj"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_s83il"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_n5c7o"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="7_s83il"]
+[ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="7_w8jdj"]
+[ext_resource type="PackedScene" uid="uid://bko55qdmctjdd" path="res://rooms/Models/props/shelf02.blend" id="9_fec1l"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="9_n5c7o"]
+[ext_resource type="PackedScene" uid="uid://c8lv7q65uttuj" path="res://entities/items/cards/keycard05.tscn" id="11_fnypg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qwkvv"]
+radius = 18.0
+
+[node name="HConEnd001" type="Node3D" groups=["room"]]
+script = ExtResource("1_aelrd")
+
+[node name="TeleportPoint" parent="." instance=ExtResource("2_qwkvv")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -0.1, 0.532933, -5.3)
+tpName = "106"
+
+[node name="RoomArea" parent="." instance=ExtResource("4_s83il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5383, -1.8, 6.90344)
+
+[node name="CollisionShape3D" parent="RoomArea" index="0"]
+shape = SubResource("SphereShape3D_qwkvv")
+
+[node name="HCon106Chamber" parent="." instance=ExtResource("2_aelrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="Skeleton3D" parent="HCon106Chamber/electromagnet-control" index="0"]
+bones/0/position = Vector3(-0.1, 10, 0)
+
+[node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="point2" parent="Points" instance=ExtResource("3_w8jdj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.29026, -7.5)
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="Light" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.2, 4.89896, -5.3)
+brightness = 0.5
+omniBrightness = 0.25
+
+[node name="Light2" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.57422, 5.30199, 2.65971)
+distance = 19.5
+attenuation = 0.75
+brightness = 1.5
+omniBrightness = 0.5
+
+[node name="Light3" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.5742, 5.30199, 2.65971)
+distance = 19.5
+attenuation = 0.75
+brightness = 1.5
+omniBrightness = 0.5
+
+[node name="Light4" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.5742, 5.30199, 13.6597)
+distance = 19.5
+attenuation = 0.75
+brightness = 1.5
+omniBrightness = 0.5
+
+[node name="Light5" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.57422, 5.30199, 13.6597)
+distance = 19.5
+attenuation = 0.75
+brightness = 1.5
+omniBrightness = 0.5
+
+[node name="Light6" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 2.65971)
+
+[node name="Light7" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 11.6597)
+
+[node name="Light8" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 1.22578, -1.20038, 13.1597)
+brightness = 0.4
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="KeycardDoor" parent="Doors" instance=ExtResource("7_s83il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.106804, -3.1)
+
+[node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
+bones/0/position = Vector3(0, 0.00456321, -1.82813e-07)
+bones/3/position = Vector3(-3.44507e-10, -0.00456321, 1.42873e-07)
+
+[node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34544, -4.9395e-07)
+
+[node name="doorside_2" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00456321, -1.82813e-07)
+
+[node name="door-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34544, -1.78992e-07)
+
+[node name="doorside_1" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00456332, 1.42873e-07)
+
+[node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
+keycardLevel = 4
+
+[node name="Keycardbutton2" parent="Doors/KeycardDoor" index="2"]
+keycardLevel = 4
+
+[node name="Door" parent="Doors" instance=ExtResource("7_w8jdj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.71214, 0.104844, -5.30344)
+
+[node name="Skeleton3D" parent="Doors/Door/door/Armature" index="0"]
+bones/0/position = Vector3(0, 0.00456321, -1.82813e-07)
+bones/3/position = Vector3(-3.44507e-10, -0.00456321, 1.42873e-07)
+
+[node name="door2-col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34544, -4.9395e-07)
+
+[node name="doorside_2" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00456321, -1.82813e-07)
+
+[node name="door-col" parent="Doors/Door/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34544, -1.78992e-07)
+
+[node name="doorside_1" parent="Doors/Door/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00456332, 1.42873e-07)
+
+[node name="Button" parent="Doors/Door" index="1"]
+disabled = true
+
+[node name="Button2" parent="Doors/Door" index="2"]
+rejectionText = "The door doesn't appear to open..."
+wontOpen = true
+
+[node name="KeycardDoor2" parent="Doors" instance=ExtResource("7_s83il")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.27879, -5.89169, 13.4426)
+
+[node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
+keycardLevel = 4
+
+[node name="Keycardbutton2" parent="Doors/KeycardDoor2" index="2"]
+keycardLevel = 4
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="shelf02" parent="Props" instance=ExtResource("9_fec1l")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.13264, -6.72726, 0.393804)
+
+[node name="table" parent="Props" instance=ExtResource("9_n5c7o")]
+transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 2.63118)
+
+[node name="table3" parent="Props" instance=ExtResource("9_n5c7o")]
+transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 0.531177)
+
+[node name="table4" parent="Props" instance=ExtResource("9_n5c7o")]
+transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 3.63118)
+
+[node name="table5" parent="Props" instance=ExtResource("9_n5c7o")]
+transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 9.63118)
+
+[node name="table2" parent="Props" instance=ExtResource("9_n5c7o")]
+transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 5.73118)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="keycard05" parent="." node_paths=PackedStringArray("otherSpawnPoints") instance=ExtResource("11_fnypg")]
+transform = Transform3D(0.94014, 0, 0.34079, 0, 1, 0, -0.34079, 0, 0.94014, 9.07119, -6.61162, 0.718787)
+otherSpawnPoints = [NodePath("Marker3D"), NodePath("Marker3D2")]
+
+[node name="Marker3D" type="Marker3D" parent="keycard05"]
+transform = Transform3D(0.190381, 0, -0.98171, 0, 1, 0, 0.98171, 0, 0.190381, 0.210566, 1.05051, -0.580889)
+
+[node name="Marker3D2" type="Marker3D" parent="keycard05"]
+transform = Transform3D(-0.332349, -0.408373, -0.850162, -0.868635, 0.483711, 0.107221, 0.367447, 0.774116, -0.515488, -2.43898, 0.450511, 5.69435)
+
+[node name="Marker3D3" type="Marker3D" parent="keycard05"]
+transform = Transform3D(0.47631, 0.874859, -0.0880387, -0.868635, 0.483711, 0.107221, 0.136389, 0.0254027, 0.99033, -5.26415, 0.450511, -0.00989366)
+
+[editable path="RoomArea"]
+[editable path="HCon106Chamber"]
+[editable path="Doors/KeycardDoor"]
+[editable path="Doors/KeycardDoor/door"]
+[editable path="Doors/Door"]
+[editable path="Doors/Door/door"]
+[editable path="Doors/KeycardDoor2"]
+[editable path="Doors/KeycardDoor2/door"]

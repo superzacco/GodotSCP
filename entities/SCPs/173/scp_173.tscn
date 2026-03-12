@@ -18,7 +18,7 @@ radius = 0.18014
 height = 0.946349
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jahs6"]
-size = Vector3(1.1, 2, 0.6)
+size = Vector3(1.3, 2, 0.75)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3wo6"]
 size = Vector3(1.5, 5, 1.5)
@@ -34,7 +34,7 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent", "relocateTimer", "stoneScrapingPlayer") groups=["elevatorpassenger", "spectatable"]]
+[node name="Scp173" type="CharacterBody3D" node_paths=PackedStringArray("agent", "relocateTimer", "processTimer", "visuallyObscuredMarkers", "stoneScrapingPlayer") groups=["elevatorpassenger", "spectatable"]]
 collision_layer = 256
 collision_mask = 257
 axis_lock_angular_x = true
@@ -42,10 +42,12 @@ axis_lock_angular_z = true
 script = ExtResource("1_clhkt")
 speed = 375.0
 agent = NodePath("NavigationAgent3D")
-tooCloseToPlayers = 35.0
+tooCloseToPlayers = 40.0
 tooFarFromPlayers = 55.0
-breakDoorChance = 15.0
+breakDoorChance = 10.0
 relocateTimer = NodePath("RelocateTimer")
+processTimer = NodePath("TenTimesASecond")
+visuallyObscuredMarkers = [NodePath("VisuallyObscuredMarkers/1"), NodePath("VisuallyObscuredMarkers/2"), NodePath("VisuallyObscuredMarkers/3"), NodePath("VisuallyObscuredMarkers/4")]
 stoneScrapingPlayer = NodePath("StoneScraping")
 neckSnapSounds = Array[AudioStream]([ExtResource("2_l0rpv"), ExtResource("3_l2l7v"), ExtResource("4_p8ad7")])
 relocationSounds = Array[AudioStream]([ExtResource("5_p8ad7"), ExtResource("6_aqo5w")])
@@ -61,6 +63,20 @@ shape = SubResource("CapsuleShape3D_p8ad7")
 [node name="Col2" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0156808, 0.578009, 0.0293652)
 shape = SubResource("CapsuleShape3D_aqo5w")
+
+[node name="VisuallyObscuredMarkers" type="Node3D" parent="."]
+
+[node name="1" type="Marker3D" parent="VisuallyObscuredMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479981, 0.578441, 0.0259137)
+
+[node name="2" type="Marker3D" parent="VisuallyObscuredMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.438403, 0.576901, 0.0274536)
+
+[node name="3" type="Marker3D" parent="VisuallyObscuredMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17671, 0.0260379)
+
+[node name="4" type="Marker3D" parent="VisuallyObscuredMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6302, 0.0125847)
 
 [node name="NeckSnapArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281132, 0)
@@ -100,7 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 bus = &"Sound Effects"
 
 [node name="RelocateTimer" type="Timer" parent="."]
-wait_time = 12.0
+wait_time = 20.0
 
 [node name="TenTimesASecond" type="Timer" parent="."]
 process_callback = 0

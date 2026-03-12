@@ -77,6 +77,7 @@ func show_keypad():
 
 func hide_keypad():
 	inputString = ""
+	hoveredButton = null 
 	playerCamera.make_current.call_deferred()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	GlobalPlayerVariables.immutableNonMenuOpen = false

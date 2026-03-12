@@ -17,8 +17,13 @@ var chamber096: Room = null
 var scp173: CharacterBody3D
 var scp106: CharacterBody3D
 
+var LConToHConPostitNoteSpawns: Array[Vector3] = []
+
+
 
 func _ready() -> void:
+	SignalBus.facility_manager_ready.emit()
+	
 	lightFlickerTimer.timeout.connect(flicker_all_nearby_lights)
 	GlobalPlayerVariables.facilityManager = self 
 	

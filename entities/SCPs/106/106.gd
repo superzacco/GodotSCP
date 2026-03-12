@@ -9,6 +9,9 @@ var playersInRadius: Array[Player]
 @export var animationPlayer: AnimationPlayer
 @export var corrosiveDecal: PackedScene
 
+@export var summonTimer: Timer
+@export var corrosiveDecalTimer: Timer 
+
 @export var ermergeSounds: Array[AudioStream]
 @export var chaseAmbiance: AudioStream
 @export var sendtoPDSound: AudioStream
@@ -23,22 +26,29 @@ func _ready() -> void:
 	
 	await SignalBus.level_generation_finished
 	
-	$SummonTimer.connect("timeout", on_106_activated)
-	$SummonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
+	corrosiveDecalTimer.timeout.connect(spawn_repeating_decal)
+	summonTimer.timeout.connect(on_106_activated)
+	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
 
 
 func _physics_process(delta: float) -> void:
 	if !should_process():
 		return
 	
+	if GlobalPlayerVariables.debugInfo != null:
+		GlobalPlayerVariables.debugInfo.summonTimer = summonTimer.time_left
+	
 	process_client()
+	process_server()
+
+
+func process_client():
+	pass
+
+
+func process_server():
 	if !multiplayer.is_server():
 		return
-	
-	process_server()
-	
-	if GlobalPlayerVariables.debugInfo != null:
-		GlobalPlayerVariables.debugInfo.summonTimer = $SummonTimer.time_left
 	
 	if chasing == true:
 		var nextPathPos := Vector3.ZERO
@@ -53,19 +63,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 
-func process_client():
-	pass
-
-func process_server():
-	pass
-
-
 func on_106_activated():
 	rise.rpc(GlobalPlayerVariables.playerPosition)
 
 @rpc("any_peer", "call_local", "reliable")
 func rise(position: Vector3):
-	$SummonTimer.stop()
+	summonTimer.stop()
 	
 	$Decay.stream = ZFunc.rand_from(ermergeSounds)
 	$Decay.play()
@@ -96,26 +99,23 @@ func begin_chase():
 	animationPlayer.play("walk")
 	
 	#step()
-	spawn_repeating_decal()
+	corrosiveDecalTimer.start()
 
 
 func end_chase():
-	if chasing == false:
-		return
-	
 	ZFunc.fade_out($Chase, 5.0)
 	$Breathing.stop()
 	
 	chasing = false
 	$CollisionShape3D.position += Vector3(0, -15, 0)
 	
-	$"Decal Timer".stop()
+	corrosiveDecalTimer.stop()
 	spawn_first_decal()
 	
 	animationPlayer.stop()
 	animationPlayer.play_backwards("rise")
 	
-	$SummonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
+	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
 
 
 func on_send_player_to_pd(player: Player):
@@ -133,10 +133,8 @@ func spawn_first_decal():
 
 func spawn_repeating_decal():
 	if !chasing:
+		corrosiveDecalTimer.stop()
 		return
-	
-	$"Decal Timer".start(0.65)
-	await $"Decal Timer".timeout
 	
 	var randomSize = randf_range(1.25, 1.75)
 	var corrode: CorrosiveDecal = corrosiveDecal.instantiate()
@@ -146,8 +144,6 @@ func spawn_repeating_decal():
 	
 	corrode.speed = 2.0
 	corrode.finalSize = randomSize
-	
-	spawn_repeating_decal()
 
 
 #func step():
@@ -164,20 +160,6 @@ func spawn_repeating_decal():
 
 func stop_pd_ambiance():
 	ZFunc.fade_out($PDAmbiance, 5.0)
-
-
-func find_closest_player() -> Player:
-	var closestDist: float = INF
-	var closestPlayer: Player = null
-	
-	for player: Player in playersInRadius:
-		var dist: float = self.global_position.distance_to(player.global_position)
-		
-		if dist < closestDist:
-			closestDist = dist
-			closestPlayer = player
-	
-	return closestPlayer
 
 
 func _on_chase_radius_area_entered(area: Area3D) -> void:

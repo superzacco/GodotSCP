@@ -7,7 +7,7 @@ signal spawn_player(id: int)
 
 signal win_game(time: String)
 signal hide_main_menu
-
+signal facility_manager_ready
 
 # // COMMUNICATION // #
 signal show_interaction_text(text: String)

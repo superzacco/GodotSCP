@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var disabled: bool = false
+@export var enabled: bool = false
 
 @export var speed: float
 @export var agent: NavigationAgent3D
@@ -10,11 +10,13 @@ extends CharacterBody3D
 @export var breakDoorChance: float
 
 @export var relocateTimer: Timer
+@export var processTimer: Timer
+@export var visuallyObscuredMarkers: Array[Marker3D]
 @export var stoneScrapingPlayer: AudioStreamPlayer3D
 @export var neckSnapSounds: Array[AudioStream]
 @export var relocationSounds: Array[AudioStream]
 
-var playersState := {}
+var playersState := {} # // playerID ---> {91829382 : {"visible": onScreen, "blinking": blinking}}
 var playersInRadius: Array[Player]
 var nearPlayer: bool = false
 var relocating: bool = false
@@ -29,16 +31,11 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 
 func _ready() -> void:
-	if disabled == true:
-		queue_free()
-		return
+	SignalBus.teleport_173_to_player.connect(teleport_to_player)
+	SignalBus.activate_173.connect(try_relocate)
+	SignalBus.relocate_173.connect(try_relocate)
 	
-	SignalBus.connect("activate_173", relocate)
-	SignalBus.connect("teleport_173_to_player", teleport_to_player)
-	SignalBus.connect("relocate_173", relocate)
-	
-	$TenTimesASecond.connect("timeout", process_one)
-	stoneScrapingPlayer.connect("finished", play_scraping)
+	processTimer.timeout.connect(process_one)
 
 
 var nextPathPos := Vector3.ZERO
@@ -79,13 +76,13 @@ func process_server():
 		return
 	
 	if GlobalPlayerVariables.debugInfo != null:
-		GlobalPlayerVariables.debugInfo.relocationTimer = $RelocateTimer.time_left
+		GlobalPlayerVariables.debugInfo.relocationTimer = relocateTimer.time_left
 		#print("Players combination: %s" % players_combination())
 		#print("Players looking: %s" % players_looking())
 		#print("Players blinking: %s" % players_blinking())
 	
 	nearPlayer = true if playersInRadius.size() > 0 else false
-	if (players_blinking() or !players_looking() or players_combination()) and nearPlayer:
+	if (players_blinking() or !players_looking() or players_combination() or view_obstructed()) and nearPlayer:
 		try_kill_players()
 		
 		agent.target_position = find_closest_player().global_position
@@ -107,7 +104,7 @@ func process_server():
 	stop_scraping.rpc()
 
 
-#region // CONDITIONALS
+#region // CONDITIONALS FOR THE SERVER
 func players_looking() -> bool:
 	for peer in return_peers_in_radius():
 		if playersState.get(peer) != null:
@@ -134,6 +131,20 @@ func players_combination() -> bool:
 				return false
 	
 	return true
+
+func view_obstructed() -> bool:
+	for peerID in return_peers_in_radius():
+		var player: Player = GameManager.get_player_by_id(peerID)
+		var boolArray: Array[bool] = []
+		
+		for marker: Marker3D in visuallyObscuredMarkers:
+			var collider = ZFunc.get_ray_collider(player.camera.global_position, marker.global_position)
+			boolArray.append(collider == self)
+		
+		if !boolArray.has(true):
+			return true
+	
+	return false
 #endregion
 
 
@@ -142,62 +153,68 @@ func play_scraping():
 	if !stoneScrapingPlayer.playing:
 		stoneScrapingPlayer.play(randf_range(0.0, 5.0))
 
+
 @rpc("authority", "call_local", "reliable")
 func stop_scraping():
 	stoneScrapingPlayer.stop()
 
 
-func relocate(playAmbiance: bool = false):
-	var roomsNearbyPlayers = []
-	
-	for player: Player in get_tree().get_nodes_in_group("player"):
-		roomsNearbyPlayers.append_array(player.return_nearby_rooms())
-	
-	if roomsNearbyPlayers.size() <= 0:
-		print("no nearby room!")
-		try_relocate()
-		return
-	
-	print("Relocating! -- Neary Rooms [ %s ]" % roomsNearbyPlayers.size())
-	relocating = true
-	
-	var room: Room = ZFunc.rand_from(roomsNearbyPlayers)
-	
-	if !room.can173Spawn:
-		try_relocate()
-		return
-	
+
+@rpc("any_peer", "call_local", "reliable")
+func relocate(room: Room, playAmbiance: bool = false):
 	if room.spawnPosFor173 == null:
 		self.global_position = room.global_position
 	else:
 		self.global_position = room.spawnPosFor173.global_position
 	
-	if distance_to_closest_player() > tooFarFromPlayers or distance_to_closest_player() < tooCloseToPlayers:
-		try_relocate()
-		return
-	
 	if playAmbiance == true:
 		GlobalPlayerVariables.ambienceManager.play_ambience(ZFunc.rand_from(relocationSounds))
 	
-	print("Found Room: %s! -- Distance: %sm" % [room.name, distance_to_closest_player()])
 	confirm_relocate()
 
 
 func confirm_relocate():
-	print("close to player")
+	print("close to player.")
 	relocating = false
 	relocateTimer.stop()
 
 
-func try_relocate():
+
+@rpc("any_peer", "call_local", "reliable")
+func try_relocate(playAmbiance: bool = false):
+	if !multiplayer.is_server():
+		return
+	
+	print("trying relocate (starting timer)...")
+	relocateTimer.start()
+	relocating = true
+	await relocateTimer.timeout
+	
 	if self.global_position.y < -200:
 		self.global_position += Vector3(0, -100, 0)
 	
-	if relocateTimer.is_stopped():
-		relocateTimer.start()
+	var nearbyRooms := []
+	var players: Array = get_tree().get_nodes_in_group("player")
+	for player: Player in players:
+		nearbyRooms.append_array(player.return_nearby_rooms())
+	var room: Room = ZFunc.rand_from(nearbyRooms)
+	var closestPlayer: Player = find_closest_player()
+	var roomPlyrDist: float = find_closest_player().global_position.distance_to(room.global_position)
 	
-	await relocateTimer.timeout
-	relocate()
+	if !room.can173Spawn:
+		try_relocate()
+		return
+	if roomPlyrDist > tooFarFromPlayers or roomPlyrDist < tooCloseToPlayers:
+		print("too close or too far from players! dist: %s" % roomPlyrDist)
+		try_relocate()
+		return
+	if nearbyRooms.size() <= 0:
+		print("no nearby rooms!")
+		try_relocate()
+		return
+	
+	print("Found Room: %s! -- Distance: %sm" % [room.name, roomPlyrDist])
+	relocate.rpc(room, playAmbiance)
 
 
 func try_kill_players():
@@ -223,7 +240,7 @@ func try_break_door():
 	waiting = false
 	if ZFunc.randInPercent(breakDoorChance):
 		if nearDoor != null:
-			nearDoor.one_seven_three_open.rpc()
+			nearDoor.scp_173_open.rpc()
 			print("Broke through door!")
 
 
@@ -241,9 +258,6 @@ func find_closest_player() -> Player:
 			closestPlayer = player
 	
 	return closestPlayer
-
-func distance_to_closest_player() -> float:
-	return self.global_position.distance_to(find_closest_player().global_position)
 
 
 func return_peers_in_radius() -> Array[int]:
@@ -279,9 +293,7 @@ func _on_chase_radius_body_exited(body: Node3D) -> void:
 		playersInRadius.erase(body)
 		
 		if playersInRadius.size() <= 0:
-			relocateTimer.start()
-			await relocateTimer.timeout
-			relocate(true)
+			try_relocate(true)
 
 
 func _on_neck_snap_area_body_entered(body: Node3D) -> void:

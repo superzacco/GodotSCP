@@ -19,6 +19,7 @@ var opening: bool = false
 
 func _ready() -> void:
 	await SignalBus.level_generation_finished
+	close()
 	
 	if multiplayer.is_server():
 		if ZFunc.randInPercent(4) and closableBy079 == true:
@@ -63,7 +64,7 @@ func close():
 
 
 @rpc("reliable", "call_local", "any_peer")
-func one_seven_three_open():
+func scp_173_open():
 	if !openableBy173 or broken:
 		return
 	

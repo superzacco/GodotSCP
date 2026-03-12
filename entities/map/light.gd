@@ -6,6 +6,14 @@ class_name RoomLight
 @export var sprite: Sprite3D
 
 
+@export_range(0.0, 50.0, 0.1) var distance: float = 16.0:
+	set(v):
+		distance = v
+		
+		if spotlight != null:
+			spotlight.spot_range = distance
+
+
 @export_range(0.0, 1.0, 0.01) var attenuation: float = 0.5:
 	set(value):
 		attenuation = value

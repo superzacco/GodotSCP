@@ -192,7 +192,7 @@ shadow_normal_bias = 3.0
 shadow_reverse_cull_face = true
 shadow_blur = 2.0
 distance_fade_begin = 0.0
-spot_range = 18.0
+spot_range = 16.0
 spot_attenuation = 0.5
 spot_angle = 80.0
 

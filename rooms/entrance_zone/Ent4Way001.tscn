@@ -11,6 +11,8 @@ script = ExtResource("1_6qpx3")
 
 [node name="Light5" parent="." instance=ExtResource("3_6a5tt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84302, 0)
+distance = 12.0
+attenuation = 0.75
 brightness = 1.0
 omniBrightness = 0.2
 

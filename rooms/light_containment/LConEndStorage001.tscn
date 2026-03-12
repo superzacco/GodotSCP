@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b541p54qpvnts"]
+[gd_scene load_steps=19 format=3 uid="uid://b541p54qpvnts"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_8qwf2"]
 [ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="2_ojqvf"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="10_4hpky"]
 [ext_resource type="PackedScene" uid="uid://c6vp8lw0ppmo2" path="res://entities/SCPs/049/049-2.blend" id="11_0exjv"]
 [ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="11_4hpky"]
+[ext_resource type="PackedScene" uid="uid://bkgdnc2h587aj" path="res://entities/map/paper_spawn_point.tscn" id="12_3mggf"]
 [ext_resource type="Texture2D" uid="uid://dtqdqr2knafmq" path="res://entities/bodies/guard.png" id="12_cykk4"]
 [ext_resource type="Texture2D" uid="uid://d25g35lo45lhu" path="res://entities/bodies/guard_helmet.png" id="13_3mggf"]
 [ext_resource type="PackedScene" uid="uid://dpq8gq38rdpod" path="res://entities/decals/blood01.tscn" id="14_kcmmn"]
@@ -30,18 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="KeycardDoor" parent="." instance=ExtResource("2_ojqvf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0110835, -3.1)
-
-[node name="door2-col" parent="KeycardDoor/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
-
-[node name="doorside_2" parent="KeycardDoor/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
-
-[node name="door-col" parent="KeycardDoor/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -1.79464e-07)
-
-[node name="doorside_1" parent="KeycardDoor/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, 1.42401e-07)
 
 [node name="Keycardbutton" parent="KeycardDoor" index="1"]
 keycardLevel = 1
@@ -139,22 +128,49 @@ transform = Transform3D(-0.126857, 0, 0.991922, 0, 1, 0, -0.991922, 0, -0.126857
 [node name="keycard01" parent="Item" instance=ExtResource("10_4hpky")]
 transform = Transform3D(-0.828793, 0, -0.559555, 0, 1, 0, 0.559555, 0, -0.828793, -2.32442, -0.34764, 3.49486)
 
-[node name="Body" parent="." instance=ExtResource("11_4hpky")]
+[node name="HConCheckpointGuardBody" parent="." instance=ExtResource("11_4hpky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, -0.779894, 5.8)
+chanceToSpawn = 25.0
 
-[node name="body" parent="Body" index="0"]
+[node name="PaperSpawnPoint" parent="HConCheckpointGuardBody" instance=ExtResource("12_3mggf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634372, -0.206332, -0.415249)
+type = 0
+
+[node name="body" parent="HConCheckpointGuardBody" index="1"]
 visible = false
 
-[node name="gasmask" parent="Body/body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999868, -0.0161451, -0.00178352, 0.016143, 0.999869, -0.00115165, 0.00180188, 0.00112271, 0.999998, 0.0220502, 0.000148773, -0.00201524)
+[node name="Skeleton3D" parent="HConCheckpointGuardBody/body/Armature" index="0"]
+bones/0/position = Vector3(-0.000411818, 0.890931, 0)
+bones/1/rotation = Quaternion(-0.0997562, -7.54273e-14, -2.37838e-08, 0.995012)
+bones/2/rotation = Quaternion(-0.0886509, -1.1874e-07, -1.0568e-08, 0.996063)
+bones/4/rotation = Quaternion(0.0571017, 0.046152, 0.950448, 0.302091)
+bones/5/rotation = Quaternion(-0.373655, -0.02545, 0.183728, 0.908834)
+bones/6/rotation = Quaternion(0.155777, -0.152883, 0.350741, 0.910681)
+bones/7/rotation = Quaternion(-0.0571019, 0.0461521, 0.950448, -0.302091)
+bones/8/rotation = Quaternion(-0.373655, 0.02545, -0.183728, 0.908834)
+bones/9/rotation = Quaternion(0.155777, 0.152883, -0.350742, 0.910681)
+bones/10/rotation = Quaternion(-0.0022297, 0.0416598, 0.997116, 0.0633954)
+bones/11/rotation = Quaternion(0.0851236, 0.00152601, 0.0121223, 0.996296)
+bones/12/rotation = Quaternion(-0.700468, 0.00324596, 0.010258, 0.713602)
+bones/13/rotation = Quaternion(0.00222903, 0.0416597, 0.997116, -0.0633954)
+bones/14/rotation = Quaternion(0.0851236, -0.00152616, -0.0121222, 0.996296)
+bones/15/rotation = Quaternion(-0.700468, -0.00324621, -0.0102583, 0.713602)
+bones/16/position = Vector3(-0.174577, 0.48972, -0.521312)
+bones/17/position = Vector3(-0.218809, 0.0623709, 0.0869693)
+bones/17/rotation = Quaternion(0.0341924, 0.70628, 0.70628, 0.0341924)
+bones/18/position = Vector3(0.173753, 0.48972, -0.521312)
+bones/19/position = Vector3(0.217985, 0.0623709, 0.0869693)
 
-[node name="GuardBody" type="Node3D" parent="Body"]
+[node name="gasmask" parent="HConCheckpointGuardBody/body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 1.26348e-09, -4.24096e-09, -1.26349e-09, 1, 5.96046e-08, 4.24096e-09, -5.96046e-08, 1, -2.06637e-08, 5.96046e-07, -3.35276e-08)
+
+[node name="GuardBody" type="Node3D" parent="HConCheckpointGuardBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0876513, -0.416621, 0.11397)
 
-[node name="049-2" parent="Body/GuardBody" instance=ExtResource("11_0exjv")]
+[node name="049-2" parent="HConCheckpointGuardBody/GuardBody" instance=ExtResource("11_0exjv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Body/GuardBody/049-2/Armature" index="0"]
+[node name="Skeleton3D" parent="HConCheckpointGuardBody/GuardBody/049-2/Armature" index="0"]
 bones/0/position = Vector3(1.22002e-10, 0.115022, 0.0364691)
 bones/0/rotation = Quaternion(-0.107909, 0.00323999, -0.0390293, 0.993389)
 bones/1/rotation = Quaternion(0.151184, 0.00296214, -0.0762839, 0.985553)
@@ -174,17 +190,17 @@ bones/12/rotation = Quaternion(-0.26661, 0.645408, 0.71529, 0.0269686)
 bones/13/rotation = Quaternion(-0.12335, 0.0330805, -0.0419861, 0.990923)
 bones/14/rotation = Quaternion(0.759805, -0.0922114, 0.139404, 0.6283)
 
-[node name="scp_049_2" parent="Body/GuardBody/049-2/Armature/Skeleton3D" index="0"]
+[node name="scp_049_2" parent="HConCheckpointGuardBody/GuardBody/049-2/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6exok")
 surface_material_override/1 = SubResource("StandardMaterial3D_jguy7")
 
-[node name="Decal" parent="Body/GuardBody" instance=ExtResource("14_kcmmn")]
+[node name="Decal" parent="HConCheckpointGuardBody/GuardBody" instance=ExtResource("14_kcmmn")]
 transform = Transform3D(1, 0, 0, 0, 0.867575, 0.497307, 0, -0.497307, 0.867575, -0.405902, 0.253016, -0.264768)
 upper_fade = 0.010769
 lower_fade = 0.0107691
 
 [editable path="KeycardDoor"]
 [editable path="KeycardDoor/door"]
-[editable path="Body"]
-[editable path="Body/body"]
-[editable path="Body/GuardBody/049-2"]
+[editable path="HConCheckpointGuardBody"]
+[editable path="HConCheckpointGuardBody/body"]
+[editable path="HConCheckpointGuardBody/GuardBody/049-2"]
