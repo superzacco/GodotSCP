@@ -132,11 +132,7 @@ transform = Transform3D(-0.828793, 0, -0.559555, 0, 1, 0, 0.559555, 0, -0.828793
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, -0.779894, 5.8)
 chanceToSpawn = 25.0
 
-[node name="PaperSpawnPoint" parent="HConCheckpointGuardBody" instance=ExtResource("12_3mggf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634372, -0.206332, -0.415249)
-type = 0
-
-[node name="body" parent="HConCheckpointGuardBody" index="1"]
+[node name="body" parent="HConCheckpointGuardBody" index="0"]
 visible = false
 
 [node name="Skeleton3D" parent="HConCheckpointGuardBody/body/Armature" index="0"]
@@ -163,6 +159,10 @@ bones/19/position = Vector3(0.217985, 0.0623709, 0.0869693)
 
 [node name="gasmask" parent="HConCheckpointGuardBody/body/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 1.26348e-09, -4.24096e-09, -1.26349e-09, 1, 5.96046e-08, 4.24096e-09, -5.96046e-08, 1, -2.06637e-08, 5.96046e-07, -3.35276e-08)
+
+[node name="PaperSpawnPoint" parent="HConCheckpointGuardBody" instance=ExtResource("12_3mggf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634372, -0.206332, -0.415249)
+type = 0
 
 [node name="GuardBody" type="Node3D" parent="HConCheckpointGuardBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0876513, -0.416621, 0.11397)

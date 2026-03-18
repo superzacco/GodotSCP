@@ -4,19 +4,20 @@ var playerCam: Camera3D = null
 
 func _ready() -> void:
 	await SignalBus.level_generation_finished
+	transparency = 0.4
 	playerCam = GlobalPlayerVariables.player.camera
 
 
 func _physics_process(delta: float) -> void:
 	if GlobalPlayerVariables.playerPosition.distance_to(self.global_position) > 20:
-		if no_depth_test:
-			no_depth_test = false
+		if visible:
+			hide()
 		return
 	
 	if can_ray_see_player_camera():
-		no_depth_test = true
+		show()
 	else:
-		no_depth_test = false
+		hide()
 
 
 func can_ray_see_player_camera() -> bool:

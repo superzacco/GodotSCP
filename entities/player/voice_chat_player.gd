@@ -26,6 +26,11 @@ func _ready() -> void:
 	playback = output.get_stream_playback()
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("voicetransmit"):
+		sync_mix_rate.rpc(int(AudioServer.get_mix_rate()))
+
+
 func _process(delta: float) -> void:
 	if is_multiplayer_authority(): 
 		if GlobalPlayerVariables.usePTT:
@@ -85,7 +90,7 @@ func compress_audio(f32Data: PackedFloat32Array) -> PackedByteArray:
 	
 	for i in range(f32Data.size()):
 			var sample = clamp(f32Data[i], -1.0, 1.0)
-			byteData[i] = int((sample + 1.0) * 128)
+			byteData[i] = int((sample + 1.0) * 127.5)
 	
 	return byteData
 
@@ -94,9 +99,24 @@ func decompress_audio(byteData: PackedByteArray) -> PackedFloat32Array:
 	f32Data.resize(byteData.size())
 	
 	for i in range(byteData.size()):
-		f32Data[i] = (float(byteData[i]) / 128) - 1.0
+		f32Data[i] = (float(byteData[i]) / 127.5) - 1.0
 	
 	return f32Data
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func sync_mix_rate(rate: int):
+	if output.stream is not AudioStreamGenerator:
+		return
+	
+	var streamGenerator: AudioStreamGenerator = output.stream
+	
+	output.stop()
+	streamGenerator.mix_rate_mode = AudioStreamGenerator.MIX_RATE_CUSTOM
+	streamGenerator.mix_rate = rate
+	output.play()
+	
+	playback = output.get_stream_playback()
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func send_data(data: PackedByteArray):
