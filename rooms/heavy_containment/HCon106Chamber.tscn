@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvb65pgdkem5x"]
+[gd_scene load_steps=20 format=3 uid="uid://dvb65pgdkem5x"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_aelrd"]
 [ext_resource type="PackedScene" uid="uid://b0sm1y2oko1rp" path="res://rooms/Models/HCon106Chamber.blend" id="2_aelrd"]
@@ -10,7 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="7_w8jdj"]
 [ext_resource type="PackedScene" uid="uid://bko55qdmctjdd" path="res://rooms/Models/props/shelf02.blend" id="9_fec1l"]
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="9_n5c7o"]
+[ext_resource type="PackedScene" uid="uid://crjyt6uvcg7py" path="res://rooms/Models/props/lever_panel.blend" id="11_bo1s0"]
 [ext_resource type="PackedScene" uid="uid://c8lv7q65uttuj" path="res://entities/items/cards/keycard05.tscn" id="11_fnypg"]
+[ext_resource type="PackedScene" uid="uid://d1rl2vliaxcr8" path="res://rooms/Models/props/server_tower.blend" id="12_nlnnu"]
+[ext_resource type="PackedScene" uid="uid://5ehmmcm3m7tw" path="res://rooms/Models/props/106_panel_sign_magnet.blend" id="14_ckad8"]
+[ext_resource type="PackedScene" uid="uid://gnt4w7c6am81" path="res://rooms/lever.tscn" id="14_gdy87"]
+[ext_resource type="PackedScene" uid="uid://c7ex67k1r3713" path="res://rooms/Models/props/106_panel_sign_femur_breaker.blend" id="14_t66bb"]
+[ext_resource type="PackedScene" uid="uid://mguj1yqfypu2" path="res://entities/map/security_monitor.tscn" id="15_t66bb"]
+[ext_resource type="PackedScene" uid="uid://c7rgmb2eiq6td" path="res://rooms/button.tscn" id="16_ckad8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qwkvv"]
 radius = 18.0
@@ -32,10 +39,10 @@ shape = SubResource("SphereShape3D_qwkvv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="Skeleton3D" parent="HCon106Chamber/electromagnet-control" index="0"]
-bones/0/position = Vector3(0, 5, 0)
+bones/0/position = Vector3(-0.1, 10, 0)
 
 [node name="electromagnet-col" parent="HCon106Chamber/electromagnet-control/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0569534, 0.727177, -0.0947337)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156953, 5.72718, -0.0947337)
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -169,37 +176,61 @@ keycardLevel = 4
 [node name="Props" type="Node3D" parent="."]
 
 [node name="shelf02" parent="Props" instance=ExtResource("9_fec1l")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.13264, -6.72726, 0.393804)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.13264, -6.72726, 0.893804)
 
 [node name="table" parent="Props" instance=ExtResource("9_n5c7o")]
-transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 2.63118)
+transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 3.13118)
 
 [node name="table3" parent="Props" instance=ExtResource("9_n5c7o")]
-transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 0.531177)
+transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 2.03118)
 
 [node name="table4" parent="Props" instance=ExtResource("9_n5c7o")]
-transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 3.63118)
+transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 5.13118)
 
 [node name="table5" parent="Props" instance=ExtResource("9_n5c7o")]
-transform = Transform3D(-1.22191e-07, 0, -0.75, 0, 0.75, 0, 0.75, 0, -1.22191e-07, 4.01254, -6.68372, 9.63118)
+transform = Transform3D(0.75, 0, -8.94075e-08, 0, 0.75, 0, 8.94075e-08, 0, 0.75, 7.49039, -6.68372, 14.109)
 
 [node name="table2" parent="Props" instance=ExtResource("9_n5c7o")]
-transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 5.73118)
+transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 6.23118)
+
+[node name="lever_panel" parent="Props" instance=ExtResource("11_bo1s0")]
+transform = Transform3D(-5.24537e-08, 1.04907e-07, -1.2, -5.24537e-08, 1.2, 1.04907e-07, 1.2, 5.24537e-08, -5.24537e-08, 6.25113, -6.39134, -0.822775)
+
+[node name="server_tower" parent="Props" instance=ExtResource("12_nlnnu")]
+transform = Transform3D(-5.24537e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.24537e-08, 8.79914, -5.89163, -1.2166)
 
 [node name="Items" type="Node3D" parent="."]
 
 [node name="keycard05" parent="." node_paths=PackedStringArray("otherSpawnPoints") instance=ExtResource("11_fnypg")]
-transform = Transform3D(0.94014, 0, 0.34079, 0, 1, 0, -0.34079, 0, 0.94014, 9.07119, -6.61162, 0.718787)
+transform = Transform3D(0.94014, 0, 0.34079, 0, 1, 0, -0.34079, 0, 0.94014, 9.07119, -6.61162, 1.19473)
 otherSpawnPoints = [NodePath("Marker3D"), NodePath("Marker3D2")]
 
 [node name="Marker3D" type="Marker3D" parent="keycard05"]
-transform = Transform3D(0.190381, 0, -0.98171, 0, 1, 0, 0.98171, 0, 0.190381, 0.210566, 1.05051, -0.580889)
+transform = Transform3D(0.190381, 0, -0.98171, 0, 1, 0, 0.98171, 0, 0.190381, 0.215643, 1.05051, -0.594896)
 
 [node name="Marker3D2" type="Marker3D" parent="keycard05"]
-transform = Transform3D(-0.332349, -0.408373, -0.850162, -0.868635, 0.483711, 0.107221, 0.367447, 0.774116, -0.515488, -2.43898, 0.450511, 5.69435)
+transform = Transform3D(-0.332349, -0.408373, -0.850162, -0.868635, 0.483711, 0.107221, 0.367447, 0.774116, -0.515488, -4.76525, 0.450511, 11.8093)
 
 [node name="Marker3D3" type="Marker3D" parent="keycard05"]
-transform = Transform3D(0.47631, 0.874859, -0.0880387, -0.868635, 0.483711, 0.107221, 0.136389, 0.0254027, 0.99033, -5.26415, 0.450511, -0.00989366)
+transform = Transform3D(0.47631, 0.874859, -0.0880387, -0.868635, 0.483711, 0.107221, 0.136389, 0.0254027, 0.99033, -5.60494, 0.450511, 0.930245)
+
+[node name="LeverButtonPanel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -5, 0)
+
+[node name="106_panel_sign_magnet" parent="LeverButtonPanel" instance=ExtResource("14_ckad8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356067, 0.013535, -1.5216)
+
+[node name="106_panel_sign_femur_breaker" parent="LeverButtonPanel" instance=ExtResource("14_t66bb")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0.229189, 0.00957012, -1.52961)
+
+[node name="Lever" parent="LeverButtonPanel" instance=ExtResource("14_gdy87")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.354894, -0.4, -1.53595)
+
+[node name="Monitor" parent="LeverButtonPanel" instance=ExtResource("15_t66bb")]
+transform = Transform3D(0.998366, 0, -0.0571458, -0.00345084, 0.998175, -0.0602879, 0.0570416, 0.0603865, 0.996544, 1.26832, -0.0715156, -1.40959)
+
+[node name="Button" parent="LeverButtonPanel" instance=ExtResource("16_ckad8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.228938, -0.4, -1.52255)
 
 [editable path="RoomArea"]
 [editable path="HCon106Chamber"]

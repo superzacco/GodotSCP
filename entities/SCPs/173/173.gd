@@ -72,7 +72,7 @@ func send_to_server(selfID: int, onScreen: bool, blinking: bool):
 
 
 func process_server():
-	if !multiplayer.is_server():
+	if !multiplayer.is_server() or !enabled:
 		return
 	
 	if GlobalPlayerVariables.debugInfo != null:

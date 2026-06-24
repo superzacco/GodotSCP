@@ -28,28 +28,28 @@ doorMeshes = [null, null]
 [node name="door" parent="." instance=ExtResource("2_a3yfc")]
 
 [node name="Skeleton3D" parent="door/Armature" index="0"]
-bones/0/position = Vector3(0, 1.30376, 2.88532e-08)
-bones/3/position = Vector3(-9.84314e-08, -1.30376, 3.5454e-07)
+bones/0/position = Vector3(0, 0.00166321, -1.83286e-07)
+bones/3/position = Vector3(-1.25574e-10, -0.00166321, 1.42401e-07)
 
 [node name="door2-col" parent="door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.0462368, -2.82284e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
 
 [node name="StaticBody3D" parent="door/Armature/Skeleton3D/door2-col/door2" index="0"]
 collision_layer = 256
 collision_mask = 256
 
 [node name="doorside_2" parent="door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.30376, 2.88532e-08)
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
 
 [node name="door-col" parent="door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.0462366, 3.26748e-08)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -1.79464e-07)
 
 [node name="StaticBody3D" parent="door/Armature/Skeleton3D/door-col/door" index="0"]
 collision_layer = 256
 collision_mask = 256
 
 [node name="doorside_1" parent="door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.30376, 3.5454e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, 1.42401e-07)
 
 [node name="Keycardbutton" parent="." node_paths=PackedStringArray("doorsToControl") instance=ExtResource("3_g8fdx")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1, 0, 0.232088)

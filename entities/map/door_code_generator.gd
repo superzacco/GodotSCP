@@ -20,5 +20,6 @@ func make_code() -> int:
 
 @rpc("authority", "call_local", "reliable")
 func setup_codes(code: int):
+	print(code)
 	for keypad in kepads:
 		keypad.keypadCode = code

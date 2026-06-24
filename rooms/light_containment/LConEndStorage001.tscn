@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dcowoxl70jkxy" path="res://entities/items/cards/keycard01.tscn" id="10_4hpky"]
 [ext_resource type="PackedScene" uid="uid://c6vp8lw0ppmo2" path="res://entities/SCPs/049/049-2.blend" id="11_0exjv"]
 [ext_resource type="PackedScene" uid="uid://c4t4udohm0xwt" path="res://entities/bodies/body.tscn" id="11_4hpky"]
-[ext_resource type="PackedScene" uid="uid://bkgdnc2h587aj" path="res://entities/map/paper_spawn_point.tscn" id="12_3mggf"]
+[ext_resource type="PackedScene" uid="uid://bw1kb2uio4gqm" path="res://entities/items/papers/postit_note.tscn" id="12_3mggf"]
 [ext_resource type="Texture2D" uid="uid://dtqdqr2knafmq" path="res://entities/bodies/guard.png" id="12_cykk4"]
 [ext_resource type="Texture2D" uid="uid://d25g35lo45lhu" path="res://entities/bodies/guard_helmet.png" id="13_3mggf"]
 [ext_resource type="PackedScene" uid="uid://dpq8gq38rdpod" path="res://entities/decals/blood01.tscn" id="14_kcmmn"]
@@ -160,9 +160,8 @@ bones/19/position = Vector3(0.217985, 0.0623709, 0.0869693)
 [node name="gasmask" parent="HConCheckpointGuardBody/body/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 1.26348e-09, -4.24096e-09, -1.26349e-09, 1, 5.96046e-08, 4.24096e-09, -5.96046e-08, 1, -2.06637e-08, 5.96046e-07, -3.35276e-08)
 
-[node name="PaperSpawnPoint" parent="HConCheckpointGuardBody" instance=ExtResource("12_3mggf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.634372, -0.206332, -0.415249)
-type = 0
+[node name="postit" parent="HConCheckpointGuardBody" instance=ExtResource("12_3mggf")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -0.69252, 0, -0.19631)
 
 [node name="GuardBody" type="Node3D" parent="HConCheckpointGuardBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0876513, -0.416621, 0.11397)

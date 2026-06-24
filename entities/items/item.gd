@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name Item
 
 @export_group("Item Setup")
-@export var itemID: int = 0:
+var itemID: int = 0:
 	set(v):
 		itemID = v
 		if itemID != 0:

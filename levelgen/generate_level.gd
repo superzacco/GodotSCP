@@ -205,7 +205,6 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 #endregion // SHAPE
 
 
-@rpc("call_local", "any_peer")
 func spawn_room(room, x, z, temp: bool = false) -> Node3D:
 	if temp and temporaryRooms[x][z] != null:
 		return temporaryRooms[x][z]

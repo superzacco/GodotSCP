@@ -27,18 +27,13 @@ func _input(event: InputEvent) -> void:
 		inputField.grab_focus()
 		self.visible = true
 	
-	
 	if Input.is_action_just_released("console"):
 		inputField.editable = true
 		inputField.edit()
 	
 	
-	if Input.is_action_just_released("quit") and GlobalPlayerVariables.lookingEnabled != false:
-		inputField.clear()
-		GlobalPlayerVariables.consoleOpen = false
-		
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-		self.visible = false
+	if Input.is_action_just_released("quit"):
+		hide_console()
 	
 	
 	if Input.is_action_just_pressed("enter"):
@@ -135,3 +130,12 @@ func println(text: String, color := Color.WHITE):
 	var hex: String = color.to_html()
 	consoleOutput = consoleOutput + "[color="+hex+"]" + "\n"+"]" + text + "[/color]"
 	consoleTextWindow.text = consoleOutput
+
+
+func hide_console():
+	if GlobalPlayerVariables.lookingEnabled:
+		inputField.clear()
+		GlobalPlayerVariables.consoleOpen = false
+		
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
+		self.visible = false
