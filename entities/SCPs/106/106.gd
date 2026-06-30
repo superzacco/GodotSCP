@@ -1,110 +1,130 @@
 extends Monster
+class_name SCP106
 
 var chasing: bool = false
+var captured: bool = false
 
 @export var minSpawnTime: int 
 @export var maxSpawnTime: int 
 
 var playersInRadius: Array[Player]
-@export var animationPlayer: AnimationPlayer
 @export var corrosiveDecal: PackedScene
 
 @export var summonTimer: Timer
 @export var corrosiveDecalTimer: Timer 
+
+@export var risingPlayer: AudioStreamPlayer3D
+@export var slopSoundsPlayer: AudioStreamPlayer3D
+@export var breathingPlayer: AudioStreamPlayer3D
+@export var chasePlayer: AudioStreamPlayer
+@export var PDSendPlayer: AudioStreamPlayer
 
 @export var ermergeSounds: Array[AudioStream]
 @export var chaseAmbiance: AudioStream
 @export var sendtoPDSound: AudioStream
 @export var PDAmbiance: AudioStream
 
-var audioPlaybackGlobal: AudioStreamPlaybackPolyphonic
+var debugInfo: DebugInfo = null
 
 
 func _ready() -> void:
-	SignalBus.connect("activate_106", on_106_activated)
+	SignalBus.activate_106.connect(on_106_activated)
 	$CollisionShape3D.position += Vector3(0, -15, 0)
 	
 	await SignalBus.level_generation_finished
 	
+	debugInfo = GlobalPlayerVariables.debugInfo
+	GlobalPlayerVariables.facilityManager.scp106 = self
 	corrosiveDecalTimer.timeout.connect(spawn_repeating_decal)
 	summonTimer.timeout.connect(on_106_activated)
 	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
 
 
 func _physics_process(delta: float) -> void:
-	if !should_process():
-		return
-	
-	if GlobalPlayerVariables.debugInfo != null:
-		GlobalPlayerVariables.debugInfo.summonTimer = summonTimer.time_left
+	if !should_process(): return
 	
 	process_client()
+	
+	if !multiplayer.is_server(): return
+	
 	process_server()
 
 
 func process_client():
-	pass
-
+	if debugInfo: debugInfo.summonTimer = summonTimer.time_left
 
 func process_server():
-	if !multiplayer.is_server():
-		return
+	if !chasing: return
 	
-	if chasing == true:
-		var nextPathPos := Vector3.ZERO
-		
-		agent.target_position = find_closest_player().global_position
-		nextPathPos = agent.get_next_path_position() - global_position
-		velocity = (nextPathPos.normalized() * speed)
-		
-		self.global_position += velocity * 0.01
-		
-		look_at_pos(global_position + velocity)
-		move_and_slide()
+	var nextPathPos := Vector3.ZERO
+	
+	agent.target_position = find_closest_player().global_position
+	nextPathPos = agent.get_next_path_position() - global_position
+	velocity = (nextPathPos.normalized() * speed)
+	
+	look_at_pos(global_position + velocity)
+	move_and_slide()
+
+
+func should_process():
+	if !chasing or captured: return false
+	super()
 
 
 func on_106_activated():
 	rise.rpc(GlobalPlayerVariables.playerPosition)
 
+
 @rpc("any_peer", "call_local", "reliable")
-func rise(position: Vector3):
+func rise(summonPos: Vector3):
 	summonTimer.stop()
 	
-	$Decay.stream = ZFunc.rand_from(ermergeSounds)
-	$Decay.play()
+	slopSoundsPlayer.stream = ZFunc.rand_from(ermergeSounds)
+	slopSoundsPlayer.play()
 	
-	$Breathing.play()
-	ZFunc.fade_in($Breathing, 4.0)
+	breathingPlayer.play()
+	ZFunc.fade_in(breathingPlayer, 4.0)
 	
-	$Rising.play()
-	ZFunc.fade_in($Rising, 1.0)
+	risingPlayer.play()
+	ZFunc.fade_in(risingPlayer, 1.0)
 	
-	self.global_position = GlobalPlayerVariables.playerPosition
+	self.global_position = summonPos
 	
-	animationPlayer.stop()
-	animationPlayer.play("rise")
+	modelAnimations.stop()
+	modelAnimations.play("rise")
 	spawn_first_decal()
 	
-	await animationPlayer.animation_finished
+	await modelAnimations.animation_finished
 	
-	begin_chase()
+	if !captured: begin_chase()
+	else: on_106_contained()
+
+
+func on_106_contained():
+	summonTimer.stop()
+	ZFunc.fade_out(breathingPlayer, 4.0)
+	ZFunc.fade_out(slopSoundsPlayer, 4.0)
+	
+	chasePlayer.play(20.0)
+	ZFunc.fade_in(chasePlayer, 2.0)
+	await get_tree().create_timer(10.0)
+	ZFunc.fade_out(chasePlayer, 8.0)
 
 
 @rpc("any_peer", "call_local", "reliable")
 func begin_chase():
-	$Chase.play()
+	chasePlayer.play()
 	
 	chasing = true
 	$CollisionShape3D.position += Vector3(0, 15, 0)
-	animationPlayer.play("walk")
+	modelAnimations.play("walk")
 	
-	#step()
 	corrosiveDecalTimer.start()
 
 
 func end_chase():
-	ZFunc.fade_out($Chase, 5.0)
-	$Breathing.stop()
+	ZFunc.fade_out(chasePlayer, 5.0)
+	breathingPlayer.stop()
 	
 	chasing = false
 	$CollisionShape3D.position += Vector3(0, -15, 0)
@@ -112,15 +132,15 @@ func end_chase():
 	corrosiveDecalTimer.stop()
 	spawn_first_decal()
 	
-	animationPlayer.stop()
-	animationPlayer.play_backwards("rise")
+	modelAnimations.stop()
+	modelAnimations.play_backwards("rise")
 	
 	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
 
 
 func on_send_player_to_pd(player: Player):
 	player.take_damage(25.0, Damage.Types.TYPE_106)
-	$SendToPD.play()
+	PDSendPlayer.play()
 
 
 func spawn_first_decal():
@@ -145,17 +165,6 @@ func spawn_repeating_decal():
 	corrode.speed = 2.0
 	corrode.finalSize = randomSize
 
-
-#func step():
-	#if !chasing == true:
-		#return
-	#
-	#if !audioPlaybackGlobal == null:
-		#audioPlaybackGlobal.play_stream(ZFunc.rand_from(stepSounds))
-	#
-	#$StepSounds/Timer.start(0.74)
-	#await $StepSounds/Timer.timeout
-	#step()
 
 
 func stop_pd_ambiance():

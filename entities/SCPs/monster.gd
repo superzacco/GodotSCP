@@ -14,7 +14,10 @@ var playersInAttackArea: Array[Player] = []
 var attackTimer := Timer.new()
 var canAttack := true
 
-@export var animationSpeed: float = 1.0
+@export var animationSpeed: float = 1.0:
+	set(v):
+		animationSpeed = v
+		if modelAnimations: modelAnimations.speed_scale = animationSpeed
 
 @export var processTimer: Timer
 @export var modelAnimations: AnimationPlayer
@@ -42,7 +45,9 @@ var nextPathPos := Vector3.ZERO
 func process_one() -> void:
 	if !should_process(): return
 	
-	attack_player()
+	agent.target_position = find_closest_player().global_position
+	if playersInAttackArea.size() > 0:
+		attack()
 	 
 	nextPathPos = agent.get_next_path_position() - global_position
 	velocity = (nextPathPos.normalized() * (speed * 0.1))
@@ -50,19 +55,13 @@ func process_one() -> void:
 
 func _process(delta: float) -> void:
 	if !should_process(): return
-	
-	target_player()
 	look_at_pos(self.global_position + velocity)
-	
+
+
+func _physics_process(delta: float) -> void:
+	if !should_process(): return
 	move_and_slide()
 
-
-func attack_player():
-	if playersInAttackArea.size() > 0:
-		attack()
-
-func target_player():
-	agent.target_position = find_closest_player().global_position
 
 func look_at_pos(pos: Vector3):
 	if global_position.is_equal_approx(agent.target_position):

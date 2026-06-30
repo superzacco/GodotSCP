@@ -15,3 +15,4 @@ func get_up():
 func animation_finished(animName: String):
 	if animName == "getup":
 		set_active()
+		modelAnimations.play("walk")

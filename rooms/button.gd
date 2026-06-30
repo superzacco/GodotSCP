@@ -1,6 +1,8 @@
 extends Node3D
 class_name DoorButton
 
+signal activated
+
 @export var doorsToControl: Array[Door]
 @export var rejectionText: String
 @export var wontOpen: bool = false
@@ -23,10 +25,6 @@ func _ready() -> void:
 
 
 func on_pressed():
-	if extraToControl == null and doorsToControl.size() <= 0:
-		push_error("Button with unassigned things")
-		return
-	
 	if wontOpen:
 		$Fail.play()
 		SignalBus.show_interaction_text.emit(rejectionText)
@@ -91,6 +89,8 @@ func get_keycard() -> Keycard:
 
 @rpc("reliable", "call_local", "any_peer")
 func activate_things():
+	activated.emit()
+	
 	$Sound.play()
 	if extraToControl != null:
 		extraToControl.activate()

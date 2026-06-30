@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dvb65pgdkem5x"]
 
-[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_aelrd"]
+[ext_resource type="Script" uid="uid://dn65ydal5sias" path="res://rooms/heavy_containment/chamber_106.gd" id="1_ckad8"]
 [ext_resource type="PackedScene" uid="uid://b0sm1y2oko1rp" path="res://rooms/Models/HCon106Chamber.blend" id="2_aelrd"]
 [ext_resource type="PackedScene" uid="uid://dh0aj5tcd68wg" path="res://util/teleport_point.tscn" id="2_qwkvv"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_w8jdj"]
@@ -22,8 +22,16 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_qwkvv"]
 radius = 18.0
 
-[node name="HConEnd001" type="Node3D" groups=["room"]]
-script = ExtResource("1_aelrd")
+[node name="106Chamber" type="Node3D" node_paths=PackedStringArray("chamberAnimPlayer", "electromagnetLever", "summonPositionMarker") groups=["room"]]
+script = ExtResource("1_ckad8")
+chamberAnimPlayer = NodePath("HCon106Chamber/AnimationPlayer")
+electromagnetLever = NodePath("LeverButtonPanel/ElectromagnetLever")
+summonPositionMarker = NodePath("106summonposition")
+roomName = "chamber106"
+can173Spawn = false
+
+[node name="106summonposition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46981, -5.4323, 3.99998)
 
 [node name="TeleportPoint" parent="." instance=ExtResource("2_qwkvv")]
 transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -0.1, 0.532933, -5.3)
@@ -39,10 +47,11 @@ shape = SubResource("SphereShape3D_qwkvv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="Skeleton3D" parent="HCon106Chamber/electromagnet-control" index="0"]
-bones/0/position = Vector3(-0.1, 10, 0)
+bones/0/position = Vector3(0.1, 10.0012, 0.5)
+bones/0/rotation = Quaternion(0.000506492, 0.000215161, 0.000172606, 1)
 
 [node name="electromagnet-col" parent="HCon106Chamber/electromagnet-control/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156953, 5.72718, -0.0947337)
+transform = Transform3D(1, -0.000344994, 0.000430497, 0.00034543, 0.999999, -0.00101291, -0.000430147, 0.00101306, 0.999999, 0.0444799, 5.72846, 0.400962)
 
 [node name="Points" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
@@ -101,20 +110,20 @@ brightness = 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.106804, -3.1)
 
 [node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
-bones/0/position = Vector3(-3.41486e-08, 1.12666, 2.84217e-16)
-bones/3/position = Vector3(-8.50607e-08, -1.12666, 2.84217e-16)
+bones/0/position = Vector3(0, 1.30376, 2.88532e-08)
+bones/3/position = Vector3(-9.84314e-08, -1.30376, 2.88532e-08)
 
 [node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.223337, -3.11137e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.0462399, -2.82284e-07)
 
 [node name="doorside_2" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.12666, -2.10321e-14)
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.30376, 2.88532e-08)
 
 [node name="door-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.223337, -3.21865e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.0462397, -2.93012e-07)
 
 [node name="doorside_1" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 4.29168e-14)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.30376, 2.88532e-08)
 
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 4
@@ -130,16 +139,16 @@ bones/0/position = Vector3(-3.41486e-08, 1.12666, 2.84217e-16)
 bones/3/position = Vector3(-8.50607e-08, -1.12666, 2.84217e-16)
 
 [node name="door2-col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.223337, -3.11137e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.22334, -3.11137e-07)
 
 [node name="doorside_2" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.12666, -2.10321e-14)
 
 [node name="door-col" parent="Doors/Door/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.223337, -3.21865e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.22334, -3.21865e-07)
 
 [node name="doorside_1" parent="Doors/Door/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 4.29168e-14)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 2.84217e-16)
 
 [node name="Button" parent="Doors/Door" index="1"]
 disabled = true
@@ -156,16 +165,16 @@ bones/0/position = Vector3(-3.41486e-08, 1.12666, 2.84217e-16)
 bones/3/position = Vector3(-8.50607e-08, -1.12666, 2.84217e-16)
 
 [node name="door2-col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.223337, -3.11137e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.22334, -3.11137e-07)
 
 [node name="doorside_2" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="1"]
 transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.12666, -2.10321e-14)
 
 [node name="door-col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.223337, -3.21865e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.22334, -3.21865e-07)
 
 [node name="doorside_1" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 4.29168e-14)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 2.84217e-16)
 
 [node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
 keycardLevel = 4
@@ -193,9 +202,6 @@ transform = Transform3D(0.75, 0, -8.94075e-08, 0, 0.75, 0, 8.94075e-08, 0, 0.75,
 [node name="table2" parent="Props" instance=ExtResource("9_n5c7o")]
 transform = Transform3D(5.66234e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, 5.66234e-08, 8.95154, -6.68372, 6.23118)
 
-[node name="lever_panel" parent="Props" instance=ExtResource("11_bo1s0")]
-transform = Transform3D(-5.24537e-08, 1.04907e-07, -1.2, -5.24537e-08, 1.2, 1.04907e-07, 1.2, 5.24537e-08, -5.24537e-08, 6.25113, -6.39134, -0.822775)
-
 [node name="server_tower" parent="Props" instance=ExtResource("12_nlnnu")]
 transform = Transform3D(-5.24537e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.24537e-08, 8.79914, -5.89163, -1.2166)
 
@@ -215,7 +221,10 @@ transform = Transform3D(-0.332349, -0.408373, -0.850162, -0.868635, 0.483711, 0.
 transform = Transform3D(0.47631, 0.874859, -0.0880387, -0.868635, 0.483711, 0.107221, 0.136389, 0.0254027, 0.99033, -5.60494, 0.450511, 0.930245)
 
 [node name="LeverButtonPanel" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, -5, 0)
+
+[node name="lever_panel" parent="LeverButtonPanel" instance=ExtResource("11_bo1s0")]
+transform = Transform3D(-5.24537e-08, 1.04907e-07, -1.2, -5.24537e-08, 1.2, 1.04907e-07, 1.2, 5.24537e-08, -5.24537e-08, 0.25113, -1.39134, -0.822775)
 
 [node name="106_panel_sign_magnet" parent="LeverButtonPanel" instance=ExtResource("14_ckad8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356067, 0.013535, -1.5216)
@@ -223,14 +232,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356067, 0.013535, -1.5216)
 [node name="106_panel_sign_femur_breaker" parent="LeverButtonPanel" instance=ExtResource("14_t66bb")]
 transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0.229189, 0.00957012, -1.52961)
 
-[node name="Lever" parent="LeverButtonPanel" instance=ExtResource("14_gdy87")]
+[node name="ElectromagnetLever" parent="LeverButtonPanel" instance=ExtResource("14_gdy87")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.354894, -0.4, -1.53595)
 
 [node name="Monitor" parent="LeverButtonPanel" instance=ExtResource("15_t66bb")]
 transform = Transform3D(0.998366, 0, -0.0571458, -0.00345084, 0.998175, -0.0602879, 0.0570416, 0.0603865, 0.996544, 1.26832, -0.0715156, -1.40959)
 
-[node name="Button" parent="LeverButtonPanel" instance=ExtResource("16_ckad8")]
+[node name="FemurBreakerButton" parent="LeverButtonPanel" instance=ExtResource("16_ckad8")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.228938, -0.4, -1.52255)
+
+[connection signal="lever_activated" from="LeverButtonPanel/ElectromagnetLever" to="." method="_on_electromagnet_lever_lever_activated"]
+[connection signal="lever_deactivated" from="LeverButtonPanel/ElectromagnetLever" to="." method="_on_electromagnet_lever_lever_deactivated"]
+[connection signal="activated" from="LeverButtonPanel/FemurBreakerButton" to="." method="_on_femur_breaker_button_activated"]
 
 [editable path="RoomArea"]
 [editable path="HCon106Chamber"]

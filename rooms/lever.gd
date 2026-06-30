@@ -9,6 +9,7 @@ signal lever_deactivated
 
 @export var lockAfterActivating: bool = false
 var interacting: bool = false
+var disableInteraction: bool = false
 
 var leverActivated: bool = false
 
@@ -49,7 +50,7 @@ func update_handle_pos(angle: float):
 
 
 func can_move() -> bool:
-	if !interacting or (lockAfterActivating and leverActivated):
+	if !interacting or (lockAfterActivating and leverActivated) or disableInteraction:
 		return false
 	
 	return true

@@ -14,6 +14,7 @@ var playerNearbyRooms: Array[Room] = []
 var LConToHConCheckpoints: Array[Room] = []
 
 var chamber096: Room = null
+var chamber106: Room = null
 
 var scp173: CharacterBody3D
 var scp106: CharacterBody3D
@@ -32,7 +33,9 @@ func _ready() -> void:
 	for room: Room in rooms:
 		if room.roomName == "chamber096":
 			chamber096 = room
-	
+		if room.roomName == "chamber106":
+			chamber106 = room
+
 
 
 #region // PROGRESSION
