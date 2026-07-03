@@ -7,7 +7,6 @@ var captured: bool = false
 @export var minSpawnTime: int 
 @export var maxSpawnTime: int 
 
-var playersInRadius: Array[Player]
 @export var corrosiveDecal: PackedScene
 
 @export var summonTimer: Timer
@@ -19,10 +18,7 @@ var playersInRadius: Array[Player]
 @export var chasePlayer: AudioStreamPlayer
 @export var PDSendPlayer: AudioStreamPlayer
 
-@export var ermergeSounds: Array[AudioStream]
-@export var chaseAmbiance: AudioStream
-@export var sendtoPDSound: AudioStream
-@export var PDAmbiance: AudioStream
+@export var emergeSounds: Array[AudioStream]
 
 var debugInfo: DebugInfo = null
 
@@ -55,38 +51,43 @@ func process_client():
 
 func process_server():
 	if !chasing: return
-	
-	var nextPathPos := Vector3.ZERO
-	
-	agent.target_position = find_closest_player().global_position
-	nextPathPos = agent.get_next_path_position() - global_position
-	velocity = (nextPathPos.normalized() * speed)
-	
-	look_at_pos(global_position + velocity)
-	move_and_slide()
 
 
 func should_process():
 	if !chasing or captured: return false
 	super()
 
+func attack():
+	end_chase.rpc()
+	super()
 
 func on_106_activated():
+	enabled = true
 	rise.rpc(GlobalPlayerVariables.playerPosition)
+
+func on_106_contained():
+	summonTimer.stop()
+	ZFunc.fade_out(breathingPlayer, 4.0)
+	ZFunc.fade_out(slopSoundsPlayer, 4.0)
+	
+	chasePlayer.play(20.0)
+	ZFunc.fade_in(chasePlayer, 5.0)
+	await get_tree().create_timer(7.5).timeout
+	ZFunc.fade_out(chasePlayer, 7.5)
 
 
 @rpc("any_peer", "call_local", "reliable")
 func rise(summonPos: Vector3):
 	summonTimer.stop()
 	
-	slopSoundsPlayer.stream = ZFunc.rand_from(ermergeSounds)
+	slopSoundsPlayer.stream = ZFunc.rand_from(emergeSounds)
 	slopSoundsPlayer.play()
 	
 	breathingPlayer.play()
-	ZFunc.fade_in(breathingPlayer, 4.0)
+	ZFunc.fade_in(breathingPlayer, 8.0)
 	
 	risingPlayer.play()
-	ZFunc.fade_in(risingPlayer, 1.0)
+	ZFunc.fade_in(risingPlayer, 2.0)
 	
 	self.global_position = summonPos
 	
@@ -100,20 +101,12 @@ func rise(summonPos: Vector3):
 	else: on_106_contained()
 
 
-func on_106_contained():
-	summonTimer.stop()
-	ZFunc.fade_out(breathingPlayer, 4.0)
-	ZFunc.fade_out(slopSoundsPlayer, 4.0)
-	
-	chasePlayer.play(20.0)
-	ZFunc.fade_in(chasePlayer, 2.0)
-	await get_tree().create_timer(10.0)
-	ZFunc.fade_out(chasePlayer, 8.0)
-
-
 @rpc("any_peer", "call_local", "reliable")
-func begin_chase():
+func begin_chase(atPosition := Vector3.ZERO):
 	chasePlayer.play()
+	
+	if atPosition != Vector3.ZERO:
+		self.global_position = atPosition
 	
 	chasing = true
 	$CollisionShape3D.position += Vector3(0, 15, 0)
@@ -122,6 +115,7 @@ func begin_chase():
 	corrosiveDecalTimer.start()
 
 
+@rpc("any_peer", "call_local", "reliable")
 func end_chase():
 	ZFunc.fade_out(chasePlayer, 5.0)
 	breathingPlayer.stop()
@@ -135,7 +129,13 @@ func end_chase():
 	modelAnimations.stop()
 	modelAnimations.play_backwards("rise")
 	
-	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
+	if multiplayer.is_server():
+		wait_to_summon.rpc(randf_range(minSpawnTime, maxSpawnTime))
+
+
+@rpc("any_peer", "call_local", "reliable")
+func wait_to_summon(summonTime: float):
+	summonTimer.start(summonTime)
 
 
 func on_send_player_to_pd(player: Player):
@@ -171,16 +171,9 @@ func stop_pd_ambiance():
 	ZFunc.fade_out($PDAmbiance, 5.0)
 
 
-func _on_chase_radius_area_entered(area: Area3D) -> void:
-	if area.is_in_group("noclip_player_area"):
-		playersInRadius.append(area.get_parent())
-
 func _on_chase_radius_area_exited(area: Area3D) -> void:
-	if area.is_in_group("noclip_player_area"):
-		playersInRadius.erase(area.get_parent())
-		
-		if playersInRadius.size() <= 0:
-			end_chase()
+	if playersInChaseRadius.size() <= 0:
+		end_chase.rpc()
 
 
 func _on_teleportzone_body_entered(body: Node3D) -> void:

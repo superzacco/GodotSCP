@@ -59,8 +59,9 @@ func fade_out(player: Node, duration: float):
 	
 	await tween.finished
 	
-	player.stop()
-	player.volume_db = curr_vol
+	if player:
+		player.stop()
+		player.volume_db = curr_vol
 
 
 func get_ray_collider(fromPos: Vector3, toPos: Vector3) -> Node3D:

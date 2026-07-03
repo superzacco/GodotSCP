@@ -5,6 +5,7 @@ signal activated
 
 @export var doorsToControl: Array[Door]
 @export var rejectionText: String
+@export var rejectionTextKeycard: String
 @export var wontOpen: bool = false
 @export var disabled: bool = false
 
@@ -26,22 +27,20 @@ func _ready() -> void:
 
 func on_pressed():
 	if wontOpen:
-		$Fail.play()
-		SignalBus.show_interaction_text.emit(rejectionText)
-		return
+		reject_open()
 	
 	if buttonType == ButtonTypes.BUTTON:
 		activate_things.rpc()
 		return
 	
 	if buttonType == ButtonTypes.KEYCARD:
-		var equippedKeycard: Keycard = get_keycard()
 		
 		if !equipped_item_is_keycard():
 			SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
 			$Button.play()
 			return
 		
+		var equippedKeycard: Keycard = get_keycard()
 		if equippedKeycard == null:
 			SignalBus.show_interaction_text.emit("You need a keycard to open this door.")
 			GlobalPlayerVariables.inventory.clear_equip()
@@ -85,6 +84,15 @@ func get_keycard() -> Keycard:
 		return null
 	
 	return keycard
+
+
+@rpc("reliable", "call_local", "any_peer")
+func reject_open():
+	$Fail.play()
+	if multiplayer.get_unique_id() == multiplayer.get_remote_sender_id():
+		SignalBus.show_interaction_text.emit(rejectionTextKeycard)
+	elif buttonType == ButtonTypes.BUTTON:
+		SignalBus.show_interaction_text.emit(rejectionText)
 
 
 @rpc("reliable", "call_local", "any_peer")
