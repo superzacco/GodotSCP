@@ -19,7 +19,8 @@ var chamber106: Room = null
 var scp173: CharacterBody3D
 var scp106: CharacterBody3D
 
-var LConToHConPostitNoteSpawns: Array[Vector3] = []
+#var LConToHConPostitNoteSpawns: Array[Vector3] = []
+var LConHConCheckpointOverrideCodes: Dictionary[int, String]
 
 
 

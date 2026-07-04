@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw1kb2uio4gqm"]
+[gd_scene load_steps=8 format=3 uid="uid://bw1kb2uio4gqm"]
 
 [ext_resource type="PackedScene" uid="uid://cqr438jun6j8w" path="res://entities/items/item.tscn" id="1_0q1go"]
 [ext_resource type="Texture2D" uid="uid://d0fslc5mmflo1" path="res://entities/items/papers/postit_icon.png" id="2_cold4"]
 [ext_resource type="PackedScene" uid="uid://dipxcsvgbuqqf" path="res://entities/items/papers/paper.blend" id="3_cold4"]
 [ext_resource type="Script" uid="uid://cvyvhmreu444x" path="res://entities/items/papers/post_it.gd" id="4_a3xqq"]
-[ext_resource type="PackedScene" uid="uid://bv3ljpq48mwby" path="res://entities/items/papers/code_postit_ui.tscn" id="5_a3xqq"]
 [ext_resource type="Texture2D" uid="uid://snn0kkllmjsg" path="res://entities/items/papers/codepostit.png" id="6_cold4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jh8d2"]
@@ -25,7 +24,6 @@ itemType = 1
 [node name="paper" parent="." index="2" instance=ExtResource("3_cold4")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("4_a3xqq")
-otherDocument = ExtResource("5_a3xqq")
 paper = ExtResource("6_cold4")
 
 [node name="Plane" parent="paper" index="0"]

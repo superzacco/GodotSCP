@@ -1,4 +1,5 @@
 extends Control
+class_name PaperUI
 
 @export var zoomRate: float
 
@@ -67,7 +68,7 @@ func hide_paper():
 	GlobalPlayerVariables.immutableMenuOpen = false
 
 
-func equip_paper(document: Texture2D, otherDocument: PackedScene = null):
+func equip_paper(document: Texture2D, otherData: Dictionary = {}):
 	GlobalPlayerVariables.immutableMenuOpen = true
 	GlobalPlayerVariables.inventory.close_inventory()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
@@ -77,8 +78,8 @@ func equip_paper(document: Texture2D, otherDocument: PackedScene = null):
 	
 	if document:
 		show_paper_texture(document)
-	if otherDocument:
-		show_other_document(otherDocument)
+	if otherData:
+		display_other_data(otherData)
 	
 	await get_tree().create_timer(0.2).timeout
 	delay = false
@@ -90,15 +91,21 @@ func show_paper_texture(image: Texture2D):
 	paper.set_position(Vector2.ZERO - (paper.size/2))
 	paper.scale = Vector2(defaultSize, defaultSize)
 
+enum OtherDataTypes {
+	POST_IT_CODES
+}
 
-func show_other_document(document: PackedScene):
-	var doc: Control = document.instantiate()
-	
-	paper.set_size(doc.size)
-	paper.add_child(doc)
-	doc.set_position(Vector2.ZERO)
-	doc.z_index = 12
-	
+@export var postItDisplay: PackedScene
+func display_other_data(data: Dictionary):
+	if data.get(OtherDataTypes.POST_IT_CODES):
+		var code: String = data[OtherDataTypes.POST_IT_CODES]
+		
+		var display: PostITDisplay = postItDisplay.instantiate()
+		paper.add_child(display)
+		
+		display.code = code
+		display.global_position = paper.global_position
+		display.z_index = 12
 
 
 func _on_paper_mouse_entered() -> void:

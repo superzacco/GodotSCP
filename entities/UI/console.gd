@@ -84,7 +84,7 @@ func _input(event: InputEvent) -> void:
 			"173":
 				SignalBus.teleport_173_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0, 0.5, 0))
 			"096":
-				SignalBus.teleport_096_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0.1, 1.5, 0))
+				SignalBus.teleport_096_to_player.emit(GlobalPlayerVariables.playerPosition + Vector3(0, 0.5, 0))
 			"relocate":
 				SignalBus.emit_signal("relocate_173")
 			"tp":

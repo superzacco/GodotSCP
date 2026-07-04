@@ -36,6 +36,7 @@ func _ready() -> void:
 
 
 func process_one() -> void:
+	super()
 	if !should_process(): return
 	process_client()
 	
@@ -81,14 +82,6 @@ func process_client():
 			modelAnimations.play("run")
 		States.ANGER:
 			modelAnimations.play("idle")
-
-
-func _process(delta: float) -> void:
-	if !should_process(): return
-	
-	if !agent.target_position.is_equal_approx(self.global_position):
-		look_at_pos(global_position + velocity)
-		move_and_slide()
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -140,6 +133,7 @@ func _on_run_timer_timeout() -> void:
 	go_kill_random_npc()
 
 func go_kill_random_npc():
+	enabled = true
 	if !should_process(): return
 	if !multiplayer.is_server():
 		return
@@ -159,8 +153,10 @@ func go_kill_random_npc():
 	send_096.rpc(targetPosMarker, startPos)
 
 
+var chasing := false
 @rpc("authority", "call_local", "reliable")
 func stop_chase():
+	chasing = false
 	update_target_pos(ZFunc.rand_from(facilityManager.rooms).global_position)
 	set_state(States.WANDER)
 	
@@ -172,6 +168,7 @@ func stop_chase():
 
 @rpc("authority", "call_local", "reliable")
 func send_096(target: Node3D, startPos: Vector3 = self.global_position):
+	chasing = true
 	var targetPos: Vector3 = target.global_position
 	set_state(States.CHASE)
 	
@@ -179,7 +176,6 @@ func send_096(target: Node3D, startPos: Vector3 = self.global_position):
 		var player: Player = target
 		var ID := player.get_multiplayer_authority()
 		if ID == multiplayer.get_remote_sender_id():
-			print("playingChase")
 			chasePlayer.play()
 		
 		targetedPlayer = player
@@ -187,7 +183,7 @@ func send_096(target: Node3D, startPos: Vector3 = self.global_position):
 	if !screamPlayer.playing:
 		screamPlayer.play()
 	global_position = startPos
-	agent.target_position = targetPos
+	update_target_pos(targetPos)
 
 var targetNPC: Body
 @rpc("authority", "call_local", "reliable")
@@ -202,14 +198,6 @@ func setup_npc(targetPos: Vector3):
 	targetNPC.startDead = false
 	get_tree().root.add_child(targetNPC)
 	targetNPC.global_position = targetPos-Vector3(0,1,0)
-
-
-
-func should_process() -> bool:
-	if !enabled:
-		return false
-	
-	return true
 
 
 func _on_door_break_radius_body_entered(body: Node3D) -> void:

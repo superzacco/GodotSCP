@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2tmrt17xnndd"]
+[gd_scene load_steps=20 format=3 uid="uid://2tmrt17xnndd"]
 
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="2_frmbd"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_74lcb"]
@@ -9,8 +9,14 @@
 [ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/door/DoorCheckpoint.ogg" id="8_ndq0b"]
 [ext_resource type="PackedScene" uid="uid://clbs16iv1f6a" path="res://rooms/Models/props/hcon_sign.blend" id="10_bd0kl"]
 [ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="10_iqi7u"]
+[ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="10_nwkuw"]
 [ext_resource type="PackedScene" uid="uid://ml7q4l2a2757" path="res://rooms/Models/props/ent_sign.blend" id="11_biti5"]
 [ext_resource type="PackedScene" uid="uid://bsg137oewfonh" path="res://rooms/Models/HConToEntCheckpoint.blend" id="12_vvg4f"]
+[ext_resource type="PackedScene" uid="uid://bk6sp4pjff341" path="res://rooms/Models/props/officechair.blend" id="13_bo1rg"]
+[ext_resource type="PackedScene" uid="uid://bogo1qqfqjh7y" path="res://rooms/Models/props/filecabinet.blend" id="13_gvdwd"]
+[ext_resource type="PackedScene" uid="uid://ccajjv5le4hk2" path="res://rooms/Models/props/computer_tower.blend" id="14_fv274"]
+[ext_resource type="PackedScene" uid="uid://ddd37kr5i5jjw" path="res://rooms/Models/props/computer_monitor.blend" id="15_weh1a"]
+[ext_resource type="PackedScene" uid="uid://7l4nci6wjc8r" path="res://rooms/keycard_door.tscn" id="17_2uuh8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c8dnd"]
 
@@ -32,7 +38,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.006
 [node name="lights" type="Node3D" parent="."]
 
 [node name="Light" parent="lights" instance=ExtResource("4_74lcb")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.7, 4.84494, 5.6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.7, 4.84494, 5.6)
+brightness = 0.1
+
+[node name="Light" parent="lights/Light" instance=ExtResource("4_74lcb")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -5.8, -3.00991, 1.3)
 brightness = 0.1
 
 [node name="Light5" parent="lights" instance=ExtResource("4_74lcb")]
@@ -40,26 +50,27 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 brightness = 0.1
 
 [node name="Light2" parent="lights" instance=ExtResource("4_74lcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.84494, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.84494, 1)
 brightness = 0.1
 
 [node name="Light3" parent="lights" instance=ExtResource("4_74lcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.84494, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.84494, -5)
+omniBrightness = 0.25
 
 [node name="Light4" parent="lights" instance=ExtResource("4_74lcb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.84494, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.84494, -5)
+omniBrightness = 0.25
 
 [node name="Light6" parent="lights" instance=ExtResource("4_74lcb")]
 transform = Transform3D(-2.18557e-08, 3.78552e-08, -1, 0.866025, 0.5, 0, 0.5, -0.866025, -4.37114e-08, 3.02395, 2.03157, -1.76693)
-lightColor = Color(1, 0.116667, 0, 1)
-brightness = 0.5
-omniBrightness = 1.0
+lightColor = Color(1, 0.470853, 0.389739, 1)
+omniBrightness = 0.5
 
 [node name="Light7" parent="lights" instance=ExtResource("4_74lcb")]
 transform = Transform3D(6.55671e-08, -1.13566e-07, 1, 0.866025, 0.5, 0, -0.5, 0.866025, 1.31134e-07, 3.02395, 2.03157, -2.86693)
-lightColor = Color(1, 0.116667, 0, 1)
+lightColor = Color(1, 0.470853, 0.389739, 1)
 brightness = 0.5
-omniBrightness = 1.0
+omniBrightness = 0.5
 
 [node name="LightGlowSprite" parent="lights/Light7" index="0"]
 transparency = 0.0
@@ -166,7 +177,16 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="props" type="Node3D" parent="."]
 
+[node name="table" parent="props" instance=ExtResource("10_nwkuw")]
+transform = Transform3D(-0.8, 0, -1.20797e-07, -4.2166e-12, 0.8, 2.79253e-05, 1.20797e-07, 2.79253e-05, -0.8, -3, -0.735707, -2.07296)
+
 [node name="Varibalesigns" type="Node3D" parent="props"]
+
+[node name="ent_sign" parent="props/Varibalesigns" instance=ExtResource("11_biti5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.5, 1.76635, -2.75736)
+
+[node name="ent_sign2" parent="props/Varibalesigns" instance=ExtResource("11_biti5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.51301, 1.76635, -2.75736)
 
 [node name="hcon_sign" parent="props/Varibalesigns" instance=ExtResource("10_bd0kl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.8, -1.83195)
@@ -174,11 +194,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.8, -1.83195)
 [node name="hcon_sign2" parent="props/Varibalesigns" instance=ExtResource("10_bd0kl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.8, -1.83195)
 
-[node name="ent_sign" parent="props" instance=ExtResource("11_biti5")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.5, 1.76635, -2.75736)
+[node name="filecabinet" parent="props" instance=ExtResource("13_gvdwd")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.14062, -0.670525, 2.2458)
 
-[node name="ent_sign2" parent="props" instance=ExtResource("11_biti5")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.51301, 1.76635, -2.75736)
+[node name="filecabinet2" parent="props" instance=ExtResource("13_gvdwd")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.24062, -0.670525, 2.2458)
+
+[node name="computer_tower" parent="props" instance=ExtResource("14_fv274")]
+transform = Transform3D(0.998267, 0, -0.0588534, 0, 1, 0, 0.0588534, 0, 0.998267, -1.62228, -0.263774, -1.99841)
+
+[node name="computer_monitor" parent="props" instance=ExtResource("15_weh1a")]
+transform = Transform3D(0.996078, 0, 0.0884771, 0, 1, 0, -0.0884771, 0, 0.996078, -2.31368, -0.0658398, -2.31315)
+
+[node name="officechair" parent="props" instance=ExtResource("13_bo1rg")]
+transform = Transform3D(0.676439, 0, -0.736499, 0, 1, 0, 0.736499, 0, 0.676439, -3.94866, -1.17172, -1.32254)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="KeycardDoor" parent="Doors" instance=ExtResource("17_2uuh8")]
+transform = Transform3D(0.682802, 0, 0.730603, 0, 1, 0, -0.730603, 0, 0.682802, -2.02611, 0.0220739, 1.36648)
+
+[node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
+
+[node name="doorside_2" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
+
+[node name="door-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -1.79464e-07)
+
+[node name="doorside_1" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, 1.42401e-07)
+
+[node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
+keycardLevel = 3
+
+[node name="Keycardbutton2" parent="Doors/KeycardDoor" index="2"]
+keycardLevel = 3
 
 [editable path="lights/Light6"]
 [editable path="lights/Light7"]
@@ -186,3 +238,5 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.5130
 [editable path="Checkpoint/doors/Door/door"]
 [editable path="Checkpoint/doors/Door2"]
 [editable path="Checkpoint/doors/Door2/door"]
+[editable path="Doors/KeycardDoor"]
+[editable path="Doors/KeycardDoor/door"]

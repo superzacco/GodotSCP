@@ -1,9 +1,8 @@
 extends Control
+class_name PostITDisplay
 
-
-var code: int = 0
+var code: String = "0000":
+	set(v):
+		code = v
+		codeLabel.text = code
 @export var codeLabel: Label
-
-
-func _ready() -> void:
-	codeLabel.text = str(code)
