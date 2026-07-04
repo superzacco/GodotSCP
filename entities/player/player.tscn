@@ -225,7 +225,7 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_eyb6c"]
 viewport_path = NodePath("OverheadUsername/SubViewport")
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "damageSoundsPlayer", "blinkinator", "playerModel", "modelAnimations", "sprintTimer", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("stuffToRotate", "collider", "camera", "damageSoundsPlayer", "blinkinator", "playerModel", "modelAnimations", "cameraAnimations", "sprintTimer", "skeleton") groups=["elevatorpassenger", "player", "spectatable", "teslashockable"]]
 collision_layer = 257
 collision_mask = 257
 collision_priority = 5.0
@@ -246,6 +246,7 @@ sprintReplenishRate = 15.0
 blinkinator = NodePath("StuffToRotate/CameraBobPivot/Camera3D/BlinkSprite")
 playerModel = NodePath("StuffToRotate/classd001")
 modelAnimations = NodePath("StuffToRotate/classd001/AnimationPlayer")
+cameraAnimations = NodePath("AnimationPlayer")
 bodyslump = ExtResource("2_gt4e4")
 deathsound_106 = ExtResource("2_wq0jh")
 genericDamageSound = ExtResource("4_2soq1")
@@ -315,9 +316,32 @@ transform = Transform3D(1, 0, 1.98418e-09, 0, 1, 0, -1.98418e-09, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="StuffToRotate/classd001/Armature" index="0"]
 modifier_callback_mode_process = 0
+bones/0/position = Vector3(-0.00138469, 0.166173, 1.01139)
+bones/0/rotation = Quaternion(0.750515, 7.87801e-08, 8.94685e-08, 0.660854)
+bones/1/rotation = Quaternion(-0.0930768, -0.000674593, 0.00506872, 0.995646)
+bones/2/rotation = Quaternion(0.083468, 0.0960717, 0.0134747, 0.991777)
+bones/4/rotation = Quaternion(0.449495, -0.074929, 0.760915, 0.461896)
+bones/5/rotation = Quaternion(-0.097385, 0.0173563, 0.064648, 0.992993)
+bones/6/rotation = Quaternion(-0.0735778, -0.57316, 0.121686, 0.807011)
+bones/7/rotation = Quaternion(-0.0295396, 0.0872803, 0.903063, -0.419508)
+bones/8/rotation = Quaternion(-0.0783141, -0.241247, -0.235183, 0.938273)
+bones/9/rotation = Quaternion(-0.152872, 0.442621, -0.0813282, 0.879831)
+bones/10/rotation = Quaternion(-0.228054, 0.0197755, 0.972688, 0.038453)
+bones/11/rotation = Quaternion(0.244591, 0.00148423, 0.0348316, 0.968999)
+bones/12/rotation = Quaternion(-0.689896, -0.0686807, -0.152272, 0.704372)
+bones/13/rotation = Quaternion(0.0684359, 0.124769, 0.977593, -0.15512)
+bones/14/rotation = Quaternion(0.00293251, -0.00153182, -0.000417607, 0.999994)
+bones/15/rotation = Quaternion(-0.694579, 0.11653, -0.0457634, 0.70844)
+bones/16/position = Vector3(-0.114577, 0.48972, -0.521312)
+bones/16/rotation = Quaternion(0.0448546, 0.705683, -0.705683, -0.0448546)
+bones/17/position = Vector3(-0.255817, 0.0511434, 0.213657)
+bones/17/rotation = Quaternion(0.1681, 0.0920273, 0.979967, 0.0542044)
+bones/18/position = Vector3(0.469401, 0.805079, -0.340071)
+bones/19/position = Vector3(0.404988, 0.0701103, 0.184839)
+bones/19/rotation = Quaternion(-0.0483406, -0.0245828, 0.998528, 0.00119009)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.26342e-09, -4.24e-09, -1.26344e-09, 1, 1.19209e-07, 4.24003e-09, -1.19209e-07, 1, -2.10421e-08, 2.38419e-07, 6.14673e-08)
+transform = Transform3D(0.98113, 0.0369386, 0.189786, 0.188867, -0.393177, -0.899856, 0.0413802, 0.91872, -0.392735, -0.0598573, 0.750868, 0.243018)
 
 [node name="gasmask" parent="StuffToRotate/classd001/Armature/Skeleton3D/gasmask" index="0"]
 transform = Transform3D(1, 0, 7.10543e-15, 2.11758e-22, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)

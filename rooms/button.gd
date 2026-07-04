@@ -28,6 +28,7 @@ func _ready() -> void:
 func on_pressed():
 	if wontOpen:
 		reject_open()
+		return
 	
 	if buttonType == ButtonTypes.BUTTON:
 		activate_things.rpc()

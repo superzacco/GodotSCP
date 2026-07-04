@@ -1,3 +1,4 @@
+@tool
 extends StaticBody3D
 class_name Door
 
@@ -7,7 +8,11 @@ class_name Door
 @export var openSounds: Array[AudioStream]
 @export var closeSounds: Array[AudioStream]
 
-@export var openOnSpawn: bool = false
+@export var openOnSpawn: bool = false:
+	set(v):
+		openOnSpawn = v
+		if openOnSpawn: animationPlayer.play("open")
+		if !openOnSpawn: animationPlayer.play("close")
 
 @export var closableBy079: bool = false
 @export var openableBy173: bool = false

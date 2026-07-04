@@ -28,7 +28,7 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="scp106" type="CharacterBody3D" node_paths=PackedStringArray("summonTimer", "corrosiveDecalTimer", "risingPlayer", "slopSoundsPlayer", "breathingPlayer", "chasePlayer", "PDSendPlayer", "processTimer", "modelAnimations", "agent", "chaseArea") groups=["elevatorpassenger"]]
+[node name="scp106" type="CharacterBody3D" node_paths=PackedStringArray("summonTimer", "corrosiveDecalTimer", "risingPlayer", "slopSoundsPlayer", "breathingPlayer", "chasePlayer", "PDSendPlayer", "processTimer", "modelAnimations", "agent", "chaseArea", "attackArea") groups=["elevatorpassenger"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_breko")
@@ -44,17 +44,19 @@ chasePlayer = NodePath("Chase")
 PDSendPlayer = NodePath("SendToPD")
 emergeSounds = Array[AudioStream]([ExtResource("3_62ji8"), ExtResource("4_8dxoy"), ExtResource("5_00gjl")])
 enabled = true
-speed = 1.2
+speed = 8.0
 damage = 50.0
 typeOfDamage = 2
 processTimer = NodePath("Tenth")
 modelAnimations = NodePath("106/AnimationPlayer")
 agent = NodePath("NavigationAgent3D")
 chaseArea = NodePath("ChaseRadius")
+attackArea = NodePath("TeleportZone")
 
 [node name="Tenth" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.1
+autostart = true
 
 [node name="Decal Timer" type="Timer" parent="."]
 wait_time = 0.65
@@ -138,7 +140,6 @@ radius = 0.3
 debug_enabled = true
 
 [connection signal="body_entered" from="TeleportZone" to="." method="_on_teleportzone_body_entered"]
-[connection signal="area_entered" from="ChaseRadius" to="." method="_on_chase_radius_area_entered"]
 [connection signal="area_exited" from="ChaseRadius" to="." method="_on_chase_radius_area_exited"]
 
 [editable path="106"]

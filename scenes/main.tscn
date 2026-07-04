@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=92 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://cipmn1xaonh7y" path="res://rooms/entrance_zone/Ent3Way001.tscn" id="25_bjg73"]
 [ext_resource type="PackedScene" uid="uid://2m7c1q81nxo7" path="res://rooms/entrance_zone/Ent4Way001.tscn" id="26_bu4jf"]
 [ext_resource type="AudioStream" uid="uid://b124ybbn0bjvr" path="res://audio/ambient/general/Ambient0.ogg" id="26_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://dsicv4e5vbnmg" path="res://rooms/entrance_zone/EntCheckpointEntrance.tscn" id="26_fjhjs"]
 [ext_resource type="PackedScene" uid="uid://c27fnwp1k4213" path="res://rooms/entrance_zone/EntBend001.tscn" id="27_o7ddy"]
 [ext_resource type="AudioStream" uid="uid://bc2vehp2j6lys" path="res://audio/ambient/fullsitelockdown.ogg" id="27_tel4y"]
 [ext_resource type="AudioStream" uid="uid://boomnik4hkl8" path="res://audio/ambient/general/Ambient2.ogg" id="28_txyw0"]
@@ -105,13 +106,12 @@ door = ExtResource("2_jscy8")
 spawnRoom = ExtResource("3_pm3ni")
 temporaryShapeRoom = ExtResource("10_fv21b")
 LContoHConCheckpoint = ExtResource("4_fv21b")
-HContoENTCheckpoint = ExtResource("5_bu4jf")
-necessaryLConEndRooms = Array[PackedScene]([ExtResource("7_b6ruc"), ExtResource("7_b6ruc"), ExtResource("4_og1vs")])
+necessaryLConEndRooms = Array[PackedScene]([ExtResource("7_b6ruc"), ExtResource("7_b6ruc"), ExtResource("4_og1vs"), ExtResource("5_bu4jf")])
 necessaryLConTwoWayHalls = Array[PackedScene]([ExtResource("4_y6deb"), ExtResource("5_og1vs"), ExtResource("5_og1vs"), ExtResource("8_cjqg0"), ExtResource("9_vchkt"), ExtResource("10_txyw0"), ExtResource("10_txyw0"), ExtResource("12_ids8r"), ExtResource("14_xaipn"), ExtResource("15_11yus")])
 necessaryLConBends = Array[PackedScene]([ExtResource("7_2f3dj")])
-necessaryHConEndRooms = Array[PackedScene]([ExtResource("17_b6ruc"), ExtResource("19_63lxy")])
+necessaryHConEndRooms = Array[PackedScene]([ExtResource("17_b6ruc"), ExtResource("19_63lxy"), ExtResource("5_bu4jf"), ExtResource("5_bu4jf")])
 necessaryHConTwoWayHalls = Array[PackedScene]([ExtResource("13_o7ddy"), ExtResource("13_o7ddy"), ExtResource("15_dnhof"), ExtResource("16_j4bwh"), ExtResource("17_2s0kr")])
-necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i")])
+necessaryEntEndRooms = Array[PackedScene]([ExtResource("16_t5ykj"), ExtResource("17_e755i"), ExtResource("26_fjhjs"), ExtResource("26_fjhjs"), ExtResource("26_fjhjs")])
 necessaryEntTwoWayHalls = Array[PackedScene]([ExtResource("16_kf5aa")])
 fillerLConEndRooms = Dictionary[PackedScene, int]({
 ExtResource("6_2wyq8"): 50,
@@ -169,11 +169,11 @@ fillerEntBends = Dictionary[PackedScene, int]({
 ExtResource("27_o7ddy"): 1
 })
 mapWidth = 15
-mapHeight = 20
+mapHeight = 25
 connnectingHallLength = 3
 amountOfConnectingHalls = 4
 LContoHConCheckpointLine = 6
-HContoEntranceCheckpointLine = 13
+HContoEntranceCheckpointLine = 12
 
 [node name="SpectatorScreenManager" type="Node" parent="."]
 script = ExtResource("19_2f3dj")

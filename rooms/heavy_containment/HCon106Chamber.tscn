@@ -22,8 +22,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_qwkvv"]
 radius = 18.0
 
-[node name="106Chamber" type="Node3D" groups=["room"]]
+[node name="106Chamber" type="Node3D" node_paths=PackedStringArray("chamberAnimPlayer", "electromagnetLever", "summonPositionMarker") groups=["room"]]
 script = ExtResource("1_ckad8")
+chamberAnimPlayer = NodePath("HCon106Chamber/AnimationPlayer")
+electromagnetLever = NodePath("LeverButtonPanel/ElectromagnetLever")
+summonPositionMarker = NodePath("106summonposition")
+roomName = "chamber106"
 
 [node name="106summonposition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9302, -4.3323, 1.59998)
@@ -90,10 +94,13 @@ brightness = 1.5
 omniBrightness = 0.5
 
 [node name="Light6" parent="lights" instance=ExtResource("5_n5c7o")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 2.65971)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 0.65971)
 
 [node name="Light7" parent="lights" instance=ExtResource("5_n5c7o")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 11.6597)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 12.6597)
+
+[node name="Light9" parent="lights" instance=ExtResource("5_n5c7o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.42578, -3.59801, 6.6597)
 
 [node name="Light8" parent="lights" instance=ExtResource("5_n5c7o")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 1.22578, -1.20038, 13.1597)
@@ -105,20 +112,19 @@ brightness = 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.106804, -3.1)
 
 [node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
-bones/0/position = Vector3(0, 1.30376, 2.88532e-08)
-bones/3/position = Vector3(-9.84314e-08, -1.30376, 2.88532e-08)
+bones/3/position = Vector3(-1.2556e-10, -0.00166321, -1.83286e-07)
 
 [node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.0462399, -2.82284e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
 
 [node name="doorside_2" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.30376, 2.88532e-08)
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
 
 [node name="door-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.0462397, -2.93012e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -5.05151e-07)
 
 [node name="doorside_1" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.30376, 2.88532e-08)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, -1.83286e-07)
 
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 4
@@ -130,20 +136,20 @@ keycardLevel = 4
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.71214, 0.104844, -5.30344)
 
 [node name="Skeleton3D" parent="Doors/Door/door/Armature" index="0"]
-bones/0/position = Vector3(-3.41486e-08, 1.12666, 2.84217e-16)
-bones/3/position = Vector3(-8.50607e-08, -1.12666, 2.84217e-16)
+bones/0/position = Vector3(0, 0.00166321, -1.83286e-07)
+bones/3/position = Vector3(-1.2556e-10, -0.00166321, -1.83286e-07)
 
 [node name="door2-col" parent="Doors/Door/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.22334, -3.11137e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
 
 [node name="doorside_2" parent="Doors/Door/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.12666, -2.10321e-14)
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
 
 [node name="door-col" parent="Doors/Door/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.22334, -3.21865e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -5.05151e-07)
 
 [node name="doorside_1" parent="Doors/Door/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 2.84217e-16)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, -1.83286e-07)
 
 [node name="Button" parent="Doors/Door" index="1"]
 disabled = true
@@ -156,20 +162,19 @@ wontOpen = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.27879, -5.89169, 13.4426)
 
 [node name="Skeleton3D" parent="Doors/KeycardDoor2/door/Armature" index="0"]
-bones/0/position = Vector3(-3.41486e-08, 1.12666, 2.84217e-16)
-bones/3/position = Vector3(-8.50607e-08, -1.12666, 2.84217e-16)
+bones/3/position = Vector3(-1.2556e-10, -0.00166321, -1.83286e-07)
 
 [node name="door2-col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -0.22334, -3.11137e-07)
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
 
 [node name="doorside_2" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 1.12666, -2.10321e-14)
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
 
 [node name="door-col" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 0.22334, -3.21865e-07)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -5.05151e-07)
 
 [node name="doorside_1" parent="Doors/KeycardDoor2/door/Armature/Skeleton3D" index="3"]
-transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -1.12666, 2.84217e-16)
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, -1.83286e-07)
 
 [node name="Keycardbutton" parent="Doors/KeycardDoor2" index="1"]
 keycardLevel = 4

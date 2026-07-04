@@ -12,7 +12,7 @@ class_name GenerateLevel
 @export var spawnRoom: PackedScene
 @export var temporaryShapeRoom: PackedScene
 @export var LContoHConCheckpoint: PackedScene
-@export var HContoENTCheckpoint: PackedScene
+#@export var HContoENTCheckpoint: PackedScene
 @export_subgroup("Light Containment")
 @export var necessaryLConEndRooms: Array[PackedScene]
 @export var necessaryLConTwoWayHalls: Array[PackedScene]
@@ -77,8 +77,8 @@ var replacableEntBends: Array
 
 @export_group("everything else")
 var spaceMultiplier: float = 15
-@export var mapWidth: int = 12
-@export var mapHeight: int = 25
+@export var mapWidth: int 
+@export var mapHeight: int 
 
 @export var connnectingHallLength: int
 @export var amountOfConnectingHalls: int
@@ -206,6 +206,9 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 
 
 func spawn_room(room, x, z, temp: bool = false) -> Node3D:
+	var spawnPos = Vector3(x, 0, z)
+	if temp: if z > HContoEntranceCheckpointLine: z += 2
+	
 	if temp and temporaryRooms[x][z] != null:
 		return temporaryRooms[x][z]
 	
@@ -216,7 +219,7 @@ func spawn_room(room, x, z, temp: bool = false) -> Node3D:
 	if temp:
 		temporaryRooms[x][z] = spawnedRoom
 	
-	spawnedRoom.position = Vector3(x, 0, z) * spaceMultiplier
+	spawnedRoom.position = spawnPos * spaceMultiplier
 	return spawnedRoom
 
 
@@ -343,22 +346,7 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 		placablePositions.erase(randPos)
 		spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
 		print("end room was missing and placed at: %s" % randPos)
-
-
-func is_surrounded_by_other_rooms(pos: Vector2i, excludePos := Vector2i(-1, -1)):
-	if pos.x+1 >= mapWidth or pos.x-1 < 0 or pos.y >= mapHeight or pos.y < 0:
-		return true
-	
-	if temporaryRooms[pos.x+1][pos.y] != null and Vector2i(pos.x+1, pos.y) != excludePos:
-		return true
-	if temporaryRooms[pos.x-1][pos.y] != null and Vector2i(pos.x-1, pos.y) != excludePos:
-		return true
-	if temporaryRooms[pos.x][pos.y+1] != null and Vector2i(pos.x, pos.y+1) != excludePos:
-		return true
-	if temporaryRooms[pos.x][pos.y-1] != null and Vector2i(pos.x, pos.y-1) != excludePos:
-		return true
-	
-	return false
+		
 
 func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var safePositions := []
@@ -403,6 +391,21 @@ func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	print("Bend room was missing and placed!")
 #endregion
 
+
+func is_surrounded_by_other_rooms(pos: Vector2i, excludePos := Vector2i(-1, -1)):
+	if pos.x+1 >= mapWidth or pos.x-1 < 0 or pos.y >= mapHeight or pos.y < 0:
+		return true
+	
+	if temporaryRooms[pos.x+1][pos.y] != null and Vector2i(pos.x+1, pos.y) != excludePos:
+		return true
+	if temporaryRooms[pos.x-1][pos.y] != null and Vector2i(pos.x-1, pos.y) != excludePos:
+		return true
+	if temporaryRooms[pos.x][pos.y+1] != null and Vector2i(pos.x, pos.y+1) != excludePos:
+		return true
+	if temporaryRooms[pos.x][pos.y-1] != null and Vector2i(pos.x, pos.y-1) != excludePos:
+		return true
+	
+	return false
 
 
 func get_rooms_in_slice(zMin: int, zMax: int) -> Array[Room]:
@@ -552,7 +555,7 @@ func replace_filler_rooms():
 	room_replacer(necessaryHConFourWayHalls, replacableHConFourWayHalls)
 	room_replacer(necessaryHConBends, replacableHConBends)
 	
-	spawn_checkpoint_room(HContoEntranceCheckpointLine, HContoENTCheckpoint)
+	#spawn_checkpoint_room(HContoEntranceCheckpointLine, HContoENTCheckpoint)
 	
 	room_replacer(necessaryEntEndRooms, replacableEntEndRooms)
 	room_replacer(necessaryEntTwoWayHalls, replacableEntTwoWayHalls)

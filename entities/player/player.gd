@@ -18,6 +18,7 @@ var blinkQuickened: bool = false
 
 @export var playerModel: Node3D
 @export var modelAnimations: AnimationPlayer
+@export var cameraAnimations: AnimationPlayer
 
 @export var bodyslump: AudioStream
 @export var deathsound_106: AudioStream
@@ -65,8 +66,8 @@ func _ready() -> void:
 	
 	moveSpeed = moveSpeedDesired
 	
-	$AnimationPlayer.play("walking_Bob")
-	$AnimationPlayer.pause()
+	cameraAnimations.play("walking_Bob")
+	cameraAnimations.pause()
 	
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 
@@ -79,8 +80,11 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority() or dead:
 		return
 	
+	if beingSentToPD:
+		return
+	
 	if !can_move():
-		$AnimationPlayer.pause()
+		cameraAnimations.pause()
 		modelAnimations.play("idle")
 		return
 	
@@ -124,15 +128,15 @@ func _physics_process(delta: float) -> void:
 	
 	if sprinting and sprintJuice > 0:
 		modelAnimations.speed_scale = 1.35
-		$AnimationPlayer.speed_scale = 1.35
+		cameraAnimations.speed_scale = 1.35
 	else:
 		modelAnimations.speed_scale = 1 
-		$AnimationPlayer.speed_scale = 1 
+		cameraAnimations.speed_scale = 1 
 	#endregion
 	
 	#region // ANIMATIONS
 	if moveDir != Vector3.ZERO:
-		$AnimationPlayer.play()
+		cameraAnimations.play()
 		
 		if sprinting and sprintJuice > 0:
 			#modelAnimations.play("run")
@@ -140,7 +144,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			modelAnimations.play("walk")
 	else:
-		$AnimationPlayer.pause()
+		cameraAnimations.pause()
 		modelAnimations.play("idle")
 	#endregion
 
@@ -228,11 +232,13 @@ func stop_recharge():
 	sprintTimer.start(2)
 	canRechargeSprint = false
 
+var beingSentToPD := false
 func sent_to_pocket_dimension():
 	if get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 	
-	$AnimationPlayer.play("death")
+	beingSentToPD = true
+	cameraAnimations.play("death")
 	
 	GlobalPlayerVariables.lookingEnabled = false
 	
@@ -242,10 +248,11 @@ func sent_to_pocket_dimension():
 	await get_tree().create_timer(2.5).timeout
 	SignalBus.send_player_to_106.emit(self)
 	
-	$AnimationPlayer.stop()
-	$AnimationPlayer.play("walking_Bob")
+	cameraAnimations.stop()
+	cameraAnimations.play("walking_Bob")
 	
 	GlobalPlayerVariables.lookingEnabled = true
+	beingSentToPD = false
 
 
 func take_damage(damage: float, typeOfDamage: Damage.Types = Damage.Types.TYPE_GENERIC):
@@ -291,7 +298,7 @@ func on_death(dyingPlayerID: int):
 	
 	if dyingPlayerID == selfID:
 		dead = true
-		$AnimationPlayer.play("death")
+		cameraAnimations.play("death")
 	
 	modelAnimations.play("death")
 	

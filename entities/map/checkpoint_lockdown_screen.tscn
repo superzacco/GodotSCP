@@ -68,7 +68,6 @@ shaded = true
 sprite_frames = SubResource("SpriteFrames_2kcyk")
 animation = &"LConLockdown"
 autoplay = "LConLockdown"
-frame_progress = 0.331975
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022583, 0.0120239, -0.0104004)

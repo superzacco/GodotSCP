@@ -24,19 +24,27 @@ var debugInfo: DebugInfo = null
 
 
 func _ready() -> void:
+	super()
 	SignalBus.activate_106.connect(on_106_activated)
+	corrosiveDecalTimer.timeout.connect(spawn_repeating_decal)
+	summonTimer.timeout.connect(on_106_activated)
 	$CollisionShape3D.position += Vector3(0, -15, 0)
 	
 	await SignalBus.level_generation_finished
 	
-	debugInfo = GlobalPlayerVariables.debugInfo
 	GlobalPlayerVariables.facilityManager.scp106 = self
-	corrosiveDecalTimer.timeout.connect(spawn_repeating_decal)
-	summonTimer.timeout.connect(on_106_activated)
-	summonTimer.start(randi_range(minSpawnTime,maxSpawnTime))
+	debugInfo = GlobalPlayerVariables.debugInfo
+	
+	if multiplayer.is_server():
+		wait_to_summon.rpc(randf_range(minSpawnTime, maxSpawnTime))
+
+
+func process_one() -> void:
+	super()
 
 
 func _physics_process(delta: float) -> void:
+	super(delta)
 	if !should_process(): return
 	
 	process_client()
@@ -50,12 +58,14 @@ func process_client():
 	if debugInfo: debugInfo.summonTimer = summonTimer.time_left
 
 func process_server():
-	if !chasing: return
+	pass
 
 
-func should_process():
-	if !chasing or captured: return false
+func should_process() -> bool:
 	super()
+	if !chasing or captured: 
+		return false
+	else: return true
 
 func attack():
 	end_chase.rpc()
@@ -84,7 +94,7 @@ func rise(summonPos: Vector3):
 	slopSoundsPlayer.play()
 	
 	breathingPlayer.play()
-	ZFunc.fade_in(breathingPlayer, 8.0)
+	ZFunc.fade_in(breathingPlayer, 5.0)
 	
 	risingPlayer.play()
 	ZFunc.fade_in(risingPlayer, 2.0)
@@ -103,6 +113,7 @@ func rise(summonPos: Vector3):
 
 @rpc("any_peer", "call_local", "reliable")
 func begin_chase(atPosition := Vector3.ZERO):
+	print("106 beginning chase")
 	chasePlayer.play()
 	
 	if atPosition != Vector3.ZERO:
@@ -117,6 +128,7 @@ func begin_chase(atPosition := Vector3.ZERO):
 
 @rpc("any_peer", "call_local", "reliable")
 func end_chase():
+	print("106 ending chase")
 	ZFunc.fade_out(chasePlayer, 5.0)
 	breathingPlayer.stop()
 	

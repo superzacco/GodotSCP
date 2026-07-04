@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbtynk58d5ikj"]
+[gd_scene load_steps=7 format=3 uid="uid://cbtynk58d5ikj"]
 
 [ext_resource type="Script" uid="uid://cpyk7be5ocw3g" path="res://scenes/menu.gd" id="1_r3twu"]
 [ext_resource type="Theme" uid="uid://dfpv7tws4gwgv" path="res://resources/MainMenu.tres" id="2_vjb58"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vjb58"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_con2f"]
+events = [SubResource("InputEventKey_vjb58")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_mhnvy"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_4ytvr"]
+events = [SubResource("InputEventKey_mhnvy")]
 
 [node name="Menu" type="Node"]
 
@@ -44,12 +60,14 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_vjb58")
+shortcut = SubResource("Shortcut_con2f")
 text = "PLAY (DEV)"
 
 [node name="PlayMain" type="Button" parent="MainMenu/Buttons/Buttons/PlaySingplayer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_vjb58")
+shortcut = SubResource("Shortcut_4ytvr")
 text = "PLAY (MAIN)"
 
 [node name="Multiplayer" type="VBoxContainer" parent="MainMenu/Buttons/Buttons"]

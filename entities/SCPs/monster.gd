@@ -90,7 +90,7 @@ func reset_attack():
 
 
 func should_process() -> bool:
-	if !enabled or playersInChaseRadius.size() < 1 or find_closest_player() == null:
+	if !enabled or playersInChaseRadius.size() <= 0 or find_closest_player() == null:
 		return false
 	
 	return true
