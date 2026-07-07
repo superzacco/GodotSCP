@@ -128,6 +128,7 @@ func begin_chase(atPosition := Vector3.ZERO):
 
 @rpc("any_peer", "call_local", "reliable")
 func end_chase():
+	if !chasing: return
 	print("106 ending chase")
 	ZFunc.fade_out(chasePlayer, 5.0)
 	breathingPlayer.stop()
@@ -184,8 +185,9 @@ func stop_pd_ambiance():
 
 
 func _on_chase_radius_area_exited(area: Area3D) -> void:
-	if playersInChaseRadius.size() <= 0:
-		end_chase.rpc()
+	if area.is_in_group("noclip_player_area"):
+		if playersInChaseRadius.size() <= 0:
+			end_chase.rpc()
 
 
 func _on_teleportzone_body_entered(body: Node3D) -> void:

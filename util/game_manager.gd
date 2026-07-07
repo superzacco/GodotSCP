@@ -15,10 +15,14 @@ var facilityScene: PackedScene = preload("res://scenes/main.tscn")
 
 
 func _ready() -> void:
-	seed = randi_range(-999999999, 999999999)
+	make_seed()
 	
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
+
+func make_seed():
+	seed = randi_range(-999999999, 999999999)
+	print("made new seed: %s" % seed)
 
 
 func _physics_process(delta: float) -> void:

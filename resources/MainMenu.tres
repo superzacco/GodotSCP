@@ -6,5 +6,6 @@
 [resource]
 Button/font_sizes/font_size = 19
 Button/fonts/font = ExtResource("1_c1y1j")
+Label/fonts/font = ExtResource("1_c1y1j")
 TextEdit/colors/font_outline_color = Color(1, 1, 1, 1)
 TextEdit/fonts/font = ExtResource("2_ck7n8")

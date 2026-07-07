@@ -3,6 +3,13 @@ extends Control
 @export var multiplayerSpawner: MultiplayerSpawner
 
 
+var ctrlHeld := false
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("crouch"): ctrlHeld = true; debug_text.show()
+	if event.is_action_released("crouch"): ctrlHeld = true; debug_text.hide()
+
+
+
 func _ready() -> void:
 	multiplayerSpawner.spawn_function = spawn_level
 	Lobby.menuLobbyList = %LobbyVbox
@@ -14,8 +21,16 @@ func _on_play_dev_pressed() -> void:
 	get_tree().change_scene_to_packed(GameManager.devScene)
 
 func _on_play_main_pressed() -> void:
+	if ctrlHeld:
+		load_debug()
+	
 	get_tree().change_scene_to_packed(GameManager.facilityScene)
 #endregion // SINGLEPLAYER
+
+
+@export var debug_text: Label
+func load_debug():
+	GameManager.make_seed()
 
 
 #region // STEAM

@@ -24,7 +24,7 @@ events = [SubResource("InputEventKey_mhnvy")]
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
-[node name="MainMenu" type="HBoxContainer" parent="." node_paths=PackedStringArray("multiplayerSpawner", "portEntry", "portAddressEntry")]
+[node name="MainMenu" type="HBoxContainer" parent="." node_paths=PackedStringArray("multiplayerSpawner", "debug_text", "portEntry", "portAddressEntry")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,6 +34,7 @@ size_flags_horizontal = 3
 alignment = 1
 script = ExtResource("1_r3twu")
 multiplayerSpawner = NodePath("../MultiplayerSpawner")
+debug_text = NodePath("Buttons/Buttons/PlaySingplayer/PlayMain/DebugText")
 portEntry = NodePath("Buttons/Buttons/Multiplayer/Creating/TextEdit")
 portAddressEntry = NodePath("Buttons/Buttons/Multiplayer/Joining/TextEdit")
 
@@ -69,6 +70,20 @@ size_flags_horizontal = 3
 theme = ExtResource("2_vjb58")
 shortcut = SubResource("Shortcut_4ytvr")
 text = "PLAY (MAIN)"
+
+[node name="DebugText" type="Label" parent="MainMenu/Buttons/Buttons/PlaySingplayer/PlayMain"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = -21.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vjb58")
+text = "Debug Settings Activated!"
 
 [node name="Multiplayer" type="VBoxContainer" parent="MainMenu/Buttons/Buttons"]
 layout_mode = 2

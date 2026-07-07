@@ -162,6 +162,7 @@ func make_layout_shape():
 	var zOffset = 1
 	for i in 5:
 		if i == 2 or i == 4: zOffset += 1
+		
 		generate_long_hall(zOffset)
 		zOffset += 3
 
@@ -173,6 +174,7 @@ func generate_long_hall(zOffset):
 	var hallMinExtent: Vector3 = Vector3(0, 0, 0)
 	var hallMaxExtent: Vector3 = Vector3(0, 0, 0)
 	
+	if zOffset >= HContoEntranceCheckpointLine: hallLength = mapWidth; hallOffset = 0
 	for x in hallLength:
 		var spawnedRoom: Node3D = spawn_room(temporaryShapeRoom, x + hallOffset, zOffset, true)
 		
@@ -207,7 +209,7 @@ func generate_connecting_halls(hallMinExtent: Vector3, hallMaxExtent: Vector3):
 
 func spawn_room(room, x, z, temp: bool = false) -> Node3D:
 	var spawnPos = Vector3(x, 0, z)
-	if temp: if z > HContoEntranceCheckpointLine: z += 2
+	if temp: if z > HContoEntranceCheckpointLine: z+= 2
 	
 	if temp and temporaryRooms[x][z] != null:
 		return temporaryRooms[x][z]
@@ -301,7 +303,7 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).ends.size()
 	if zMin == 0: # // have to add 1 bc spawnroom
 		amtRequired += 1
-	print("Ends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).ends.size(), amtRequired])
+	#print("Ends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).ends.size(), amtRequired])
 	if amtRequired <= 0:
 		return
 	
@@ -322,36 +324,39 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 		if isVertical:
 			if temporaryRooms[hX+1][hZ] == null:
 				var pos := Vector2i(hX+1, hZ)
+				if placablePositions.has(pos): continue
 				if !is_surrounded_by_other_rooms(pos, hallPos):
 					placablePositions.append(pos)
 			if temporaryRooms[hX-1][hZ] == null:
 				var pos := Vector2i(hX-1, hZ)
+				if placablePositions.has(pos): continue
 				if !is_surrounded_by_other_rooms(pos, hallPos):
 					placablePositions.append(pos)
 		else:
 			if hZ+1 != LContoHConCheckpointLine and hZ+1 != HContoEntranceCheckpointLine and temporaryRooms[hX][hZ+1] == null:
 				var pos := Vector2i(hX, hZ+1)
+				if placablePositions.has(pos): continue
 				if !is_surrounded_by_other_rooms(pos, hallPos):
 					placablePositions.append(pos)
 			if hZ-1 != LContoHConCheckpointLine and hZ-1 != HContoEntranceCheckpointLine and temporaryRooms[hX][hZ-1] == null:
 				var pos := Vector2i(hX, hZ-1)
+				if placablePositions.has(pos): continue
 				if !is_surrounded_by_other_rooms(pos, hallPos):
 					placablePositions.append(pos)
 	
 	# // narrow to all places that arent surrounded by any more
-
 	for i in amtRequired:
 		var randPos: Vector2i = ZFunc.rand_from(placablePositions, mapRNG)
 		var pick: Vector2i = randPos
 		placablePositions.erase(randPos)
 		spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
-		print("end room was missing and placed at: %s" % randPos)
-		
+		#print("end room was missing and placed at: %s" % randPos)
+
 
 func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	var safePositions := []
 	var amtRequired = roomTypeArray.size()-get_zone_room_positions(zMin, zMax).bends.size()
-	print("Bends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).bends.size(), amtRequired])
+	#print("Bends Required: %s, Spaces: %s, Calculated: %s" % [roomTypeArray.size(), get_zone_room_positions(zMin, zMax).bends.size(), amtRequired])
 	if amtRequired <= 0:
 		return
 	
@@ -388,7 +393,7 @@ func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 	
 	var pick: Vector2i = ZFunc.rand_from(safePositions, mapRNG)
 	spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
-	print("Bend room was missing and placed!")
+	#print("Bend room was missing and placed!")
 #endregion
 
 

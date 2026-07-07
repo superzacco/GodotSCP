@@ -36,7 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.13003, 0.255746, -2.7563)
 
 [node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
-bones/0/position = Vector3(0, 0.00166321, -1.83286e-07)
 bones/3/position = Vector3(-1.2556e-10, -0.00166321, -1.83286e-07)
 
 [node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]

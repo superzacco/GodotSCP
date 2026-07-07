@@ -195,7 +195,6 @@ func equip_item(item: Item):
 	
 	var itemTypes := Item.ItemType
 	match item.itemType:
-		
 		itemTypes.type_card:
 			equippedItem = item
 			
