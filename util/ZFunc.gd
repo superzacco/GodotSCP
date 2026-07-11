@@ -24,6 +24,7 @@ func rand_from(array: Array, rng: RandomNumberGenerator = UtilRNG):
 	else:
 		return null
 
+
 func pick_from_list(weightedDict: Dictionary, rng: RandomNumberGenerator = UtilRNG):
 	if rng.seed == 0:
 		rng.seed = GameManager.seed

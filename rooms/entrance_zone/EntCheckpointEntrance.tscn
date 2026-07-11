@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dsicv4e5vbnmg"]
 
-[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_kauqb"]
+[ext_resource type="Script" uid="uid://c2h37ypefgkbp" path="res://rooms/entrance_zone/ent_checkpoint_entrance.gd" id="1_0473f"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="2_spbwl"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="3_fbxh1"]
 [ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="4_0473f"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="7_y3ee2"]
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="8_q6vxc"]
 
-[node name="EntCheckpointEntrance" type="Node3D"]
-script = ExtResource("1_kauqb")
+[node name="EntCheckpointEntrance" type="Node3D" node_paths=PackedStringArray("elevators")]
+script = ExtResource("1_0473f")
+elevators = [NodePath("elevators/elevator"), NodePath("elevators/elevator2")]
 
 [node name="RoomArea" parent="." instance=ExtResource("3_fbxh1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

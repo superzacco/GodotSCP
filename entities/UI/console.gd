@@ -103,6 +103,8 @@ func _input(event: InputEvent) -> void:
 					println("missing <scp>", Commands.errorColor)
 				else:
 					Commands.summon(commandStringArray[1])
+			"test":
+				print(GlobalPlayerVariables.facilityManager.HConEntCheckpoints)
 		
 		inputField.clear()
 	

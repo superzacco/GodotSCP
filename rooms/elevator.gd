@@ -6,6 +6,8 @@ class_name Elevator
 var destination: Node3D
 var otherElevator: Elevator
 
+@export var enabled: bool = true
+
 @export var id: String
 @export var ownDestination: Node3D
 @export var door: Door
@@ -16,6 +18,10 @@ var otherElevator: Elevator
 var moving: bool = false
 @export var atCurrentFloor := false
 var passengersInElevator: Array[Node3D]
+
+var alreadyMovingStr: String = "You pressed the button, but the elevator was already moving."
+var pressingNotFasterStr: String = "Pressing the button more wont make the elevator come any faster."
+var disabledStr: String = "The elevator does not seem to function."
 
 
 func _ready() -> void:
@@ -37,20 +43,22 @@ func elevator_setup(passedElevator: Elevator):
 					atCurrentFloor = true
 	
 	#print("")
-	#print("Elevator: %s" % self)
+	print("Elevator: %s" % self)
 	#print("Own Destination: %s" % ownDestination)
 	#print("Destination: %s" % destination)
 	#print("")
 
 @rpc("reliable", "call_local", "any_peer")
 func activate():
+	if enabled == false: return; SignalBus.show_interaction_text.emit(disabledStr)
+	
 	print(moving)
 	if moving:
 		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
 			if ZFunc.randInPercent(10):
-				SignalBus.show_interaction_text.emit("Pressing the button more wont make the elevator come any faster.")
+				SignalBus.show_interaction_text.emit(pressingNotFasterStr)
 			else:
-				SignalBus.show_interaction_text.emit("You pressed the button, but the elevator was already moving.")
+				SignalBus.show_interaction_text.emit(alreadyMovingStr)
 		
 		return
 	

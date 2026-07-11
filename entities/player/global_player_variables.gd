@@ -8,6 +8,10 @@ var spectatorManager: SpectatorManager
 var ambienceManager: AmbienceManager
 var debugInfo: DebugInfo
 
+func get_facility_manager() -> FacilityManager:
+	while !facilityManager:
+		await get_tree().create_timer(0.1).timeout
+	return facilityManager
 
 # player related
 var player: Player

@@ -14,11 +14,12 @@ func add_release_point(point: PDReleasePoint):
 	releasePoints[point] = point.weight
 
 
-func send_player_to_pd(player: Player):
-	var point: Marker3D = ZFunc.rand_from(spawnPoints)
-	
-	player.global_position = point.global_position
-	player.stuffToRotate.global_rotation = point.global_rotation
+func send_player_to_pd(player: Player, relocate := true):
+	if relocate:
+		var point: Marker3D = ZFunc.rand_from(spawnPoints)
+		
+		player.global_position = point.global_position
+		player.stuffToRotate.global_rotation = point.global_rotation
 	
 	$Audio/Laugh.play()
 	
@@ -27,14 +28,16 @@ func send_player_to_pd(player: Player):
 		$Audio/PDAmbiance.play()
 
 
-func release_player_from_pd(player: Player):
-	var point: Marker3D = ZFunc.pick_from_list(releasePoints)
-	
-	player.global_position = point.global_position
-	player.stuffToRotate.global_rotation = point.global_rotation
+func release_player_from_pd(player: Player, relocate := true):
+	if relocate:
+		var point: Marker3D = ZFunc.pick_from_list(releasePoints)
+		
+		player.global_position = point.global_position
+		player.stuffToRotate.global_rotation = point.global_rotation
 	
 	$Audio/Laugh.play()
 	ZFunc.fade_out($Audio/PDAmbiance, 8.0)
+	GlobalPlayerVariables.inPocketDimension = false
 
 
 func _on_way_teleports_body_entered(body: Node3D) -> void:
@@ -45,10 +48,11 @@ func _on_way_teleports_body_entered(body: Node3D) -> void:
 			release_player_from_pd(body)
 
 
-func _on_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		GlobalPlayerVariables.inPocketDimension = true
+func _on_area_entered(area: Area3D) -> void:
+	if area.is_in_group("noclip_player_area"):
+		send_player_to_pd(area.get_parent(), false)
 
-func _on_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		GlobalPlayerVariables.inPocketDimension = false
+
+func _on_area_exited(area: Area3D) -> void:
+	if area.is_in_group("noclip_player_area"):
+		release_player_from_pd(area.get_parent(), false)
