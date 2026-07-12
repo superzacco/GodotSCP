@@ -1,12 +1,25 @@
 extends Room
+class_name EntCheckpointEntrance
+# // Entrance Zone -- Checkpoint Entrances Elevators Thingyies
 
 @export var elevators: Array[Elevator] = []
+var facilityMGR: FacilityManager = null
 
 func _ready() -> void:
+	await SignalBus.level_generation_finished
+	facilityMGR = await GlobalPlayerVariables.get_facility_manager()
+	
 	if multiplayer.is_server():
 		disable_one_elevator.rpc(randi_range(0, 1))
+		send_to_facility_manager.rpc()
+
+
+
+@rpc("any_peer", "call_local", "reliable")
+func send_to_facility_manager():
+	facilityMGR.EntCheckpointEntrances.append(self)
 
 
 @rpc("any_peer", "call_local", "reliable")
 func disable_one_elevator(which: int):
-	elevators[which].enabled = false
+	elevators[which].disabled = true

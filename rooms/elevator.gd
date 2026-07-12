@@ -6,7 +6,7 @@ class_name Elevator
 var destination: Node3D
 var otherElevator: Elevator
 
-@export var enabled: bool = true
+@export var disabled: bool = false
 
 @export var id: String
 @export var ownDestination: Node3D
@@ -15,6 +15,7 @@ var otherElevator: Elevator
 @export var beepPlayer: AudioStreamPlayer3D
 @export var movingPlayer: AudioStreamPlayer3D
 
+var tempLocked: bool = false
 var moving: bool = false
 @export var atCurrentFloor := false
 var passengersInElevator: Array[Node3D]
@@ -33,6 +34,8 @@ func _ready() -> void:
 
 
 func elevator_setup(passedElevator: Elevator):
+	if disabled: return
+	
 	if id == passedElevator.id and passedElevator != self:
 		otherElevator = passedElevator
 		if otherElevator.ownDestination != ownDestination:
@@ -43,16 +46,20 @@ func elevator_setup(passedElevator: Elevator):
 					atCurrentFloor = true
 	
 	#print("")
-	print("Elevator: %s" % self)
+	#print("Elevator: %s" % self)
 	#print("Own Destination: %s" % ownDestination)
 	#print("Destination: %s" % destination)
 	#print("")
 
 @rpc("reliable", "call_local", "any_peer")
 func activate():
-	if enabled == false: return; SignalBus.show_interaction_text.emit(disabledStr)
+	if disabled: SignalBus.show_interaction_text.emit(disabledStr); return
 	
-	print(moving)
+	if tempLocked:
+		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
+			SignalBus.show_interaction_text.emit(pressingNotFasterStr)
+			return
+	
 	if moving:
 		if multiplayer.get_remote_sender_id() == multiplayer.get_unique_id():
 			if ZFunc.randInPercent(10):
@@ -64,8 +71,10 @@ func activate():
 	
 	if !atCurrentFloor:
 		move_elevator_to_floor()
+		
 	elif atCurrentFloor and !door.doorOpen:
-		door.open()
+		open_door_with_delay()
+		
 	elif atCurrentFloor and door.doorOpen:
 		match id:
 			"win":
@@ -78,6 +87,14 @@ func activate():
 				push_error("Elevator %s with no id!" % self.get_path())
 		
 		send_elevator()
+
+
+func open_door_with_delay():
+	tempLocked = true
+	await get_tree().create_timer(.25).timeout
+	door.open()
+	await get_tree().create_timer(.25).timeout
+	tempLocked = false
 
 
 func move_elevator_to_floor():
@@ -94,7 +111,7 @@ func move_elevator_to_floor():
 	
 	atCurrentFloor = true
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	otherElevator.moving = false
 	moving = false
 
@@ -140,7 +157,7 @@ func send_elevator():
 	otherElevator.atCurrentFloor = true
 	atCurrentFloor = false
 	
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	otherElevator.moving = false
 	moving = false
 

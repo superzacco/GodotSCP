@@ -1,5 +1,7 @@
 extends Room
+class_name HConToEntCheckpoint
 
+@export var elevator: Elevator
 var facilityMGR: FacilityManager = null
 
 func _ready() -> void:
@@ -10,7 +12,7 @@ func _ready() -> void:
 	#facilityMGR = GlobalPlayerVariables.facilityManager
 	#
 	if multiplayer.is_server():
-		setup_checkpoint.rpc(self.global_position.x + randi_range(-15, 15))
+		setup_checkpoint.rpc(int(self.global_position.x*10 + self.global_position.z))
 
 
 @rpc("any_peer", "call_local", "reliable")

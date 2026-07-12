@@ -21,7 +21,28 @@ var scp106: CharacterBody3D
 
 var LConHConCheckpointOverrideCodes: Dictionary[int, String]
 var HConEntCheckpoints: Dictionary[int, Room]
+var EntCheckpointEntrances: Array[Room]
+ 
 
+func setup_hcon_ent_checkpoints():
+	await get_tree().create_timer(0.5).timeout
+	
+	if HConEntCheckpoints.size() < 3 or EntCheckpointEntrances.size() < 3:
+		print_debug("problems here!")
+	
+	var i := 0
+	for checkpointRoomKey: int in HConEntCheckpoints.keys():
+		var checkpoint: HConToEntCheckpoint = HConEntCheckpoints[checkpointRoomKey]
+		var entranceRoom: EntCheckpointEntrance = EntCheckpointEntrances[i]
+		
+		checkpoint.elevator.id = str(checkpointRoomKey)
+		for elev: Elevator in entranceRoom.elevators:
+			if elev.disabled: continue
+			elev.id = str(checkpointRoomKey)
+			elev.elevator_setup(checkpoint.elevator)
+		
+		i += 1
+	
 
 
 func _ready() -> void:
@@ -36,6 +57,8 @@ func _ready() -> void:
 			chamber096 = room
 		if room.roomName == "chamber106":
 			chamber106 = room
+	
+	setup_hcon_ent_checkpoints()
 
 
 

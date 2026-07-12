@@ -12,6 +12,9 @@
 [node name="EntCheckpointEntrance" type="Node3D" node_paths=PackedStringArray("elevators")]
 script = ExtResource("1_0473f")
 elevators = [NodePath("elevators/elevator"), NodePath("elevators/elevator2")]
+roomName = null
+can173Spawn = null
+chanceForEvent = null
 
 [node name="RoomArea" parent="." instance=ExtResource("3_fbxh1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
