@@ -35,14 +35,16 @@ func setup_hcon_ent_checkpoints():
 		var checkpoint: HConToEntCheckpoint = HConEntCheckpoints[checkpointRoomKey]
 		var entranceRoom: EntCheckpointEntrance = EntCheckpointEntrances[i]
 		
+		print("Check %s, Ent: %s" % [checkpoint, entranceRoom])
+		
 		checkpoint.elevator.id = str(checkpointRoomKey)
 		for elev: Elevator in entranceRoom.elevators:
 			if elev.disabled: continue
 			elev.id = str(checkpointRoomKey)
 			elev.elevator_setup(checkpoint.elevator)
+			checkpoint.elevator.elevator_setup(elev)
 		
 		i += 1
-	
 
 
 func _ready() -> void:

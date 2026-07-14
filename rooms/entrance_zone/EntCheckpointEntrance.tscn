@@ -9,12 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c4c2v1tqbvhui" path="res://rooms/Models/big_door.blend" id="7_y3ee2"]
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="8_q6vxc"]
 
-[node name="EntCheckpointEntrance" type="Node3D" node_paths=PackedStringArray("elevators")]
+[node name="EntCheckpointEntrance" type="Node3D" node_paths=PackedStringArray("elevators", "stupidDoorPlayer")]
 script = ExtResource("1_0473f")
 elevators = [NodePath("elevators/elevator"), NodePath("elevators/elevator2")]
-roomName = null
-can173Spawn = null
-chanceForEvent = null
+stupidDoorPlayer = NodePath("Props/big_door/AnimationPlayer")
 
 [node name="RoomArea" parent="." instance=ExtResource("3_fbxh1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -41,6 +39,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.8, 
 [node name="big_door" parent="Props" instance=ExtResource("7_y3ee2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.552056, 0.316686, 3.5)
 
+[node name="DoorR-col" parent="Props/big_door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 2, 2.25, 0)
+
+[node name="DoorL-col" parent="Props/big_door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(7.54979e-08, -1, -1.42109e-14, 1, 7.54979e-08, 2.84997e-15, -2.84997e-15, -1.42109e-14, 1, 2, -1.50996e-07, 0)
+
 [node name="bench" parent="." instance=ExtResource("8_q6vxc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.10403, -0.652225, 4.01407)
 
@@ -63,3 +67,5 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.1, 
 attenuation = 0.75
 brightness = 0.5
 omniBrightness = 0.2
+
+[editable path="Props/big_door"]
