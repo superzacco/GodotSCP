@@ -7,9 +7,20 @@ class_name Room
 @export var can173Spawn: bool = true
 
 @export var chanceForEvent: float = 0.0
+@export var addSelfToFacility: bool = false
+
+var facilityMGR: FacilityManager = null
 
 func _init() -> void:
 	self.add_to_group("room")
+
+
+func _ready() -> void:
+	await SignalBus.level_generation_finished
+	facilityMGR = await GlobalPlayerVariables.get_facility_manager()
+	
+	if addSelfToFacility:
+		facilityMGR.rooms.append(self)
 
 
 func return_173_spawn_point_position() -> Vector3:

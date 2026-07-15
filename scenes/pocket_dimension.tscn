@@ -5,11 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://cjunbl3vguj14" path="res://audio/scps/106/Laugh.ogg" id="2_tak7t"]
 [ext_resource type="AudioStream" uid="uid://df7nieknao5st" path="res://audio/scps/106/PD.ogg" id="3_tak7t"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xrs0c"]
-size = Vector3(200, 50, 300)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_fsflu"]
 size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrs0c"]
+size = Vector3(200, 50, 300)
 
 [node name="PocketDimension" type="Area3D" groups=["corrosive"]]
 script = ExtResource("1_ersq4")
@@ -21,6 +21,41 @@ stream = ExtResource("3_tak7t")
 
 [node name="Laugh" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("2_tak7t")
+
+[node name="8-Way Teleports" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.8, -12, 104)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 15)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -15)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 10.6066, 0, 10.6066)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -10.6066, 0, -10.6066)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -10.6066, 0, 10.6066)
+shape = SubResource("BoxShape3D_fsflu")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="8-Way Teleports"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 10.6066, 0, -10.6066)
+shape = SubResource("BoxShape3D_fsflu")
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
@@ -61,47 +96,11 @@ shape = SubResource("BoxShape3D_xrs0c")
 
 [node name="Rooms" type="Node3D" parent="."]
 
-[node name="8Way" type="Node3D" parent="Rooms"]
+[node name="PD8Way" parent="Rooms" instance=ExtResource("2_fsflu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.8, -12, 104)
-
-[node name="PD8Way" parent="Rooms/8Way" instance=ExtResource("2_fsflu")]
-
-[node name="8-Way Teleports" type="Area3D" parent="Rooms/8Way"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 15)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -15)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 10.6066, 0, 10.6066)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -10.6066, 0, -10.6066)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -10.6066, 0, 10.6066)
-shape = SubResource("BoxShape3D_fsflu")
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="Rooms/8Way/8-Way Teleports"]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 10.6066, 0, -10.6066)
-shape = SubResource("BoxShape3D_fsflu")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
-[connection signal="body_entered" from="Rooms/8Way/8-Way Teleports" to="." method="_on_way_teleports_body_entered"]
+[connection signal="body_entered" from="8-Way Teleports" to="." method="_on_way_teleports_body_entered"]
 
-[editable path="Rooms/8Way/PD8Way"]
+[editable path="Rooms/PD8Way"]

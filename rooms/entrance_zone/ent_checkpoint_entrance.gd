@@ -3,13 +3,11 @@ class_name EntCheckpointEntrance
 # // Entrance Zone -- Checkpoint Entrances Elevators Thingyies
 
 @export var elevators: Array[Elevator] = []
-var facilityMGR: FacilityManager = null
 
 @export var stupidDoorPlayer: AnimationPlayer
 
 func _ready() -> void:
-	await SignalBus.level_generation_finished
-	facilityMGR = await GlobalPlayerVariables.get_facility_manager()
+	await super()
 	
 	if multiplayer.is_server():
 		disable_one_elevator.rpc(randi_range(0, 1))

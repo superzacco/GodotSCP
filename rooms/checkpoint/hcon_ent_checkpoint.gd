@@ -2,11 +2,9 @@ extends Room
 class_name HConToEntCheckpoint
 
 @export var elevator: Elevator
-var facilityMGR: FacilityManager = null
 
 func _ready() -> void:
-	await SignalBus.level_generation_finished
-	facilityMGR = await GlobalPlayerVariables.get_facility_manager()
+	await super()
 	#while !GlobalPlayerVariables.facilityManager:
 		#await get_tree().create_timer(0.1).timeout
 	#facilityMGR = GlobalPlayerVariables.facilityManager

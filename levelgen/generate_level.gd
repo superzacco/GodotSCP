@@ -350,7 +350,7 @@ func ensure_zone_has_ends(zMin: int, zMax: int, roomTypeArray: Array) -> void:
 		var pick: Vector2i = randPos
 		placablePositions.erase(randPos)
 		spawn_room(temporaryShapeRoom, pick.x, pick.y, true)
-		#print("end room was missing and placed at: %s" % randPos)
+		print("end room was missing and placed at: %s" % randPos)
 
 
 func ensure_zone_has_bends(zMin: int, zMax: int, roomTypeArray: Array) -> void:

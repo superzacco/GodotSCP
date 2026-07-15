@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://iyctvu16a6uw"]
+[gd_scene load_steps=93 format=3 uid="uid://iyctvu16a6uw"]
 
 [ext_resource type="Script" uid="uid://cli3usb286dqn" path="res://levelgen/generate_level.gd" id="1_yc10j"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="2_jscy8"]
@@ -73,6 +73,7 @@
 [ext_resource type="AudioStream" uid="uid://6ptbofc0qoy2" path="res://audio/ambient/general/Ambient12.ogg" id="37_ids8r"]
 [ext_resource type="AudioStream" uid="uid://cwe831m64fk8d" path="res://audio/ambient/general/Ambient13.ogg" id="38_dnhof"]
 [ext_resource type="PackedScene" uid="uid://dd2h2f2obyym1" path="res://rooms/heavy_containment/HCon4Way002.tscn" id="41_vtx2l"]
+[ext_resource type="PackedScene" uid="uid://cyedco7kof7mg" path="res://rooms/heavy_containment/HConBend002.tscn" id="45_bfu41"]
 [ext_resource type="AudioStream" uid="uid://ceabcywibvtxy" path="res://audio/scps/079/Broadcast0.ogg" id="54_a82wo"]
 [ext_resource type="AudioStream" uid="uid://bdx62o7eplbrs" path="res://audio/scps/079/Broadcast1.ogg" id="55_gdvew"]
 [ext_resource type="AudioStream" uid="uid://b3ax04pxempad" path="res://audio/scps/079/Broadcast2.ogg" id="56_kjtvk"]
@@ -151,7 +152,8 @@ ExtResource("15_j8jky"): 5,
 ExtResource("41_vtx2l"): 50
 })
 fillerHConBends = Dictionary[PackedScene, int]({
-ExtResource("16_kmb1v"): 1
+ExtResource("16_kmb1v"): 1,
+ExtResource("45_bfu41"): 15
 })
 fillerEntEndRooms = Dictionary[PackedScene, int]({
 ExtResource("23_nvyfr"): 1
@@ -263,12 +265,16 @@ spawn_path = NodePath("..")
 
 [node name="LConHall003" parent="Facility/FacilityRegion" instance=ExtResource("12_ids8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.5046, 0)
+visible = false
+addSelfToFacility = true
 
 [node name="keycard01" parent="Facility/FacilityRegion/LConHall003" instance=ExtResource("71_ygd8o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4501, -0.90118, 0.302447)
 
 [node name="049Chamber" parent="Facility/FacilityRegion" instance=ExtResource("59_tm6hj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40261, -34.428, 0)
+visible = false
+addSelfToFacility = true
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="Facility"]
 spawn_path = NodePath("../PlayerSpawn")

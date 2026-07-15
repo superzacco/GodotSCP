@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyedco7kof7mg"]
+
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_r1mvd"]
+[ext_resource type="PackedScene" uid="uid://13ygdau1gjrp" path="res://rooms/Models/HConBend002.blend" id="2_r1mvd"]
+[ext_resource type="PackedScene" uid="uid://ywd465j3m17b" path="res://levelgen/roomconnectionpoint.tscn" id="3_ifjj4"]
+[ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="4_jxod8"]
+[ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="5_drh7r"]
+
+[node name="HConBend002" type="Node3D" node_paths=PackedStringArray("spawnPosFor173")]
+script = ExtResource("1_r1mvd")
+spawnPosFor173 = NodePath("173Point")
+
+[node name="HConBend002" parent="." instance=ExtResource("2_r1mvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="Points" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="point1" parent="Points" instance=ExtResource("3_ifjj4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, -1.37512, 0)
+
+[node name="point2" parent="Points" instance=ExtResource("3_ifjj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.37524, -7.5)
+
+[node name="RoomArea" parent="." instance=ExtResource("4_jxod8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425505, 0)
+
+[node name="Light" parent="." instance=ExtResource("5_drh7r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.10296, 1.817, 0.00507022)
+distance = 12.0
+
+[node name="Light2" parent="." instance=ExtResource("5_drh7r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0029567, 1.817, -5.39493)
+brightness = 0.5
+
+[node name="Light3" parent="." instance=ExtResource("5_drh7r")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -0.00295716, 1.817, 0.0234421)
+brightness = 0.5
+
+[node name="173Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)

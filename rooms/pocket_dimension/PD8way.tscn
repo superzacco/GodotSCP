@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlaatr81rovwd"]
+[gd_scene load_steps=3 format=3 uid="uid://dlaatr81rovwd"]
 
 [ext_resource type="PackedScene" uid="uid://cjh62sg74421v" path="res://rooms/Models/PD8way.blend" id="1_n1h5o"]
+[ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_wtes1"]
 
 [node name="PD8Way" type="Node3D" groups=["room"]]
+script = ExtResource("1_wtes1")
+can173Spawn = false
+addSelfToFacility = true
 
 [node name="PD8way" parent="." instance=ExtResource("1_n1h5o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

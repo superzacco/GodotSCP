@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cy2cgoivlh5a0"]
+[gd_scene load_steps=15 format=3 uid="uid://cy2cgoivlh5a0"]
 
 [ext_resource type="Script" uid="uid://dkow0rxwvx8b1" path="res://rooms/room.gd" id="1_ojwru"]
 [ext_resource type="PackedScene" uid="uid://caf8m86u44o4" path="res://rooms/Models/HConTeslaOffice.blend" id="2_gan5t"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://clio6gtdcd1hb" path="res://rooms/Models/props/table.blend" id="9_31nj7"]
 [ext_resource type="PackedScene" uid="uid://bvvt0ft5h2acn" path="res://rooms/Models/props/bench.blend" id="10_loha8"]
 [ext_resource type="PackedScene" uid="uid://ces1beju6rp5e" path="res://rooms/Models/props/shelf01.blend" id="11_xwq50"]
-[ext_resource type="PackedScene" uid="uid://c1vyvsa34747c" path="res://entities/items/cards/keycard00.tscn" id="12_q4prx"]
 [ext_resource type="PackedScene" uid="uid://bsj3727s0ov5a" path="res://entities/items/tools/gasmask/gas_mask.tscn" id="13_p2qkg"]
 [ext_resource type="PackedScene" uid="uid://bj7hpbvjpygs8" path="res://entities/items/cards/keycard03.tscn" id="14_do5x0"]
 [ext_resource type="PackedScene" uid="uid://drgsi3kpmyncf" path="res://entities/items/cards/keycard02.tscn" id="15_a8h6k"]
@@ -27,6 +26,18 @@ transform = Transform3D(-0.647, 0, -9.61843e-08, 0, 1.2, 0, 9.76943e-08, 0, -0.6
 
 [node name="Door" parent="." instance=ExtResource("4_aertl")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.95, 0.07, 3.8)
+
+[node name="door2-col" parent="Door/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
+
+[node name="doorside_2" parent="Door/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
+
+[node name="door-col" parent="Door/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -1.79464e-07)
+
+[node name="doorside_1" parent="Door/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, 1.42401e-07)
 
 [node name="Keycardbutton" parent="Door" index="1"]
 keycardLevel = 3
@@ -86,21 +97,26 @@ transform = Transform3D(9.17939e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, 9.17939e-08, 1.
 
 [node name="Items" type="Node3D" parent="."]
 
-[node name="keycard" parent="Items" instance=ExtResource("12_q4prx")]
-transform = Transform3D(-0.800187, 0, 0.59975, 0, 1, 0, -0.59975, 0, -0.800187, -1.97881, -0.50333, -3.89824)
-collision_layer = 1
-collision_mask = 1
+[node name="keycard04" parent="Items" instance=ExtResource("15_a8h6k")]
+transform = Transform3D(0.635432, 0, 0.772157, 0, 1, 0, -0.772157, 0, 0.635432, -2.04208, -0.290141, -3.7)
+chanceToSpawn = 50.0
 
 [node name="GasMask" parent="Items" instance=ExtResource("13_p2qkg")]
 transform = Transform3D(-0.849073, 0, 0.528275, 0, 1, 0, -0.528275, 0, -0.849073, 2.72857, 0.175967, -0.335113)
 chanceToSpawn = 75.0
 
-[node name="keycard03" parent="Items" instance=ExtResource("14_do5x0")]
+[node name="keycard03" parent="Items" node_paths=PackedStringArray("otherSpawnPoints") instance=ExtResource("14_do5x0")]
 transform = Transform3D(-0.419309, 0, 0.907843, 0, 1, 0, -0.907843, 0, -0.419309, 3.1085, -0.236122, -2.36554)
-chanceToSpawn = 75.0
+otherSpawnPoints = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
 
-[node name="keycard02" parent="Items" instance=ExtResource("15_a8h6k")]
-transform = Transform3D(0.314556, 0, 0.949239, 0, 1, 0, -0.949239, 0, 0.314556, 5.19905, -0.471995, -6.08056)
+[node name="Marker3D" type="Marker3D" parent="Items/keycard03"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 0.664259, 0.1, 0.85756)
+
+[node name="Marker3D2" type="Marker3D" parent="Items/keycard03"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 2.79383, 0.397815, 3.16297)
+
+[node name="Marker3D3" type="Marker3D" parent="Items/keycard03"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -5.5649, 0.252697, -0.697714)
 
 [editable path="Door"]
 [editable path="Door/door"]
