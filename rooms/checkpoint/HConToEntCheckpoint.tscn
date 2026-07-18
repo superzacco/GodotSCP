@@ -1,11 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://2tmrt17xnndd"]
+[gd_scene load_steps=21 format=3 uid="uid://2tmrt17xnndd"]
 
-[ext_resource type="Script" uid="uid://k3sq1uvau18f" path="res://rooms/checkpoint/hcon_ent_checkpoint.gd" id="1_gvdwd"]
+[ext_resource type="Script" uid="uid://k3sq1uvau18f" path="res://rooms/checkpoint/checkpoint_hcon_ent.gd" id="1_gvdwd"]
 [ext_resource type="PackedScene" uid="uid://rd0nm6gs0c5d" path="res://rooms/room_area.tscn" id="2_frmbd"]
 [ext_resource type="PackedScene" uid="uid://dfpkrpoexgo65" path="res://entities/map/light.tscn" id="4_74lcb"]
 [ext_resource type="PackedScene" uid="uid://43b63rsi0bu" path="res://rooms/keycardbutton.tscn" id="4_smmxi"]
 [ext_resource type="PackedScene" uid="uid://cut7dojaypgd5" path="res://rooms/door.tscn" id="5_anhd7"]
 [ext_resource type="AudioStream" uid="uid://bm14ykx6qyqr0" path="res://audio/rooms/gaslock/LockroomSiren.ogg" id="8_c8dnd"]
+[ext_resource type="AudioStream" uid="uid://dn6wbxlxb5pwe" path="res://audio/rooms/checkpoint/locked-bleeps.ogg" id="8_fv274"]
 [ext_resource type="AudioStream" uid="uid://d2uqluqb2ywkr" path="res://audio/door/DoorCheckpoint.ogg" id="8_ndq0b"]
 [ext_resource type="PackedScene" uid="uid://clbs16iv1f6a" path="res://rooms/Models/props/hcon_sign.blend" id="10_bd0kl"]
 [ext_resource type="PackedScene" uid="uid://tph0uqe2gh5r" path="res://rooms/elevator.tscn" id="10_iqi7u"]
@@ -23,8 +24,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_iqi7u"]
 radius = 3.5
 
-[node name="HConToEntCheckpoint" type="Node3D" node_paths=PackedStringArray("elevator") groups=["room"]]
+[node name="HConToEntCheckpoint" type="Node3D" node_paths=PackedStringArray("blarePlayer", "alarmPlayer", "doors", "elevator") groups=["room"]]
 script = ExtResource("1_gvdwd")
+blarePlayer = NodePath("Checkpoint/BlarePlayer")
+alarmPlayer = NodePath("Checkpoint/AlarmPlayer")
+doors = [NodePath("Checkpoint/doors/Door"), NodePath("Checkpoint/doors/Door2")]
 elevator = NodePath("Elevators/elevator")
 
 [node name="HConToEntCheckpoint" parent="." instance=ExtResource("12_vvg4f")]
@@ -155,12 +159,20 @@ shape = SubResource("BoxShape3D_c8dnd")
 shape = SubResource("SphereShape3D_iqi7u")
 
 [node name="AlarmPlayer" type="AudioStreamPlayer3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
 stream = ExtResource("8_c8dnd")
 attenuation_model = 1
 bus = &"Sound Effects"
 
+[node name="LockedAlarmSound" type="AudioStreamPlayer3D" parent="Checkpoint"]
+stream = ExtResource("8_fv274")
+attenuation_model = 1
+volume_db = -15.0
+autoplay = true
+bus = &"Sound Effects"
+
 [node name="BlarePlayer" type="AudioStreamPlayer3D" parent="Checkpoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1665e-08, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
 stream = ExtResource("8_ndq0b")
 attenuation_model = 1
 bus = &"Sound Effects"
@@ -211,6 +223,22 @@ transform = Transform3D(0.676439, 0, -0.736499, 0, 1, 0, 0.736499, 0, 0.676439, 
 
 [node name="KeycardDoor" parent="Doors" instance=ExtResource("17_2uuh8")]
 transform = Transform3D(0.682802, 0, 0.730603, 0, 1, 0, -0.730603, 0, 0.682802, -2.02611, 0.0220739, 1.36648)
+
+[node name="Skeleton3D" parent="Doors/KeycardDoor/door/Armature" index="0"]
+bones/0/position = Vector3(0, 0.00166321, -1.83286e-07)
+bones/3/position = Vector3(-1.2556e-10, -0.00166321, -1.83286e-07)
+
+[node name="door2-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-1.19209e-07, -1, -1.25172e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.25172e-07, 1, 1.5, -1.34834, -4.94423e-07)
+
+[node name="doorside_2" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-1.19209e-07, -1, -1.62921e-07, 1, -1.19209e-07, -2.30472e-07, 2.30472e-07, -1.62921e-07, 1, 1.5, 0.00166321, -1.83286e-07)
+
+[node name="door-col" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="2"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, 1.34834, -5.05151e-07)
+
+[node name="doorside_1" parent="Doors/KeycardDoor/door/Armature/Skeleton3D" index="3"]
+transform = Transform3D(7.54979e-08, -1, 8.14604e-08, 1, 7.54979e-08, 2.0067e-07, -2.0067e-07, 8.14604e-08, 1, 1.5, -0.00166332, -1.83286e-07)
 
 [node name="Keycardbutton" parent="Doors/KeycardDoor" index="1"]
 keycardLevel = 3

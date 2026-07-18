@@ -1,11 +1,18 @@
 extends Room
-
-
-var active := false
+class_name HConToEntCheckpoint
 
 @export var blarePlayer: AudioStreamPlayer3D
 @export var alarmPlayer: AudioStreamPlayer3D
 @export var doors: Array[Door]
+
+@export var elevator: Elevator
+var active := false
+
+func _ready() -> void:
+	await super()
+	
+	if multiplayer.is_server():
+		setup_checkpoint.rpc(int(self.global_position.x*10 + self.global_position.z))
 
 
 func activate():
@@ -30,3 +37,12 @@ func activate():
 		door.close()
 	
 	active = false
+
+
+func reject():
+	SignalBus.show_interaction_text.emit("You insert your keycard into the slot, but nothing happens...")
+
+
+@rpc("any_peer", "call_local", "reliable")
+func setup_checkpoint(id: int):
+	facilityMGR.HConEntCheckpoints[id] = self

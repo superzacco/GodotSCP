@@ -28,7 +28,7 @@ func setup_hcon_ent_checkpoints():
 	await get_tree().create_timer(0.5).timeout
 	
 	if HConEntCheckpoints.size() < 3 or EntCheckpointEntrances.size() < 3:
-		print_debug("problems here!")
+		Commands.console.println("problems here!", Commands.errorColor)
 	
 	var i := 0
 	for checkpointRoomKey: int in HConEntCheckpoints.keys():
