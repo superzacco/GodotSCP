@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7lkq6oe0fc2s"]
+
+[ext_resource type="Material" uid="uid://fgd23wb2x4tx" path="res://rooms/Textures/gas_sprite.tres" id="1_s5bpa"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3o8j2"]
+angular_velocity_min = -30.32
+angular_velocity_max = 98.53
+radial_velocity_min = 2.99998
+radial_velocity_max = 2.99998
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 10.0
+turbulence_noise_speed_random = 2.14
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.505
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_l30ap"]
+material = ExtResource("1_s5bpa")
+size = Vector2(3, 3)
+
+[node name="GasEmitter" type="GPUParticles3D"]
+transparency = 0.35
+cast_shadow = 0
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_3o8j2")
+draw_pass_1 = SubResource("QuadMesh_l30ap")

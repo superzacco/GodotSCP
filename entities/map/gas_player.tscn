@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://eq4mfndcaelc"]
+
+[ext_resource type="AudioStream" uid="uid://br54nn7we8st2" path="res://audio/rooms/gaslock/Hiss0.ogg" id="1_ojelp"]
+
+[node name="GasPlayer" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_ojelp")
+autoplay = true
+max_distance = 12.0
+panning_strength = 0.0
+bus = &"Sound Effects"

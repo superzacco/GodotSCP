@@ -23,8 +23,9 @@ var doorOpen: bool = false
 var opening: bool = false
 
 func _ready() -> void:
-	close()
+	if !openOnSpawn: close()
 	await SignalBus.level_generation_finished
+	if !openOnSpawn: close()
 	
 	if multiplayer.is_server():
 		if ZFunc.randInPercent(4) and closableBy079 == true:
